@@ -1,0 +1,23 @@
+body {
+    background-color: rgb(117, 181, 255);
+}
+p {
+    color: white;
+}
+#goldfish-block {
+    display: inline-block;
+}
+#goldfish-button {
+    margin: 0 0 0 100;
+    display: inline-block;
+}
+.funFish {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    margin: 5px;
+    padding: 5px;
+}
+.habitat {
+    border: solid 1px black;
+}
