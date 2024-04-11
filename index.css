@@ -1,15 +1,47 @@
+/* Nationwide changes */
 body {
     background-color: rgb(117, 181, 255);
 }
 p {
     color: white;
 }
-#goldfish-block {
-    display: inline-block;
+div {
+    border: 1px solid black;
 }
-#goldfish-button {
-    margin: 0 0 0 100;
-    display: inline-block;
+button {
+    align-self: center;
+}
+
+/* flex things */
+#flex-container {
+    display: flex;
+    flex-direction: row;
+    
+}
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+}
+.double-column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 2
+}
+
+/* fish-related */
+#goldfish-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 .funFish {
     display: flex;
@@ -17,7 +49,22 @@ p {
     border: 1px solid black;
     margin: 5px;
     padding: 5px;
+    width: 30%;
 }
+
+/* equipment-related */
+.equipment {
+    border: 1px solid black;
+    margin: 5px;
+    padding: 5px;
+}
+
+/* habitat-related */
 .habitat {
     border: solid 1px black;
+    margin: 5px;
+    padding: 5px;
+}
+#habitatCount {
+    text-align: right;
 }
