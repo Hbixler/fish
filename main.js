@@ -1,75 +1,175 @@
 console.log("I am a fish");
 
-// Goldfish count
-let numGoldfish = 0;
-let goldfishSpan = document.getElementById('numGoldfish');
-goldfishSpan.innerText = numGoldfish;
+// Sand dollar count
+let sandDollars = 0;
+let sandDollarsSpan = document.getElementById('sandDollars');
+sandDollarsSpan.innerText = sandDollars;
 
-function goFishing() {
-    // console.log(numGoldfish);
-    numGoldfish ++;
-    goldfishSpan.innerText = numGoldfish;
+// Income count
+let income = 0;
+let incomeSpan = document.getElementById('income');
+incomeSpan.innerText = income;
+
+// fish size
+let fishSize = {
+    'goldfish': 1,
+    'swordfish': 8,
+    'shark': 12,
+    'whale': 30,
+    'narwhal': 60
 }
 
-// Swordfish count
-let numSwordfish = 0;
-let swordfishSpan = document.getElementById('numSwordfish');
-swordfishSpan.innerText = numSwordfish;
+// fish count
+let fishCount = {
+    'numGoldfish': 0,
+    'numSwordfish': 0,
+    'numShark': 0,
+    'numWhale': 0,
+    'numNarwhal': 0
+};
 
-// Shark count
-let numShark = 0;
-let sharkSpan = document.getElementById('numShark');
-sharkSpan.innerText = numShark;
+for (fish in fishCount) {
+    let fishSpan = document.getElementById(fish);
+    fishSpan.innerText = fishCount[fish];
+}
 
-// Whale count
-let numWhale = 0;
-let whaleSpan = document.getElementById('numWhale');
-whaleSpan.innerText = numWhale;
+// go fishing button
+function goFishing() {
+    fishCount['numGoldfish'] = fishCount['numGoldfish'] + 1;
+    let goldfishSpan = document.getElementById('numGoldfish');
+    goldfishSpan.innerText = fishCount['numGoldfish'];
+}
 
-// Narwhal count
-let numNarwhal = 0;
-let narwhalSpan = document.getElementById('numNarwhal');
-narwhalSpan.innerText = numNarwhal;
+// bait count
+let baitCount = {
+    'numGummyWorms': 0,
+    'numSaltineCrackers': 0,
+    'numChickenNuggets': 0,
+    'numCakeSlices': 0
+}
 
-// Gummy worm count
-let numGummyWorms = 0;
-let gummyWormSpan = document.getElementById('numGummyWorms');
-gummyWormSpan.innerText = numGummyWorms;
-
-// Saltine crackers count
-let numSaltineCrackers = 0;
-let saltineCrackerSpan = document.getElementById('numSaltineCrackers');
-saltineCrackerSpan.innerText = numSaltineCrackers;
-
-// Chicken nugget count
-let numChickenNuggets = 0;
-let chickenNuggetSpan = document.getElementById('numChickenNuggets');
-chickenNuggetSpan.innerText = numChickenNuggets;
-
-// Cake slices count
-let numCakeSlices = 0;
-let cakeSliceSpan = document.getElementById('numCakeSlices');
-cakeSliceSpan.innerText = numCakeSlices;
+for (bait in baitCount) {
+    let baitSpan = document.getElementById(bait);
+    baitSpan.innerText = baitCount[bait];
+}
 
 // Fishing rod values
-const FishingRodOptions = Object.freeze({
-    A_FISHING_ROD: "A Fishing Rod",
-    A_BETTER_FISHING_ROD: "A Better Fishing Rod",
-    AN_EVEN_BETTER_FISHING_ROD: "An Even Better Fishing Rod",
-    THE_BEST_FISHING_ROD: "The Best Fishing Rod"
-});
-let currentRod = FishingRodOptions.A_FISHING_ROD;
-let selectRod = document.getElementById("equipment-select");
+let fishingRods = [// rates are in fish/second
+    {
+        name: "A Fishing Rod",
+        rates: {
+            goldfish: 0.5,
+            swordfish: 0,
+            shark: 0,
+            whale: 0,
+            narwhal: 0
+        }
+    },
+    {
+        name: "A Better Fishing Rod",
+        rates: {
+            goldfish: 1,
+            swordfish: 0.25,
+            shark: 0,
+            whale: 0,
+            narwhal: 0
+        }
+    },
+    {
+        name: "An Even Better Fishing Rod",
+        rates: {
+            goldfish: 2,
+            swordfish: 1,
+            shark: 0.5,
+            whale: 0.25,
+            narwhal: 0
+        }
+    },
+    {
+        name: "The Best Fishing Rod",
+        rates: {
+            goldfish: 4,
+            swordfish: 2,
+            shark: 1,
+            whale: 0.5,
+            narwhal: 0.01
+        }
+    }
+]
 
-for (val in FishingRodOptions) {
-    var option = document.createElement("option");
-    option.value = val;
-    option.innerHTML = FishingRodOptions[val];
-    selectRod.append(option)  
+let currentRod = fishingRods[0];
+let fishingRodSpan = document.getElementById("fishingRod");
+fishingRodSpan.innerText = currentRod.name;
+
+for (let x = 1; x < fishingRods.length; x++) {
+    let fishingRodSpan = document.getElementById("rod" + x);
+    fishingRodSpan.innerText = fishingRods[x].name;
 }
 
-function rodChanged(selectObject) {
-    // Eventually should actually make the user buy the rod
-    let currentRod = selectObject.value;
-    console.log(currentRod)
+function buyRod(fishingRod) {
+    currentRod = fishingRods[fishingRod];
+    let fishingRodSpan = document.getElementById("fishingRod");
+    fishingRodSpan.innerText = currentRod.name;
+}
+
+// in habitat count
+let habitatFishCount = {
+    'numGoldfishHabitat': 0,
+    'numSwordfishHabitat': 0,
+    'numSharkHabitat': 0,
+    'numWhaleHabitat': 0,
+    'numNarwhalHabitat': 0
+}
+
+for (habitatFishNum in habitatFishCount) {
+    let fishSpan = document.getElementById(habitatFishNum);
+    fishSpan.innerText = habitatFishCount[habitatFishNum];
+}
+
+// Fishing habitat values
+let fishHabitats = [
+    {
+        name: "Fish Bowl",
+        capacity: 5
+    },
+    {
+        name: "Fish Tank",
+        capacity: 25
+    },
+    {
+        name: "Aquarium",
+        capacity: 200
+    }
+]
+
+let currentHabitat = fishHabitats[0];
+let fishHabitatSpan = document.getElementById("fishHabitat");
+fishHabitatSpan.innerText = currentHabitat.name;
+
+// habitat labels in trading
+for (let x = 1; x < fishHabitats.length; x++) {
+    let fishHabitatSpan = document.getElementById("habitat" + x);
+    fishHabitatSpan.innerText = fishHabitats[x].name;
+}
+
+// buying habitats
+function buyHabitat(fishHabitat) {
+    currentHabitat = fishHabitats[fishHabitat];
+    let fishHabitatSpan = document.getElementById("fishHabitat");
+    fishHabitatSpan.innerText = currentHabitat.name;
+} 
+
+// buttons for adding and removing fish from habitat
+function plus(fishName) {
+    habitatFishCount[fishName] = habitatFishCount[fishName] + 1;
+    let fishSpan = document.getElementById(fishName);
+    fishSpan.innerText = habitatFishCount[fishName];
+}
+
+function minus(fishName) {
+    if(habitatFishCount[fishName] > 0) {
+        habitatFishCount[fishName] = habitatFishCount[fishName] - 1;
+    }
+    let fishSpan = document.getElementById(fishName);
+    fishSpan.innerText = habitatFishCount[fishName];
 }

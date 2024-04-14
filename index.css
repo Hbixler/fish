@@ -1,22 +1,63 @@
+/*import*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+
 /* Nationwide changes */
 body {
     background-color: rgb(117, 181, 255);
 }
+h1 {
+    color: white;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-family: "roboto slab";
+    font-weight: normal;
+}
+h2 {
+    color: white;
+    font-size: 16px;
+    font-family: "roboto slab";
+    font-weight: normal;
+}
 p {
     color: white;
+    font-size: 14px;
+    font-family: "roboto slab";
 }
 div {
-    border: 1px solid black;
+    border: 0px solid black;
 }
 button {
     align-self: center;
+}
+.plus-minus {
+    width: 20px;
+    height: 20px;
+    padding: 0px;
+}
+.border-div {
+    border: 2px solid black;
+    margin: 5px;
+    padding: 5px;
+}
+.dashed-div {
+    border: 2px dashed black;
+    padding: 5px;
+    margin: 5px;
+}
+.need-gap {
+    gap: 25px;
+}
+.right-aligned {
+    text-align: right;
 }
 
 /* flex things */
 #flex-container {
     display: flex;
     flex-direction: row;
-    
+    width: 1000px;
+    margin: auto;
+    gap: 25px;
 }
 .row {
     display: flex;
@@ -36,35 +77,16 @@ button {
     flex-basis: 100%;
     flex: 2
 }
+.double-row {
+    display: flex;
+    flex-direction: row;
+    flex-basis: 100%;
+    flex: 2;
+}
 
 /* fish-related */
 #goldfish-div {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-}
-.funFish {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid black;
-    margin: 5px;
-    padding: 5px;
-    width: 30%;
-}
-
-/* equipment-related */
-.equipment {
-    border: 1px solid black;
-    margin: 5px;
-    padding: 5px;
-}
-
-/* habitat-related */
-.habitat {
-    border: solid 1px black;
-    margin: 5px;
-    padding: 5px;
-}
-#habitatCount {
-    text-align: right;
 }

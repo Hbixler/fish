@@ -6,248 +6,267 @@
     <body>
         <div id="flex-container">
             <div class="double-column">
-                <div class="row">
-                    <div class="column">
+                <div class="row border-div">
+                    <div class="row">
+                        <h1>Inventory</h1>
+                    </div>
+                    <div class="row need-gap">
 
                         <!--INVENTORY-->
-                        <div class="row">
-                            <div id="goldfish-div" class="row">
-                                <p>Goldfish: <span id="numGoldfish"></span></p>
+                        <div class="column">
+                            <div class="row dashed-div">
+                                <div class="row">
+                                    <h2>Fish: </h2>
+                                </div>
+                                <div class="row">
+                                    <p>Goldfish: <span id="numGoldfish"></span></p>
+                                    <!--GO FISHING-->
+                                        <button onclick="goFishing()">Fish</button>
+                                </div>
+                                <div id="swordfish-div" class="row">
+                                    <p>Swordfish: <span id="numSwordfish"></span></p>
+                                </div>
+                                <div id="shark-div" class="row">
+                                    <p>Shark: <span id="numShark"></span></p>
+                                </div>
+                                <div id="whale-div" class="row">
+                                    <p>Whale: <span id="numWhale"></span></p>
+                                </div>
+                                <div id="narwhal-div" class="row">
+                                    <p>Narwhal: <span id="numNarwhal"></span></p>
+                                </div>
                             </div>
-                            <div id="swordfish-div" class="row">
-                                <p>Swordfish: <span id="numSwordfish"></span></p>
-                            </div>
-                            <div id="shark-div" class="row">
-                                <p>Shark: <span id="numShark"></span></p>
-                            </div>
-                            <div id="whale-div" class="row">
-                                <p>Whale: <span id="numWhale"></span></p>
-                            </div>
-                            <div id="narwhal-div" class="row">
-                                <p>Narwhal: <span id="numNarwhal"></span></p>
-                            </div>
-                        </div>
 
-                        <!--EQUIPMENT-->
-                        <div class="row">
-                            <div class="column">
-                                <p>Equipment</p>
-                            </div>
-                            <div class="column">
-                                <select id="equipment-select" onchange="rodChanged(this)">
-                                    <option id=""></option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="column">
-
-                        <!--GO FISHING-->
-                        <div class="row">
-                            <button onclick="goFishing()" id="goldfish-button">Fish</button>
+                            
                         </div>
 
                         <!--BAIT-->
-                        <div class="row">
-                            <p>Bait: </p>
+                        <div class="double-column dashed-div">
+                            <div class="row">
+                                <h2>Supplies: </h2>
+                            </div>
+                            <div class="row">
+                                <p>Gummy Worms: <span id="numGummyWorms"></span></span></p>
+                            </div>
+                            <div class="row">
+                                <p>Saltine Crackers: <span id="numSaltineCrackers"></span></p>
+                            </div>
+                            <div class="row">
+                                <p>Chicken Nuggets: <span id="numChickenNuggets"></span></p>
+                            </div>
+                            <div class="row">
+                                <p>Cake Slices: <span id="numCakeSlices"></span></p>
+                            </div>
+                            <!--EQUIPMENT-->
+                            <div class="row">
+                                <div class="row">
+                                    <p>Equipment: <span id="fishingRod"></span></p>
+                                </div>
+                            </div>
+                        
                         </div>
-                        <div class="row">
-                            <p>Gummy Worms: <span id="numGummyWorms"></span></span></p>
-                        </div>
-                        <div class="row">
-                            <p>Saltine Crackers: <span id="numSaltineCrackers"></span></p>
-                        </div>
-                        <div class="row">
-                            <p>Chicken Nuggets: <span id="numChickenNuggets"></span></p>
-                        </div>
-                        <div class="row">
-                            <p>Cake Slices: <span id="numCakeSlices"></span></p>
-                        </div>
+
+                        
                     </div>
                 </div>
-                <div class="row">
+                <div class="row border-div">
                     <div class="row">
 
                         <!--FISH HABITAT-->
                         <div class="column">
-                            <p>Fish Bowl: </p>
+                            <h1><span id="fishHabitat"></span></h1>
                         </div>
-                        <div class="column" id="habitatCount">
-                            <p>
-                                <span id="fishInHabitat">xx</span> / <span id="habitatMaximum">xx</span>
-                            </p>
+                        <div class="column">
+                            <p><span id="fishInHabitat">xx</span> / <span id="habitatMaximum">xx</span></p>
                         </div>
-                    </div>
-                    <div id="fishCount" class="row">
-                        <div class="row">
-                            <div class="column">
-                                <p>Goldfish: </p>
-                            </div>
-                            <div class="column">
-                            </div>
-                            <div class="column">
-                                <div class="row">
-                                    <button>^</button>
-                                </div>
-                                <div class="row">
-                                    <button>v</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="column">
-                                <p>Swordfish: </p>
-                            </div>
-                            <div class="column">
-                            </div>
-                            <div class="column">
-                                <div class="row">
-                                    <button>^</button>
-                                </div>
-                                <div class="row">
-                                    <button>v</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="column">
-                                <p>Shark: </p>
-                            </div>
-                            <div class="column">
-                            </div>
-                            <div class="column">
-                                <div class="row">
-                                    <button>^</button>
-                                </div>
-                                <div class="row">
-                                    <button>v</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="column">
-                                <p>Whale: </p>
-                            </div>
-                            <div class="column">
-                            </div>
-                            <div class="column">
-                                <div class="row">
-                                    <button>^</button>
-                                </div>
-                                <div class="row">
-                                    <button>v</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="column">
-                                <p>Narwhal: </p>
-                            </div>
-                            <div class="column">
-                            </div>
-                            <div class="column">
-                                <div class="row">
-                                    <button>^</button>
-                                </div>
-                                <div class="row">
-                                    <button>v</button>
-                                </div>
-                            </div>
+                        <div class="column">
+                            <p><span id="income"></span> sand dollars/s</p>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="column">
+                    <div id="fishCount" class="row dashed-div">
+                        <div class="column">
+                            <div class="row">
+                                <div class="column">
+                                    <p>Goldfish: <span id="numGoldfishHabitat"></span></p>
+                                </div>
+                                <div class="column">
+                                    <div class="row">
+                                        <button class="plus-minus" id="plus" onclick="plus('numGoldfishHabitat')">+</button>
+                                    </div>
+                                    <div class="row">
+                                        <button class="plus-minus" id="minus" onclick="minus('numGoldfishHabitat')">-</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="column">
+                                    <p>Swordfish: <span id="numSwordfishHabitat"></span></p>
+                                </div>
+                                <div class="column">
+                                    <div class="row">
+                                        <button class="plus-minus" id="plus" onclick="plus('numSwordfishHabitat')">+</button>
+                                    </div>
+                                    <div class="row">
+                                        <button class="plus-minus" id="minus" onclick="minus('numSwordfishHabitat')">-</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="column">
+                                    <p>Shark: <span id="numSharkHabitat"></span></p>
+                                </div>
+                                <div class="column">
+                                    <div class="row">
+                                        <button class="plus-minus" id="plus" onclick="plus('numSharkHabitat')">+</button>
+                                    </div>
+                                    <div class="row">
+                                        <button class="plus-minus" id="minus" onclick="minus('numSharkHabitat')">-</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                <!--TRADING-->
-                <div class="row">
-                    <p>Trading: </p>
-                </div>
-                <div class="row">
-                    <p>Sand Dollars: </p>
-                </div>
-                <div class="row">
-                    <div class="row">
-                        <p>Sell Fish: </p>
+                        <div class="column">
+                            <div class="row">
+                                <div class="column">
+                                    <p>Whale: <span id="numWhaleHabitat"></span></p>
+                                </div>
+                                <div class="column">
+                                    <div class="row">
+                                        <button class="plus-minus" id="plus" onclick="plus('numWhaleHabitat')">+</button>
+                                    </div>
+                                    <div class="row">
+                                        <button class="plus-minus" id="minus" onclick="minus('numWhaleHabitat')">-</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="column">
+                                    <p>Narwhal: <span id="numNarwhalHabitat"></span></p>
+                                </div>
+                                <div class="column">
+                                    <div class="row">
+                                        <button class="plus-minus" id="plus" onclick="plus('numNarwhalHabitat')">+</button>
+                                    </div>
+                                    <div class="row">
+                                        <button class="plus-minus" id="minus" onclick="minus('numNarwhalHabitat')">-</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
-                        <p>Goldfish: </p>
-                        <button>Sell</button>
+                        <!-- have different options for this -->
+                        <p>Your fish are happily swimming in their bowl!</p>
                     </div>
-                    <div class="row">
-                        <p>Swordfish: </p>
-                        <button>Sell</button>
-                    </div>
-                    <div class="row">
-                        <p>Shark: </p>
-                        <button>Sell</button>
-                    </div>
-                    <div class="row">
-                        <p>Whale: </p>
-                        <button>Sell</button>
-                    </div>
-                    <div class="row">
-                        <p>Narwhal: </p>
-                        <button>Sell</button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="row">
-                        <p>Bait: </p>
-                    </div>
-                    <div class="row">
-                        <p>Gummy Worms</p>
-                        <button>Buy</button>
-                    </div>
-                    <div class="row">
-                        <p>Saltine Crackers</p>
-                        <button>Buy</button>
-                    </div>
-                    <div class="row">
-                        <p>Chicken Nuggets</p>
-                        <button>Buy</button>
-                    </div>
-                    <div class="row">
-                        <p>Cake Slices</p>
-                        <button>Buy</button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="row">
-                        <p>Equipment: </p>
-                    </div>
-                    <div class="row">
-                        <p>A Better Fishing Rod</p>
-                        <button>Buy</button>
-                    </div>
-                    <div class="row">
-                        <p>An Even Better Fishing Rod</p>
-                        <button>Buy</button>
-                    </div>
-                    <div class="row">
-                        <p>The Best Fishing Rod</p>
-                        <button>Buy</button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="row">
-                        <p>Habitat: </p>
-                    </div>
-                    <div class="row">
-                        <p>Fish Tank</p>
-                        <button>Buy</button>
-                    </div>
-                    <div class="row">
-                        <p>Aquarium</p>
-                        <button>Buy</button>
-                    </div>
-                </div>
-                <div class="row">
-                    <p>Vehicle to better oceans</p>
-                    <button>Buy</button>
                 </div>
             </div>
+
+            <div class="double-column border-div">
+                <div class="row">
+                    <div class="column">
+                        <h1>Trading</h1>
+                    </div>
+                    <div class="column right-aligned">
+                        <p>Sand Dollars (SD): <span id="sandDollars"></span></p>
+                    </div>
+                </div>
+                <div class="row need-gap">
+                <!-- FIRST TRADING COLUMN -->
+                <div class="column">
+                    <div class="row dashed-div">
+                        <div class="row">
+                            <h2>Sell Fish: </h2>
+                        </div>
+                        <div class="row">
+                            <p>Goldfish: </p>
+                            <button>Sell</button>
+                        </div>
+                        <div class="row">
+                            <p>Swordfish: </p>
+                            <button>Sell</button>
+                        </div>
+                        <div class="row">
+                            <p>Shark: </p>
+                            <button>Sell</button>
+                        </div>
+                        <div class="row">
+                            <p>Whale: </p>
+                            <button>Sell</button>
+                        </div>
+                        <div class="row">
+                            <p>Narwhal: </p>
+                            <button>Sell</button>
+                        </div>
+                    </div>
+
+                    <div class="row dashed-div">
+                        <div class="row">
+                            <h2>Equipment: </h2>
+                        </div>
+                        <div class="row">
+                            <p id="rod1"></p>
+                            <button onclick="buyRod(1)">Buy</button>
+                        </div>
+                        <div class="row">
+                            <p id="rod2"></p>
+                            <button onclick="buyRod(2)">Buy</button>
+                        </div>
+                        <div class="row">
+                            <p id="rod3"></p>
+                            <button onclick="buyRod(3)">Buy</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- SECOND TRADING COLUMN -->
+                <div class="column">
+                    <div class="row dashed-div" style="width: 88%">
+                        <div class="row">
+                            <h2>Bait: </h2>
+                        </div>
+                        <div class="row">
+                            <p>Gummy Worms: </p>
+                            <button>Buy</button>
+                        </div>
+                        <div class="row">
+                            <p>Saltine Crackers: </p>
+                            <button>Buy</button>
+                        </div>
+                        <div class="row">
+                            <p>Chicken Nuggets: </p>
+                            <button>Buy</button>
+                        </div>
+                        <div class="row">
+                            <p>Cake Slices: </p>
+                            <button>Buy</button>
+                        </div>
+                    </div>
+                    <div class="row dashed-div" style="width: 88%">
+                        <div class="row">
+                            <h2>Habitat: </h2>
+                        </div>
+                        <div class="row">
+                            <p id="habitat1"></p>
+                            <button onclick="buyHabitat(1)">Buy</button>
+                        </div>
+                        <div class="row">
+                            <p id="habitat2"></p>
+                            <button onclick="buyHabitat(2)">Buy</button>
+                        </div>
+                    </div>
+                    <div class="row dashed-div" style="width: 88%">
+                        <div class="row">
+                            <h2>Vehicle: </h2>
+                        </div>
+                        <div class="row">
+                            <p>Vehicle to better oceans</p>
+                            <button>Buy</button>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            
         </div>
         <script src="./main.js"></script>
     </body>
