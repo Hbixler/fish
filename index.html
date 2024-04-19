@@ -19,21 +19,21 @@
                                     <h2>Fish: </h2>
                                 </div>
                                 <div class="row">
-                                    <p>Goldfish: <span id="numGoldfish"></span></p>
+                                    <p><span class="fish0"></span>: <span id="Goldfish"></span></p>
                                     <!--GO FISHING-->
                                         <button onclick="goFishing()">Fish</button>
                                 </div>
                                 <div id="swordfish-div" class="row">
-                                    <p>Swordfish: <span id="numSwordfish"></span></p>
+                                    <p><span class="fish1"></span>: <span id="Swordfish"></span></p>
                                 </div>
                                 <div id="shark-div" class="row">
-                                    <p>Shark: <span id="numShark"></span></p>
+                                    <p><span class="fish2"></span>: <span id="Shark"></span></p>
                                 </div>
                                 <div id="whale-div" class="row">
-                                    <p>Whale: <span id="numWhale"></span></p>
+                                    <p><span class="fish3"></span>: <span id="Whale"></span></p>
                                 </div>
                                 <div id="narwhal-div" class="row">
-                                    <p>Narwhal: <span id="numNarwhal"></span></p>
+                                    <p><span class="fish4"></span>: <span id="Narwhal"></span></p>
                                 </div>
                             </div>
 
@@ -46,16 +46,16 @@
                                 <h2>Supplies: </h2>
                             </div>
                             <div class="row">
-                                <p>Gummy Worms: <span id="numGummyWorms"></span></span></p>
+                                <p><span class="bait0"></span>: <span id="Gummy Worms"></span></p>
                             </div>
                             <div class="row">
-                                <p>Saltine Crackers: <span id="numSaltineCrackers"></span></p>
+                                <p><span class="bait1"></span>: <span id="Saltine Crackers"></span></p>
                             </div>
                             <div class="row">
-                                <p>Chicken Nuggets: <span id="numChickenNuggets"></span></p>
+                                <p><span class="bait2"></span>: <span id="Chicken Nuggets"></span></p>
                             </div>
                             <div class="row">
-                                <p>Cake Slices: <span id="numCakeSlices"></span></p>
+                                <p><span class="bait3"></span>: <span id="Cake Slices"></span></p>
                             </div>
                             <!--EQUIPMENT-->
                             <div class="row">
@@ -77,7 +77,7 @@
                             <h1><span id="fishHabitat"></span></h1>
                         </div>
                         <div class="column">
-                            <p><span id="fishInHabitat">xx</span> / <span id="habitatMaximum">xx</span></p>
+                            <p><span id="fishInHabitat"></span> / <span id="habitatMaximum"></span></p>
                         </div>
                         <div class="column">
                             <p><span id="income"></span> sand dollars/s</p>
@@ -87,40 +87,40 @@
                         <div class="column">
                             <div class="row">
                                 <div class="column">
-                                    <p>Goldfish: <span id="numGoldfishHabitat"></span></p>
+                                    <p><span class="fish0"></span>: <span id="GoldfishHabitat"></span></p>
                                 </div>
                                 <div class="column">
                                     <div class="row">
-                                        <button class="plus-minus" id="plus" onclick="plus('numGoldfishHabitat')">+</button>
+                                        <button class="plus-minus" id="plus" onclick="plus('Goldfish')">+</button>
                                     </div>
                                     <div class="row">
-                                        <button class="plus-minus" id="minus" onclick="minus('numGoldfishHabitat')">-</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="column">
-                                    <p>Swordfish: <span id="numSwordfishHabitat"></span></p>
-                                </div>
-                                <div class="column">
-                                    <div class="row">
-                                        <button class="plus-minus" id="plus" onclick="plus('numSwordfishHabitat')">+</button>
-                                    </div>
-                                    <div class="row">
-                                        <button class="plus-minus" id="minus" onclick="minus('numSwordfishHabitat')">-</button>
+                                        <button class="plus-minus" id="minus" onclick="minus('Goldfish')">-</button>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="column">
-                                    <p>Shark: <span id="numSharkHabitat"></span></p>
+                                    <p><span class="fish1"></span>: <span id="SwordfishHabitat"></span></p>
                                 </div>
                                 <div class="column">
                                     <div class="row">
-                                        <button class="plus-minus" id="plus" onclick="plus('numSharkHabitat')">+</button>
+                                        <button class="plus-minus" id="plus" onclick="plus('Swordfish')">+</button>
                                     </div>
                                     <div class="row">
-                                        <button class="plus-minus" id="minus" onclick="minus('numSharkHabitat')">-</button>
+                                        <button class="plus-minus" id="minus" onclick="minus('Swordfish')">-</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="column">
+                                    <p><span class="fish2"></span>: <span id="SharkHabitat"></span></p>
+                                </div>
+                                <div class="column">
+                                    <div class="row">
+                                        <button class="plus-minus" id="plus" onclick="plus('Shark')">+</button>
+                                    </div>
+                                    <div class="row">
+                                        <button class="plus-minus" id="minus" onclick="minus('Shark')">-</button>
                                     </div>
                                 </div>
                             </div>
@@ -129,27 +129,27 @@
                         <div class="column">
                             <div class="row">
                                 <div class="column">
-                                    <p>Whale: <span id="numWhaleHabitat"></span></p>
+                                    <p><span class="fish3"></span>: <span id="WhaleHabitat"></span></p>
                                 </div>
                                 <div class="column">
                                     <div class="row">
-                                        <button class="plus-minus" id="plus" onclick="plus('numWhaleHabitat')">+</button>
+                                        <button class="plus-minus" id="plus" onclick="plus('Whale')">+</button>
                                     </div>
                                     <div class="row">
-                                        <button class="plus-minus" id="minus" onclick="minus('numWhaleHabitat')">-</button>
+                                        <button class="plus-minus" id="minus" onclick="minus('Whale')">-</button>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="column">
-                                    <p>Narwhal: <span id="numNarwhalHabitat"></span></p>
+                                    <p><span class="fish4"></span>: <span id="NarwhalHabitat"></span></p>
                                 </div>
                                 <div class="column">
                                     <div class="row">
-                                        <button class="plus-minus" id="plus" onclick="plus('numNarwhalHabitat')">+</button>
+                                        <button class="plus-minus" id="plus" onclick="plus('Narwhal')">+</button>
                                     </div>
                                     <div class="row">
-                                        <button class="plus-minus" id="minus" onclick="minus('numNarwhalHabitat')">-</button>
+                                        <button class="plus-minus" id="minus" onclick="minus('Narwhal')">-</button>
                                     </div>
                                 </div>
                             </div>
@@ -179,24 +179,24 @@
                             <h2>Sell Fish: </h2>
                         </div>
                         <div class="row">
-                            <p>Goldfish: </p>
-                            <button>Sell</button>
+                            <p class="fish0"></p>
+                            <button onclick="sellFish(0)" id="sellFish0">Sell</button>
                         </div>
                         <div class="row">
-                            <p>Swordfish: </p>
-                            <button>Sell</button>
+                            <p class="fish1"></p>
+                            <button onclick="sellFish(1)" id="sellFish1">Sell</button>
                         </div>
                         <div class="row">
-                            <p>Shark: </p>
-                            <button>Sell</button>
+                            <p class="fish2"></p>
+                            <button onclick="sellFish(2)" id="sellFish2">Sell</button>
                         </div>
                         <div class="row">
-                            <p>Whale: </p>
-                            <button>Sell</button>
+                            <p class="fish3"></p>
+                            <button onclick="sellFish(3)" id="sellFish3">Sell</button>
                         </div>
                         <div class="row">
-                            <p>Narwhal: </p>
-                            <button>Sell</button>
+                            <p class="fish4"></p>
+                            <button onclick="sellFish(4)" id="sellFish4">Sell</button>
                         </div>
                     </div>
 
@@ -206,15 +206,15 @@
                         </div>
                         <div class="row">
                             <p id="rod1"></p>
-                            <button onclick="buyRod(1)">Buy</button>
+                            <button onclick="buyRod(1)" id="buyRod1">Buy</button>
                         </div>
                         <div class="row">
                             <p id="rod2"></p>
-                            <button onclick="buyRod(2)">Buy</button>
+                            <button onclick="buyRod(2)" id="buyRod2">Buy</button>
                         </div>
                         <div class="row">
                             <p id="rod3"></p>
-                            <button onclick="buyRod(3)">Buy</button>
+                            <button onclick="buyRod(3)" id="buyRod3">Buy</button>
                         </div>
                     </div>
                 </div>
@@ -225,20 +225,20 @@
                             <h2>Bait: </h2>
                         </div>
                         <div class="row">
-                            <p>Gummy Worms: </p>
-                            <button>Buy</button>
+                            <p class="bait0"></p>
+                            <button onclick="buyBait(0)">Buy</button>
                         </div>
                         <div class="row">
-                            <p>Saltine Crackers: </p>
-                            <button>Buy</button>
+                            <p class="bait1"></p>
+                            <button onclick="buyBait(1)">Buy</button>
                         </div>
                         <div class="row">
-                            <p>Chicken Nuggets: </p>
-                            <button>Buy</button>
+                            <p class="bait2"></p>
+                            <button onclick="buyBait(2)">Buy</button>
                         </div>
                         <div class="row">
-                            <p>Cake Slices: </p>
-                            <button>Buy</button>
+                            <p class="bait3"></p>
+                            <button onclick="buyBait(3)">Buy</button>
                         </div>
                     </div>
                     <div class="row dashed-div" style="width: 88%">
@@ -268,6 +268,11 @@
             </div>
             
         </div>
+        
+        <!--JAVASCRIPT FILES-->
         <script src="./main.js"></script>
+        <script src="./inventory.js"></script>
+        <script src="./habitat.js"></script>
+        <script src="./trading.js"></script>
     </body>
 </html>
