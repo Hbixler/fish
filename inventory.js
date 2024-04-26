@@ -9,16 +9,16 @@ function updateFishingRod() {
 }
 function updateFishCount(fishName) {
     let fishCountSpan = document.getElementById(fishName);
-    fishCountSpan.innerText = fishCount[fishName];
+    fishCountSpan.innerText = Math.floor(fishCount[fishName]);
 }
 
 // fish count
 let fishCount = {
-    'Goldfish': 10,
-    'Swordfish': 8,
-    'Shark': 5,
-    'Whale': 3,
-    'Narwhal': 1,
+    'Goldfish': 0,
+    'Swordfish': 0,
+    'Shark': 0,
+    'Whale': 0,
+    'Narwhal': 0,
 };
 
 // fish labels in inventory and habitat
@@ -32,15 +32,6 @@ for (let x = 0; x < fishStats.length; x++) {
 for (fish in fishCount) {
     updateFishCount(fish);
 }
-
-// go fishing button
-function goFishing() {
-    fishCount['Goldfish'] = fishCount['Goldfish'] + 1;
-    updateFishCount('Goldfish');
-}
-
-let currentRod = fishingRods[0];
-updateFishingRod();
 
 // bait count
 let baitCount = {
@@ -60,3 +51,34 @@ for (let x = 0; x < baits.length; x++) {
 for (bait in baitCount) {
     updateBaitCount(bait)
 }
+
+// go fishing button
+function goFishing() {
+    fishCount['Goldfish'] = fishCount['Goldfish'] + 1;
+    updateFishCount('Goldfish');
+}
+
+let currentRod = fishingRods[0];
+updateFishingRod();
+
+// automatic fishing
+window.setInterval(function() {
+    for (autoFish in currentRod.rates) {
+        // Find the fish's stats
+        fishStat = fishStats.find(fish => fish.name == autoFish);
+
+        // If fish has bait and is being fished
+        if (fishStat.bait.length > 0 && currentRod.rates[autoFish] > 0) {
+            if (baitCount[fishStat.bait] <= 0) {
+                // We have no bait :( cannot fish
+                continue;
+            }
+            // Use bait
+            baitCount[fishStat.bait] = baitCount[fishStat.bait] - 1;
+            updateBaitCount(fishStat.bait)
+        }
+        // Gain fish!
+        fishCount[autoFish] = fishCount[autoFish] + currentRod.rates[autoFish];
+        updateFishCount(autoFish)
+    }
+}, 1000)

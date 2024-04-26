@@ -1,0 +1,32 @@
+Changes to make: 
+- align titles with boxes -> sorry Hailey :/
+- adjust rates and costs
+    - if you have a better fishing rod, you lose 4 SD whenever you get a swordfish... that's unfortunate...
+    - if you have an even better fishing rod, you break even when you get a shark... still seems like a waste of time...
+    - make bait cheaper -> even though Hailey is gonna get a rowboat
+- make buttons and text only appear when you can use them/you get far enough in the game -> but also maybe push this off for as long as possible because it's harddddddd
+- bulk buying and selling bait and fish in the trading section -> clicker game doesn't need to mean clicking every 0.05 seconds
+- make the habitat fun line change so that it doesn't lie to you -> fish are not always swimming happily in your bowl. Sometimes there are no fish. Sometimes it's a tank, not a bowl. Sometimes, the fish are very unhappy. You never know. Bad to assume. 
+- put space between text and buy/sell buttons because it's driving Kai's eyes crazy
+- add "Small Lake" to list of habitats
+- add results to buying rowboat so Hailey feels satisfied when she wins the game... whoops
+- automatic buying bait and selling fish options
+
+Future things: 
+- have other vehicles and better oceans to go to -> lame that a rowboat takes you nowhere... 
+- multiple pages
+    - split current into inventory/habitat page and trading page
+    - wise old man who is too old to fish for himself so you trade him fish and he teaches you things to get skills
+        - bartering skills that reduce the prices of bait and get more profit off of fish
+        - he'll tell you where other fish are so you can unlock new fish
+        - gives you more habitat space by letting you store fish in the pond in his backyard
+        - buy upgrades for fishing rods
+        - new fishing rod called old man's master fishing rod
+
+Other things: 
+- test how long it takes to win game -> perhaps less than an hour is too easy? People need to suffer to enjoy
+- have other people play the game? We need beta testers (Bully Hailey's roommates into playing clicker games)
+
+Highest priority: 
+- keep Kai from dying
+- make it so Hailey doesn't have to go into the CSS file literally every coding session

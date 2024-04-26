@@ -1,13 +1,15 @@
+console.log("I am a fish");
+
 // Fishing rod values
 let fishingRods = [// rates are in fish/second
     {
         name: "A Fishing Rod",
         rates: {
-            goldfish: 0.5,
-            swordfish: 0,
-            shark: 0,
-            whale: 0,
-            narwhal: 0
+            'Goldfish': 0,
+            'Swordfish': 0,
+            'Shark': 0,
+            'Whale': 0,
+            'Narwhal': 0,
         },
         cost: 0,
         bought: true,
@@ -15,11 +17,11 @@ let fishingRods = [// rates are in fish/second
     {
         name: "A Better Fishing Rod",
         rates: {
-            goldfish: 1,
-            swordfish: 0.25,
-            shark: 0,
-            whale: 0,
-            narwhal: 0
+            'Goldfish': 1,
+            'Swordfish': 0.25,
+            'Shark': 0,
+            'Whale': 0,
+            'Narwhal': 0,
         },
         cost: 50,
         bought: false,
@@ -27,11 +29,11 @@ let fishingRods = [// rates are in fish/second
     {
         name: "An Even Better Fishing Rod",
         rates: {
-            goldfish: 2,
-            swordfish: 1,
-            shark: 0.5,
-            whale: 0.25,
-            narwhal: 0
+            'Goldfish': 2,
+            'Swordfish': 1,
+            'Shark': 0.5,
+            'Whale': 0.25,
+            'Narwhal': 0,
         },
         cost: 100,
         bought: false,
@@ -39,11 +41,11 @@ let fishingRods = [// rates are in fish/second
     {
         name: "The Best Fishing Rod",
         rates: {
-            goldfish: 4,
-            swordfish: 2,
-            shark: 1,
-            whale: 0.5,
-            narwhal: 0.01
+            'Goldfish': 4,
+            'Swordfish': 2,
+            'Shark': 1,
+            'Whale': 0.5,
+            'Narwhal': 0.01,
         },
         cost: 300,
         bought: false,
@@ -51,31 +53,41 @@ let fishingRods = [// rates are in fish/second
 ]
 
 // fish stats
-let fishStats = [
+let fishStats = [ // revenue is in SD/second
     {
         name: 'Goldfish',
         size: 1,
         cost: 1,
+        revenue: 0.1,
+        bait: ""
     },
     {
         name: 'Swordfish',
         size: 8,
         cost: 4,
+        revenue: 1,
+        bait: "Gummy Worms"
     },
     {
         name: 'Shark',
         size: 12,
         cost: 8,
+        revenue: 2,
+        bait: "Saltine Crackers"
     },
     {
         name: 'Whale',
         size: 30,
         cost: 15,
+        revenue: 3,
+        bait: "Chicken Nuggets"
     },
     {
         name: 'Narwhal',
         size: 60,
         cost: 30,
+        revenue: 6.5,
+        bait: "Cake Slices"
     },
 ]
 
@@ -118,4 +130,11 @@ let baits = [
         name: "Cake Slices",
         cost: 15,
     },
+]
+
+let win = [
+    {
+        name: "Rowboat",
+        cost: 10000,
+    }
 ]

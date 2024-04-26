@@ -5,7 +5,7 @@
     </head>
     <body>
         <div id="flex-container">
-            <div class="double-column">
+            <div class="triple-column">
                 <div class="row border-div">
                     <div class="row">
                         <h1>Inventory</h1>
@@ -80,7 +80,7 @@
                             <p><span id="fishInHabitat"></span> / <span id="habitatMaximum"></span></p>
                         </div>
                         <div class="column">
-                            <p><span id="income"></span> sand dollars/s</p>
+                            <p><span id="revenue"></span> sand dollars/s</p>
                         </div>
                     </div>
                     <div id="fishCount" class="row dashed-div">
@@ -162,7 +162,7 @@
                 </div>
             </div>
 
-            <div class="double-column border-div">
+            <div class="quadruple-column border-div">
                 <div class="row">
                     <div class="column">
                         <h1>Trading</h1>
@@ -179,23 +179,23 @@
                             <h2>Sell Fish: </h2>
                         </div>
                         <div class="row">
-                            <p class="fish0"></p>
+                            <p><span class="fish0"></span> (<span id="fish0-cost"></span> SD)</p>
                             <button onclick="sellFish(0)" id="sellFish0">Sell</button>
                         </div>
                         <div class="row">
-                            <p class="fish1"></p>
+                            <p><span class="fish1"></span> (<span id="fish1-cost"></span> SD)</p>
                             <button onclick="sellFish(1)" id="sellFish1">Sell</button>
                         </div>
                         <div class="row">
-                            <p class="fish2"></p>
+                            <p><span class="fish2"></span> (<span id="fish2-cost"></span> SD)</p>
                             <button onclick="sellFish(2)" id="sellFish2">Sell</button>
                         </div>
                         <div class="row">
-                            <p class="fish3"></p>
+                            <p><span class="fish3"></span> (<span id="fish3-cost"></span> SD)</p>
                             <button onclick="sellFish(3)" id="sellFish3">Sell</button>
                         </div>
                         <div class="row">
-                            <p class="fish4"></p>
+                            <p><span class="fish4"></span> (<span id="fish4-cost"></span> SD)</p>
                             <button onclick="sellFish(4)" id="sellFish4">Sell</button>
                         </div>
                     </div>
@@ -205,15 +205,15 @@
                             <h2>Equipment: </h2>
                         </div>
                         <div class="row">
-                            <p id="rod1"></p>
+                            <p><span id="rod1"></span> (<span id="rod1-cost"></span> SD)</p>
                             <button onclick="buyRod(1)" id="buyRod1">Buy</button>
                         </div>
                         <div class="row">
-                            <p id="rod2"></p>
+                            <p><span id="rod2"></span> (<span id="rod2-cost"></span> SD)</p>
                             <button onclick="buyRod(2)" id="buyRod2">Buy</button>
                         </div>
                         <div class="row">
-                            <p id="rod3"></p>
+                            <p><span id="rod3"></span> (<span id="rod3-cost"></span> SD)</p>
                             <button onclick="buyRod(3)" id="buyRod3">Buy</button>
                         </div>
                     </div>
@@ -225,19 +225,19 @@
                             <h2>Bait: </h2>
                         </div>
                         <div class="row">
-                            <p class="bait0"></p>
+                            <p><span class="bait0"></span> (<span id="bait0-cost"></span> SD)</p>
                             <button onclick="buyBait(0)">Buy</button>
                         </div>
                         <div class="row">
-                            <p class="bait1"></p>
+                            <p><span class="bait1"></span> (<span id="bait1-cost"></span> SD)</p>
                             <button onclick="buyBait(1)">Buy</button>
                         </div>
                         <div class="row">
-                            <p class="bait2"></p>
+                            <p><span class="bait2"></span> (<span id="bait2-cost"></span> SD)</p>
                             <button onclick="buyBait(2)">Buy</button>
                         </div>
                         <div class="row">
-                            <p class="bait3"></p>
+                            <p><span class="bait3"></span> (<span id="bait3-cost"></span> SD)</p>
                             <button onclick="buyBait(3)">Buy</button>
                         </div>
                     </div>
@@ -246,20 +246,20 @@
                             <h2>Habitat: </h2>
                         </div>
                         <div class="row">
-                            <p id="habitat1"></p>
+                            <p><span id="habitat1"></span> (<span id="habitat1-cost"></span> SD)</p>
                             <button onclick="buyHabitat(1)">Buy</button>
                         </div>
                         <div class="row">
-                            <p id="habitat2"></p>
+                            <p><span id="habitat2"></span> (<span id="habitat2-cost"></span> SD)</p>
                             <button onclick="buyHabitat(2)">Buy</button>
                         </div>
                     </div>
                     <div class="row dashed-div" style="width: 88%">
                         <div class="row">
-                            <h2>Vehicle: </h2>
+                            <h2>Vehicles to Better Oceans: </h2>
                         </div>
                         <div class="row">
-                            <p>Vehicle to better oceans</p>
+                            <p><span id="win0"></span> (<span id="win0-cost"></span> SD)</p>
                             <button>Buy</button>
                         </div>
                     </div>

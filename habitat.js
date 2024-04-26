@@ -1,5 +1,3 @@
-console.log("I am a fish");
-
 // Update functions
 function updateHabitat() {
     let fishHabitatSpan = document.getElementById("fishHabitat");
@@ -12,14 +10,14 @@ function updateNumFish(fishName) {
     
     // changes number of fish displayed in Inventory section
     let fishInventorySpan = document.getElementById(fishName);
-    fishInventorySpan.innerText = fishCount[fishName];
+    fishInventorySpan.innerText = Math.floor(fishCount[fishName]);
 }
 
-// Income count
-let income = 0;
-let incomeSpan = document.getElementById('income');
-incomeSpan.innerText = income;
-
+let revenue = 0;
+function updateRevenue() {
+    let revenueSpan = document.getElementById('revenue');
+    revenueSpan.innerText = Math.round(revenue * 100) / 100
+}
 
 // in habitat count
 let habitatFishCount = {
@@ -27,8 +25,19 @@ let habitatFishCount = {
     'Swordfish': 0,
     'Shark': 0,
     'Whale': 0,
-    'Narwhal': 0
+    'Narwhal': 0,
 }
+
+// revenue from visitors
+window.setInterval(function() {
+    revenue = 0;
+    for (auto of fishStats) {
+        revenue = revenue + (habitatFishCount[auto.name] * auto.revenue);
+    }
+    updateRevenue(revenue)
+    sandDollars = sandDollars + revenue;
+    updateSandDollars();
+}, 1000)
 
 // labels of fish
 for (habitatFishNum in habitatFishCount) {
@@ -52,7 +61,7 @@ habitatMaximumSpan.innerText = currentHabitat.capacity;
 // buttons for adding and removing fish from habitat
 function plus(fishName) {
     newSpace = fishInHabitat + fishStats.find(x => x.name === fishName).size; // obj = arr.find(o => o.name === 'string 1')
-    if (fishCount[fishName] > 0 && newSpace <= currentHabitat.capacity) { // only if there is fish in the inventory to put in the habitat and it wouldn't exceed the maximum space
+    if (fishCount[fishName] >= 1 && newSpace <= currentHabitat.capacity) { // only if there is fish in the inventory to put in the habitat and it wouldn't exceed the maximum space
         fishCount[fishName] = fishCount[fishName] - 1; // takes fish out of inventory
         habitatFishCount[fishName] = habitatFishCount[fishName] + 1; // puts fish into habitat
         
@@ -61,7 +70,7 @@ function plus(fishName) {
     }
 }
 function minus(fishName) {
-    if(habitatFishCount[fishName] > 0) { // can't have negative fish
+    if(habitatFishCount[fishName] >= 1) { // can't have negative fish
         habitatFishCount[fishName] = habitatFishCount[fishName] - 1; // takes fish out of habitat
         fishCount[fishName] = fishCount[fishName] + 1; // puts fish back into inventory
 
