@@ -1,25 +1,46 @@
 // Update functions
-function updateBaitCount(baitName) {
-    let baitSpan = document.getElementById(baitName);
-    baitSpan.innerText = baitCount[baitName];
+function updateBaitCount(baitNum) {
+    let baitSpan = document.getElementById("bait" + baitNum + "-count");
+    baitSpan.innerText = baits[baitNum].count;
 }
 function updateFishingRod() {
     let fishingRodSpan = document.getElementById("fishingRod");
     fishingRodSpan.innerText = currentRod.name;
 }
-function updateFishCount(fishName) {
-    let fishCountSpan = document.getElementById(fishName);
-    fishCountSpan.innerText = Math.floor(fishCount[fishName]);
-}
+function updateFishCount(fishNumber) {
+    let fishCountSpan = document.getElementById("fish" + fishNumber + "-count");
+    fishCountSpan.innerText = Math.floor(fishStats[fishNumber].inventoryCount);
 
-// fish count
-let fishCount = {
-    'Goldfish': 0,
-    'Swordfish': 0,
-    'Shark': 0,
-    'Whale': 0,
-    'Narwhal': 0,
-};
+    if (fishStats[fishNumber].inventoryCount >= 1 && !fishStats[fishNumber].unlocked) {
+        if (fishNumber === 0) {
+            // Fishing for goldfish for first time, adding boxes and borders
+            fishHeadingDiv = document.getElementById("fish-heading");
+            fishHeadingDiv.style.visibility = 'visible';
+
+            fishDiv = document.getElementById("fish-div")
+            fishDiv.style.removeProperty('border');
+
+            inventoryHeadingDiv = document.getElementById("inventory-heading");
+            inventoryHeadingDiv.style.visibility = 'visible';
+
+            inventoryDiv = document.getElementById("inventory-div");
+            inventoryDiv.style.removeProperty('border');
+        }
+
+        // Unlock fish
+        fishStats[fishNumber].unlocked = true;
+
+        // Add fish to inventory options
+        fishDiv = document.getElementById("fish" + fishNumber + "-div");
+        fishDiv.style.visibility = 'visible';
+
+        if (Object.keys(currentHabitat).length > 0) {
+            // If habitat unlocked, make fish option in habitat
+            fishInHabitatDiv = document.getElementById("fishInHabitat" + fishNumber + "-div");
+            fishInHabitatDiv.style.visibility = 'visible';
+        }
+    }
+}
 
 // fish labels in inventory and habitat
 for (let x = 0; x < fishStats.length; x++) {
@@ -29,56 +50,44 @@ for (let x = 0; x < fishStats.length; x++) {
     }
 }
 
-for (fish in fishCount) {
-    updateFishCount(fish);
-}
-
-// bait count
-let baitCount = {
-    'Gummy Worms': 0,
-    'Saltine Crackers': 0,
-    'Chicken Nuggets': 0,
-    'Cake Slices': 0
-}
-
 for (let x = 0; x < baits.length; x++) {
     let baitsSpan = document.getElementsByClassName("bait" + x);
     for (let y = 0; y < baitsSpan.length; y++) {
         baitsSpan[y].innerText = baits[x].name;
     }
-}
-
-for (bait in baitCount) {
-    updateBaitCount(bait)
+    updateBaitCount(x)
 }
 
 // go fishing button
 function goFishing() {
-    fishCount['Goldfish'] = fishCount['Goldfish'] + 1;
-    updateFishCount('Goldfish');
+    fishStats[0].inventoryCount = fishStats[0].inventoryCount + 1;
+    updateFishCount(0);
 }
 
-let currentRod = fishingRods[0];
+let currentRod = {};
 updateFishingRod();
 
 // automatic fishing
 window.setInterval(function() {
     for (autoFish in currentRod.rates) {
         // Find the fish's stats
-        fishStat = fishStats.find(fish => fish.name == autoFish);
+        fishIndex = fishStats.findIndex(fish => fish.name == autoFish);
+        fishStat = fishStats[fishIndex]
 
-        // If fish has bait and is being fished
+        // If fish needs bait and is being fished
         if (fishStat.bait.length > 0 && currentRod.rates[autoFish] > 0) {
-            if (baitCount[fishStat.bait] <= 0) {
+            baitIndex = baits.findIndex(bait => bait.name == fishStat.bait);
+            bait = baits[baitIndex]
+            if (bait.count <= 0) {
                 // We have no bait :( cannot fish
                 continue;
             }
             // Use bait
-            baitCount[fishStat.bait] = baitCount[fishStat.bait] - 1;
-            updateBaitCount(fishStat.bait)
+            bait.count = bait.count - 1;
+            updateBaitCount(baitIndex)
         }
         // Gain fish!
-        fishCount[autoFish] = fishCount[autoFish] + currentRod.rates[autoFish];
-        updateFishCount(autoFish)
+        fishStat.inventoryCount = fishStat.inventoryCount + currentRod.rates[autoFish];
+        updateFishCount(fishIndex)
     }
 }, 1000)

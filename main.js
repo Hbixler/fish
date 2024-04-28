@@ -1,18 +1,18 @@
-console.log("I am a fish");
+console.log("I am a fish"); // MAXIMUM IMPORTANCE - DO NOT REMOVE
 
 // Fishing rod values
 let fishingRods = [// rates are in fish/second
     {
         name: "A Fishing Rod",
         rates: {
-            'Goldfish': 0,
+            'Goldfish': 0.5,
             'Swordfish': 0,
             'Shark': 0,
             'Whale': 0,
             'Narwhal': 0,
         },
-        cost: 0,
-        bought: true,
+        cost: 25,
+        unlocked: false,
     },
     {
         name: "A Better Fishing Rod",
@@ -24,7 +24,6 @@ let fishingRods = [// rates are in fish/second
             'Narwhal': 0,
         },
         cost: 50,
-        bought: false,
     },
     {
         name: "An Even Better Fishing Rod",
@@ -36,7 +35,6 @@ let fishingRods = [// rates are in fish/second
             'Narwhal': 0,
         },
         cost: 100,
-        bought: false,
     },
     {
         name: "The Best Fishing Rod",
@@ -48,7 +46,6 @@ let fishingRods = [// rates are in fish/second
             'Narwhal': 0.01,
         },
         cost: 300,
-        bought: false,
     },
 ]
 
@@ -59,35 +56,50 @@ let fishStats = [ // revenue is in SD/second
         size: 1,
         cost: 1,
         revenue: 0.1,
-        bait: ""
+        bait: "",
+        inventoryCount: 0,
+        habitatCount: 0,
+        unlocked: false,
     },
     {
         name: 'Swordfish',
         size: 8,
         cost: 4,
         revenue: 1,
-        bait: "Gummy Worms"
+        bait: "Gummy Worms",
+        inventoryCount: 0,
+        habitatCount: 0,
+        unlocked: false,
     },
     {
         name: 'Shark',
         size: 12,
         cost: 8,
         revenue: 2,
-        bait: "Saltine Crackers"
+        bait: "Saltine Crackers",
+        inventoryCount: 0,
+        habitatCount: 0,
+        unlocked: false,
     },
     {
         name: 'Whale',
         size: 30,
         cost: 15,
         revenue: 3,
-        bait: "Chicken Nuggets"
+        bait: "Chicken Nuggets",
+        inventoryCount: 0,
+        habitatCount: 0,
+        unlocked: false,
     },
     {
         name: 'Narwhal',
         size: 60,
         cost: 30,
         revenue: 6.5,
-        bait: "Cake Slices"
+        bait: "Cake Slices",
+        inventoryCount: 0,
+        habitatCount: 0,
+        unlocked: false,
     },
 ]
 
@@ -96,39 +108,40 @@ let fishHabitats = [
     {
         name: "Fish Bowl",
         capacity: 5,
-        cost: 0,
-        bought: true,
+        cost: 25,
     },
     {
         name: "Fish Tank",
         capacity: 25,
         cost: 100,
-        bought: false,
     },
     {
         name: "Aquarium",
         capacity: 200,
         cost: 300,
-        bought: false,
     },
 ]
 
 let baits = [
     {
         name: "Gummy Worms",
-        cost: 2
+        cost: 2,
+        count: 0
     },
     {
         name: "Saltine Crackers",
         cost: 4,
+        count: 0
     },
     {
         name: "Chicken Nuggets",
         cost: 8,
+        count: 0
     },
     {
         name: "Cake Slices",
         cost: 15,
+        count: 0
     },
 ]
 
