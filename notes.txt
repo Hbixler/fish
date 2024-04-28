@@ -13,7 +13,9 @@ Changes to make:
 - put space between text and buy/sell buttons because it's driving Kai's eyes crazy
 - add "Small Lake" to list of habitats
 - add results to buying rowboat so Hailey feels satisfied when she wins the game... whoops
+    - make button to buy subtract the SDs from the count
 - automatic buying bait and selling fish options
+- make function for knowing where visibility conditions/triggers are (checkHabitatVisibility())
 
 Future things: 
 - have other vehicles and better oceans to go to -> lame that a rowboat takes you nowhere... 

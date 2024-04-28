@@ -24,6 +24,7 @@ let fishingRods = [// rates are in fish/second
             'Narwhal': 0,
         },
         cost: 50,
+        unlocked: false,
     },
     {
         name: "An Even Better Fishing Rod",
@@ -35,6 +36,7 @@ let fishingRods = [// rates are in fish/second
             'Narwhal': 0,
         },
         cost: 100,
+        unlocked: false,
     },
     {
         name: "The Best Fishing Rod",
@@ -46,6 +48,7 @@ let fishingRods = [// rates are in fish/second
             'Narwhal': 0.01,
         },
         cost: 300,
+        unlocked: false,
     },
 ]
 
@@ -107,18 +110,21 @@ let fishStats = [ // revenue is in SD/second
 let fishHabitats = [
     {
         name: "Fish Bowl",
-        capacity: 5,
-        cost: 25,
+        capacity: 10,
+        cost: 50,
+        unlocked: false,
     },
     {
         name: "Fish Tank",
         capacity: 25,
         cost: 100,
+        unlocked: false,
     },
     {
         name: "Aquarium",
         capacity: 200,
         cost: 300,
+        unlocked: false,
     },
 ]
 
@@ -126,7 +132,8 @@ let baits = [
     {
         name: "Gummy Worms",
         cost: 2,
-        count: 0
+        count: 0,
+        unlocked: false,
     },
     {
         name: "Saltine Crackers",

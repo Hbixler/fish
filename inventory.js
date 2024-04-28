@@ -24,7 +24,7 @@ function updateFishCount(fishNumber) {
             inventoryHeadingDiv.style.visibility = 'visible';
 
             inventoryDiv = document.getElementById("inventory-div");
-            inventoryDiv.style.removeProperty('border');
+            inventoryDiv.style.removeProperty('border');   
         }
 
         // Unlock fish
@@ -37,9 +37,28 @@ function updateFishCount(fishNumber) {
         if (Object.keys(currentHabitat).length > 0) {
             // If habitat unlocked, make fish option in habitat
             fishInHabitatDiv = document.getElementById("fishInHabitat" + fishNumber + "-div");
-            fishInHabitatDiv.style.visibility = 'visible';
+            fishInHabitatDiv.style.visibility = 'visible'; 
+        }
+
+        // shows vehicles section when narwhal is unlocked
+        if(fishNumber === fishStats.length - 1) {
+            vehiclesDiv = document.getElementById('vehicles-div'); // displays vehicles
+            vehiclesDiv.style.visibility = 'visible';
         }
     }
+
+    if (fishStats[0].inventoryCount === 5) { // at 5 goldfish
+        tradingDiv = document.getElementById('trading-div'); // make trading section visible
+        tradingDiv.style.visibility = 'visible';
+
+        sellFishHeadingDiv = document.getElementById('sellFishHeading'); // make sell fish heading visible
+        sellFishHeadingDiv.style.visibility = 'visible';
+        
+        fishTradeDiv = document.getElementById("fishTrading" + fishNumber + "-div"); // add fish to the trading section
+        fishTradeDiv.style.visibility = 'visible';
+    }
+
+        
 }
 
 // fish labels in inventory and habitat

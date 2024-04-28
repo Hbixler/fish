@@ -162,7 +162,7 @@
                 </div>
             </div>
 
-            <div class="quadruple-column border-div">
+            <div class="quadruple-column border-div" style="visibility: hidden" id="trading-div">
                 <div class="row">
                     <div class="column">
                         <h1>Trading</h1>
@@ -175,94 +175,94 @@
                 <!-- FIRST TRADING COLUMN -->
                 <div class="column">
                     <div class="row dashed-div">
-                        <div class="row">
+                        <div class="row" style="visibility: hidden" id="sellFishHeading">
                             <h2>Sell Fish: </h2>
                         </div>
-                        <div class="row">
+                        <div class="row" style="visibility: hidden" id="fishTrading0-div">
                             <p><span class="fish0"></span> (<span id="fish0-cost"></span> SD)</p>
                             <button onclick="sellFish(0)" id="sellFish0">Sell</button>
                         </div>
-                        <div class="row">
+                        <div class="row" style="visibility: hidden" id="fishTrading1-div">
                             <p><span class="fish1"></span> (<span id="fish1-cost"></span> SD)</p>
                             <button onclick="sellFish(1)" id="sellFish1">Sell</button>
                         </div>
-                        <div class="row">
+                        <div class="row" style="visibility: hidden" id="fishTrading2-div">
                             <p><span class="fish2"></span> (<span id="fish2-cost"></span> SD)</p>
                             <button onclick="sellFish(2)" id="sellFish2">Sell</button>
                         </div>
-                        <div class="row">
+                        <div class="row" style="visibility: hidden" id="fishTrading3-div">
                             <p><span class="fish3"></span> (<span id="fish3-cost"></span> SD)</p>
                             <button onclick="sellFish(3)" id="sellFish3">Sell</button>
                         </div>
-                        <div class="row">
+                        <div class="row" style="visibility: hidden" id="fishTrading4-div">
                             <p><span class="fish4"></span> (<span id="fish4-cost"></span> SD)</p>
                             <button onclick="sellFish(4)" id="sellFish4">Sell</button>
                         </div>
                     </div>
 
-                    <div class="row dashed-div">
-                        <div class="row">
+                    <div class="row dashed-div" style="border: none" id="equipment-div">
+                        <div class="row" style="visibility: hidden" id="equipment-heading">
                             <h2>Equipment: </h2>
                         </div>
-                        <div class="row">
+                        <div class="row" style="visibility: hidden" id="fishingRodTrading0-div">
                             <p><span id="rod0"></span> (<span id="rod0-cost"></span> SD)</p>
-                            <button onclick="buyRod(0)" id="buyRod1">Buy</button>
+                            <button onclick="buyRod(0)" style="visibility: hidden" id="buyRod0">Buy</button>
                         </div>
-                        <div class="row">
+                        <div class="row" style="visibility: hidden" id="fishingRodTrading1-div">
                             <p><span id="rod1"></span> (<span id="rod1-cost"></span> SD)</p>
-                            <button onclick="buyRod(1)" id="buyRod1">Buy</button>
+                            <button onclick="buyRod(1)" style="visibility: hidden" id="buyRod1">Buy</button>
                         </div>
-                        <div class="row">
+                        <div class="row" style="visibility: hidden" id="fishingRodTrading2-div">
                             <p><span id="rod2"></span> (<span id="rod2-cost"></span> SD)</p>
-                            <button onclick="buyRod(2)" id="buyRod2">Buy</button>
+                            <button onclick="buyRod(2)" style="visibility: hidden" id="buyRod2">Buy</button>
                         </div>
-                        <div class="row">
+                        <div class="row" style="visibility: hidden" id="fishingRodTrading3-div">
                             <p><span id="rod3"></span> (<span id="rod3-cost"></span> SD)</p>
-                            <button onclick="buyRod(3)" id="buyRod3">Buy</button>
+                            <button onclick="buyRod(3)" style="visibility: hidden" id="buyRod3">Buy</button>
                         </div>
                     </div>
                 </div>
                 <!-- SECOND TRADING COLUMN -->
                 <div class="column">
-                    <div class="row dashed-div" style="width: 88%">
-                        <div class="row">
+                    <div class="row dashed-div" style="width: 88%; border: none" id="bait-div">
+                        <div class="row" style="visibility: hidden" id="bait-heading">
                             <h2>Bait: </h2>
                         </div>
-                        <div class="row">
+                        <div class="row" style="visibility: hidden" id="baitTrading0-div">
                             <p><span class="bait0"></span> (<span id="bait0-cost"></span> SD)</p>
                             <button onclick="buyBait(0)">Buy</button>
                         </div>
-                        <div class="row">
+                        <div class="row" style="visibility: hidden" id="baitTrading1-div">
                             <p><span class="bait1"></span> (<span id="bait1-cost"></span> SD)</p>
                             <button onclick="buyBait(1)">Buy</button>
                         </div>
-                        <div class="row">
+                        <div class="row" style="visibility: hidden" id="baitTrading2-div">
                             <p><span class="bait2"></span> (<span id="bait2-cost"></span> SD)</p>
                             <button onclick="buyBait(2)">Buy</button>
                         </div>
-                        <div class="row">
+                        <div class="row" style="visibility: hidden" id="baitTrading3-div">
                             <p><span class="bait3"></span> (<span id="bait3-cost"></span> SD)</p>
                             <button onclick="buyBait(3)">Buy</button>
                         </div>
                     </div>
-                    <div class="row dashed-div" style="width: 88%">
-                        <div class="row">
+                    <div class="row dashed-div" style="width: 88%; border: none" id="habitat-trading-div">
+                        <div class="row" style="visibility: hidden" id="habitat-heading">
                             <h2>Habitat: </h2>
                         </div>
-                        <div class="row">
+                        <div class="row" style="visibility: hidden" id="habitatTrading0-div">
                             <p><span id="habitat0"></span> (<span id="habitat0-cost"></span> SD)</p>
-                            <button onclick="buyHabitat(0)">Buy</button>
+                            <button onclick="buyHabitat(0)" style="visibility: hidden" id="buyHabitat0">Buy</button>
                         </div>
-                        <div class="row">
+                        <div class="row" style="visibility: hidden" id="habitatTrading1-div">
                             <p><span id="habitat1"></span> (<span id="habitat1-cost"></span> SD)</p>
-                            <button onclick="buyHabitat(1)">Buy</button>
+                            <button onclick="buyHabitat(1)" style="visibility: hidden" id="buyHabitat1">Buy</button>
                         </div>
-                        <div class="row">
+                        <div class="row" style="visibility: hidden" id="habitatTrading2-div">
                             <p><span id="habitat2"></span> (<span id="habitat2-cost"></span> SD)</p>
-                            <button onclick="buyHabitat(2)">Buy</button>
+                            <button onclick="buyHabitat(2)" style="visibility: hidden" id="buyHabitat2">Buy</button>
                         </div>
                     </div>
-                    <div class="row dashed-div" style="width: 88%">
+                    <div class="row dashed-div" style="width: 88%; visibility: hidden" id="vehicles-div">
                         <div class="row">
                             <h2>Vehicles to Better Oceans: </h2>
                         </div>
