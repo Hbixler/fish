@@ -45,7 +45,7 @@ let fishingRods = [// rates are in fish/second
             'Swordfish': 2,
             'Shark': 1,
             'Whale': 0.5,
-            'Narwhal': 0.01,
+            'Narwhal': 0.02,
         },
         cost: 300,
         unlocked: false,
@@ -67,7 +67,7 @@ let fishStats = [ // revenue is in SD/second
     {
         name: 'Swordfish',
         size: 8,
-        cost: 4,
+        cost: 5,
         revenue: 1,
         bait: "Gummy Worms",
         inventoryCount: 0,
@@ -87,7 +87,7 @@ let fishStats = [ // revenue is in SD/second
     {
         name: 'Whale',
         size: 30,
-        cost: 15,
+        cost: 22,
         revenue: 3,
         bait: "Chicken Nuggets",
         inventoryCount: 0,
@@ -97,7 +97,7 @@ let fishStats = [ // revenue is in SD/second
     {
         name: 'Narwhal',
         size: 60,
-        cost: 30,
+        cost: 350,
         revenue: 6.5,
         bait: "Cake Slices",
         inventoryCount: 0,
@@ -131,23 +131,23 @@ let fishHabitats = [
 let baits = [
     {
         name: "Gummy Worms",
-        cost: 2,
+        cost: 1,
         count: 0,
         unlocked: false,
     },
     {
         name: "Saltine Crackers",
-        cost: 4,
+        cost: 3,
         count: 0
     },
     {
         name: "Chicken Nuggets",
-        cost: 8,
+        cost: 5,
         count: 0
     },
     {
         name: "Cake Slices",
-        cost: 15,
+        cost: 6,
         count: 0
     },
 ]

@@ -65,7 +65,7 @@ function isVehicleSectionVisible() {
 }
 function makeVehicleSectionVisible() {
     vehiclesDiv = document.getElementById('vehicles-div'); // displays vehicles
-    vehiclesDiv.style.visibility == 'visible';
+    vehiclesDiv.style.visibility = 'visible';
 }
 
 // Sand dollar count
@@ -105,12 +105,12 @@ for (x = 0; x < fishStats.length; x++) {
 }
 
 
-function sellFish(fishType) {
+function sellFish(fishType, numToSell) {
     fishStat = fishStats[fishType]
-    if (fishStat.inventoryCount >= 1) {
+    if (fishStat.inventoryCount >= numToSell) {
         // Update fish value accordingly
-        fishValue = fishStat.cost;
-        fishStat.inventoryCount = fishStat.inventoryCount - 1;
+        fishValue = fishStat.cost * numToSell;
+        fishStat.inventoryCount = fishStat.inventoryCount - numToSell;
         updateFishCount(fishType);
 
         // Update sand dollar count
@@ -120,12 +120,12 @@ function sellFish(fishType) {
 }
 
 // Buying bait
-function buyBait(baitNumber) {
+function buyBait(baitNumber, numToBuy) {
     baitName = baits[baitNumber].name;
-    baitValue = baits[baitNumber].cost;
+    baitValue = baits[baitNumber].cost * numToBuy;
     if (baitValue <= sandDollars) {
         // Update bait
-        baits[baitNumber].count += 1;
+        baits[baitNumber].count += numToBuy;
         updateBaitCount(baitNumber);
 
         // Update sand dollars

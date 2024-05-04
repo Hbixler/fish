@@ -70,6 +70,7 @@ function updateFishCount(fishNumber) {
 
         // shows vehicles section when narwhal is unlocked
         if(fishNumber === fishStats.length - 1) {
+            console.log(fishNumber + ' is the narwhal!');
             makeVehicleSectionVisible();
         }
     }
@@ -129,4 +130,4 @@ window.setInterval(function() {
         fishStat.inventoryCount = fishStat.inventoryCount + currentRod.rates[autoFish];
         updateFishCount(fishIndex)
     }
-}, 1000)
+}, 500)
