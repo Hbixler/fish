@@ -1,3 +1,16 @@
+// Visibility checking
+function isHabitatVisible() {
+    return Object.keys(currentHabitat).length > 0;
+}
+function makeHabitatSectionVisible() {
+    habitatDiv = document.getElementById('habitat-div'); // displays fish bowl
+    habitatDiv.style.visibility = 'visible';
+}
+function makeHabitatFishVisible(fishNumber) {
+    let fishInHabitatDiv = document.getElementById("fishInHabitat" + fishNumber + "-div");
+    fishInHabitatDiv.style.visibility = 'visible'; 
+}
+
 // Update functions
 function updateHabitat() {
     let fishHabitatSpan = document.getElementById("fishHabitat");

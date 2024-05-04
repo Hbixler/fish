@@ -4,10 +4,11 @@ Changes to make:
     - if you have a better fishing rod, you lose 4 SD whenever you get a swordfish... that's unfortunate...
     - if you have an even better fishing rod, you break even when you get a shark... still seems like a waste of time...
     - make bait cheaper -> even though Hailey is gonna get a rowboat
+    - What kind of economic system is this where you spend 1500 to get a narwhal and only sell the narwhal for 30?????????
 - make buttons and text only appear when you can use them/you get far enough in the game -> but also maybe push this off for as long as possible because it's harddddddd
     - [DONE] inventory
     - [DONE] habitat
-    - trading
+    - [DONE?]trading
 - bulk buying and selling bait and fish in the trading section -> clicker game doesn't need to mean clicking every 0.05 seconds
 - make the habitat fun line change so that it doesn't lie to you -> fish are not always swimming happily in your bowl. Sometimes there are no fish. Sometimes it's a tank, not a bowl. Sometimes, the fish are very unhappy. You never know. Bad to assume. 
 - put space between text and buy/sell buttons because it's driving Kai's eyes crazy
