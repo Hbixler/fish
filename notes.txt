@@ -21,6 +21,10 @@ Changes to make:
 - add results to buying rowboat so Hailey feels satisfied when she wins the game... whoops
     - make button to buy subtract the SDs from the count
 - automatic buying bait and selling fish options
+- make function for knowing where visibility conditions/triggers are (checkHabitatVisibility())
+- Should have some way of knowing whether we can buy an item or not -> maybe strikethrough an item that has been bought for upgradables and only display "Buy" buton if you have enough sand dollars?
+- We should do it so that our code automatically populates the list for fish/bait/upgradables -> that way we can easily add a new item in main.js without messing with the html
+
 
 Future things: 
 - have other vehicles and better oceans to go to -> lame that a rowboat takes you nowhere... 
@@ -36,6 +40,7 @@ Future things:
 Other things: 
 - test how long it takes to win game -> perhaps less than an hour is too easy? People need to suffer to enjoy
 - have other people play the game? We need beta testers (Bully Hailey's roommates into playing clicker games)
+- Kai should correct Hailey's attempt at french -> she just spanished all the words/conjugations she didn't know
 
 Highest priority: 
 - [DONE] keep Kai from dying -> Kai needs to step it up -> Kai coughs less than three times per session

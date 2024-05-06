@@ -11,6 +11,7 @@ h1 {
     font-size: 16px;
     font-family: "roboto slab";
     font-weight: normal;
+    margin-left: 5px;
 }
 h2 {
     color: white;
@@ -28,6 +29,7 @@ div {
 }
 button {
     align-self: center;
+    margin-left: 2px;
 }
 .plus-minus {
     width: 20px;

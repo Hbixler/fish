@@ -227,6 +227,16 @@ function buyHabitat(fishHabitatNumber) {
     }
 } 
 
+function buyVehicle(vehicleNum) {
+    // Currently means the user won the game!!
+    console.log('user won!')
+    if (win[vehicleNum].cost <= sandDollars) {
+        sandDollars -= win[vehicleNum];
+        updateSandDollars();
+    }
+
+}
+
 // habitat labels in trading
 for (let x = 0; x < fishHabitats.length; x++) {
     let fishHabitatSpan = document.getElementById("habitat" + x);
