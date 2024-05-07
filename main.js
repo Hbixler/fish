@@ -1,5 +1,8 @@
 console.log("I am a fish"); // MAXIMUM IMPORTANCE - DO NOT REMOVE
 
+// speed of game
+speed = 10; // intervals per second
+
 // sand dollars
 let sandDollars = 0;
 

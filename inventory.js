@@ -99,4 +99,4 @@ window.setInterval(function() {
         fishStat.inventoryCount = fishStat.inventoryCount + currentRod.rates[autoFish];
         updateFishCount(fishIndex)
     }
-}, 500)
+}, 1000/speed)
