@@ -1,5 +1,8 @@
 console.log("I am a fish"); // MAXIMUM IMPORTANCE - DO NOT REMOVE
 
+// sand dollars
+let sandDollars = 0;
+
 // Fishing rod values
 let fishingRods = [// rates are in fish/second
     {
@@ -126,6 +129,12 @@ let fishHabitats = [
         cost: 300,
         unlocked: false,
     },
+    {
+        name: "Small Lake",
+        capacity: 400,
+        cost: 500,
+        unlocked: false,
+    }
 ]
 
 let baits = [
@@ -143,7 +152,8 @@ let baits = [
     {
         name: "Chicken Nuggets",
         cost: 5,
-        count: 0
+        count: 0,
+        unlocked: false,
     },
     {
         name: "Cake Slices",

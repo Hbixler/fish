@@ -1,40 +1,3 @@
-// Visibility functions
-function isBaitVisible(baitNum) {
-    return baits[baitNum].unlocked;
-}
-function makeBaitVisible(baitNum) {
-    let baitDiv = document.getElementById('bait' + baitNum + '-div'); 
-    baitDiv.style.visibility = 'visible';
-
-    let baitTradingDiv = document.getElementById('baitTrading' + baitNum + '-div');
-    baitTradingDiv.style.visibility = 'visible';
-}
-function makeSuppliesVisible() {
-    let suppliesDiv = document.getElementById('supplies-div');
-    suppliesDiv.style.visibility = 'visible';
-}
-function isInventoryFishVisible(fishNum) {
-    return fishStats[fishNum].unlocked;
-}
-function makeInventoryFishVisible(fishNumber) {
-    // Add fish to inventory options
-    fishDiv = document.getElementById("fish" + fishNumber + "-div");
-    fishDiv.style.visibility = 'visible';
-}
-function makeInventorySectionVisible() {
-    fishHeadingDiv = document.getElementById("fish-heading");
-    fishHeadingDiv.style.visibility = 'visible';
-
-    fishDiv = document.getElementById("fish-div")
-    fishDiv.style.removeProperty('border');
-
-    inventoryHeadingDiv = document.getElementById("inventory-heading");
-    inventoryHeadingDiv.style.visibility = 'visible';
-
-    inventoryDiv = document.getElementById("inventory-div");
-    inventoryDiv.style.removeProperty('border'); 
-}
-
 // Update functions
 function updateBaitCount(baitNum) {
     let baitSpan = document.getElementById("bait" + baitNum + "-count");
@@ -52,6 +15,16 @@ function updateFishCount(fishNumber) {
         if (fishNumber === 0) {
             // Fishing for goldfish for first time, adding boxes and borders
             makeInventorySectionVisible();  
+
+            if (fishStats[0].inventoryCount === 5 && !isTradingSectionVisible()) { // at 5 goldfish
+                makeTradingSectionVisible();
+                makeFishTradingVisible(0);
+            }
+        }
+
+        if (fishNumber === 2 && !fishStats[2].unlocked) {
+            makeBaitVisible(2);
+            baits[2].unlocked = true;
         }
 
         // Unlock fish
@@ -65,21 +38,17 @@ function updateFishCount(fishNumber) {
             makeHabitatFishVisible(fishNumber);
         }
 
-        // Add fish to trading option
-        makeFishTradingVisible(fishNumber);
-
+        if (fishNumber >= 1) {
+            // Add fish to trading option
+            makeFishTradingVisible(fishNumber);
+        }
+        
         // shows vehicles section when narwhal is unlocked
         if(fishNumber === fishStats.length - 1) {
             console.log(fishNumber + ' is the narwhal!');
             makeVehicleSectionVisible();
         }
-    }
-
-    if (fishStats[0].inventoryCount === 5 && !isTradingSectionVisible()) { // at 5 goldfish
-        makeTradingSectionVisible();
-    }
-
-        
+    }        
 }
 
 // fish labels in inventory and habitat

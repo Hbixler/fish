@@ -1,29 +1,31 @@
 Changes to make: 
-- align titles with boxes -> sorry Hailey :/
-- adjust rates and costs
-    - if you have a better fishing rod, you lose 4 SD whenever you get a swordfish... that's unfortunate...
-    - if you have an even better fishing rod, you break even when you get a shark... still seems like a waste of time...
-    - make bait cheaper -> even though Hailey is gonna get a rowboat
-    - What kind of economic system is this where you spend 1500 to get a narwhal and only sell the narwhal for 30?????????
+- CSS things -> sorry Hailey :/
+    - align titles with boxes
+    - fish button shifts after you fish for the first time and the inventory box appears
 - make buttons and text only appear when you can use them/you get far enough in the game -> but also maybe push this off for as long as possible because it's harddddddd
     - [DONE] inventory
     - [DONE] habitat
-    - [DONE?] trading
-    - Change so bait for whale and whale displays don't show up until after bait for shark and shark displays have shown up
+    - [DONE] trading
+    - [DONE] Change so bait for whale and whale displays don't show up until after bait for shark and shark displays have shown up
     - bulk buy buttons only to show up when previous number has been used (bought 1, now 5 shows up, then 10, etc)
-    - make function for knowing where visibility conditions/triggers are (checkHabitatVisibility())
-- [DONE] bulk buying and selling bait and fish in the trading section -> clicker game doesn't need to mean clicking every 0.05 seconds
-    - 1, 5, 10, 50 -> should we do more, less? 
-    - should they say more than the number after the first one? does that mess with the css? 
-- make the habitat fun line change so that it doesn't lie to you -> fish are not always swimming happily in your bowl. Sometimes there are no fish. Sometimes it's a tank, not a bowl. Sometimes, the fish are very unhappy. You never know. Bad to assume. 
+    - [DONE] separate js file for visibility functions
 - put space between text and buy/sell buttons because it's driving Kai's eyes crazy
-- add "Small Lake" to list of habitats
-- add results to buying rowboat so Hailey feels satisfied when she wins the game... whoops
-    - make button to buy subtract the SDs from the count
 - automatic buying bait and selling fish options
-- make function for knowing where visibility conditions/triggers are (checkHabitatVisibility())
 - Should have some way of knowing whether we can buy an item or not -> maybe strikethrough an item that has been bought for upgradables and only display "Buy" buton if you have enough sand dollars?
 - We should do it so that our code automatically populates the list for fish/bait/upgradables -> that way we can easily add a new item in main.js without messing with the html
+    -> sound fancy - Kai
+
+Changes done: 
+- [DONE] adjust rates and costs
+    - [DONE] if you have a better fishing rod, you lose 4 SD whenever you get a swordfish... that's unfortunate...
+    - [DONE] if you have an even better fishing rod, you break even when you get a shark... still seems like a waste of time...
+    - [DONE] make bait cheaper -> even though Hailey is gonna get a rowboat
+    - [DONE]  What kind of economic system is this where you spend 1500 to get a narwhal and only sell the narwhal for 30?????????
+- [DONE] add "Small Lake" to list of habitats
+- [DONE] add results to buying rowboat so Hailey feels satisfied when she wins the game... whoops
+    - [DONE] make button to buy subtract the SDs from the count
+- [DONE] bulk buying and selling bait and fish in the trading section -> clicker game doesn't need to mean clicking every 0.05 seconds
+- [DONE] make the habitat fun line change so that it doesn't lie to you -> fish are not always swimming happily in your bowl. Sometimes there are no fish. Sometimes it's a tank, not a bowl. Sometimes, the fish are very unhappy. You never know. Bad to assume. 
 
 
 Future things: 
@@ -39,8 +41,11 @@ Future things:
 
 Other things: 
 - test how long it takes to win game -> perhaps less than an hour is too easy? People need to suffer to enjoy
-- have other people play the game? We need beta testers (Bully Hailey's roommates into playing clicker games)
-- Kai should correct Hailey's attempt at french -> she just spanished all the words/conjugations she didn't know
+- have other people play the game? We need beta testers
+    - [DONE] Hailey's sister
+    - Bully Hailey's roommates into playing clicker games
+    - Kai has a willing victim/friend
+- [DONE] Kai should correct Hailey's attempt at french -> she just spanished all the words/conjugations she didn't know
 
 Highest priority: 
 - [DONE] keep Kai from dying -> Kai needs to step it up -> Kai coughs less than three times per session
