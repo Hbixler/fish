@@ -1,5 +1,8 @@
 console.log("I am a fish"); // MAXIMUM IMPORTANCE - DO NOT REMOVE
 
+// sand dollars
+let sandDollars = 0;
+
 // Fishing rod values
 let fishingRods = [// rates are in fish/second
     {
@@ -24,6 +27,7 @@ let fishingRods = [// rates are in fish/second
             'Narwhal': 0,
         },
         cost: 50,
+        unlocked: false,
     },
     {
         name: "An Even Better Fishing Rod",
@@ -35,6 +39,7 @@ let fishingRods = [// rates are in fish/second
             'Narwhal': 0,
         },
         cost: 100,
+        unlocked: false,
     },
     {
         name: "The Best Fishing Rod",
@@ -43,9 +48,10 @@ let fishingRods = [// rates are in fish/second
             'Swordfish': 2,
             'Shark': 1,
             'Whale': 0.5,
-            'Narwhal': 0.01,
+            'Narwhal': 0.02,
         },
         cost: 300,
+        unlocked: false,
     },
 ]
 
@@ -64,7 +70,7 @@ let fishStats = [ // revenue is in SD/second
     {
         name: 'Swordfish',
         size: 8,
-        cost: 4,
+        cost: 5,
         revenue: 1,
         bait: "Gummy Worms",
         inventoryCount: 0,
@@ -84,7 +90,7 @@ let fishStats = [ // revenue is in SD/second
     {
         name: 'Whale',
         size: 30,
-        cost: 15,
+        cost: 22,
         revenue: 3,
         bait: "Chicken Nuggets",
         inventoryCount: 0,
@@ -94,7 +100,7 @@ let fishStats = [ // revenue is in SD/second
     {
         name: 'Narwhal',
         size: 60,
-        cost: 30,
+        cost: 350,
         revenue: 6.5,
         bait: "Cake Slices",
         inventoryCount: 0,
@@ -107,40 +113,51 @@ let fishStats = [ // revenue is in SD/second
 let fishHabitats = [
     {
         name: "Fish Bowl",
-        capacity: 5,
-        cost: 25,
+        capacity: 10,
+        cost: 50,
+        unlocked: false,
     },
     {
         name: "Fish Tank",
         capacity: 25,
         cost: 100,
+        unlocked: false,
     },
     {
         name: "Aquarium",
         capacity: 200,
         cost: 300,
+        unlocked: false,
     },
+    {
+        name: "Small Lake",
+        capacity: 400,
+        cost: 500,
+        unlocked: false,
+    }
 ]
 
 let baits = [
     {
         name: "Gummy Worms",
-        cost: 2,
-        count: 0
+        cost: 1,
+        count: 0,
+        unlocked: false,
     },
     {
         name: "Saltine Crackers",
-        cost: 4,
+        cost: 3,
         count: 0
     },
     {
         name: "Chicken Nuggets",
-        cost: 8,
-        count: 0
+        cost: 5,
+        count: 0,
+        unlocked: false,
     },
     {
         name: "Cake Slices",
-        cost: 15,
+        cost: 6,
         count: 0
     },
 ]

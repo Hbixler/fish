@@ -2,6 +2,9 @@
 function updateHabitat() {
     let fishHabitatSpan = document.getElementById("fishHabitat");
     fishHabitatSpan.innerText = currentHabitat.name;
+
+    // in case message relies on habitat name
+    updateMessage();
 }
 function updateNumFish(fishNum) {
     // changes number of fish displayed in Habitat section
@@ -13,6 +16,37 @@ let revenue = 0;
 function updateRevenue() {
     let revenueSpan = document.getElementById('revenue');
     revenueSpan.innerText = Math.round(revenue * 100) / 100
+}
+
+function updateMessage() {
+    let newMessage = "";
+    if (fishInHabitat == 0) {
+        newMessage = "Where are all the fish :(";
+    }
+    else if (fishInHabitat < 10) {
+        newMessage = "Your fish are a little lonely...";
+    }
+    else if (fishInHabitat < 50) {
+        newMessage = "Your fish are happily swimming in their " + currentHabitat.name + "!";
+    }
+    else if (fishInHabitat < 100) {
+        newMessage = "Lots of gossip going on in the fish world today.";
+    }
+    else if (fishInHabitat < 125) {
+        newMessage = "Your fish have read Kant and now will never be the same."
+    }
+    else if (fishInHabitat < 150) {
+        newMessage = "¡Tus peces han aprendido español!";
+    }
+    else if (fishInHabitat < 200) {
+        newMessage = "Les poissons parlent français et espagnol!";
+    }
+    else {
+        newMessage = "The fish have launched a revolution!"
+    }
+
+    let messageSpan = document.getElementById("fish-message");
+    messageSpan.innerText = newMessage;
 }
 
 // revenue from visitors
@@ -32,18 +66,21 @@ for (fishNum in fishStats) {
     fishSpan.innerText = fishStats[fishNum].habitatCount;
 }
 
-// sets original habitat to nothing
-let currentHabitat = {};
-updateHabitat();
-
 // sets original fish space being taken up as 0
 let fishInHabitat = 0;
 let fishInHabitatSpan = document.getElementById('fishInHabitat');
 fishInHabitatSpan.innerText = fishInHabitat;
 
+// sets original habitat to nothing
+let currentHabitat = {};
+updateHabitat();
+
 // habitat maximum span code is in the 'buyHabitat' function in trading.js
 let habitatMaximumSpan = document.getElementById("habitatMaximum");
 habitatMaximumSpan.innerText = currentHabitat.capacity;
+
+// Setting fish message
+updateMessage()
 
 // buttons for adding and removing fish from habitat
 function plus(fishNumber) {
@@ -55,6 +92,7 @@ function plus(fishNumber) {
         updateNumFish(fishNumber) // change fish displayed in Habitat
         updateFishCount(fishNumber); // change fish displayed in Inventory
         howBigAreMyFish(); // recalculates and displays how much space fish are taking up
+        updateMessage(); // updates habitat message
     }
 }
 function minus(fishNumber) {
@@ -65,6 +103,7 @@ function minus(fishNumber) {
         updateNumFish(fishNumber) // change fish displayed in Habitat
         updateFishCount(fishNumber) // change fish displayed in Inventory
         howBigAreMyFish(); // recalculates and displays how much space fish are taking up
+        updateMessage(); // updates habitat message
     }
 }
 
