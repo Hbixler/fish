@@ -52,55 +52,28 @@ button {
 .right-aligned {
     text-align: right;
 }
-
-/* flex things */
-#flex-container {
-    display: flex;
-    flex-direction: row;
-    width: 1100px;
-    margin: auto;
-    gap: 25px;
+.nav-bar {
+    display: block;
+    text-align: right;
+    width: 200px;
 }
-.row {
+.body-container {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 100%;
 }
-.column {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 100%;
-    flex: 1;
+.nav-button {
+    border: 2px solid #006aff;
+    display: block;
+    width: 120px;
+    float: right;
+    padding: 5px;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-family: "roboto slab";
+    background-color: #aecdff;
+    margin: 3px;
+    text-decoration: none;
+    color: #14458a;
 }
-.double-column {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 100%;
-    flex: 2;
-}
-.triple-column {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 100%;
-    flex: 3;
-}
-.quadruple-column {
-    display: flex;
-    flex-direction: column;
-    flex-basis: 100%;
-    flex: 4;
-}
-.double-row {
-    display: flex;
-    flex-direction: row;
-    flex-basis: 100%;
-    flex: 2;
-}
-
-/* fish-related */
-#goldfish-div {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.nav-button:hover {
+    background-color: #d1e3ff;
 }

@@ -1,7 +1,23 @@
 console.log("I am a fish"); // MAXIMUM IMPORTANCE - DO NOT REMOVE
 
 // speed of game
-speed = 10; // intervals per second
+speed = 1; // intervals per second
+
+/*
+localStorage.setItem("bar", foo);
+var foo = localStorage.getItem("bar");
+http://diveintohtml5.info/storage.html
+
+var testObject = { 'one': 1, 'two': 2, 'three': 3 };
+
+// Put the object into storage
+localStorage.setItem('testObject', JSON.stringify(testObject));
+
+// Retrieve the object from storage
+var retrievedObject = localStorage.getItem('testObject');
+
+console.log('retrievedObject: ', JSON.parse(retrievedObject));
+*/
 
 // sand dollars
 let sandDollars = 0;
