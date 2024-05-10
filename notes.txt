@@ -31,6 +31,7 @@ Changes to make:
     - Rock that the wise old mage tells you NOT TO TOUCH
     - With big letters that say DO NOT TOUCH
     - If you touch your screen gets all messed up and you have to fix it
+- organize files into folders
 
 Changes done: 
 - [DONE] adjust rates and costs
