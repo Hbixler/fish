@@ -9,11 +9,28 @@ Changes to make:
     - [DONE] Change so bait for whale and whale displays don't show up until after bait for shark and shark displays have shown up
     - bulk buy buttons only to show up when previous number has been used (bought 1, now 5 shows up, then 10, etc)
     - [DONE] separate js file for visibility functions
-- put space between text and buy/sell buttons because it's driving Kai's eyes crazy
+    - nav bar things
+    - all pages except fish island
 - automatic buying bait and selling fish options
-- Should have some way of knowing whether we can buy an item or not -> maybe strikethrough an item that has been bought for upgradables and only display "Buy" buton if you have enough sand dollars?
-- We should do it so that our code automatically populates the list for fish/bait/upgradables -> that way we can easily add a new item in main.js without messing with the html
+- buy button enabled only when you can afford it - text gets dimmer after item is bought -> when you unlock something the buy button shows up but is not enabled
+- we should do it so that our code automatically populates the list for fish/bait/upgradables -> that way we can easily add a new item in main.js without messing with the html
     -> sound fancy - Kai
+- hovering on things gives shows more info or something like that
+- re-re-balance: 
+    - each type of fish can be caught with one of the related baits -> bait is removed from the bait count in inventory only when the fish is caught which still takes the allotted time listed in main.js
+- have other vehicles and better oceans to go to -> lame that a rowboat takes you nowhere... 
+- multiple pages
+    - [DONE] split current into inventory/habitat page and trading page
+    - wise old man who is too old to fish for himself so you trade him fish and he teaches you things to get skills
+        - bartering skills that reduce the prices of bait and get more profit off of fish
+        - he'll tell you where other fish are so you can unlock new fish
+        - gives you more habitat space by letting you store fish in the pond in his backyard
+        - buy upgrades for fishing rods
+        - new fishing rod called old man's master fishing rod
+- Make an option to break the game 
+    - Rock that the wise old mage tells you NOT TO TOUCH
+    - With big letters that say DO NOT TOUCH
+    - If you touch your screen gets all messed up and you have to fix it
 
 Changes done: 
 - [DONE] adjust rates and costs
@@ -26,18 +43,7 @@ Changes done:
     - [DONE] make button to buy subtract the SDs from the count
 - [DONE] bulk buying and selling bait and fish in the trading section -> clicker game doesn't need to mean clicking every 0.05 seconds
 - [DONE] make the habitat fun line change so that it doesn't lie to you -> fish are not always swimming happily in your bowl. Sometimes there are no fish. Sometimes it's a tank, not a bowl. Sometimes, the fish are very unhappy. You never know. Bad to assume. 
-
-
-Future things: 
-- have other vehicles and better oceans to go to -> lame that a rowboat takes you nowhere... 
-- multiple pages
-    - split current into inventory/habitat page and trading page
-    - wise old man who is too old to fish for himself so you trade him fish and he teaches you things to get skills
-        - bartering skills that reduce the prices of bait and get more profit off of fish
-        - he'll tell you where other fish are so you can unlock new fish
-        - gives you more habitat space by letting you store fish in the pond in his backyard
-        - buy upgrades for fishing rods
-        - new fishing rod called old man's master fishing rod
+- [DONE] put space between text and buy/sell buttons because it's driving Kai's eyes crazy
 
 Other things: 
 - test how long it takes to win game -> perhaps less than an hour is too easy? People need to suffer to enjoy
@@ -49,4 +55,5 @@ Other things:
 
 Highest priority: 
 - [DONE] keep Kai from dying -> Kai needs to step it up -> Kai coughs less than three times per session
+- Kai needs to unbruise his rib -> can breathe and laugh without dying
 - make it so Hailey doesn't have to go into the CSS file literally every coding session -> Hailey goes into the css section less than 50% of the time

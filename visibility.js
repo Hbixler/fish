@@ -117,3 +117,32 @@ function makeHabitatFishVisible(fishNumber) {
     let fishInHabitatDiv = document.getElementById("fishInHabitat" + fishNumber + "-div");
     fishInHabitatDiv.style.visibility = 'visible'; 
 }
+
+// Everything
+function makeEverythingVisible() {
+    console.log('everything is visible');
+    for (baitNum in baits) {
+        makeBaitVisible(baitNum);
+    }
+    makeBaitTradingVisible();
+    makeTradingSectionVisible();
+    for (fishNum in fishStats) {
+        makeFishTradingVisible(fishNum)
+        makeHabitatFishVisible(fishNum)
+        makeInventoryFishVisible(fishNum)
+    }
+    makeEquipmentTradingVisible();
+    makeHabitatSectionVisible();
+    for (rodNum in fishingRods) {
+        makeRodVisible(rodNum);
+    }
+    makeVehicleSectionVisible();
+    makeHabitatTradingVisible();
+    makeInventorySectionVisible();
+    makeSuppliesVisible();
+    for (habitatNum in fishHabitats) {
+        makeHabitatVisible(habitatNum);
+    }
+}
+
+makeEverythingVisible();
