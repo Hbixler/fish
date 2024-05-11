@@ -6,10 +6,20 @@ function updateHabitat() {
     // in case message relies on habitat name
     updateMessage();
 }
+
 function updateNumFish(fishNum) {
     // changes number of fish displayed in Habitat section
     let fishHabitatSpan = document.getElementById("fish" + fishNum + "-habitat");
     fishHabitatSpan.innerText = fishStats[fishNum].habitatCount;
+}
+
+// fish labels in inventory and habitat
+let fishStats = getFishStats();
+for (let x = 0; x < fishStats.length; x++) {
+    let fishStatsSpan = document.getElementsByClassName("fish" + x);
+    for (let y = 0; y < fishStatsSpan.length; y++) {
+        fishStatsSpan[y].innerText = fishStats[x].name;
+    }
 }
 
 let revenue = 0;
@@ -50,20 +60,25 @@ function updateMessage() {
 }
 
 // revenue from visitors
+let speed = getSpeed();
 window.setInterval(function() {
     revenue = 0;
+    let fishStats = getFishStats();
     for (auto of fishStats) {
         revenue = revenue + (auto.habitatCount * auto.revenue);
     }
-    updateRevenue(revenue)
+    updateRevenue(revenue);
     sandDollars = sandDollars + revenue;
     updateSandDollars();
-}, 1000)
+    setFishStats(fishStats);
+}, 1000/speed)
 
 // labels of fish in Habitat section
+console.log(fishStats);
 for (fishNum in fishStats) {
     let fishSpan = document.getElementById("fish" + fishNum + "-habitat");
     fishSpan.innerText = fishStats[fishNum].habitatCount;
+    console.log(fishSpan);
 }
 
 // sets original fish space being taken up as 0
@@ -80,22 +95,25 @@ let habitatMaximumSpan = document.getElementById("habitatMaximum");
 habitatMaximumSpan.innerText = currentHabitat.capacity;
 
 // Setting fish message
-updateMessage()
+updateMessage();
 
 // buttons for adding and removing fish from habitat
 function plus(fishNumber) {
+    let fishStats = getFishStats();
     newSpace = fishInHabitat + fishStats[fishNumber].size; // obj = arr.find(o => o.name === 'string 1')
     if (fishStats[fishNumber].inventoryCount >= 1 && newSpace <= currentHabitat.capacity) { // only if there is fish in the inventory to put in the habitat and it wouldn't exceed the maximum space
         fishStats[fishNumber].inventoryCount = fishStats[fishNumber].inventoryCount - 1; // takes fish out of inventory
         fishStats[fishNumber].habitatCount = fishStats[fishNumber].habitatCount + 1; // puts fish into habitat
         
-        updateNumFish(fishNumber) // change fish displayed in Habitat
+        updateNumFish(fishNumber); // change fish displayed in Habitat
         updateFishCount(fishNumber); // change fish displayed in Inventory
         howBigAreMyFish(); // recalculates and displays how much space fish are taking up
         updateMessage(); // updates habitat message
     }
+    setFishStats(fishStats);
 }
 function minus(fishNumber) {
+    let fishStats = getFishStats();
     if(fishStats[fishNumber].habitatCount >= 1) { // can't have negative fish
         fishStats[fishNumber].habitatCount = fishStats[fishNumber].habitatCount - 1; // takes fish out of habitat
         fishStats[fishNumber].inventoryCount = fishStats[fishNumber].inventoryCount + 1; // puts fish back into inventory
@@ -105,10 +123,12 @@ function minus(fishNumber) {
         howBigAreMyFish(); // recalculates and displays how much space fish are taking up
         updateMessage(); // updates habitat message
     }
+    setFishStats(fishStats);
 }
 
 // function to calculate how much space the fish in the habitat are taking up
 function howBigAreMyFish() { 
+    let fishStats = getFishStats();
     fishInHabitat = 0;
     for (fishNumber in fishStats) {
         fishInHabitat += (fishStats[fishNumber].habitatCount * fishStats[fishNumber].size);
@@ -119,3 +139,6 @@ function howBigAreMyFish() {
     
     return(fishInHabitat);
 }
+
+// DELETE LATER
+makeHabitatPageVisible();

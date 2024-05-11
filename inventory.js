@@ -1,5 +1,7 @@
 // Update functions
 function updateBaitCount(baitNum) {
+    let baits = getBaits();
+
     let baitSpan = document.getElementById("bait" + baitNum + "-count");
     baitSpan.innerText = baits[baitNum].count;
 }
@@ -8,6 +10,9 @@ function updateFishingRod() {
     fishingRodSpan.innerText = currentRod.name;
 }
 function updateFishCount(fishNumber) {
+    let fishStats = getFishStats();
+    let baits = getBaits();
+
     let fishCountSpan = document.getElementById("fish" + fishNumber + "-count");
     fishCountSpan.innerText = Math.floor(fishStats[fishNumber].inventoryCount);
 
@@ -48,55 +53,18 @@ function updateFishCount(fishNumber) {
             console.log(fishNumber + ' is the narwhal!');
             makeVehicleSectionVisible();
         }
-    }        
-}
-
-// fish labels in inventory and habitat
-for (let x = 0; x < fishStats.length; x++) {
-    let fishStatsSpan = document.getElementsByClassName("fish" + x);
-    for (let y = 0; y < fishStatsSpan.length; y++) {
-        fishStatsSpan[y].innerText = fishStats[x].name;
-    }
-}
-
-for (let x = 0; x < baits.length; x++) {
-    let baitsSpan = document.getElementsByClassName("bait" + x);
-    for (let y = 0; y < baitsSpan.length; y++) {
-        baitsSpan[y].innerText = baits[x].name;
-    }
-    updateBaitCount(x)
+    } 
+    
+    setFishStats(fishStats);
+    setBaits(baits);
 }
 
 // go fishing button
 function goFishing() {
+    let fishStats = getFishStats();
+
     fishStats[0].inventoryCount = fishStats[0].inventoryCount + 1;
     updateFishCount(0);
+
+    setFishStats(fishStats);
 }
-
-let currentRod = {};
-updateFishingRod();
-
-// automatic fishing
-window.setInterval(function() {
-    for (autoFish in currentRod.rates) {
-        // Find the fish's stats
-        fishIndex = fishStats.findIndex(fish => fish.name == autoFish);
-        fishStat = fishStats[fishIndex]
-
-        // If fish needs bait and is being fished
-        if (fishStat.bait.length > 0 && currentRod.rates[autoFish] > 0) {
-            baitIndex = baits.findIndex(bait => bait.name == fishStat.bait);
-            bait = baits[baitIndex]
-            if (bait.count <= 0) {
-                // We have no bait :( cannot fish
-                continue;
-            }
-            // Use bait
-            bait.count = bait.count - 1;
-            updateBaitCount(baitIndex)
-        }
-        // Gain fish!
-        fishStat.inventoryCount = fishStat.inventoryCount + currentRod.rates[autoFish];
-        updateFishCount(fishIndex)
-    }
-}, 1000/speed)

@@ -121,18 +121,18 @@ function makeHabitatFishVisible(fishNumber) {
 // Everything
 function makeEverythingVisible() {
     console.log('everything is visible');
+    for (fishNum in fishStats) {
+        makeFishTradingVisible(fishNum)
+        makeInventoryFishVisible(fishNum)
+    }
     for (baitNum in baits) {
         makeBaitVisible(baitNum);
     }
-    makeBaitTradingVisible();
     makeTradingSectionVisible();
-    for (fishNum in fishStats) {
-        makeFishTradingVisible(fishNum)
-        makeHabitatFishVisible(fishNum)
-        makeInventoryFishVisible(fishNum)
+    for (habitatNum in fishHabitats) {
+        makeHabitatVisible(habitatNum);
     }
     makeEquipmentTradingVisible();
-    makeHabitatSectionVisible();
     for (rodNum in fishingRods) {
         makeRodVisible(rodNum);
     }
@@ -140,9 +140,12 @@ function makeEverythingVisible() {
     makeHabitatTradingVisible();
     makeInventorySectionVisible();
     makeSuppliesVisible();
-    for (habitatNum in fishHabitats) {
-        makeHabitatVisible(habitatNum);
-    }
+    makeBaitTradingVisible();
 }
 
-makeEverythingVisible();
+function makeHabitatPageVisible() {
+    for (fishNum in fishStats) {
+        makeHabitatFishVisible(fishNum)
+    }
+    makeHabitatSectionVisible();
+}
