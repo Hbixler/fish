@@ -1,81 +1,38 @@
 console.log("I am a fish"); // MAXIMUM IMPORTANCE - DO NOT REMOVE
 
-// speed of game
-speed = 1; // intervals per second
+// SPEED OF GAME
+speedInitial = 1; // intervals per second
+if(!sessionStorage.getItem('speed')) { // initial set
+    console.log('speed reset');
+    const speedStringified = JSON.stringify(speedInitial);
+    sessionStorage.setItem('speed', speedStringified);
+}
 
-/*
-localStorage.setItem("bar", foo);
-var foo = localStorage.getItem("bar");
-http://diveintohtml5.info/storage.html
+function getSpeed() { // get function
+    let speed = sessionStorage.getItem('speed')
+    return JSON.parse(speed)
+}
 
-var testObject = { 'one': 1, 'two': 2, 'three': 3 };
+// SAND DOLLARS
+let sandDollarsInitial = 0;
+if(!sessionStorage.getItem('sandDollars')) { // initial set
+    console.log('sandDollars reset');
+    const sandDollarsStringified = JSON.stringify(sandDollarsInitial);
+    sessionStorage.setItem('sandDollars', sandDollarsStringified);
+}
 
-// Put the object into storage
-localStorage.setItem('testObject', JSON.stringify(testObject));
+function getSandDollars() { // get function
+    let sandDollars = sessionStorage.getItem('sandDollars')
+    return JSON.parse(sandDollars)
+}
 
-// Retrieve the object from storage
-var retrievedObject = localStorage.getItem('testObject');
+function setSandDollars(newSandDollars) { // set function
+    const sandDollarsStringified = JSON.stringify(newSandDollars);
+    sessionStorage.setItem('sandDollars', sandDollarsStringified);
+}
 
-console.log('retrievedObject: ', JSON.parse(retrievedObject));
-*/
-
-// sand dollars
-let sandDollars = 0;
-
-// Fishing rod values
-let fishingRods = [// rates are in fish/second
-    {
-        name: "A Fishing Rod",
-        rates: {
-            'Goldfish': 0.5,
-            'Swordfish': 0,
-            'Shark': 0,
-            'Whale': 0,
-            'Narwhal': 0,
-        },
-        cost: 25,
-        unlocked: false,
-    },
-    {
-        name: "A Better Fishing Rod",
-        rates: {
-            'Goldfish': 1,
-            'Swordfish': 0.25,
-            'Shark': 0,
-            'Whale': 0,
-            'Narwhal': 0,
-        },
-        cost: 50,
-        unlocked: false,
-    },
-    {
-        name: "An Even Better Fishing Rod",
-        rates: {
-            'Goldfish': 2,
-            'Swordfish': 1,
-            'Shark': 0.5,
-            'Whale': 0.25,
-            'Narwhal': 0,
-        },
-        cost: 100,
-        unlocked: false,
-    },
-    {
-        name: "The Best Fishing Rod",
-        rates: {
-            'Goldfish': 4,
-            'Swordfish': 2,
-            'Shark': 1,
-            'Whale': 0.5,
-            'Narwhal': 0.02,
-        },
-        cost: 300,
-        unlocked: false,
-    },
-]
-
-// fish stats
-let fishStats = [ // revenue is in SD/second
+// FISH STATS
+let fishStatsInitial = [ // original fish stats array - revenue is in SD/second
     {
         name: 'Goldfish',
         size: 1,
@@ -128,8 +85,92 @@ let fishStats = [ // revenue is in SD/second
     },
 ]
 
-// Fishing habitat values
-let fishHabitats = [
+if(!sessionStorage.getItem('fishStats')) { // initial set
+    console.log('fishStats reset');
+    const fishStatsStringified = JSON.stringify(fishStatsInitial);
+    sessionStorage.setItem('fishStats', fishStatsStringified);
+}
+
+function getFishStats() { // get function
+    let fishStats = sessionStorage.getItem('fishStats')
+    return JSON.parse(fishStats)
+}
+
+function setFishStats(newFishStats) { // set function
+    const fishStatsStringified = JSON.stringify(newFishStats);
+    sessionStorage.setItem('fishStats', fishStatsStringified);
+}
+
+// FISHING RODS
+let fishingRodsInitial = [// rates are in fish/second
+    {
+        name: "A Fishing Rod",
+        rates: {
+            'Goldfish': 0.5,
+            'Swordfish': 0,
+            'Shark': 0,
+            'Whale': 0,
+            'Narwhal': 0,
+        },
+        cost: 25,
+        unlocked: false,
+    },
+    {
+        name: "A Better Fishing Rod",
+        rates: {
+            'Goldfish': 1,
+            'Swordfish': 0.25,
+            'Shark': 0,
+            'Whale': 0,
+            'Narwhal': 0,
+        },
+        cost: 50,
+        unlocked: false,
+    },
+    {
+        name: "An Even Better Fishing Rod",
+        rates: {
+            'Goldfish': 2,
+            'Swordfish': 1,
+            'Shark': 0.5,
+            'Whale': 0.25,
+            'Narwhal': 0,
+        },
+        cost: 100,
+        unlocked: false,
+    },
+    {
+        name: "The Best Fishing Rod",
+        rates: {
+            'Goldfish': 4,
+            'Swordfish': 2,
+            'Shark': 1,
+            'Whale': 0.5,
+            'Narwhal': 0.02,
+        },
+        cost: 300,
+        unlocked: false,
+    },
+]
+
+if(!sessionStorage.getItem('fishingRods')) { // initial set
+    console.log('fishingRods reset');
+    const fishingRodsStringified = JSON.stringify(fishingRodsInitial);
+    sessionStorage.setItem('fishingRods', fishingRodsStringified);
+}
+
+function getFishingRods() { // get function
+    let fishingRods = sessionStorage.getItem('fishingRods')
+    return JSON.parse(fishingRods)
+}
+
+function setFishingRods(newFishingRods) { // set function
+    const fishingRodsStringified = JSON.stringify(newFishingRods);
+    sessionStorage.setItem('fishingRods', fishingRodsStringified);
+}
+
+// HABITATS
+let fishHabitatsInitial = [
     {
         name: "Fish Bowl",
         capacity: 10,
@@ -156,7 +197,25 @@ let fishHabitats = [
     }
 ]
 
-let baits = [
+if(!sessionStorage.getItem('fishHabitats')) { // initial set
+    console.log('fishHabitats reset');
+    const fishHabitatsStringified = JSON.stringify(fishHabitatsInitial);
+    sessionStorage.setItem('fishHabitats', fishHabitatsStringified);
+}
+
+function getFishHabitats() { // get function
+    let fishHabitats = sessionStorage.getItem('fishHabitats')
+    return JSON.parse(fishHabitats)
+}
+
+function setFishHabitats(newFishHabitats) { // set function
+    const fishHabitatsStringified = JSON.stringify(newFishHabitats);
+    sessionStorage.setItem('fishHabitats', fishHabitatsStringified);
+}
+
+
+// BAITS
+let baitsInitial = [
     {
         name: "Gummy Worms",
         cost: 1,
@@ -181,9 +240,37 @@ let baits = [
     },
 ]
 
-let win = [
+if(!sessionStorage.getItem('baits')) { // initial set
+    console.log('baits reset');
+    const fishBaitsStringified = JSON.stringify(baitsInitial);
+    sessionStorage.setItem('baits', fishBaitsStringified);
+}
+
+function getBaits() { // get function
+    let baits = sessionStorage.getItem('baits')
+    return JSON.parse(baits)
+}
+
+function setBaits(newBaits) { // set function
+    const baitsStringified = JSON.stringify(newBaits);
+    sessionStorage.setItem('baits', baitsStringified);
+}
+
+// WIN
+let winInitial = [
     {
         name: "Rowboat",
         cost: 10000,
     }
 ]
+
+if(!sessionStorage.getItem('win')) { // initial set
+    console.log('win reset');
+    const winStringified = JSON.stringify(winInitial);
+    sessionStorage.setItem('win', winStringified);
+}
+
+function getWin() { // get function
+    let win = sessionStorage.getItem('win')
+    return JSON.parse(win)
+}

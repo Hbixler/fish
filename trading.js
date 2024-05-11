@@ -24,18 +24,10 @@ function updateAvailableRods() {
     }
 }
 
-updateSandDollars();
-
-// Selling fish
-for (x = 0; x < fishStats.length; x++) {
-    buttonElement = document.getElementById("sellFish" + x);
-    fish = fishStats[x];
-    // console.log(fish)
-}
-
 
 function sellFish(fishType, numToSell) {
-    fishStat = fishStats[fishType]
+    let fishStats = getFishStats();
+    let fishStat = fishStats[fishType]
     if (fishStat.inventoryCount >= numToSell) {
         // Update fish value accordingly
         fishValue = fishStat.cost * numToSell;
@@ -46,10 +38,13 @@ function sellFish(fishType, numToSell) {
         sandDollars += fishValue;
         updateSandDollars()
     }
+    setFishStats();
 }
 
 // Buying bait
 function buyBait(baitNumber, numToBuy) {
+    let baits = getBaits();
+    
     baitName = baits[baitNumber].name;
     baitValue = baits[baitNumber].cost * numToBuy;
     if (baitValue <= sandDollars) {
@@ -61,12 +56,13 @@ function buyBait(baitNumber, numToBuy) {
         sandDollars -= baitValue;
         updateSandDollars();
     }
+
+    setBaits(baits);
 }
 
-// Buying rods
-updateAvailableRods();
-
 function buyRod(fishingRodNumber) {
+    let baits = getBaits();
+
     rodValue = fishingRods[fishingRodNumber].cost;
     if (rodValue <= sandDollars) {
         // Update rod
@@ -107,6 +103,8 @@ function buyRod(fishingRodNumber) {
             fishingRodBuyButton.style.visibility = 'hidden';
         }
     }
+
+    setBaits(baits);
 }
 
 // buying habitats
@@ -147,6 +145,7 @@ function buyHabitat(fishHabitatNumber) {
         habitatMaximumSpan.innerText = currentHabitat.capacity;
 
         // changes displays based on what's unlocked --> shows all fish that have been unlocked before they bought the fish bowl
+        let fishStats = getFishStats();
         for (fishNumber in fishStats) { // displays fish that are unlocked
             if (fishStats[fishNumber].unlocked) {
                 makeHabitatFishVisible(fishNumber);
@@ -163,42 +162,4 @@ function buyVehicle(vehicleNum) {
         updateSandDollars();
     }
 
-}
-
-// habitat labels in trading
-for (let x = 0; x < fishHabitats.length; x++) {
-    let fishHabitatSpan = document.getElementById("habitat" + x);
-    fishHabitatSpan.innerText = fishHabitats[x].name;
-}
-
-// win label
-for (let x = 0; x < win.length; x++) {
-    let winSpan = document.getElementById("win" + x);
-    winSpan.innerText = win[x].name;
-}
-
-// costs and such of various tradeable things
-for (let x = 0; x < fishStats.length; x++) { // selling fish
-    let fishCostSpan = document.getElementById("fish" + x + "-cost");
-    fishCostSpan.innerText = fishStats[x].cost;
-}
-
-for (let x = 0; x < fishingRods.length; x++) { // buying rods
-    let rodCostSpan = document.getElementById("rod" + x + "-cost");
-    rodCostSpan.innerText = fishingRods[x].cost;
-}
-
-for (let x = 0; x < baits.length; x++) { // buying rods
-    let baitCostSpan = document.getElementById("bait" + x + "-cost");
-    baitCostSpan.innerText = baits[x].cost;
-}
-
-for (let x = 0; x < fishHabitats.length; x++) { // buying rods
-    let habitatCostSpan = document.getElementById("habitat" + x + "-cost");
-    habitatCostSpan.innerText = fishHabitats[x].cost;
-}
-
-for (let x = 0; x < win.length; x++) { // buying rods
-    let winCostSpan = document.getElementById("win" + x + "-cost");
-    winCostSpan.innerText = win[x].cost;
 }
