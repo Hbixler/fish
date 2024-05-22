@@ -1,49 +1,23 @@
-// Sand dollar count
-function updateSandDollars() {
-    let sandDollarsSpan = document.getElementById('sandDollars');
-    sandDollarsSpan.innerText = Math.round(sandDollars * 100) / 100;
-
-    if(sandDollars > 10 && !isEquipmentTradingVisible()) { // unlocks equipment section of trading when 10 sanddollars are earned
-
-        makeEquipmentTradingVisible();
-        makeRodVisible(0);
-
-        fishingRods[0].unlocked = true;
-    }
-
-    if(sandDollars >= 40 && isBaitVisible(0) && !isHabitatVisible()) { // unlocks habitat section of trading when 40 sanddollars are earned and bait is already unlocked
-        makeHabitatTradingVisible();
-        makeHabitatVisible(0)
-    }
-}
-
-function updateAvailableRods() {
-    for (let x = 0; x < fishingRods.length; x++) {
-        let fishingRodSpan = document.getElementById("rod" + x);
-        fishingRodSpan.innerText = fishingRods[x].name;
-    }
-}
-
-
 function sellFish(fishType, numToSell) {
     let fishStats = getFishStats();
-    let fishStat = fishStats[fishType]
+    let fishStat = fishStats[fishType];
     if (fishStat.inventoryCount >= numToSell) {
         // Update fish value accordingly
         fishValue = fishStat.cost * numToSell;
         fishStat.inventoryCount = fishStat.inventoryCount - numToSell;
-        updateFishCount(fishType);
+        updateFishCount(fishType, fishStat.inventoryCount);
 
         // Update sand dollar count
-        sandDollars += fishValue;
-        updateSandDollars()
+        sandDollars = getSandDollars() + fishValue;
+        updateSandDollars(sandDollars);
     }
-    setFishStats();
+    
 }
 
 // Buying bait
 function buyBait(baitNumber, numToBuy) {
     let baits = getBaits();
+    let sandDollars = getSandDollars();
     
     baitName = baits[baitNumber].name;
     baitValue = baits[baitNumber].cost * numToBuy;
@@ -54,7 +28,7 @@ function buyBait(baitNumber, numToBuy) {
 
         // Update sand dollars
         sandDollars -= baitValue;
-        updateSandDollars();
+        updateSandDollars(sandDollars);
     }
 
     setBaits(baits);
@@ -62,6 +36,7 @@ function buyBait(baitNumber, numToBuy) {
 
 function buyRod(fishingRodNumber) {
     let baits = getBaits();
+    let sandDollars = getSandDollars();
 
     rodValue = fishingRods[fishingRodNumber].cost;
     if (rodValue <= sandDollars) {
@@ -72,7 +47,7 @@ function buyRod(fishingRodNumber) {
 
         // Update sand dollars
         sandDollars -= rodValue;
-        updateSandDollars();
+        updateSandDollars(sandDollars);
 
         if (fishingRodNumber === 0) { // make supplies box and title visible
             makeSuppliesVisible();
@@ -88,7 +63,7 @@ function buyRod(fishingRodNumber) {
         }
 
         // toggling visibility as fishing rods are bought
-        console.log(fishingRodNumber);
+        // console.log(fishingRodNumber);
         if (fishingRodNumber != fishingRods.length - 1) {
             // make next rod visible
             let nextFishingRodNumber = fishingRodNumber + 1;
@@ -109,6 +84,10 @@ function buyRod(fishingRodNumber) {
 
 // buying habitats
 function buyHabitat(fishHabitatNumber) {
+    let fishHabitats = getFishHabitats();
+    let fishStats = getFishStats();
+    let sandDollars = getSandDollars();
+
     habitatValue = fishHabitats[fishHabitatNumber].cost;
     if (habitatValue <= sandDollars) {
         // Update habitat
@@ -117,7 +96,7 @@ function buyHabitat(fishHabitatNumber) {
 
         // Update sand dollars
         sandDollars -= habitatValue;
-        updateSandDollars();
+        updateSandDollars(sandDollars);
 
         // toggling visibility as habitats are bought
         console.log(fishHabitatNumber);
@@ -145,21 +124,25 @@ function buyHabitat(fishHabitatNumber) {
         habitatMaximumSpan.innerText = currentHabitat.capacity;
 
         // changes displays based on what's unlocked --> shows all fish that have been unlocked before they bought the fish bowl
-        let fishStats = getFishStats();
         for (fishNumber in fishStats) { // displays fish that are unlocked
             if (fishStats[fishNumber].unlocked) {
                 makeHabitatFishVisible(fishNumber);
             }
         }
     }
+
+    setFishHabitats(fishHabitats);
 } 
 
 function buyVehicle(vehicleNum) {
     // Currently means the user won the game!!
     console.log('user won!')
+    let win = getWin();
+    let sandDollars = getSandDollars();
+
     if (win[vehicleNum].cost <= sandDollars) {
         sandDollars -= win[vehicleNum].cost;
-        updateSandDollars();
+        updateSandDollars(sandDollars);
     }
 
 }

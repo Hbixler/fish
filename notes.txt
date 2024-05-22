@@ -1,3 +1,6 @@
+Changes to make as we go: 
+- move set functions into update functions
+
 Changes to make: 
 - CSS things -> sorry Hailey :/
     - align titles with boxes
@@ -32,6 +35,7 @@ Changes to make:
     - With big letters that say DO NOT TOUCH
     - If you touch your screen gets all messed up and you have to fix it
 - organize files into folders
+- remove habitat from main page
 
 Changes done: 
 - [DONE] adjust rates and costs
@@ -56,5 +60,5 @@ Other things:
 
 Highest priority: 
 - [DONE] keep Kai from dying -> Kai needs to step it up -> Kai coughs less than three times per session
-- Kai needs to unbruise his rib -> can breathe and laugh without dying
-- make it so Hailey doesn't have to go into the CSS file literally every coding session -> Hailey goes into the css section less than 50% of the time
+- [DONE] Kai needs to unbruise his rib -> can breathe and laugh without dying
+- [DONE] make it so Hailey doesn't have to go into the CSS file literally every coding session -> Hailey goes into the css section less than 50% of the time
