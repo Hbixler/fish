@@ -1,5 +1,6 @@
 // Inventory
 function isBaitVisible(baitNum) {
+    let baits = getBaits();
     return baits[baitNum].unlocked;
 }
 function makeBaitVisible(baitNum) {
@@ -14,6 +15,7 @@ function makeSuppliesVisible() {
     suppliesDiv.style.visibility = 'visible';
 }
 function isInventoryFishVisible(fishNum) {
+    let fishStats = getFishStats()
     return fishStats[fishNum].unlocked;
 }
 function makeInventoryFishVisible(fishNumber) {
@@ -107,7 +109,9 @@ function makeVehicleSectionVisible() {
 
 // Habitat
 function isHabitatVisible() {
-    return Object.keys(currentHabitat).length > 0;
+    let habitatNavButtons = document.getElementsByClassName('habitat-nav-button');
+    habitatButton = habitatNavButtons[0];
+    return habitatButton.style.visibility = 'visible';
 }
 function makeHabitatSectionVisible() {
     habitatDiv = document.getElementById('habitat-div'); // displays fish bowl
@@ -120,7 +124,7 @@ function makeHabitatFishVisible(fishNumber) {
 
 // Everything
 function makeEverythingVisible() {
-    console.log('everything is visible');
+    console.log('the ocean is big and I can see it');
     for (fishNum in fishStats) {
         makeFishTradingVisible(fishNum)
         makeInventoryFishVisible(fishNum)
@@ -133,7 +137,7 @@ function makeEverythingVisible() {
         makeHabitatVisible(habitatNum);
     }
     makeEquipmentTradingVisible();
-    for (rodNum in fishingRods) {
+    for (let rodNum = 1; rodNum < fishingRods.length; rodNum++) {
         makeRodVisible(rodNum);
     }
     makeVehicleSectionVisible();

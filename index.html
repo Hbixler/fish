@@ -77,97 +77,6 @@
                             
                         </div>
                     </div>
-                    <div class="row border-div" style="visibility: hidden" id="habitat-div">
-                        <div class="row">
-
-                            <!--FISH HABITAT-->
-                            <div class="column">
-                                <h1><span id="fishHabitat"></span></h1>
-                            </div>
-                            <div class="column">
-                                <p><span id="fishInHabitat"></span> / <span id="habitatMaximum"></span></p>
-                            </div>
-                            <div class="column">
-                                <p><span id="revenue"></span> sand dollars/s</p>
-                            </div>
-                        </div>
-                        <div id="fishCount" class="row dashed-div">
-                            <div class="column">
-                                <div class="row" style="visibility: hidden" id="fishInHabitat0-div">
-                                    <div class="column">
-                                        <p><span class="fish0"></span>: <span id="fish0-habitat"></span></p>
-                                    </div>
-                                    <div class="column">
-                                        <div class="row">
-                                            <button class="plus-minus" id="plus" onclick="plus(0)">+</button>
-                                        </div>
-                                        <div class="row">
-                                            <button class="plus-minus" id="minus" onclick="minus(0)">-</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" style="visibility: hidden" id="fishInHabitat1-div">
-                                    <div class="column">
-                                        <p><span class="fish1"></span>: <span id="fish1-habitat"></span></p>
-                                    </div>
-                                    <div class="column">
-                                        <div class="row">
-                                            <button class="plus-minus" id="plus" onclick="plus(1)">+</button>
-                                        </div>
-                                        <div class="row">
-                                            <button class="plus-minus" id="minus" onclick="minus(1)">-</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" style="visibility: hidden" id="fishInHabitat2-div">
-                                    <div class="column">
-                                        <p><span class="fish2"></span>: <span id="fish2-habitat"></span></p>
-                                    </div>
-                                    <div class="column">
-                                        <div class="row">
-                                            <button class="plus-minus" id="plus" onclick="plus(2)">+</button>
-                                        </div>
-                                        <div class="row">
-                                            <button class="plus-minus" id="minus" onclick="minus(2)">-</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="column" style="visibility: hidden" id="fishInHabitat3-div">
-                                <div class="row">
-                                    <div class="column">
-                                        <p><span class="fish3"></span>: <span id="fish3-habitat"></span></p>
-                                    </div>
-                                    <div class="column">
-                                        <div class="row">
-                                            <button class="plus-minus" id="plus" onclick="plus(3)">+</button>
-                                        </div>
-                                        <div class="row">
-                                            <button class="plus-minus" id="minus" onclick="minus(3)">-</button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row" style="visibility: hidden" id="fishInHabitat4-div">
-                                    <div class="column">
-                                        <p><span class="fish4"></span>: <span id="fish4-habitat"></span></p>
-                                    </div>
-                                    <div class="column">
-                                        <div class="row">
-                                            <button class="plus-minus" id="plus" onclick="plus(4)">+</button>
-                                        </div>
-                                        <div class="row">
-                                            <button class="plus-minus" id="minus" onclick="minus(4)">-</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <!-- have different options for this -->
-                            <p id="fish-message"></p>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="quadruple-column border-div" style="visibility: hidden" id="trading-div">
@@ -227,10 +136,6 @@
                             <div class="row" style="visibility: hidden" id="equipment-heading">
                                 <h2>Equipment: </h2>
                             </div>
-                            <div class="row" style="visibility: hidden" id="fishingRodTrading0-div">
-                                <p><span id="rod0"></span> (<span id="rod0-cost"></span> SD)</p>
-                                <button onclick="buyRod(0)" style="visibility: hidden" id="buyRod0">Buy</button>
-                            </div>
                             <div class="row" style="visibility: hidden" id="fishingRodTrading1-div">
                                 <p><span id="rod1"></span> (<span id="rod1-cost"></span> SD)</p>
                                 <button onclick="buyRod(1)" style="visibility: hidden" id="buyRod1">Buy</button>
@@ -242,6 +147,10 @@
                             <div class="row" style="visibility: hidden" id="fishingRodTrading3-div">
                                 <p><span id="rod3"></span> (<span id="rod3-cost"></span> SD)</p>
                                 <button onclick="buyRod(3)" style="visibility: hidden" id="buyRod3">Buy</button>
+                            </div>
+                            <div class="row" style="visibility: hidden" id="fishingRodTrading4-div">
+                                <p><span id="rod4"></span> (<span id="rod4-cost"></span> SD)</p>
+                                <button onclick="buyRod(4)" style="visibility: hidden" id="buyRod4">Buy</button>
                             </div>
                         </div>
                     </div>
@@ -319,6 +228,7 @@
         
         <!--JAVASCRIPT FILES-->
         <script src="./main.js"></script>
+        <script src="./update.js"></script>
         <script src="./visibility.js"></script>
         <script src="./inventory.js"></script>
         <script src="./trading.js"></script>

@@ -14,7 +14,7 @@ function getSpeed() { // get function
 }
 
 // SAND DOLLARS
-let sandDollarsInitial = 0;
+let sandDollarsInitial = 100;
 if(!sessionStorage.getItem('sandDollars')) { // initial set
     console.log('sandDollars reset');
     const sandDollarsStringified = JSON.stringify(sandDollarsInitial);
@@ -92,17 +92,34 @@ if(!sessionStorage.getItem('fishStats')) { // initial set
 }
 
 function getFishStats() { // get function
-    let fishStats = sessionStorage.getItem('fishStats')
+    let fishStats = sessionStorage.getItem('fishStats');
+    if (!fishStats) {
+        console.log('fish stats not defined');
+    }
     return JSON.parse(fishStats)
 }
 
 function setFishStats(newFishStats) { // set function
+    // console.log('setting fish stats to ' + newFishStats);
     const fishStatsStringified = JSON.stringify(newFishStats);
+    // console.log('setting fish stats to ' + fishStatsStringified);
     sessionStorage.setItem('fishStats', fishStatsStringified);
 }
 
 // FISHING RODS
 let fishingRodsInitial = [// rates are in fish/second
+    {
+        name: "Bare Hands",
+        rates: {
+            "Goldfish": 0,
+            "Swordfish": 0,
+            "Shark": 0,
+            "Whale": 0,
+            "Narwhal": 0,
+        },
+        cost: 0,
+        unlocked: true,
+    },
     {
         name: "A Fishing Rod",
         rates: {
@@ -153,10 +170,23 @@ let fishingRodsInitial = [// rates are in fish/second
     },
 ]
 
+let currentRodInternal = fishingRodsInitial[0]; // sets original rod to nothing
+
 if(!sessionStorage.getItem('fishingRods')) { // initial set
     console.log('fishingRods reset');
     const fishingRodsStringified = JSON.stringify(fishingRodsInitial);
     sessionStorage.setItem('fishingRods', fishingRodsStringified);
+    sessionStorage.setItem('currentRod', JSON.stringify(currentRodInternal));
+}
+
+function getCurrentRod() { // get function
+    let currentRodInternal = sessionStorage.getItem('currentRod');
+    return JSON.parse(currentRodInternal);
+}
+
+function setCurrentRod() { // set function
+    const currentRodStringified = JSON.stringify(currentRodInternal);
+    sessionStorage.setItem('currentHabitat', currentRodStringified);
 }
 
 function getFishingRods() { // get function
@@ -197,10 +227,23 @@ let fishHabitatsInitial = [
     }
 ]
 
+let currentHabitatInternal = {}; // sets original habitat to nothing
+
 if(!sessionStorage.getItem('fishHabitats')) { // initial set
     console.log('fishHabitats reset');
     const fishHabitatsStringified = JSON.stringify(fishHabitatsInitial);
     sessionStorage.setItem('fishHabitats', fishHabitatsStringified);
+    sessionStorage.setItem('currentHabitat', JSON.stringify(currentHabitatInternal))
+}
+
+function getCurrentHabitat() { // get function
+    let currentHabitatInternal = sessionStorage.getItem('currentHabitat')
+    return JSON.parse(currentHabitatInternal)
+}
+
+function setCurrentHabitat() { // set function
+    const currentHabitatStringified = JSON.stringify(currentHabitatInternal);
+    sessionStorage.setItem('currentHabitat', currentHabitatStringified);
 }
 
 function getFishHabitats() { // get function
@@ -245,6 +288,7 @@ if(!sessionStorage.getItem('baits')) { // initial set
     const fishBaitsStringified = JSON.stringify(baitsInitial);
     sessionStorage.setItem('baits', fishBaitsStringified);
 }
+
 
 function getBaits() { // get function
     let baits = sessionStorage.getItem('baits')

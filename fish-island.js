@@ -1,6 +1,11 @@
-let fishStats = getFishStats();
+// let fishStats = getFishStats();
 let baits = getBaits();
 let fishingRods = getFishingRods();
+let speed = getSpeed();
+let fishHabitats = getFishHabitats();
+let win = getWin();
+let sandDollars = getSandDollars();
+let currentRod = getCurrentRod();
 
 // fish labels in inventory
 for (let x = 0; x < fishStats.length; x++) {
@@ -19,14 +24,10 @@ for (let x = 0; x < baits.length; x++) {
     updateBaitCount(x)
 }
 
-// Fishing rod
-let currentRod = {};
-updateFishingRod();
-
 // automatic fishing
-let speed = getSpeed();
 window.setInterval(function() {
-    let fishStats = getFishStats();
+    fishStats = getFishStats();
+
 
     for (autoFish in currentRod.rates) {
         // Find the fish's stats
@@ -47,22 +48,21 @@ window.setInterval(function() {
         }
         // Gain fish!
         fishStat.inventoryCount = fishStat.inventoryCount + currentRod.rates[autoFish];
-        updateFishCount(fishIndex)
+        updateFishCount(fishIndex, fishStat.inventoryCount)
     }
 
-    setFishStats(fishStats);
 }, 1000/speed)
 
-updateSandDollars();
+updateSandDollars(sandDollars);
 
 // Selling fish
-fishStats = getFishStats();
 for (x = 0; x < fishStats.length; x++) {
     buttonElement = document.getElementById("sellFish" + x);
     fish = fishStats[x];
 }
 
 // Buying rods
+updateFishingRod(currentRod);
 updateAvailableRods();
 
 // habitat labels in trading
@@ -83,7 +83,7 @@ for (let x = 0; x < fishStats.length; x++) { // selling fish
     fishCostSpan.innerText = fishStats[x].cost;
 }
 
-for (let x = 0; x < fishingRods.length; x++) { // buying rods
+for (let x = 1; x < fishingRods.length; x++) { // buying rods
     let rodCostSpan = document.getElementById("rod" + x + "-cost");
     rodCostSpan.innerText = fishingRods[x].cost;
 }
