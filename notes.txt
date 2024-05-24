@@ -37,6 +37,7 @@ Changes to make:
 - organize files into folders
 - Goldfish count starts out as NaN (lovely)
 - Currently when you are at your habitat you are not currently fishing -> similarly, not generating revenue while on fish island
+- doesn't keep fishing when on other pages like Habitat page and revenue from habitat doesn't happen when on fish island page, maybe we need a javascript file for incremental variables? 
 
 Changes done: 
 - [DONE] remove habitat from main page

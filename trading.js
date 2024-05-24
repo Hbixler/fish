@@ -44,7 +44,7 @@ function buyRod(fishingRodNumber) {
         updateAvailableRods();
 
         // Update sand dollars
-        sandDollars -= rodValue;
+        sandDollars -= rodValue; 
         updateSandDollars(sandDollars);
 
         if (fishingRodNumber === 0) { // make supplies box and title visible
