@@ -59,21 +59,27 @@ function makeFishTradingVisible(fishNumber) {
 }
 function isEquipmentTradingVisible() {
     fishingRodHeading = document.getElementById('equipment-heading');
-    return fishingRodHeading.style.visibility == 'visible';
+    return fishingRodHeading && fishingRodHeading.style.visibility == 'visible';
 }
 function makeEquipmentTradingVisible() {
     let fishingRodHeading = document.getElementById('equipment-heading');
-    fishingRodHeading.style.visibility = 'visible';
+
+    if (fishingRodHeading) {
+        fishingRodHeading.style.visibility = 'visible';
     
-    let fishingRodTradingDiv = document.getElementById('equipment-div');
-    fishingRodTradingDiv.style.removeProperty('border');
+        let fishingRodTradingDiv = document.getElementById('equipment-div');
+        fishingRodTradingDiv.style.removeProperty('border');
+    }
 }
 function makeRodVisible(rodNum) {
     let fishingRodTrading = document.getElementById('fishingRodTrading' + rodNum + '-div')
-    fishingRodTrading.style.visibility = 'visible';
 
-    let fishingRodButton = document.getElementById('buyRod' + rodNum);
-    fishingRodButton.style.visibility = 'visible';
+    if (fishingRodTrading) {
+        fishingRodTrading.style.visibility = 'visible';
+
+        let fishingRodButton = document.getElementById('buyRod' + rodNum);
+        fishingRodButton.style.visibility = 'visible';
+    }
 }
 function makeBaitTradingVisible() {
     baitHeadingDiv = document.getElementById('bait-heading');
@@ -110,16 +116,21 @@ function makeVehicleSectionVisible() {
 // Habitat
 function isHabitatVisible() {
     let habitatNavButtons = document.getElementsByClassName('habitat-nav-button');
-    habitatButton = habitatNavButtons[0];
+    let habitatButton = habitatNavButtons[0];
     return habitatButton.style.visibility = 'visible';
 }
 function makeHabitatSectionVisible() {
     habitatDiv = document.getElementById('habitat-div'); // displays fish bowl
-    habitatDiv.style.visibility = 'visible';
+
+    if (habitatDiv) {
+        habitatDiv.style.visibility = 'visible';
+    }
 }
 function makeHabitatFishVisible(fishNumber) {
-    let fishInHabitatDiv = document.getElementById("fishInHabitat" + fishNumber + "-div");
-    fishInHabitatDiv.style.visibility = 'visible'; 
+    if (document.getElementById('habitat-div')) {
+        let fishInHabitatDiv = document.getElementById("fishInHabitat" + fishNumber + "-div");
+        fishInHabitatDiv.style.visibility = 'visible'; 
+    }
 }
 
 // Everything
