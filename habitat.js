@@ -1,3 +1,5 @@
+let currentHabitat = getCurrentHabitat();
+
 // revenue from visitors
 let speed = getSpeed();
 window.setInterval(function() {
@@ -26,11 +28,7 @@ let fishInHabitat = 0;
 let fishInHabitatSpan = document.getElementById('fishInHabitat');
 fishInHabitatSpan.innerText = fishInHabitat;
 
-updateHabitat();
-
-// habitat maximum span code is in the 'buyHabitat' function in trading.js
-let habitatMaximumSpan = document.getElementById("habitatMaximum");
-habitatMaximumSpan.innerText = currentHabitat.capacity;
+updateHabitat(currentHabitat);
 
 // Setting fish message
 updateMessage();

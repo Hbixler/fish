@@ -184,9 +184,9 @@ function getCurrentRod() { // get function
     return JSON.parse(currentRodInternal);
 }
 
-function setCurrentRod() { // set function
-    const currentRodStringified = JSON.stringify(currentRodInternal);
-    sessionStorage.setItem('currentHabitat', currentRodStringified);
+function setCurrentRod(currentRod) { // set function
+    const currentRodStringified = JSON.stringify(currentRod);
+    sessionStorage.setItem('currentRod', currentRodStringified);
 }
 
 function getFishingRods() { // get function
@@ -241,8 +241,8 @@ function getCurrentHabitat() { // get function
     return JSON.parse(currentHabitatInternal)
 }
 
-function setCurrentHabitat() { // set function
-    const currentHabitatStringified = JSON.stringify(currentHabitatInternal);
+function setCurrentHabitat(currentHabitat) { // set function
+    const currentHabitatStringified = JSON.stringify(currentHabitat);
     sessionStorage.setItem('currentHabitat', currentHabitatStringified);
 }
 

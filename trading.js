@@ -24,14 +24,12 @@ function buyBait(baitNumber, numToBuy) {
     if (baitValue <= sandDollars) {
         // Update bait
         baits[baitNumber].count += numToBuy;
-        updateBaitCount(baitNumber);
+        updateBaitCount(baitNumber, baits[baitNumber].count);
 
         // Update sand dollars
         sandDollars -= baitValue;
         updateSandDollars(sandDollars);
     }
-
-    setBaits(baits);
 }
 
 function buyRod(fishingRodNumber) {
@@ -42,7 +40,7 @@ function buyRod(fishingRodNumber) {
     if (rodValue <= sandDollars) {
         // Update rod
         currentRod = fishingRods[fishingRodNumber];
-        updateFishingRod();
+        updateFishingRod(currentRod);
         updateAvailableRods();
 
         // Update sand dollars
@@ -92,14 +90,13 @@ function buyHabitat(fishHabitatNumber) {
     if (habitatValue <= sandDollars) {
         // Update habitat
         currentHabitat = fishHabitats[fishHabitatNumber];
-        updateHabitat();
+        updateHabitat(currentHabitat);
 
         // Update sand dollars
         sandDollars -= habitatValue;
         updateSandDollars(sandDollars);
 
         // toggling visibility as habitats are bought
-        console.log(fishHabitatNumber);
         if (fishHabitatNumber != fishHabitats.length - 1) {
             if (fishHabitatNumber == 0) {
                 makeHabitatSectionVisible();
@@ -117,11 +114,6 @@ function buyHabitat(fishHabitatNumber) {
             habitatBuyButton = document.getElementById("buyHabitat" + fishHabitatNumber);
             habitatBuyButton.style.visibility = 'hidden';
         }
-            
-
-        // changing habitat maximum
-        let habitatMaximumSpan = document.getElementById("habitatMaximum");
-        habitatMaximumSpan.innerText = currentHabitat.capacity;
 
         // changes displays based on what's unlocked --> shows all fish that have been unlocked before they bought the fish bowl
         for (fishNumber in fishStats) { // displays fish that are unlocked

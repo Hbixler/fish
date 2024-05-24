@@ -35,9 +35,11 @@ Changes to make:
     - With big letters that say DO NOT TOUCH
     - If you touch your screen gets all messed up and you have to fix it
 - organize files into folders
-- remove habitat from main page
+- Goldfish count starts out as NaN (lovely)
+- Currently when you are at your habitat you are not currently fishing -> similarly, not generating revenue while on fish island
 
 Changes done: 
+- [DONE] remove habitat from main page
 - [DONE] adjust rates and costs
     - [DONE] if you have a better fishing rod, you lose 4 SD whenever you get a swordfish... that's unfortunate...
     - [DONE] if you have an even better fishing rod, you break even when you get a shark... still seems like a waste of time...
