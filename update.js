@@ -1,5 +1,7 @@
 // Sand dollar count
 function updateSandDollars(sandDollars) {
+    setSandDollars(sandDollars);
+
     let sandDollarsSpan = document.getElementById('sandDollars');
     sandDollarsSpan.innerText = Math.round(sandDollars * 100) / 100;
 
@@ -8,15 +10,16 @@ function updateSandDollars(sandDollars) {
         makeEquipmentTradingVisible();
         makeRodVisible(1);
 
-        fishingRods[0].unlocked = true;
+        if (isEquipmentTradingVisible()) {
+            fishingRods[0].unlocked = true;
+        }
+
     }
 
     if(sandDollars >= 40 && isBaitVisible(0) && !isHabitatVisible()) { // unlocks habitat section of trading when 40 sanddollars are earned and bait is already unlocked
         makeHabitatTradingVisible();
         makeHabitatVisible(0)
     }
-
-    setSandDollars(sandDollars);
 }
 
 function updateAvailableRods() {
@@ -27,8 +30,10 @@ function updateAvailableRods() {
 }
 
 // Update functions
-function updateBaitCount(baitNum) {
+function updateBaitCount(baitNum, numBaits) {
     let baits = getBaits();
+    baits[baitNum].count = numBaits;
+    setBaits(baits)
 
     let baitSpan = document.getElementById("bait" + baitNum + "-count");
     baitSpan.innerText = baits[baitNum].count;
@@ -46,7 +51,9 @@ function updateFishCount(fishNumber, numFish) {
     setFishStats(fishStats);
 
     let fishCountSpan = document.getElementById("fish" + fishNumber + "-count");
-    fishCountSpan.innerText = Math.floor(fishStats[fishNumber].inventoryCount);
+    if (fishCountSpan) {
+        fishCountSpan.innerText = Math.floor(fishStats[fishNumber].inventoryCount);
+    }
 
     if (fishStats[fishNumber].inventoryCount >= 1 && !isInventoryFishVisible(fishNum)) {
         if (fishNumber === 0) {
@@ -91,13 +98,21 @@ function updateFishCount(fishNumber, numFish) {
 }
 
 // Update functions
-function updateHabitat() {
-    let fishHabitatSpan = document.getElementById("fishHabitat");
-    let currentHabitat = getCurrentHabitat();
-    fishHabitatSpan.innerText = currentHabitat.name;
+function updateHabitat(currentHabitat) {
+    setCurrentHabitat(currentHabitat)
 
-    // in case message relies on habitat name
-    updateMessage();
+    let fishHabitatSpan = document.getElementById("fishHabitat");
+
+    if (fishHabitatSpan) {
+        fishHabitatSpan.innerText = currentHabitat.name;
+
+        // changing habitat maximum
+        let habitatMaximumSpan = document.getElementById("habitatMaximum");
+        habitatMaximumSpan.innerText = currentHabitat.capacity;
+
+        // in case message relies on habitat name
+        updateMessage();
+    }
 }
 
 function updateNumFish(fishNum) {

@@ -1,3 +1,6 @@
+let currentHabitat = getCurrentHabitat();
+console.log(currentHabitat);
+
 // revenue from visitors
 let speed = getSpeed();
 window.setInterval(function() {
@@ -26,11 +29,7 @@ let fishInHabitat = 0;
 let fishInHabitatSpan = document.getElementById('fishInHabitat');
 fishInHabitatSpan.innerText = fishInHabitat;
 
-updateHabitat();
-
-// habitat maximum span code is in the 'buyHabitat' function in trading.js
-let habitatMaximumSpan = document.getElementById("habitatMaximum");
-habitatMaximumSpan.innerText = currentHabitat.capacity;
+updateHabitat(currentHabitat);
 
 // Setting fish message
 updateMessage();
@@ -43,12 +42,13 @@ function plus(fishNumber) {
         fishStats[fishNumber].inventoryCount = fishStats[fishNumber].inventoryCount - 1; // takes fish out of inventory
         fishStats[fishNumber].habitatCount = fishStats[fishNumber].habitatCount + 1; // puts fish into habitat
         
+        setFishStats(fishStats);
         updateNumFish(fishNumber); // change fish displayed in Habitat
         updateFishCount(fishNumber); // change fish displayed in Inventory
         howBigAreMyFish(); // recalculates and displays how much space fish are taking up
         updateMessage(); // updates habitat message
     }
-    setFishStats(fishStats);
+    
 }
 function minus(fishNumber) {
     let fishStats = getFishStats();
@@ -56,12 +56,12 @@ function minus(fishNumber) {
         fishStats[fishNumber].habitatCount = fishStats[fishNumber].habitatCount - 1; // takes fish out of habitat
         fishStats[fishNumber].inventoryCount = fishStats[fishNumber].inventoryCount + 1; // puts fish back into inventory
 
+        setFishStats(fishStats);
         updateNumFish(fishNumber) // change fish displayed in Habitat
         updateFishCount(fishNumber) // change fish displayed in Inventory
         howBigAreMyFish(); // recalculates and displays how much space fish are taking up
         updateMessage(); // updates habitat message
     }
-    setFishStats(fishStats);
 }
 
 // function to calculate how much space the fish in the habitat are taking up

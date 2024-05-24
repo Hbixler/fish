@@ -18,14 +18,21 @@
                     <div class="row">
 
                         <!--FISH HABITAT-->
-                        <div class="column">
-                            <h1><span id="fishHabitat"></span></h1>
+                        <div class="row">
+                            <div class="column">
+                                <h1><span id="fishHabitat"></span></h1>
+                            </div>
+                            <div class="column right-aligned">
+                                <p>Capacity: <span id="fishInHabitat"></span>/<span id="habitatMaximum"></span></p>
+                            </div>
                         </div>
-                        <div class="column">
-                            <p><span id="fishInHabitat"></span> / <span id="habitatMaximum"></span></p>
-                        </div>
-                        <div class="column">
-                            <p><span id="revenue"></span> sand dollars/s</p>
+                        <div class="row">
+                            <div class="column">
+                                <p class="left-margin"><span id="revenue"></span> sand dollars/s</p>
+                            </div>
+                            <div class="column right-aligned">
+                                <p>Sand Dollars (SD): <span id="sandDollars"></span></p>
+                            </div>
                         </div>
                     </div>
                     <div id="fishCount" class="row dashed-div">
@@ -34,7 +41,7 @@
                                 <div class="column">
                                     <p><span class="fish0"></span>: <span id="fish0-habitat"></span></p>
                                 </div>
-                                <div class="column">
+                                <div class="button-col">
                                     <div class="row">
                                         <button class="plus-minus" id="plus" onclick="plus(0)">+</button>
                                     </div>
@@ -47,7 +54,7 @@
                                 <div class="column">
                                     <p><span class="fish1"></span>: <span id="fish1-habitat"></span></p>
                                 </div>
-                                <div class="column">
+                                <div class="button-col">
                                     <div class="row">
                                         <button class="plus-minus" id="plus" onclick="plus(1)">+</button>
                                     </div>
@@ -60,7 +67,7 @@
                                 <div class="column">
                                     <p><span class="fish2"></span>: <span id="fish2-habitat"></span></p>
                                 </div>
-                                <div class="column">
+                                <div class="button-col">
                                     <div class="row">
                                         <button class="plus-minus" id="plus" onclick="plus(2)">+</button>
                                     </div>
@@ -76,7 +83,7 @@
                                 <div class="column">
                                     <p><span class="fish3"></span>: <span id="fish3-habitat"></span></p>
                                 </div>
-                                <div class="column">
+                                <div class="button-col">
                                     <div class="row">
                                         <button class="plus-minus" id="plus" onclick="plus(3)">+</button>
                                     </div>
@@ -89,7 +96,7 @@
                                 <div class="column">
                                     <p><span class="fish4"></span>: <span id="fish4-habitat"></span></p>
                                 </div>
-                                <div class="column">
+                                <div class="button-col">
                                     <div class="row">
                                         <button class="plus-minus" id="plus" onclick="plus(4)">+</button>
                                     </div>
@@ -102,22 +109,19 @@
                     </div>
                     <div class="row">
                         <!-- have different options for this -->
-                        <p id="fish-message"></p>
+                        <p id="fish-message" class="left-margin"></p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- MOVE AFTER -->
-    <p>Sand Dollars (SD): <span id="sandDollars"></span></p>
 
     <!--JAVASCRIPT FILES-->
     <script src="./main.js"></script>
     <script src="./update.js"></script>
-    <script src="./habitat.js"></script>
-    <script src="./trading.js"></script>
     <script src="./visibility.js"></script>
+    <script src="./habitat.js"></script>
     
     </body>
 </html>

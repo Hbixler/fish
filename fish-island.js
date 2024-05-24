@@ -21,30 +21,31 @@ for (let x = 0; x < baits.length; x++) {
     for (let y = 0; y < baitsSpan.length; y++) {
         baitsSpan[y].innerText = baits[x].name;
     }
-    updateBaitCount(x)
+    updateBaitCount(x, baits[x].count)
 }
 
 // automatic fishing
 window.setInterval(function() {
-    fishStats = getFishStats();
-
+    let fishStats = getFishStats();
+    let baits = getBaits();
+    let currentRod = getCurrentRod();
 
     for (autoFish in currentRod.rates) {
         // Find the fish's stats
-        fishIndex = fishStats.findIndex(fish => fish.name == autoFish);
-        fishStat = fishStats[fishIndex]
+        let fishIndex = fishStats.findIndex(fish => fish.name == autoFish);
+        let fishStat = fishStats[fishIndex]
 
         // If fish needs bait and is being fished
         if (fishStat.bait.length > 0 && currentRod.rates[autoFish] > 0) {
-            baitIndex = baits.findIndex(bait => bait.name == fishStat.bait);
-            bait = baits[baitIndex]
+            let baitIndex = baits.findIndex(bait => bait.name == fishStat.bait);
+            let bait = baits[baitIndex]
             if (bait.count <= 0) {
                 // We have no bait :( cannot fish
                 continue;
             }
             // Use bait
             bait.count = bait.count - 1;
-            updateBaitCount(baitIndex)
+            updateBaitCount(baitIndex, bait.count)
         }
         // Gain fish!
         fishStat.inventoryCount = fishStat.inventoryCount + currentRod.rates[autoFish];
