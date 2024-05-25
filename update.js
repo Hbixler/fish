@@ -131,10 +131,17 @@ for (let x = 0; x < fishStats.length; x++) {
     }
 }
 
-let revenue = 0;
-function updateRevenue() {
+function updateRevenue() { // EDIT THIS TO ACTUALLY UPDATE THE REVENUE
+    let fishStats = getFishStats();
+    revenue = 0;
+
+    for (auto of fishStats) {
+        revenue = revenue + (auto.habitatCount * auto.revenue);
+    }
+
     let revenueSpan = document.getElementById('revenue');
     revenueSpan.innerText = Math.round(revenue * 100) / 100
+    setRevenue(revenue);
 }
 
 function updateMessage() {

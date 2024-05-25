@@ -2,9 +2,6 @@ Changes to make as we go:
 - move set functions into update functions
 
 Changes to make: 
-- CSS things -> sorry Hailey :/
-    - align titles with boxes
-    - fish button shifts after you fish for the first time and the inventory box appears
 - make buttons and text only appear when you can use them/you get far enough in the game -> but also maybe push this off for as long as possible because it's harddddddd
     - [DONE] inventory
     - [DONE] habitat
@@ -17,11 +14,9 @@ Changes to make:
 - automatic buying bait and selling fish options
 - buy button enabled only when you can afford it - text gets dimmer after item is bought -> when you unlock something the buy button shows up but is not enabled
 - we should do it so that our code automatically populates the list for fish/bait/upgradables -> that way we can easily add a new item in main.js without messing with the html
-    -> sound fancy - Kai
 - hovering on things gives shows more info or something like that
 - re-re-balance: 
     - each type of fish can be caught with one of the related baits -> bait is removed from the bait count in inventory only when the fish is caught which still takes the allotted time listed in main.js
-- have other vehicles and better oceans to go to -> lame that a rowboat takes you nowhere... 
 - multiple pages
     - [DONE] split current into inventory/habitat page and trading page
     - wise old man who is too old to fish for himself so you trade him fish and he teaches you things to get skills
@@ -35,9 +30,6 @@ Changes to make:
     - With big letters that say DO NOT TOUCH
     - If you touch your screen gets all messed up and you have to fix it
 - organize files into folders
-- Goldfish count starts out as NaN (lovely)
-- Currently when you are at your habitat you are not currently fishing -> similarly, not generating revenue while on fish island
-- doesn't keep fishing when on other pages like Habitat page and revenue from habitat doesn't happen when on fish island page, maybe we need a javascript file for incremental variables? 
 
 Changes done: 
 - [DONE] remove habitat from main page
@@ -52,6 +44,12 @@ Changes done:
 - [DONE] bulk buying and selling bait and fish in the trading section -> clicker game doesn't need to mean clicking every 0.05 seconds
 - [DONE] make the habitat fun line change so that it doesn't lie to you -> fish are not always swimming happily in your bowl. Sometimes there are no fish. Sometimes it's a tank, not a bowl. Sometimes, the fish are very unhappy. You never know. Bad to assume. 
 - [DONE] put space between text and buy/sell buttons because it's driving Kai's eyes crazy
+- [DONE] Goldfish count starts out as NaN (lovely)
+- [DONE] Currently when you are at your habitat you are not currently fishing -> similarly, not generating revenue while on fish island
+- [DONE] CSS things
+    - [DONE] align titles with boxes
+    - [DONE] fish button shifts after you fish for the first time and the inventory box appears
+- [DONE] have other vehicles and better oceans to go to -> lame that a rowboat takes you nowhere... 
 
 Other things: 
 - test how long it takes to win game -> perhaps less than an hour is too easy? People need to suffer to enjoy

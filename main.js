@@ -1,35 +1,31 @@
 console.log("I am a fish"); // MAXIMUM IMPORTANCE - DO NOT REMOVE
 
 // SPEED OF GAME
-speedInitial = 1; // intervals per second
-if(!sessionStorage.getItem('speed')) { // initial set
-    console.log('speed reset');
-    const speedStringified = JSON.stringify(speedInitial);
-    sessionStorage.setItem('speed', speedStringified);
-}
-
+speedInitial = 10; // intervals per second
+if(!sessionStorage.getItem('speed')) {sessionStorage.setItem('speed', JSON.stringify(speedInitial))}; // initial set
 function getSpeed() { // get function
-    let speed = sessionStorage.getItem('speed')
-    return JSON.parse(speed)
-}
+    return JSON.parse(sessionStorage.getItem('speed'))
+}; 
 
 // SAND DOLLARS
-let sandDollarsInitial = 100;
-if(!sessionStorage.getItem('sandDollars')) { // initial set
-    console.log('sandDollars reset');
-    const sandDollarsStringified = JSON.stringify(sandDollarsInitial);
-    sessionStorage.setItem('sandDollars', sandDollarsStringified);
-}
-
+let sandDollarsInitial = 0; // initial sand dollars
+if(!sessionStorage.getItem('sandDollars')) {sessionStorage.setItem('sandDollars', JSON.stringify(sandDollarsInitial))}; // initial set
 function getSandDollars() { // get function
-    let sandDollars = sessionStorage.getItem('sandDollars')
-    return JSON.parse(sandDollars)
-}
-
+    return JSON.parse(sessionStorage.getItem('sandDollars'))
+};
 function setSandDollars(newSandDollars) { // set function
-    const sandDollarsStringified = JSON.stringify(newSandDollars);
-    sessionStorage.setItem('sandDollars', sandDollarsStringified);
-}
+    sessionStorage.setItem('sandDollars', JSON.stringify(newSandDollars))
+};
+
+// REVENUE
+let revenueInitial = 0; // initial revenue
+if(!sessionStorage.getItem('revenue')) {sessionStorage.setItem('revenue', JSON.stringify(revenueInitial))}; // intial set
+function getRevenue() { // get function
+    return JSON.parse(sessionStorage.getItem('revenue'))
+}; 
+function setRevenue(newRevenue) { // set function
+    sessionStorage.setItem('revenue', JSON.stringify(newRevenue))
+}; 
 
 // FISH STATS
 let fishStatsInitial = [ // original fish stats array - revenue is in SD/second
@@ -84,30 +80,16 @@ let fishStatsInitial = [ // original fish stats array - revenue is in SD/second
         unlocked: false,
     },
 ]
-
-if(!sessionStorage.getItem('fishStats')) { // initial set
-    console.log('fishStats reset');
-    const fishStatsStringified = JSON.stringify(fishStatsInitial);
-    sessionStorage.setItem('fishStats', fishStatsStringified);
-}
-
+if(!sessionStorage.getItem('fishStats')) {sessionStorage.setItem('fishStats', JSON.stringify(fishStatsInitial));} // initial set
 function getFishStats() { // get function
-    let fishStats = sessionStorage.getItem('fishStats');
-    if (!fishStats) {
-        console.log('fish stats not defined');
-    }
-    return JSON.parse(fishStats)
-}
-
+    return JSON.parse(sessionStorage.getItem('fishStats'));
+} 
 function setFishStats(newFishStats) { // set function
-    // console.log('setting fish stats to ' + newFishStats);
-    const fishStatsStringified = JSON.stringify(newFishStats);
-    // console.log('setting fish stats to ' + fishStatsStringified);
-    sessionStorage.setItem('fishStats', fishStatsStringified);
-}
+    sessionStorage.setItem('fishStats', JSON.stringify(newFishStats));
+} 
 
 // FISHING RODS
-let fishingRodsInitial = [// rates are in fish/second
+let fishingRodStats = [// rates are in fish/second
     {
         name: "Bare Hands",
         rates: {
@@ -169,35 +151,23 @@ let fishingRodsInitial = [// rates are in fish/second
         unlocked: false,
     },
 ]
-
-let currentRodInternal = fishingRodsInitial[0]; // sets original rod to nothing
-
-if(!sessionStorage.getItem('fishingRods')) { // initial set
-    console.log('fishingRods reset');
-    const fishingRodsStringified = JSON.stringify(fishingRodsInitial);
-    sessionStorage.setItem('fishingRods', fishingRodsStringified);
-    sessionStorage.setItem('currentRod', JSON.stringify(currentRodInternal));
-}
-
-function getCurrentRod() { // get function
-    let currentRodInternal = sessionStorage.getItem('currentRod');
-    return JSON.parse(currentRodInternal);
-}
-
-function setCurrentRod(currentRod) { // set function
-    const currentRodStringified = JSON.stringify(currentRod);
-    sessionStorage.setItem('currentRod', currentRodStringified);
-}
-
+if(!sessionStorage.getItem('fishingRods')) {sessionStorage.setItem('fishingRods', JSON.stringify(fishingRodStats))}; // initial set
 function getFishingRods() { // get function
-    let fishingRods = sessionStorage.getItem('fishingRods')
-    return JSON.parse(fishingRods)
-}
-
+    return JSON.parse(sessionStorage.getItem('fishingRods'))
+}; 
 function setFishingRods(newFishingRods) { // set function
-    const fishingRodsStringified = JSON.stringify(newFishingRods);
-    sessionStorage.setItem('fishingRods', fishingRodsStringified);
-}
+    sessionStorage.setItem('fishingRods', JSON.stringify(newFishingRods))
+}; 
+
+// CURRENT FISHING ROD
+let currentRodStats = fishingRodStats[0]; // sets original rod to bare hands
+if(!sessionStorage.getItem('currentRod')) {sessionStorage.setItem('currentRod', JSON.stringify(currentRodStats))}; // initial set
+function getCurrentRod() { // get function
+    return JSON.parse(sessionStorage.getItem('currentRod'))
+}; 
+function setCurrentRod(currentRod) { // set function
+    sessionStorage.setItem('currentRod', JSON.stringify(currentRod))
+}; 
 
 // HABITATS
 let fishHabitatsInitial = [
@@ -226,36 +196,23 @@ let fishHabitatsInitial = [
         unlocked: false,
     }
 ]
-
-let currentHabitatInternal = {}; // sets original habitat to nothing
-
-if(!sessionStorage.getItem('fishHabitats')) { // initial set
-    console.log('fishHabitats reset');
-    const fishHabitatsStringified = JSON.stringify(fishHabitatsInitial);
-    sessionStorage.setItem('fishHabitats', fishHabitatsStringified);
-    sessionStorage.setItem('currentHabitat', JSON.stringify(currentHabitatInternal))
-}
-
-function getCurrentHabitat() { // get function
-    let currentHabitatInternal = sessionStorage.getItem('currentHabitat')
-    return JSON.parse(currentHabitatInternal)
-}
-
-function setCurrentHabitat(currentHabitat) { // set function
-    const currentHabitatStringified = JSON.stringify(currentHabitat);
-    sessionStorage.setItem('currentHabitat', currentHabitatStringified);
-}
-
+if(!sessionStorage.getItem('fishHabitats')) {sessionStorage.setItem('fishHabitats', JSON.stringify(fishHabitatsInitial))}; // initial set
 function getFishHabitats() { // get function
-    let fishHabitats = sessionStorage.getItem('fishHabitats')
-    return JSON.parse(fishHabitats)
-}
-
+    return JSON.parse(sessionStorage.getItem('fishHabitats'))
+};
 function setFishHabitats(newFishHabitats) { // set function
-    const fishHabitatsStringified = JSON.stringify(newFishHabitats);
-    sessionStorage.setItem('fishHabitats', fishHabitatsStringified);
-}
+    sessionStorage.setItem('fishHabitats', JSON.stringify(newFishHabitats))
+};
 
+// CURRENT HABITAT
+let currentHabitatInitial = {}; // sets original habitat to nothing
+if(!sessionStorage.getItem('currentHabitat')) {sessionStorage.setItem('currentHabitat', JSON.stringify(currentHabitatInitial))}; // initial set
+function getCurrentHabitat() { // get function
+    return JSON.parse(sessionStorage.getItem('currentHabitat'))
+};
+function setCurrentHabitat(currentHabitat) { // set function
+    sessionStorage.setItem('currentHabitat', JSON.stringify(currentHabitat))
+};
 
 // BAITS
 let baitsInitial = [
@@ -282,23 +239,13 @@ let baitsInitial = [
         count: 0
     },
 ]
-
-if(!sessionStorage.getItem('baits')) { // initial set
-    console.log('baits reset');
-    const fishBaitsStringified = JSON.stringify(baitsInitial);
-    sessionStorage.setItem('baits', fishBaitsStringified);
-}
-
-
+if(!sessionStorage.getItem('baits')) {sessionStorage.setItem('baits', JSON.stringify(baitsInitial))}; // initial set
 function getBaits() { // get function
-    let baits = sessionStorage.getItem('baits')
-    return JSON.parse(baits)
-}
-
+    return JSON.parse(sessionStorage.getItem('baits'))
+};
 function setBaits(newBaits) { // set function
-    const baitsStringified = JSON.stringify(newBaits);
-    sessionStorage.setItem('baits', baitsStringified);
-}
+    sessionStorage.setItem('baits', JSON.stringify(newBaits))
+};
 
 // WIN
 let winInitial = [
@@ -307,14 +254,7 @@ let winInitial = [
         cost: 10000,
     }
 ]
-
-if(!sessionStorage.getItem('win')) { // initial set
-    console.log('win reset');
-    const winStringified = JSON.stringify(winInitial);
-    sessionStorage.setItem('win', winStringified);
-}
-
+if(!sessionStorage.getItem('win')) {sessionStorage.setItem('win', JSON.stringify(winInitial))}; // intial set
 function getWin() { // get function
-    let win = sessionStorage.getItem('win')
-    return JSON.parse(win)
-}
+    return JSON.parse(sessionStorage.getItem('win'))
+};

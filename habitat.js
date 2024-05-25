@@ -1,27 +1,10 @@
 let currentHabitat = getCurrentHabitat();
 console.log(currentHabitat);
 
-// revenue from visitors
-let speed = getSpeed();
-window.setInterval(function() {
-    revenue = 0;
-    let fishStats = getFishStats();
-    let sandDollars = getSandDollars();
-
-    for (auto of fishStats) {
-        revenue = revenue + (auto.habitatCount * auto.revenue);
-    }
-    sandDollars = sandDollars + revenue;
-    updateRevenue(revenue);
-    updateSandDollars(sandDollars);
-}, 1000/speed)
-
 // labels of fish in Habitat section
-// console.log(fishStats);
 for (fishNum in fishStats) {
     let fishSpan = document.getElementById("fish" + fishNum + "-habitat");
     fishSpan.innerText = fishStats[fishNum].habitatCount;
-    // console.log(fishSpan);
 }
 
 // sets original fish space being taken up as 0
@@ -46,6 +29,7 @@ function plus(fishNumber) {
         updateNumFish(fishNumber); // change fish displayed in Habitat
         updateFishCount(fishNumber); // change fish displayed in Inventory
         howBigAreMyFish(); // recalculates and displays how much space fish are taking up
+        updateRevenue(); // change revenue
         updateMessage(); // updates habitat message
     }
     
@@ -60,6 +44,7 @@ function minus(fishNumber) {
         updateNumFish(fishNumber) // change fish displayed in Habitat
         updateFishCount(fishNumber) // change fish displayed in Inventory
         howBigAreMyFish(); // recalculates and displays how much space fish are taking up
+        updateRevenue() // update revenue
         updateMessage(); // updates habitat message
     }
 }
