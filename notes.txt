@@ -51,6 +51,20 @@ Changes done:
     - [DONE] fish button shifts after you fish for the first time and the inventory box appears
 - [DONE] have other vehicles and better oceans to go to -> lame that a rowboat takes you nowhere... 
 
+Organization things:
+- We need to clean up where we have functions and where we have html 
+    - right now the update file has some free floating code
+- also should inventory and trading still be separate? I think not if on same page but if we later put the inventory in multple pages then yes
+- We need to think about our pseudo-backend and how our frontend accesses it
+    - should limit access points to specific functions
+- also it's not super efficient (key word @kai) to pass in the ENTIRE fishStats just to like unlock one fish
+    - should only be passing in the information that is relevant really
+- if we want to get really serious we can make diagrams
+- in general just backend needs to be more obscured, focused, and consistent across different elements
+    - think about what parts of the backend we want to change -> mainly fish counts, money, and whether things have been unlocked/equipped
+    - so our functions that access the backend should only change fish counts, money, and things being unlocked/equipped
+- i am being a little overdramatic we are doing an okay job of separating the two it just feels like it could be cleaner
+
 Other things: 
 - test how long it takes to win game -> perhaps less than an hour is too easy? People need to suffer to enjoy
 - have other people play the game? We need beta testers

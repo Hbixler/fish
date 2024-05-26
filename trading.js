@@ -54,6 +54,7 @@ function buyRod(fishingRodNumber) {
             makeBaitVisible(0);
 
             baits[0].unlocked = true; // to unlock the habitats section
+            updateBaits(baits)
         } else if (fishingRodNumber === 2) {
             makeBaitVisible(1);
         } else if (fishingRodNumber === 3) {
@@ -76,8 +77,6 @@ function buyRod(fishingRodNumber) {
             fishingRodBuyButton.style.visibility = 'hidden';
         }
     }
-
-    setBaits(baits);
 }
 
 // buying habitats
@@ -122,8 +121,6 @@ function buyHabitat(fishHabitatNumber) {
             }
         }
     }
-
-    setFishHabitats(fishHabitats);
 } 
 
 function buyVehicle(vehicleNum) {

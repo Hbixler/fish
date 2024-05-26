@@ -1,5 +1,8 @@
 let currentHabitat = getCurrentHabitat();
-console.log(currentHabitat);
+let revenue = getRevenue();
+
+// Display revenue
+updateRevenue(revenue);
 
 // labels of fish in Habitat section
 for (fishNum in fishStats) {
@@ -20,31 +23,33 @@ updateMessage();
 // buttons for adding and removing fish from habitat
 function plus(fishNumber) {
     let fishStats = getFishStats();
+    let revenue = getRevenue();
+
     newSpace = fishInHabitat + fishStats[fishNumber].size; // obj = arr.find(o => o.name === 'string 1')
     if (fishStats[fishNumber].inventoryCount >= 1 && newSpace <= currentHabitat.capacity) { // only if there is fish in the inventory to put in the habitat and it wouldn't exceed the maximum space
-        fishStats[fishNumber].inventoryCount = fishStats[fishNumber].inventoryCount - 1; // takes fish out of inventory
-        fishStats[fishNumber].habitatCount = fishStats[fishNumber].habitatCount + 1; // puts fish into habitat
+        let inventoryCount = fishStats[fishNumber].inventoryCount - 1; // takes fish out of inventory
+        let habitatCount = fishStats[fishNumber].habitatCount + 1; // puts fish into habitat
         
-        setFishStats(fishStats);
-        updateNumFish(fishNumber); // change fish displayed in Habitat
-        updateFishCount(fishNumber); // change fish displayed in Inventory
+        updateNumFish(fishNumber, habitatCount); // change fish displayed in Habitat
+        updateFishCount(fishNumber, inventoryCount); // change fish displayed in Inventory
         howBigAreMyFish(); // recalculates and displays how much space fish are taking up
-        updateRevenue(); // change revenue
+        updateRevenue(revenue + fishStats[fishNumber].revenue); // change revenue
         updateMessage(); // updates habitat message
     }
     
 }
 function minus(fishNumber) {
     let fishStats = getFishStats();
-    if(fishStats[fishNumber].habitatCount >= 1) { // can't have negative fish
-        fishStats[fishNumber].habitatCount = fishStats[fishNumber].habitatCount - 1; // takes fish out of habitat
-        fishStats[fishNumber].inventoryCount = fishStats[fishNumber].inventoryCount + 1; // puts fish back into inventory
+    let revenue = getRevenue();
 
-        setFishStats(fishStats);
-        updateNumFish(fishNumber) // change fish displayed in Habitat
-        updateFishCount(fishNumber) // change fish displayed in Inventory
+    if(fishStats[fishNumber].habitatCount >= 1) { // can't have negative fish
+        let habitatCount = fishStats[fishNumber].habitatCount - 1; // takes fish out of habitat
+        let inventoryCount = fishStats[fishNumber].inventoryCount + 1; // puts fish back into inventory
+
+        updateNumFish(fishNumber, habitatCount) // change fish displayed in Habitat
+        updateFishCount(fishNumber, inventoryCount) // change fish displayed in Inventory
         howBigAreMyFish(); // recalculates and displays how much space fish are taking up
-        updateRevenue() // update revenue
+        updateRevenue(revenue - fishStats[fishNumber].revenue) // update revenue
         updateMessage(); // updates habitat message
     }
 }

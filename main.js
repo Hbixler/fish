@@ -1,7 +1,7 @@
 console.log("I am a fish"); // MAXIMUM IMPORTANCE - DO NOT REMOVE
 
 // SPEED OF GAME
-speedInitial = 10; // intervals per second
+speedInitial = 1; // intervals per second
 if(!sessionStorage.getItem('speed')) {sessionStorage.setItem('speed', JSON.stringify(speedInitial))}; // initial set
 function getSpeed() { // get function
     return JSON.parse(sessionStorage.getItem('speed'))

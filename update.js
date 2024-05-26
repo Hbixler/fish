@@ -29,6 +29,10 @@ function updateAvailableRods() {
     }
 }
 
+function updateBaits(baits) {
+    setBaits(baits);
+}
+
 // Update functions
 function updateBaitCount(baitNum, numBaits) {
     let baits = getBaits();
@@ -115,10 +119,14 @@ function updateHabitat(currentHabitat) {
     }
 }
 
-function updateNumFish(fishNum) {
+function updateNumFish(fishNum, numFish) {
     // changes number of fish displayed in Habitat section
-    let fishHabitatSpan = document.getElementById("fish" + fishNum + "-habitat");
     let fishStats = getFishStats();
+
+    fishStats[fishNum].habitatCount = numFish;
+    setFishStats(fishStats);
+
+    let fishHabitatSpan = document.getElementById("fish" + fishNum + "-habitat");
     fishHabitatSpan.innerText = fishStats[fishNum].habitatCount;
 }
 
@@ -131,17 +139,11 @@ for (let x = 0; x < fishStats.length; x++) {
     }
 }
 
-function updateRevenue() { // EDIT THIS TO ACTUALLY UPDATE THE REVENUE
-    let fishStats = getFishStats();
-    revenue = 0;
-
-    for (auto of fishStats) {
-        revenue = revenue + (auto.habitatCount * auto.revenue);
-    }
+function updateRevenue(revenue) {
+    setRevenue(revenue);
 
     let revenueSpan = document.getElementById('revenue');
     revenueSpan.innerText = Math.round(revenue * 100) / 100
-    setRevenue(revenue);
 }
 
 function updateMessage() {

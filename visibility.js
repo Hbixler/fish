@@ -21,33 +21,40 @@ function isInventoryFishVisible(fishNum) {
 function makeInventoryFishVisible(fishNumber) {
     // Add fish to inventory options
     fishDiv = document.getElementById("fish" + fishNumber + "-div");
-    fishDiv.style.visibility = 'visible';
+
+    if (fishDiv) {
+        fishDiv.style.visibility = 'visible';
+    }
 }
 function makeInventorySectionVisible() {
     fishHeadingDiv = document.getElementById("fish-heading");
-    fishHeadingDiv.style.visibility = 'visible';
+    if (fishHeadingDiv) {
+        fishHeadingDiv.style.visibility = 'visible';
 
-    fishDiv = document.getElementById("fish-div")
-    fishDiv.style.removeProperty('border');
+        fishDiv = document.getElementById("fish-div")
+        fishDiv.style.removeProperty('border');
 
-    inventoryHeadingDiv = document.getElementById("inventory-heading");
-    inventoryHeadingDiv.style.visibility = 'visible';
+        inventoryHeadingDiv = document.getElementById("inventory-heading");
+        inventoryHeadingDiv.style.visibility = 'visible';
 
-    inventoryDiv = document.getElementById("inventory-div");
-    inventoryDiv.style.removeProperty('border'); 
+        inventoryDiv = document.getElementById("inventory-div");
+        inventoryDiv.style.removeProperty('border'); 
+    }
 }
 
 // Trading
 function isTradingSectionVisible() {
     let tradingDiv = document.getElementById('trading-div'); // make trading section visible
-    return tradingDiv.style.visibility == 'visible';
+    return tradingDiv && tradingDiv.style.visibility == 'visible';
 }
 function makeTradingSectionVisible() {
     let tradingDiv = document.getElementById('trading-div'); // make trading section visible
-    tradingDiv.style.visibility = 'visible';
 
-    let sellFishHeadingDiv = document.getElementById('sellFishHeading'); // make sell fish heading visible
-    sellFishHeadingDiv.style.visibility = 'visible';
+    if (tradingDiv) {
+        tradingDiv.style.visibility = 'visible';
+        let sellFishHeadingDiv = document.getElementById('sellFishHeading'); // make sell fish heading visible
+        sellFishHeadingDiv.style.visibility = 'visible';
+    }
 }
 function isFishTradingVisible(fishNumber) {
     let fishTradeDiv = document.getElementById("fishTrading" + fishNumber + "-div"); // add fish to the trading section
@@ -55,7 +62,9 @@ function isFishTradingVisible(fishNumber) {
 }
 function makeFishTradingVisible(fishNumber) {
     let fishTradeDiv = document.getElementById("fishTrading" + fishNumber + "-div"); // add fish to the trading section
-    fishTradeDiv.style.visibility = 'visible';
+    if (fishTradeDiv) {
+        fishTradeDiv.style.visibility = 'visible';
+    }
 }
 function isEquipmentTradingVisible() {
     fishingRodHeading = document.getElementById('equipment-heading');
