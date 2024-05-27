@@ -1,3 +1,85 @@
+// let fishStats = getFishStats();
+let baits = getBaits();
+let fishingRods = getFishingRods();
+let fishHabitats = getFishHabitats();
+let vehicles = getVehicles();
+let sandDollars = getSandDollars();
+let currentRod = getCurrentRod();
+
+// fish labels in inventory
+for (let x = 0; x < fishStats.length; x++) {
+    let fishStatsSpan = document.getElementsByClassName("fish" + x);
+    for (let y = 0; y < fishStatsSpan.length; y++) {
+        fishStatsSpan[y].innerText = fishStats[x].name;
+    }
+}
+
+// Bait labels
+for (let x = 0; x < baits.length; x++) {
+    let baitsSpan = document.getElementsByClassName("bait" + x);
+    for (let y = 0; y < baitsSpan.length; y++) {
+        baitsSpan[y].innerText = baits[x].name;
+    }
+    updateBaitCount(x, baits[x].count)
+}
+
+updateSandDollars(sandDollars);
+
+// Selling fish
+for (x = 0; x < fishStats.length; x++) {
+    buttonElement = document.getElementById("sellFish" + x);
+    fish = fishStats[x];
+}
+
+// Buying rods
+updateFishingRod(currentRod);
+updateAvailableRods();
+
+// habitat labels in trading
+for (let x = 0; x < fishHabitats.length; x++) {
+    let fishHabitatSpan = document.getElementById("habitat" + x);
+    fishHabitatSpan.innerText = fishHabitats[x].name;
+}
+
+// vehicles label
+for (let x = 0; x < 1; x++) {
+    let vehicleSpan = document.getElementById("vehicle" + x);
+    vehicleSpan.innerText = vehicles[x].name;
+}
+
+// costs and such of various tradeable things - getFishStats called above
+for (let x = 0; x < fishStats.length; x++) { // selling fish
+    let fishCostSpan = document.getElementById("fish" + x + "-cost");
+    fishCostSpan.innerText = fishStats[x].cost;
+}
+
+for (let x = 1; x < fishingRods.length; x++) { // buying rods
+    let rodCostSpan = document.getElementById("rod" + x + "-cost");
+    rodCostSpan.innerText = fishingRods[x].cost;
+}
+
+for (let x = 0; x < baits.length; x++) { // buying baits
+    let baitCostSpan = document.getElementById("bait" + x + "-cost");
+    baitCostSpan.innerText = baits[x].cost;
+}
+
+for (let x = 0; x < fishHabitats.length; x++) { // buying habitats
+    let habitatCostSpan = document.getElementById("habitat" + x + "-cost");
+    habitatCostSpan.innerText = fishHabitats[x].cost;
+}
+
+for (let x = 0; x < 1; x++) { // buying vehicles
+    let vehicleCostSpan = document.getElementById("vehicle" + x + "-cost");
+    vehicleCostSpan.innerText = vehicles[x].cost;
+}
+
+// go fishing button
+function goFishing() {
+    let fishStats = getFishStats();
+    updateFishCount(0, fishStats[0].inventoryCount + 1);
+}
+
+// TRADING
 function sellFish(fishType, numToSell) {
     let fishStats = getFishStats();
     let fishStat = fishStats[fishType];
@@ -124,14 +206,14 @@ function buyHabitat(fishHabitatNumber) {
 } 
 
 function buyVehicle(vehicleNum) {
-    // Currently means the user won the game!!
-    console.log('user won!')
-    let win = getWin();
     let sandDollars = getSandDollars();
 
-    if (win[vehicleNum].cost <= sandDollars) {
-        sandDollars -= win[vehicleNum].cost;
+    if (vehicles[vehicleNum].cost <= sandDollars) {
+        sandDollars -= vehicles[vehicleNum].cost;
         updateSandDollars(sandDollars);
+        updateVehicle();
     }
-
 }
+
+// DELETE LATER
+makeEverythingVisible();

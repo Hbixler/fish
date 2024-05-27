@@ -205,8 +205,8 @@ function setFishHabitats(newFishHabitats) { // set function
 };
 
 // CURRENT HABITAT
-let currentHabitatInitial = {}; // sets original habitat to nothing
-if(!sessionStorage.getItem('currentHabitat')) {sessionStorage.setItem('currentHabitat', JSON.stringify(currentHabitatInitial))}; // initial set
+let currentHabitat = {}; // sets original habitat to nothing
+if(!sessionStorage.getItem('currentHabitat')) {sessionStorage.setItem('currentHabitat', JSON.stringify(currentHabitat))}; // initial set
 function getCurrentHabitat() { // get function
     return JSON.parse(sessionStorage.getItem('currentHabitat'))
 };
@@ -247,14 +247,31 @@ function setBaits(newBaits) { // set function
     sessionStorage.setItem('baits', JSON.stringify(newBaits))
 };
 
-// WIN
-let winInitial = [
+// VEHICLE
+let vehiclesInitial = [
     {
         name: "Rowboat",
         cost: 10000,
+    }, 
+    {
+        name: "Sailboat",
+        cost: 20000,
     }
 ]
-if(!sessionStorage.getItem('win')) {sessionStorage.setItem('win', JSON.stringify(winInitial))}; // intial set
-function getWin() { // get function
-    return JSON.parse(sessionStorage.getItem('win'))
+if(!sessionStorage.getItem('vehicles')) {sessionStorage.setItem('vehicles', JSON.stringify(vehiclesInitial))}; // intial set
+function getVehicles() { // get function
+    return JSON.parse(sessionStorage.getItem('vehicles'));
+};
+function setVehicles() { // set function
+    return JSON.parse(sessionStorage.getItem('vehicles'));
+}
+
+// CURRENT VEHICLE
+let currentVehicle = {}; // sets original vehicle to nothing
+if(!sessionStorage.getItem('currentVehicle')) {sessionStorage.setItem('currentVehicle', JSON.stringify(currentVehicle))}; // initial set
+function getCurrentVehicle() { // get function
+    return JSON.parse(sessionStorage.getItem('currentVehicle'))
+};
+function setCurrentVehicle(currentVehicle) { // set function
+    sessionStorage.setItem('currentVehicle', JSON.stringify(currentVehicle))
 };

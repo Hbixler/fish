@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <title>Vast Unknown</title>
+        <link rel="stylesheet" href="../css/index.css">
+        <link rel="stylesheet" href="../css/vast-unknown.css">
+    </head>
+    <body>
+        <div class="body-container">
+            <div class="nav-bar">
+                <a href="index.html" class="nav-button">Fish Island</a>
+                <a href="habitat.html" class="nav-button">Habitat</a>
+                <a href="vast-unknown" class="nav-button">Vast Unknown</a>
+                <a href="wise-old-mage.html" class="nav-button">Wise Old Mage</a>
+                <a href="better-oceans.html" class="nav-button">Better Oceans</a>
+            </div>
+
+            <div class="flex-container">
+                <div class="column border-div">
+                    <div class="row">
+                        <h1>Vast Unknown</h1>
+                    </div>
+                        
+                    <div class="row dashed-div" style="width: 92%;">
+                        <div class="row">
+                            <div class="column"></div>
+                            <div class="column center-contents"><button onclick="sail('N')">Sail North</button></div>
+                            <div class="column"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="column center-contents west-button"><button onclick="sail('W')">Sail West</button></div>
+                            <div class="column center-contents"><button onclick="reset()" class="restart">Restart</button></div>
+                            <div class="column center-contents east-button"><button onclick="sail('E')">Sail East</button></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="column"></div>
+                            <div class="column center-contents"><button onclick="sail('S')">Sail South</button></div>
+                            <div class="column"></div>
+                        </div>
+                    </div>
+
+                    <div class="row"><p><span id="message"></span></p></div>
+                </div>
+                <div class="column border-div">
+                    <div class="row">
+                        <h1>The Hounourable Sir Frog</h1>
+                    </div>
+                    <div class="row dashed-div" style="width: 92%;">
+                        <div class="column">
+                            <button>Ask for Directions</button>
+                        </div>
+                        <div class="column">
+                            <button>Buy Sail</button>
+                        </div>
+                        <div class="column">
+                            <button>Punch Frog</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <!--JAVASCRIPT FILES-->
+        <script src="../js/shared/main.js"></script>
+        <script src="../js/shared/update.js"></script>
+        <script src="../js/shared/visibility.js"></script>
+        <script src="../js/shared/incremental.js"></script>
+        <script src="../js/vast-unknown.js"></script>
+        
+    </body>
+</html>
