@@ -27,7 +27,4 @@ Once you get past the frog, you get to see the wise old mage page
 - Side bar starts out as vast unknown
     - you have to sail a few times to find the frog
 - Then side bar is: 
-    - The Great Sir Frog
-    - Sir Frog the Great
     - The HonoUrable Sir Frog
-    - Could have side bar be Sir Frog with title in the box being The HonoUrable Sir Frog
