@@ -3,7 +3,10 @@ function updateSandDollars(sandDollars) {
     setSandDollars(sandDollars);
 
     let sandDollarsSpan = document.getElementById('sandDollars');
-    sandDollarsSpan.innerText = Math.round(sandDollars * 100) / 100;
+
+    if (sandDollarsSpan) {
+        sandDollarsSpan.innerText = Math.round(sandDollars * 100) / 100;
+    }
 
     if(sandDollars > 10 && !isEquipmentTradingVisible()) { // unlocks equipment section of trading when 10 sanddollars are earned
 
@@ -119,6 +122,12 @@ function updateHabitat(currentHabitat) {
     }
 }
 
+function updateVehicle(currentVehicle) {
+    setCurrentVehicle(currentVehicle);
+    test = getCurrentVehicles();
+    console.log(test)
+}
+
 function updateNumFish(fishNum, numFish) {
     // changes number of fish displayed in Habitat section
     let fishStats = getFishStats();
@@ -146,7 +155,8 @@ function updateRevenue(revenue) {
     revenueSpan.innerText = Math.round(revenue * 100) / 100
 }
 
-function updateMessage() {
+// Eventually change this!
+function updateFishMessage() {
     let newMessage = "";
     if (fishInHabitat == 0) {
         newMessage = "Where are all the fish :(";
@@ -175,4 +185,16 @@ function updateMessage() {
 
     let messageSpan = document.getElementById("fish-message");
     messageSpan.innerText = newMessage;
+}
+
+// VAST UNKNOWN
+
+function updateMessage(newMsg) {
+    let messageSpan = document.getElementById('message');
+    messageSpan.innerText = newMsg;
+}
+
+function sirFrogTalks(newMsg) {
+    let messageSpan = document.getElementById('frog-message');
+    messageSpan.innerText = newMsg;
 }

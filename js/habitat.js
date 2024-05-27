@@ -18,7 +18,7 @@ fishInHabitatSpan.innerText = fishInHabitat;
 updateHabitat(currentHabitat);
 
 // Setting fish message
-updateMessage();
+updateFishMessage();
 
 // buttons for adding and removing fish from habitat
 function plus(fishNumber) {
@@ -34,7 +34,7 @@ function plus(fishNumber) {
         updateFishCount(fishNumber, inventoryCount); // change fish displayed in Inventory
         howBigAreMyFish(); // recalculates and displays how much space fish are taking up
         updateRevenue(revenue + fishStats[fishNumber].revenue); // change revenue
-        updateMessage(); // updates habitat message
+        updateFishMessage(); // updates habitat message
     }
     
 }
