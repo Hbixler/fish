@@ -8,7 +8,7 @@ function getSpeed() { // get function
 }; 
 
 // SAND DOLLARS
-let sandDollarsInitial = 0; // initial sand dollars
+let sandDollarsInitial = 100000; // initial sand dollars
 if(!sessionStorage.getItem('sandDollars')) {sessionStorage.setItem('sandDollars', JSON.stringify(sandDollarsInitial))}; // initial set
 function getSandDollars() { // get function
     return JSON.parse(sessionStorage.getItem('sandDollars'))
@@ -205,8 +205,8 @@ function setFishHabitats(newFishHabitats) { // set function
 };
 
 // CURRENT HABITAT
-let currentHabitat = {}; // sets original habitat to nothing
-if(!sessionStorage.getItem('currentHabitat')) {sessionStorage.setItem('currentHabitat', JSON.stringify(currentHabitat))}; // initial set
+let currentHabitatInitial = {}; // sets original habitat to nothing
+if(!sessionStorage.getItem('currentHabitat')) {sessionStorage.setItem('currentHabitat', JSON.stringify(currentHabitatInitial))}; // initial set
 function getCurrentHabitat() { // get function
     return JSON.parse(sessionStorage.getItem('currentHabitat'))
 };

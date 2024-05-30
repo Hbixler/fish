@@ -5,7 +5,7 @@ function updateSandDollars(sandDollars) {
     let sandDollarsSpan = document.getElementById('sandDollars');
 
     if (sandDollarsSpan) {
-        sandDollarsSpan.innerText = Math.round(sandDollars * 100) / 100;
+        sandDollarsSpan.innerText = (Math.round(sandDollars * 100) / 100).toLocaleString();
     }
 
     if(sandDollars > 10 && !isEquipmentTradingVisible()) { // unlocks equipment section of trading when 10 sanddollars are earned
@@ -62,7 +62,7 @@ function updateFishCount(fishNumber, numFish) {
         fishCountSpan.innerText = Math.floor(fishStats[fishNumber].inventoryCount);
     }
 
-    if (fishStats[fishNumber].inventoryCount >= 1 && !isInventoryFishVisible(fishNum)) {
+    if (fishStats[fishNumber].inventoryCount >= 1 && !isInventoryFishVisible(fishNumber)) {
         if (fishNumber === 0) {
             // Fishing for goldfish for first time, adding boxes and borders
             makeInventorySectionVisible();  
@@ -118,14 +118,12 @@ function updateHabitat(currentHabitat) {
         habitatMaximumSpan.innerText = currentHabitat.capacity;
 
         // in case message relies on habitat name
-        updateMessage();
+        updateFishMessage();
     }
 }
 
 function updateVehicle(currentVehicle) {
     setCurrentVehicle(currentVehicle);
-    test = getCurrentVehicles();
-    console.log(test)
 }
 
 function updateNumFish(fishNum, numFish) {
@@ -155,7 +153,6 @@ function updateRevenue(revenue) {
     revenueSpan.innerText = Math.round(revenue * 100) / 100
 }
 
-// Eventually change this!
 function updateFishMessage() {
     let newMessage = "";
     if (fishInHabitat == 0) {
@@ -189,12 +186,12 @@ function updateFishMessage() {
 
 // VAST UNKNOWN
 
-function updateMessage(newMsg) {
-    let messageSpan = document.getElementById('message');
+function updateVastUnknownMessage(newMsg) {
+    let messageSpan = document.getElementById('vast-unknown-message');
     messageSpan.innerText = newMsg;
 }
 
-function sirFrogTalks(newMsg) {
+function updateFrogMessage(newMsg) {
     let messageSpan = document.getElementById('frog-message');
     messageSpan.innerText = newMsg;
 }

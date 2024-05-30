@@ -70,7 +70,7 @@ for (let x = 0; x < fishHabitats.length; x++) { // buying habitats
 
 for (let x = 0; x < 1; x++) { // buying vehicles
     let vehicleCostSpan = document.getElementById("vehicle" + x + "-cost");
-    vehicleCostSpan.innerText = vehicles[x].cost;
+    vehicleCostSpan.innerText = vehicles[x].cost.toLocaleString();
 }
 
 // go fishing button

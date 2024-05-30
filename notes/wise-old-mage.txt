@@ -1,7 +1,7 @@
 UNLOCKS WHEN YOU GET THE ROWBOAT
 
 Pull up to secretary frog on a rock. Options are: 
-- buy a sail from frog
+- [DONE] buy a sail from frog
     - Change the messages for when you are sailing
 - ask for directions
 - punch the frog - options are: 
@@ -24,7 +24,7 @@ Once you get past the frog, you get to see the wise old mage page
     - With big letters that say DO NOT TOUCH
     - If you touch your screen gets all messed up and you have to fix it
 
-- Side bar starts out as vast unknown
-    - you have to sail a few times to find the frog
-- Then side bar is: 
-    - The HonoUrable Sir Frog
+- [DONE] Side bar starts out as vast unknown
+    - [DONE] you have to sail a few times to find the frog
+- [REJECTED] Then side bar is: 
+    - [REJECTED] The HonoUrable Sir Frog

@@ -50,7 +50,7 @@ function minus(fishNumber) {
         updateFishCount(fishNumber, inventoryCount) // change fish displayed in Inventory
         howBigAreMyFish(); // recalculates and displays how much space fish are taking up
         updateRevenue(revenue - fishStats[fishNumber].revenue) // update revenue
-        updateMessage(); // updates habitat message
+        updateFishMessage(); // updates habitat message
     }
 }
 
