@@ -7,6 +7,7 @@ Overall changes to make:
     - bulk buy buttons only to show up when previous number has been used (bought 1, now 5 shows up, then 10, etc)
     - [DONE] separate js file for visibility functions
     - nav bar things
+        - dynamic nav bar in js 
     - all pages except fish island
 - automatic buying bait and selling fish options
 - buy button enabled only when you can afford it - text gets dimmer after item is bought -> when you unlock something the buy button shows up but is not enabled

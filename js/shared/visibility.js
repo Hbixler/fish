@@ -119,7 +119,9 @@ function isVehicleSectionVisible() {
 }
 function makeVehicleSectionVisible() {
     vehiclesDiv = document.getElementById('vehicles-div'); // displays vehicles
-    vehiclesDiv.style.visibility = 'visible';
+    if (vehiclesDiv) {
+        vehiclesDiv.style.visibility = 'visible';
+    }
 }
 
 // Habitat

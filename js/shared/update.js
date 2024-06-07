@@ -122,8 +122,17 @@ function updateHabitat(currentHabitat) {
     }
 }
 
-function updateVehicle(currentVehicle) {
+function updateVehicle(currentVehicleNum) {
+    let vehicles = getVehicles();
+    currentVehicle = vehicles[currentVehicleNum];
+
     setCurrentVehicle(currentVehicle);
+
+    let vehicleSpan = document.getElementById('vehicle');
+
+    if (vehicleSpan) {
+        vehicleSpan.innerText = currentVehicle.name;
+    }
 }
 
 function updateNumFish(fishNum, numFish) {
@@ -193,5 +202,10 @@ function updateVastUnknownMessage(newMsg) {
 
 function updateFrogMessage(newMsg) {
     let messageSpan = document.getElementById('frog-message');
+    messageSpan.innerText = newMsg;
+}
+
+function updateDirectionsMessage(newMsg) {
+    let messageSpan = document.getElementById('directions-message');
     messageSpan.innerText = newMsg;
 }
