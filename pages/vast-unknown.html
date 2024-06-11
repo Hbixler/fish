@@ -8,7 +8,7 @@
         <div class="body-container">
             <div class="nav-bar">
                 <a href="index.html" class="nav-button">Fish Island</a>
-                <a href="habitat.html" class="nav-button">Habitat</a>
+                <a href="habitat.html" class="nav-button habitat-nav-button">Habitat</a>
                 <a href="vast-unknown" class="nav-button">Vast Unknown</a>
                 <a href="wise-old-mage.html" class="nav-button">Wise Old Mage</a>
                 <a href="better-oceans.html" class="nav-button">Better Oceans</a>
@@ -17,46 +17,62 @@
             <div class="flex-container">
                 <div class="column border-div">
                     <div class="row">
-                        <h1>Vast Unknown</h1>
+                            <h1>Vast Unknown</h1>
                     </div>
                         
                     <div class="row dashed-div" style="width: 92%;">
                         <div class="row">
                             <div class="column"></div>
-                            <div class="column center-contents"><button onclick="sail('N')">Sail North</button></div>
+                            <div class="column center-contents"><button onclick="sail('N')" id="sail-north">Sail North</button></div>
                             <div class="column"></div>
                         </div>
 
                         <div class="row">
-                            <div class="column center-contents west-button"><button onclick="sail('W')">Sail West</button></div>
+                            <div class="column center-contents west-button"><button onclick="sail('W')" id="sail-west">Sail West</button></div>
                             <div class="column center-contents"><button onclick="reset()" class="restart">Restart</button></div>
-                            <div class="column center-contents east-button"><button onclick="sail('E')">Sail East</button></div>
+                            <div class="column center-contents east-button"><button onclick="sail('E')" id="sail-east">Sail East</button></div>
                         </div>
 
                         <div class="row">
                             <div class="column"></div>
-                            <div class="column center-contents"><button onclick="sail('S')">Sail South</button></div>
+                            <div class="column center-contents"><button onclick="sail('S')" id="sail-south">Sail South</button></div>
                             <div class="column"></div>
                         </div>
                     </div>
 
-                    <div class="row"><p><span id="message"></span></p></div>
+                    <div class="row"><p><span id="vast-unknown-message"></span></p></div>
                 </div>
-                <div class="column border-div">
+                <div class="column border-div" id="frog-box" style="visibility:hidden;">
                     <div class="row">
                         <h1>The Hounourable Sir Frog</h1>
                     </div>
+                    <div class="row">
+                        <p><span id="frog-message"></span></p>
+                    </div>
                     <div class="row dashed-div" style="width: 92%;">
-                        <div class="column">
-                            <button>Ask for Directions</button>
+                        <div class="column" id="button-column-1">
                         </div>
-                        <div class="column">
-                            <button>Buy Sail</button>
+                        <div class="column" id="button-column-2">
                         </div>
-                        <div class="column">
-                            <button>Punch Frog</button>
+                        <div class="column" id="button-column-3">
                         </div>
                     </div>
+                    <div class="row">
+                        <p id="directions-message"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="shared-info">
+                <p class="nav-info lefties">Sand Dollars (SD): <span id="sandDollars"></span></p>
+                <p class="nav-info lefties">Vehicle: <span id="vehicle"></span></p>
+                <div class="nav-info lefties">
+                    <p>Fish: </p>
+                    <p style="visibility: hidden" id="fish0-div"><span class="fish0"></span>: <span id="fish0-count"></span></p>
+                    <p style="visibility: hidden" id="fish1-div"><span class="fish1"></span>: <span id="fish1-count"></span></p>
+                    <p style="visibility: hidden" id="fish2-div"><span class="fish2"></span>: <span id="fish2-count"></span></p>
+                    <p style="visibility: hidden" id="fish3-div"><span class="fish3"></span>: <span id="fish3-count"></span></p>
+                    <p style="visibility: hidden" id="fish4-div"><span class="fish4"></span>: <span id="fish4-count"></span></p>
                 </div>
             </div>
 
@@ -65,7 +81,9 @@
         <script src="../js/shared/update.js"></script>
         <script src="../js/shared/visibility.js"></script>
         <script src="../js/shared/incremental.js"></script>
+        <script src="../js/shared/nav-bar.js"></script>
         <script src="../js/vast-unknown.js"></script>
+        
         
     </body>
 </html>

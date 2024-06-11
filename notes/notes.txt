@@ -7,6 +7,7 @@ Overall changes to make:
     - bulk buy buttons only to show up when previous number has been used (bought 1, now 5 shows up, then 10, etc)
     - [DONE] separate js file for visibility functions
     - nav bar things
+        - dynamic nav bar in js 
     - all pages except fish island
 - automatic buying bait and selling fish options
 - buy button enabled only when you can afford it - text gets dimmer after item is bought -> when you unlock something the buy button shows up but is not enabled
@@ -14,12 +15,10 @@ Overall changes to make:
 - hovering on things gives shows more info or something like that
 - re-re-balance: 
     - each type of fish can be caught with one of the related baits -> bait is removed from the bait count in inventory only when the fish is caught which still takes the allotted time listed in main.js
-- functions for updating message
-    - updateMessage as function to be done externally and called into other functions
 - make east and west buttons closer to reset button
-- fix buyvehicle function
+- move total sand dollar count and other universal information to the right side of everything
 
-Organization things:
+Consider this:
 - We need to clean up where we have functions and where we have html 
     - right now the update file has some free floating code
 - also should inventory and trading still be separate? I think not if on same page but if we later put the inventory in multple pages then yes
@@ -68,3 +67,6 @@ Changes done:
 - [DONE] move set functions into update functions
 - [DONE] organize files into folders
 - [DONE] split current into inventory/habitat page and trading page
+- [DONE] functions for updating message
+    - [DONE] updateMessage as function to be done externally and called into other functions
+- [DONE] fix buyvehicle function

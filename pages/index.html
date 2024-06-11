@@ -8,49 +8,27 @@
         <div class="body-container">
             <div class="nav-bar">
                 <a href="index.html" class="nav-button">Fish Island</a>
-                <a href="habitat.html" class="nav-button">Habitat</a>
+                <a href="habitat.html" class="nav-button habitat-nav-button">Habitat</a>
                 <a href="vast-unknown" class="nav-button">Vast Unknown</a>
                 <a href="wise-old-mage.html" class="nav-button">Wise Old Mage</a>
                 <a href="better-oceans.html" class="nav-button">Better Oceans</a>
             </div>
+            
             <div id="flex-container">
-                <div class="triple-column">
+                <div class="column">
                     <div class="row border-div" id="inventory-div" style="border: none;">
                         <div class="row" id="inventory-heading" style="visibility: hidden">
-                            <h1>Inventory</h1>
+                            <div class="column">
+                                <h1>Inventory</h1>
+                            </div>
+                            <div class="column">
+                                <div id="go-fishing-button-div"><button onclick="goFishing()">Fish</button></div>
+                            </div>
                         </div>
                         <div class="row need-gap">
 
-                            <!--INVENTORY-->
-                            <div class="column">
-                                <div class="row dashed-div" style="border: none" id="fish-div">
-                                    <div class="row" id="fish-heading" style="visibility: hidden">
-                                        <h2>Fish: </h2>
-                                    </div>
-                                    <div class="row">
-                                        <p style="visibility: hidden" id="fish0-div"><span class="fish0"></span>: <span id="fish0-count"></span></p>
-                                        <!--GO FISHING-->
-                                            <div id="go-fishing-button-div"><button onclick="goFishing()">Fish</button></div>
-                                    </div>
-                                    <div class="row">
-                                        <p style="visibility: hidden" id="fish1-div"><span class="fish1"></span>: <span id="fish1-count"></span></p>
-                                    </div>
-                                    <div class="row">
-                                        <p style="visibility: hidden" id="fish2-div"><span class="fish2"></span>: <span id="fish2-count"></span></p>
-                                    </div>
-                                    <div class="row">
-                                        <p style="visibility: hidden" id="fish3-div"><span class="fish3"></span>: <span id="fish3-count"></span></p>
-                                    </div>
-                                    <div class="row">
-                                        <p style="visibility: hidden" id="fish4-div"><span class="fish4"></span>: <span id="fish4-count"></span></p>
-                                    </div>
-                                </div>
-
-                                
-                            </div>
-
                             <!--BAIT-->
-                            <div class="double-column dashed-div" id="supplies-div" style="visibility: hidden">
+                            <div class="column dashed-div" id="supplies-div" style="visibility: hidden">
                                 <div class="row">
                                     <h2>Supplies: </h2>
                                 </div>
@@ -80,13 +58,13 @@
                     </div>
                 </div>
 
-                <div class="quadruple-column border-div" style="visibility: hidden" id="trading-div">
+                <div class="double-column border-div" style="visibility: hidden" id="trading-div">
                     <div class="row">
                         <div class="column">
                             <h1>Trading</h1>
                         </div>
                         <div class="column right-aligned">
-                            <p>Sand Dollars (SD): <span id="sandDollars"></span></p>
+                            
                         </div>
                     </div>
                     <div class="row need-gap">
@@ -216,14 +194,27 @@
                                 <h2>Vehicles to Better Oceans: </h2>
                             </div>
                             <div class="row">
-                                <p><span id="vehicle0"></span> (<span id="vehicle0-cost"></span> SD)</p>
-                                <button onclick="buyVehicle(0)">Buy</button>
+                                <p><span id="vehicle1"></span> (<span id="vehicle1-cost"></span> SD)</p>
+                                <button onclick="buyVehicle(1)">Buy</button>
                             </div>
                         </div>
                     </div>
                     </div>
                 </div>
                 
+            </div>
+
+            <div class="shared-info">
+                <p class="nav-info lefties">Sand Dollars (SD): <span id="sandDollars"></span></p>
+                <p class="nav-info lefties">Vehicle: <span id="vehicle"></span></p>
+                <div class="nav-info lefties">
+                    <p>Fish: </p>
+                    <p style="visibility: hidden" id="fish0-div"><span class="fish0"></span>: <span id="fish0-count"></span></p>
+                    <p style="visibility: hidden" id="fish1-div"><span class="fish1"></span>: <span id="fish1-count"></span></p>
+                    <p style="visibility: hidden" id="fish2-div"><span class="fish2"></span>: <span id="fish2-count"></span></p>
+                    <p style="visibility: hidden" id="fish3-div"><span class="fish3"></span>: <span id="fish3-count"></span></p>
+                    <p style="visibility: hidden" id="fish4-div"><span class="fish4"></span>: <span id="fish4-count"></span></p>
+                </div>
             </div>
         </div>
         
@@ -233,5 +224,6 @@
         <script src="../js/shared/visibility.js"></script>
         <script src="../js/fish-island.js"></script>
         <script src="../js/shared/incremental.js"></script>
+        <script src="../js/shared/nav-bar.js"></script>
     </body>
 </html>

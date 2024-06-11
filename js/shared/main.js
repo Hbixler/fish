@@ -8,7 +8,7 @@ function getSpeed() { // get function
 }; 
 
 // SAND DOLLARS
-let sandDollarsInitial = 0; // initial sand dollars
+let sandDollarsInitial = 1000000; // initial sand dollars
 if(!sessionStorage.getItem('sandDollars')) {sessionStorage.setItem('sandDollars', JSON.stringify(sandDollarsInitial))}; // initial set
 function getSandDollars() { // get function
     return JSON.parse(sessionStorage.getItem('sandDollars'))
@@ -75,7 +75,7 @@ let fishStatsInitial = [ // original fish stats array - revenue is in SD/second
         cost: 350,
         revenue: 6.5,
         bait: "Cake Slices",
-        inventoryCount: 0,
+        inventoryCount: 100,
         habitatCount: 0,
         unlocked: false,
     },
@@ -205,8 +205,8 @@ function setFishHabitats(newFishHabitats) { // set function
 };
 
 // CURRENT HABITAT
-let currentHabitat = {}; // sets original habitat to nothing
-if(!sessionStorage.getItem('currentHabitat')) {sessionStorage.setItem('currentHabitat', JSON.stringify(currentHabitat))}; // initial set
+let currentHabitatInitial = {}; // sets original habitat to nothing
+if(!sessionStorage.getItem('currentHabitat')) {sessionStorage.setItem('currentHabitat', JSON.stringify(currentHabitatInitial))}; // initial set
 function getCurrentHabitat() { // get function
     return JSON.parse(sessionStorage.getItem('currentHabitat'))
 };
@@ -250,6 +250,10 @@ function setBaits(newBaits) { // set function
 // VEHICLE
 let vehiclesInitial = [
     {
+        name: "None",
+        cost: 0,
+    },
+    {
         name: "Rowboat",
         cost: 10000,
     }, 
@@ -267,7 +271,7 @@ function setVehicles() { // set function
 }
 
 // CURRENT VEHICLE
-let currentVehicle = {}; // sets original vehicle to nothing
+let currentVehicle = vehiclesInitial[0]; // sets original vehicle to nothing
 if(!sessionStorage.getItem('currentVehicle')) {sessionStorage.setItem('currentVehicle', JSON.stringify(currentVehicle))}; // initial set
 function getCurrentVehicle() { // get function
     return JSON.parse(sessionStorage.getItem('currentVehicle'))

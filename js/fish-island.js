@@ -42,7 +42,7 @@ for (let x = 0; x < fishHabitats.length; x++) {
 }
 
 // vehicles label
-for (let x = 0; x < 1; x++) {
+for (let x = 1; x < 2; x++) {
     let vehicleSpan = document.getElementById("vehicle" + x);
     vehicleSpan.innerText = vehicles[x].name;
 }
@@ -68,9 +68,9 @@ for (let x = 0; x < fishHabitats.length; x++) { // buying habitats
     habitatCostSpan.innerText = fishHabitats[x].cost;
 }
 
-for (let x = 0; x < 1; x++) { // buying vehicles
+for (let x = 1; x < 2; x++) { // buying vehicles
     let vehicleCostSpan = document.getElementById("vehicle" + x + "-cost");
-    vehicleCostSpan.innerText = vehicles[x].cost;
+    vehicleCostSpan.innerText = vehicles[x].cost.toLocaleString();
 }
 
 // go fishing button
@@ -211,7 +211,7 @@ function buyVehicle(vehicleNum) {
     if (vehicles[vehicleNum].cost <= sandDollars) {
         sandDollars -= vehicles[vehicleNum].cost;
         updateSandDollars(sandDollars);
-        updateVehicle();
+        updateVehicle(1);
     }
 }
 

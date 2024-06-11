@@ -21,20 +21,14 @@ function isInventoryFishVisible(fishNum) {
 function makeInventoryFishVisible(fishNumber) {
     // Add fish to inventory options
     fishDiv = document.getElementById("fish" + fishNumber + "-div");
-
     if (fishDiv) {
         fishDiv.style.visibility = 'visible';
     }
 }
 function makeInventorySectionVisible() {
-    fishHeadingDiv = document.getElementById("fish-heading");
-    if (fishHeadingDiv) {
-        fishHeadingDiv.style.visibility = 'visible';
+    inventoryHeadingDiv = document.getElementById("inventory-heading");
+    if (inventoryHeadingDiv) {
 
-        fishDiv = document.getElementById("fish-div")
-        fishDiv.style.removeProperty('border');
-
-        inventoryHeadingDiv = document.getElementById("inventory-heading");
         inventoryHeadingDiv.style.visibility = 'visible';
 
         inventoryDiv = document.getElementById("inventory-div");
@@ -56,20 +50,24 @@ function makeTradingSectionVisible() {
         sellFishHeadingDiv.style.visibility = 'visible';
     }
 }
+
 function isFishTradingVisible(fishNumber) {
     let fishTradeDiv = document.getElementById("fishTrading" + fishNumber + "-div"); // add fish to the trading section
     return fishTradeDiv.style.visibility === 'visible';
 }
+
 function makeFishTradingVisible(fishNumber) {
     let fishTradeDiv = document.getElementById("fishTrading" + fishNumber + "-div"); // add fish to the trading section
     if (fishTradeDiv) {
         fishTradeDiv.style.visibility = 'visible';
     }
 }
+
 function isEquipmentTradingVisible() {
     fishingRodHeading = document.getElementById('equipment-heading');
     return fishingRodHeading && fishingRodHeading.style.visibility == 'visible';
 }
+
 function makeEquipmentTradingVisible() {
     let fishingRodHeading = document.getElementById('equipment-heading');
 
@@ -80,6 +78,7 @@ function makeEquipmentTradingVisible() {
         fishingRodTradingDiv.style.removeProperty('border');
     }
 }
+
 function makeRodVisible(rodNum) {
     let fishingRodTrading = document.getElementById('fishingRodTrading' + rodNum + '-div')
 
@@ -90,6 +89,7 @@ function makeRodVisible(rodNum) {
         fishingRodButton.style.visibility = 'visible';
     }
 }
+
 function makeBaitTradingVisible() {
     baitHeadingDiv = document.getElementById('bait-heading');
     baitHeadingDiv.style.visibility = 'visible';
@@ -97,6 +97,7 @@ function makeBaitTradingVisible() {
     baitDiv = document.getElementById("bait-div");
     baitDiv.style.removeProperty('border');
 }
+
 function makeHabitatTradingVisible() {
     let habitatTradingHeading = document.getElementById('habitat-heading')
     habitatTradingHeading.style.visibility = 'visible';
@@ -104,6 +105,7 @@ function makeHabitatTradingVisible() {
     let habitatTradingDiv = document.getElementById('habitat-trading-div');
     habitatTradingDiv.style.removeProperty('border'); 
 }
+
 function makeHabitatVisible(habitatNum) {
     let fishingHabitatTrading = document.getElementById('habitatTrading' + habitatNum + '-div');
     fishingHabitatTrading.style.visibility = 'visible';
@@ -113,13 +115,17 @@ function makeHabitatVisible(habitatNum) {
 
     fishHabitats[habitatNum].unlocked = true;
 }
+
 function isVehicleSectionVisible() {
     vehiclesDiv = document.getElementById('vehicles-div'); // displays vehicles
     return vehiclesDiv.style.visibility == 'visible';
 }
+
 function makeVehicleSectionVisible() {
     vehiclesDiv = document.getElementById('vehicles-div'); // displays vehicles
-    vehiclesDiv.style.visibility = 'visible';
+    if (vehiclesDiv) {
+        vehiclesDiv.style.visibility = 'visible';
+    }
 }
 
 // Habitat
@@ -139,6 +145,15 @@ function makeHabitatFishVisible(fishNumber) {
     if (document.getElementById('habitat-div')) {
         let fishInHabitatDiv = document.getElementById("fishInHabitat" + fishNumber + "-div");
         fishInHabitatDiv.style.visibility = 'visible'; 
+    }
+}
+
+// Vast Unknown
+
+function makeFrogVisible() {
+    let frogDiv = document.getElementById("frog-box");
+    if (frogDiv) {
+        frogDiv.style.visibility = 'visible';
     }
 }
 
@@ -169,7 +184,17 @@ function makeEverythingVisible() {
 
 function makeHabitatPageVisible() {
     for (fishNum in fishStats) {
-        makeHabitatFishVisible(fishNum)
+        makeHabitatFishVisible(fishNum);
     }
     makeHabitatSectionVisible();
+}
+
+function makeVastUnknownVisible() {
+    makeFrogVisible();
+}
+
+function makeNavBarVisible() {
+    for (fishNum in fishStats) {
+        makeInventoryFishVisible(fishNum);
+    }
 }
