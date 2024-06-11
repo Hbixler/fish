@@ -60,6 +60,7 @@ button {
 }
 .body-container {
     display: flex;
+    margin: auto;
 }
 .nav-button {
     border: 2px solid #006aff;
@@ -89,4 +90,12 @@ button {
     color: white;
     margin: 3px;
     background-color: #14458a;
+}
+.shared-info {
+    display: block;
+    text-align: left;
+    width: 200px;
+}
+.lefties {
+    float: left;
 }

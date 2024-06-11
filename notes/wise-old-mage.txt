@@ -12,6 +12,8 @@ Pull up to secretary frog on a rock. Options are:
 - make everything stay when you leave the page
 - need to sail to the old mage (second sequence)
 - fix visibility
+- need rowboat to buy sail
+- be able to do second sequence to get to wise old mage
 
 - Every time you punch the frog, he should say a different french swear word
 

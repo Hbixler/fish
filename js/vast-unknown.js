@@ -20,7 +20,7 @@ function sail(direction) {
                 // Found the frog!
                 updateVastUnknownMessage("You found a frog!");
 
-                // TODO: Make frog visible here
+                makeFrogVisible();
                 updateFrogMessage('Ribbit! Would you like my assistance getting to your next destination?');
                 sirFrogTalks();
             }
@@ -48,7 +48,8 @@ function buySail() {
         sandDollars -= cost;
         updateSandDollars(sandDollars);
         updateVehicle(2);
-        updateFrogMessage("You'll need this for the journey ahead. Best of luck!")
+        updateFrogMessage("You'll need this for the journey ahead. Best of luck!");
+        sirFrogTalks();
     }
 }
 

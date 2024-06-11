@@ -1,3 +1,5 @@
+makeNavBarVisible();
+
 // Vehicle Display
 let currentVehicleSpan = getCurrentVehicle();
 let vehicleSpan = document.getElementById('vehicle');
