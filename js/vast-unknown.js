@@ -1,6 +1,6 @@
-// VAST UNKNOWN - PUT SEQUENCE BACK: NENWWNNEESW
+// VAST UNKNOWN - PUT SEQUENCES BACK: NENWWNNEESW    EESSSESWWSWNNWSSSEESWWWNN
 let frogPattern = "N";
-let frogToOldMan = "EESSSESWWSWNNWSSSEESWWWNN";
+let frogToOldMan = "S";
 let currentSailPattern = "";
 let hasDirections = false;
 updateVastUnknownMessage("The world is bleak. Ocean, behind. Ocean, ahead. You are but a small mite in the grand scheme of the vast unknown.");
@@ -88,7 +88,7 @@ function sirFrogTalks() {
         buyingSail.onclick = buySail;
 
         let vehicleCost = document.createElement('span');
-        vehicleCost.innerText = 'Buy Sail (' + vehicles[1].cost.toLocaleString() + ' SD)'
+        vehicleCost.innerText = 'Buy Sail (' + vehicles[1].cost.toLocaleString() + ' SD)';
         buyingSail.appendChild(vehicleCost);
         
         buttonTwoCol = document.getElementById('button-column-2');
@@ -227,3 +227,5 @@ function seduceTheFrog() {
     enableSailing();
     updateFrogMessage('I am going to croak without you in my life.');
 }
+
+makeVastUnknownVisible();

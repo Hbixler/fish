@@ -5,10 +5,15 @@ function isBaitVisible(baitNum) {
 }
 function makeBaitVisible(baitNum) {
     let baitDiv = document.getElementById('bait' + baitNum + '-div'); 
-    baitDiv.style.visibility = 'visible';
+    if(baitDiv) {
+        baitDiv.style.visibility = 'visible';
+    }
+    
 
     let baitTradingDiv = document.getElementById('baitTrading' + baitNum + '-div');
-    baitTradingDiv.style.visibility = 'visible';
+    if (baitTradingDiv) {
+        baitTradingDiv.style.visibility = 'visible';
+    }
 }
 function makeSuppliesVisible() {
     let suppliesDiv = document.getElementById('supplies-div');
@@ -24,6 +29,10 @@ function makeInventoryFishVisible(fishNumber) {
     if (fishDiv) {
         fishDiv.style.visibility = 'visible';
     }
+}
+function makeFishListSectionVisible() {
+    let fishListSection = document.getElementById("fish-list");
+    fishListSection.style.visibility = 'visible';
 }
 function makeInventorySectionVisible() {
     inventoryHeadingDiv = document.getElementById("inventory-heading");
@@ -129,10 +138,11 @@ function makeVehicleSectionVisible() {
 }
 
 // Habitat
-function isHabitatVisible() {
-    let habitatNavButtons = document.getElementsByClassName('habitat-nav-button');
+function isHabitatVisible() { // FIX THIS
+    /* let habitatNavButtons = document.getElementsByClassName('habitat-nav-button');
     let habitatButton = habitatNavButtons[0];
-    return habitatButton.style.visibility = 'visible';
+    return habitatButton.style.visibility = 'visible'; */
+    return true;
 }
 function makeHabitatSectionVisible() {
     habitatDiv = document.getElementById('habitat-div'); // displays fish bowl
@@ -157,12 +167,42 @@ function makeFrogVisible() {
     }
 }
 
+
+function makeHabitatPageVisible() {
+    for (fishNum in fishStats) {
+        makeHabitatFishVisible(fishNum);
+    }
+    makeHabitatSectionVisible();
+    makeNavBarVisible();
+}
+
+function makeVastUnknownVisible() {
+    makeFrogVisible();
+    makeNavBarVisible();
+}
+
+function makeWiseOldMageVisible() {
+    makeNavBarVisible();
+}
+
+function makeBetterOceansVisible() {
+    makeNavBarVisible();
+}
+
+function makeNavBarVisible() {
+    makeFishListSectionVisible();
+    let fish = getFishStats();
+    for (fishNum in fish) {
+        makeInventoryFishVisible(fishNum);
+    }
+}
+
 // Everything
 function makeEverythingVisible() {
     console.log('the ocean is big and I can see it');
     for (fishNum in fishStats) {
-        makeFishTradingVisible(fishNum)
-        makeInventoryFishVisible(fishNum)
+        makeFishTradingVisible(fishNum);
+        makeInventoryFishVisible(fishNum);
     }
     for (baitNum in baits) {
         makeBaitVisible(baitNum);
@@ -180,22 +220,6 @@ function makeEverythingVisible() {
     makeInventorySectionVisible();
     makeSuppliesVisible();
     makeBaitTradingVisible();
+    makeNavBarVisible();
 }
 
-function makeHabitatPageVisible() {
-    for (fishNum in fishStats) {
-        makeHabitatFishVisible(fishNum);
-    }
-    makeHabitatSectionVisible();
-}
-
-function makeVastUnknownVisible() {
-    makeFrogVisible();
-}
-
-function makeNavBarVisible() {
-    let fish = getFishStats();
-    for (fishNum in fish) {
-        makeInventoryFishVisible(fishNum);
-    }
-}

@@ -15,6 +15,23 @@ for (let x = 0; x < fishStats.length; x++) {
 }
 
 // Bait labels
+let baitsList = getBaits();
+for (let x = 0; x < baits.length; x++) {
+    for(x = 0; x < baitsList.length; x++) {
+        let bait = document.createElement('p');
+        bait.style.visibility = 'hidden';
+        bait.id = "bait" + x + "-div";
+        bait.innerText = baitsList[x].name + ": ";
+
+        let baitCountSpan = document.createElement('span');
+        baitCountSpan.innerText = baitsList[x].count;
+        baitCountSpan.id = "bait" + x + "-count";
+
+        document.getElementById('supplies-div').appendChild(bait).appendChild(baitCountSpan);
+    }  
+}
+
+// Bait labels for trading section - change later to js elements
 for (let x = 0; x < baits.length; x++) {
     let baitsSpan = document.getElementsByClassName("bait" + x);
     for (let y = 0; y < baitsSpan.length; y++) {

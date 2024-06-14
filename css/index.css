@@ -83,23 +83,20 @@ button {
 .nav-button:hover {
     background-color: #d1e3ff;
 }
-.shared-info-div {
-    border: 2px solid #d1e3ff;
-    display: block;
-    width: 130px;
-    float: right;
-    padding: 5px;
-    font-size: 14px;
-    font-family: "roboto slab";
-    color: white;
-    margin: 3px;
-    background-color: #14458a;
-}
-.shared-info {
+#shared-info {
     display: block;
     text-align: left;
     width: 200px;
 }
-.lefties {
-    float: left;
+.shared-info-div {
+    color: white;
+    border: 2px solid #d1e3ff;
+    display: block;
+    width: 150px;
+    float: right;
+    padding: 5px;
+    font-size: 14px;
+    font-family: "roboto slab";
+    background-color: #0b52b5;
+    margin: 3px;
 }

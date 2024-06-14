@@ -43,7 +43,10 @@ function updateBaitCount(baitNum, numBaits) {
     setBaits(baits)
 
     let baitSpan = document.getElementById("bait" + baitNum + "-count");
-    baitSpan.innerText = baits[baitNum].count;
+    if(baitSpan) {
+        baitSpan.innerText = baits[baitNum].count;
+    }
+    
 }
 function updateFishingRod(currentRod) {
     setCurrentRod(currentRod);
