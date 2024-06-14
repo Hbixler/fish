@@ -194,7 +194,8 @@ function makeVastUnknownVisible() {
 }
 
 function makeNavBarVisible() {
-    for (fishNum in fishStats) {
+    let fish = getFishStats();
+    for (fishNum in fish) {
         makeInventoryFishVisible(fishNum);
     }
 }

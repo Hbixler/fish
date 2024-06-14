@@ -53,7 +53,7 @@ button {
     text-align: right;
     margin-right: 10px;
 }
-.nav-bar {
+#nav-bar {
     display: block;
     text-align: right;
     width: 200px;
@@ -63,6 +63,8 @@ button {
     margin: auto;
 }
 .nav-button {
+    text-decoration: none;
+    color: #14458a;
     border: 2px solid #006aff;
     display: block;
     width: 130px;
@@ -73,13 +75,15 @@ button {
     font-family: "roboto slab";
     background-color: #aecdff;
     margin: 3px;
+}
+.nav-button:visited {
     text-decoration: none;
     color: #14458a;
 }
 .nav-button:hover {
     background-color: #d1e3ff;
 }
-.nav-info {
+.shared-info-div {
     border: 2px solid #d1e3ff;
     display: block;
     width: 130px;

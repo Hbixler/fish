@@ -35,6 +35,11 @@ p {
     border-radius: 50px;
     margin: 6px 0 6px 0;
 }
-.west-button { /* doesn't work */
-    align-items: right;
+.west-button {
+    display: flex;
+    margin-left: auto;
+}
+.east-button {
+    display: flex;
+    margin-right: auto;
 }

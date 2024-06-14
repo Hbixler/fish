@@ -35,3 +35,9 @@ window.setInterval(function() {
         updateFishCount(fishIndex, fishStat.inventoryCount)
     }
 }, 1000/speed)
+
+// RIGHT SIDE NAV INFO
+window.setInterval(function () {
+    vehicle = getCurrentVehicle;
+    updateVehicle(0);
+}, 1000/speed)
