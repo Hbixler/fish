@@ -9,101 +9,39 @@
             <div id="nav-bar"></div>
 
             <div class="flex-container">
-                <div class="row border-div" id="habitat-div"> <!-- style="visibility: hidden" -->
-                    <div class="row">
+                <div class="row border-div" id="habitat-div" style="visibility: hidden">
 
-                        <!--FISH HABITAT-->
+                    <!-- FISH HABITAT -->
+                    <div class="row">
                         <div class="row">
                             <div class="column">
                                 <h1><span id="fishHabitat"></span></h1>
                             </div>
-                            <div class="column">
-                                <p>Capacity: <span id="fishInHabitat"></span>/<span id="habitatMaximum"></span></p>
-                            </div>
-                            <div class="column">
-                                <p class="left-margin"><span id="revenue"></span> sand dollars/s</p>
-                            </div>
                         </div>
                     </div>
-                    <div id="fishCount" class="row dashed-div">
-                        <div class="column">
-                            <div class="row" style="visibility: hidden" id="fishInHabitat0-div">
-                                <div class="column">
-                                    <p><span class="fish0"></span>: <span id="fish0-habitat"></span></p>
-                                </div>
-                                <div class="button-col">
-                                    <div class="row">
-                                        <button class="plus-minus" id="plus" onclick="plus(0)">+</button>
-                                    </div>
-                                    <div class="row">
-                                        <button class="plus-minus" id="minus" onclick="minus(0)">-</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row" style="visibility: hidden" id="fishInHabitat1-div">
-                                <div class="column">
-                                    <p><span class="fish1"></span>: <span id="fish1-habitat"></span></p>
-                                </div>
-                                <div class="button-col">
-                                    <div class="row">
-                                        <button class="plus-minus" id="plus" onclick="plus(1)">+</button>
-                                    </div>
-                                    <div class="row">
-                                        <button class="plus-minus" id="minus" onclick="minus(1)">-</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row" style="visibility: hidden" id="fishInHabitat2-div">
-                                <div class="column">
-                                    <p><span class="fish2"></span>: <span id="fish2-habitat"></span></p>
-                                </div>
-                                <div class="button-col">
-                                    <div class="row">
-                                        <button class="plus-minus" id="plus" onclick="plus(2)">+</button>
-                                    </div>
-                                    <div class="row">
-                                        <button class="plus-minus" id="minus" onclick="minus(2)">-</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="column" style="visibility: hidden" id="fishInHabitat3-div">
+                    <!-- FISH COUNTS -->
+                    <div class="row">
+                        <div id="fishCount" class="column dashed-div">
+                            <h2>Fish: </h2>
+                        </div>
+                        <div class="column dashed-div">
+                            <h2>Habitat Information: </h2>
                             <div class="row">
-                                <div class="column">
-                                    <p><span class="fish3"></span>: <span id="fish3-habitat"></span></p>
-                                </div>
-                                <div class="button-col">
-                                    <div class="row">
-                                        <button class="plus-minus" id="plus" onclick="plus(3)">+</button>
-                                    </div>
-                                    <div class="row">
-                                        <button class="plus-minus" id="minus" onclick="minus(3)">-</button>
-                                    </div>
-                                </div>
+                                <p class="left-margin">Capacity: <span id="fishInHabitat"></span>/<span id="habitatMaximum"></span></p>
                             </div>
-                            <div class="row" style="visibility: hidden" id="fishInHabitat4-div">
-                                <div class="column">
-                                    <p><span class="fish4"></span>: <span id="fish4-habitat"></span></p>
-                                </div>
-                                <div class="button-col">
-                                    <div class="row">
-                                        <button class="plus-minus" id="plus" onclick="plus(4)">+</button>
-                                    </div>
-                                    <div class="row">
-                                        <button class="plus-minus" id="minus" onclick="minus(4)">-</button>
-                                    </div>
-                                </div>
+                            <div class="row">
+                                <p class="left-margin">Revenue: <span id="revenue"></span> sand dollars/s</p>
                             </div>
                         </div>
                     </div>
+                    
+                    <!-- FISH UPDATE MESSAGE -->
                     <div class="row">
-                        <!-- have different options for this -->
                         <p id="fish-message" class="left-margin"></p>
                     </div>
                 </div>
             </div>
-
             <div id="shared-info"></div>
         </div>
     </div>

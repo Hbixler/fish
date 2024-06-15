@@ -1,94 +1,128 @@
-// let fishStats = getFishStats();
+// GETTING AND SETTING INFO
+let fishes = getFishStats();
 let baits = getBaits();
 let fishingRods = getFishingRods();
 let fishHabitats = getFishHabitats();
 let vehicles = getVehicles();
 let sandDollars = getSandDollars();
-let currentRod = getCurrentRod();
+bulkOptions = [1, 5, 10, 50];
 
-// fish labels in inventory
-for (let x = 0; x < fishStats.length; x++) {
-    let fishStatsSpan = document.getElementsByClassName("fish" + x);
-    for (let y = 0; y < fishStatsSpan.length; y++) {
-        fishStatsSpan[y].innerText = fishStats[x].name;
+// HTML GENERATION
+
+// Supplies
+for(x = 0; x < baits.length; x++) {
+    let bait = document.createElement('p');
+    bait.style.visibility = 'hidden';
+    bait.id = "bait" + x + "-div";
+    bait.innerText = baits[x].name + ": ";
+
+    let baitCountSpan = document.createElement('span');
+    baitCountSpan.innerText = baits[x].count;
+    baitCountSpan.id = "bait" + x + "-count";
+
+    document.getElementById('supplies-div').appendChild(bait).appendChild(baitCountSpan);
+}  
+
+// Sell fish
+for (let x = 0; x < fishes.length; x++) {
+    let fishTradingDiv = document.createElement('div');
+    fishTradingDiv.style.visibility = 'hidden';
+    fishTradingDiv.id = "fishTrading" + x + "-div";
+    fishTradingDiv.className = "row";
+
+    let fishListing = document.createElement('p');
+    fishListing.innerText = fishes[x].name + " (" + fishes[x].cost + " SD)";
+
+    document.getElementById('sell-fish').appendChild(fishTradingDiv).appendChild(fishListing);
+
+    for (let y = 0; y < bulkOptions.length; y++) {
+        let sellButton = document.createElement('button');
+        if (y === 0) {sellButton.innerText = "Sell 1" } else { sellButton.innerText = bulkOptions[y] }
+        sellButton.setAttribute("onclick", "sellFish(" + x + ","  + bulkOptions[y] + ")");
+        sellButton.id = "sellFish" + x;
+
+        document.getElementById('fishTrading' + x + '-div').appendChild(sellButton);
     }
 }
 
-// Bait labels
-let baitsList = getBaits();
+// Buy baits
 for (let x = 0; x < baits.length; x++) {
-    for(x = 0; x < baitsList.length; x++) {
-        let bait = document.createElement('p');
-        bait.style.visibility = 'hidden';
-        bait.id = "bait" + x + "-div";
-        bait.innerText = baitsList[x].name + ": ";
+    let baitTradingDiv = document.createElement('div');
+    baitTradingDiv.style.visibility = 'hidden';
+    baitTradingDiv.id = "baitTrading" + x + "-div";
+    baitTradingDiv.className = "row";
 
-        let baitCountSpan = document.createElement('span');
-        baitCountSpan.innerText = baitsList[x].count;
-        baitCountSpan.id = "bait" + x + "-count";
+    let baitListing = document.createElement('p');
+    baitListing.innerText = baits[x].name + " (" + baits[x].cost + " SD)";
 
-        document.getElementById('supplies-div').appendChild(bait).appendChild(baitCountSpan);
-    }  
-}
+    document.getElementById('bait-div').appendChild(baitTradingDiv).appendChild(baitListing);
 
-// Bait labels for trading section - change later to js elements
-for (let x = 0; x < baits.length; x++) {
-    let baitsSpan = document.getElementsByClassName("bait" + x);
-    for (let y = 0; y < baitsSpan.length; y++) {
-        baitsSpan[y].innerText = baits[x].name;
+    for (let y = 0; y < bulkOptions.length; y++) {
+        let buyButton = document.createElement('button');
+        if (y === 0) {buyButton.innerText = "Buy 1" } else { buyButton.innerText = bulkOptions[y] }
+        buyButton.setAttribute("onclick", "buyBait(" + x + ","  + bulkOptions[y] + ")");
+        buyButton.id = "buyBait" + x;
+
+        document.getElementById('baitTrading' + x + '-div').appendChild(buyButton);
     }
-    updateBaitCount(x, baits[x].count)
 }
 
-updateSandDollars(sandDollars);
+// Buy equipment
+for (let x = 1; x < fishingRods.length; x++) {
+    let equipmentTradingDiv = document.createElement('div');
+    equipmentTradingDiv.style.visibility = 'hidden';
+    equipmentTradingDiv.id = "fishingRodTrading" + x + "-div";
+    equipmentTradingDiv.className = "row";
 
-// Selling fish
-for (x = 0; x < fishStats.length; x++) {
-    buttonElement = document.getElementById("sellFish" + x);
-    fish = fishStats[x];
+    let equipmentListing = document.createElement('p');
+    equipmentListing.innerText = fishingRods[x].name + " (" + fishingRods[x].cost + " SD)";
+
+    let buyButton = document.createElement('button');
+    buyButton.setAttribute("onclick", "buyRod(" + x + ")");
+    buyButton.innerText = "Buy";
+    buyButton.style.visibility = "hidden";
+    buyButton.id = "buyRod" + x;
+
+    document.getElementById('equipment-div').appendChild(equipmentTradingDiv).appendChild(equipmentListing).appendChild(buyButton);
 }
 
-// Buying rods
-updateFishingRod(currentRod);
-updateAvailableRods();
-
-// habitat labels in trading
+// Buy habitat
 for (let x = 0; x < fishHabitats.length; x++) {
-    let fishHabitatSpan = document.getElementById("habitat" + x);
-    fishHabitatSpan.innerText = fishHabitats[x].name;
+    let habitatTradingDiv = document.createElement('div');
+    habitatTradingDiv.style.visibility = 'hidden';
+    habitatTradingDiv.id = "habitatTrading" + x + "-div";
+    habitatTradingDiv.className = "row";
+
+    let habitatListing = document.createElement('p');
+    habitatListing.innerText = fishHabitats[x].name + " (" + fishHabitats[x].cost + " SD)";
+
+    let buyButton = document.createElement('button');
+    buyButton.setAttribute("onclick", "buyHabitat(" + x + ")");
+    buyButton.innerText = "Buy";
+    buyButton.style.visibility = "hidden";
+    buyButton.id = "buyHabitat" + x;
+
+    document.getElementById('habitat-trading-div').appendChild(habitatTradingDiv).appendChild(habitatListing).appendChild(buyButton);
 }
 
-// vehicles label
+// Buy vehicles
 for (let x = 1; x < 2; x++) {
-    let vehicleSpan = document.getElementById("vehicle" + x);
-    vehicleSpan.innerText = vehicles[x].name;
+    let vehiclesTradingDiv = document.createElement('div');
+    vehiclesTradingDiv.className = "row";
+
+    let vehicleListing = document.createElement('p');
+    vehicleListing.innerText = vehicles[x].name + " (" + vehicles[x].cost + " SD)";
+
+    let buyButton = document.createElement('button');
+    buyButton.setAttribute("onclick", "buyVehicle(" + x + ")");
+    buyButton.innerText = "Buy";
+    buyButton.style.visibility = "hidden";
+    buyButton.id = "buyVehicle" + x;
+
+    document.getElementById('vehicles-div').appendChild(vehiclesTradingDiv).appendChild(vehicleListing).appendChild(buyButton);
 }
 
-// costs and such of various tradeable things - getFishStats called above
-for (let x = 0; x < fishStats.length; x++) { // selling fish
-    let fishCostSpan = document.getElementById("fish" + x + "-cost");
-    fishCostSpan.innerText = fishStats[x].cost;
-}
-
-for (let x = 1; x < fishingRods.length; x++) { // buying rods
-    let rodCostSpan = document.getElementById("rod" + x + "-cost");
-    rodCostSpan.innerText = fishingRods[x].cost;
-}
-
-for (let x = 0; x < baits.length; x++) { // buying baits
-    let baitCostSpan = document.getElementById("bait" + x + "-cost");
-    baitCostSpan.innerText = baits[x].cost;
-}
-
-for (let x = 0; x < fishHabitats.length; x++) { // buying habitats
-    let habitatCostSpan = document.getElementById("habitat" + x + "-cost");
-    habitatCostSpan.innerText = fishHabitats[x].cost;
-}
-
-for (let x = 1; x < 2; x++) { // buying vehicles
-    let vehicleCostSpan = document.getElementById("vehicle" + x + "-cost");
-    vehicleCostSpan.innerText = vehicles[x].cost.toLocaleString();
-}
+// FUNCTIONS
 
 // go fishing button
 function goFishing() {
@@ -140,7 +174,6 @@ function buyRod(fishingRodNumber) {
         // Update rod
         currentRod = fishingRods[fishingRodNumber];
         updateFishingRod(currentRod);
-        updateAvailableRods();
 
         // Update sand dollars
         sandDollars -= rodValue; 
@@ -229,6 +262,11 @@ function buyVehicle(vehicleNum) {
         sandDollars -= vehicles[vehicleNum].cost;
         updateSandDollars(sandDollars);
         updateVehicle(1);
+    }
+
+    vehicleBuyButton = document.getElementById("buyVehicle" + vehicleNum);
+    if (vehicleBuyButton) {
+        vehicleBuyButton.style.visibility = "hidden";
     }
 }
 

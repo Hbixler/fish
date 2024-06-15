@@ -9,8 +9,7 @@ Overall changes to make:
     - nav bar things
     - all pages except fish island
 - clean up visibility functions so make everything visible works
-- habitat revenue count isn't working
-- currently can have fractions of a narwhal... 
+- habitat revenue count isn't working -> make separate revenue function
 - automatic buying bait and selling fish options
 - buy button enabled only when you can afford it - text gets dimmer after item is bought -> when you unlock something the buy button shows up but is not enabled
 - we should do it so that our code automatically populates the list for fish/bait/upgradables -> that way we can easily add a new item in main.js without messing with the html

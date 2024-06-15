@@ -126,7 +126,7 @@ function makeHabitatVisible(habitatNum) {
 }
 
 function isVehicleSectionVisible() {
-    vehiclesDiv = document.getElementById('vehicles-div'); // displays vehicles
+    let vehiclesDiv = document.getElementById('vehicles-div'); // displays vehicles
     return vehiclesDiv.style.visibility == 'visible';
 }
 
@@ -135,14 +135,16 @@ function makeVehicleSectionVisible() {
     if (vehiclesDiv) {
         vehiclesDiv.style.visibility = 'visible';
     }
+
+    let vehicleButton = document.getElementById("buyVehicle1");
+    if(vehicleButton) {
+        vehicleButton.style.visibility = "visible";
+    }
 }
 
 // Habitat
-function isHabitatVisible() { // FIX THIS
-    /* let habitatNavButtons = document.getElementsByClassName('habitat-nav-button');
-    let habitatButton = habitatNavButtons[0];
-    return habitatButton.style.visibility = 'visible'; */
-    return true;
+function isHabitatVisible() { // THIS WILL EVENTUALLY BE THE NAV BAR VISIBILITY
+    return true
 }
 function makeHabitatSectionVisible() {
     habitatDiv = document.getElementById('habitat-div'); // displays fish bowl

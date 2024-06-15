@@ -22,9 +22,21 @@
 .left-margin {
     margin-left: 6px;
 }
+.plus-minus {
+    width: 20px;
+    height: 20px;
+    padding: 0px;
+    margin: 1px;
+}
 .button-col {
     display: flex;
     flex-direction: column;
     flex-basis: 100%;
     flex: 1 0 0;
+}
+.fish-count {
+    color: white;
+    font-size: 14px;
+    font-family: "roboto slab";
+    align-self: center;
 }

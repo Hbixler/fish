@@ -25,13 +25,6 @@ function updateSandDollars(sandDollars) {
     }
 }
 
-function updateAvailableRods() {
-    for (let x = 1; x < fishingRods.length; x++) {
-        let fishingRodSpan = document.getElementById("rod" + x);
-        fishingRodSpan.innerText = fishingRods[x].name;
-    }
-}
-
 function updateBaits(baits) {
     setBaits(baits);
 }
@@ -146,7 +139,7 @@ function updateNumFish(fishNum, numFish) {
     setFishStats(fishStats);
 
     let fishHabitatSpan = document.getElementById("fish" + fishNum + "-habitat");
-    fishHabitatSpan.innerText = fishStats[fishNum].habitatCount;
+    fishHabitatSpan.innerText = fishStats[fishNum].name + ": " + fishStats[fishNum].habitatCount; 
 }
 
 // fish labels in inventory and habitat
