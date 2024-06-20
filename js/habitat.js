@@ -1,13 +1,52 @@
 let currentHabitat = getCurrentHabitat();
 let revenue = getRevenue();
+let fishstats = getFishStats();
+let operations = [
+    {
+        name: "plus",
+        symbol: "+"
+    },
+    {
+        name: "minus",
+        symbol: "-",
+    },
+]
 
 // Display revenue
 updateRevenue(revenue);
 
-// labels of fish in Habitat section
-for (fishNum in fishStats) {
-    let fishSpan = document.getElementById("fish" + fishNum + "-habitat");
-    fishSpan.innerText = fishStats[fishNum].habitatCount;
+// fish in habitat counts and buttons
+for (let x = 0; x < fishStats.length; x++) {
+    let fishInHabitatDiv = document.createElement("div");
+    fishInHabitatDiv.className = "row";
+    fishInHabitatDiv.id = "fishInHabitat" + x + "-div";
+    fishInHabitatDiv.style.visibility = "hidden";
+
+    fishLabelDiv = document.createElement("div");
+    fishLabelDiv.className = "column fish-count";
+    fishLabelDiv.id = "fish" + x + "-habitat";
+    fishLabelDiv.innerText = fishStats[x].name + ": " + fishStats[x].habitatCount;
+
+    buttonDiv = document.createElement("div");
+    buttonDiv.className = "button-col";
+
+    for (let y = 0; y < operations.length; y++) {
+        let operationDiv = document.createElement("div");
+        operationDiv.className = "row";
+
+        operationButton = document.createElement("button");
+        operationButton.className = "plus-minus";
+        operationButton.id = operations[y].name;
+        operationButton.innerText = operations[y].symbol;
+        operationButton.setAttribute("onclick", operations[y].name + "(" + x + ")");
+        
+        operationDiv.appendChild(operationButton);
+        buttonDiv.appendChild(operationDiv);
+    }
+
+    fishInHabitatDiv.appendChild(fishLabelDiv);
+    fishInHabitatDiv.appendChild(buttonDiv);
+    document.getElementById("fishCount").appendChild(fishInHabitatDiv);
 }
 
 // sets original fish space being taken up as 0
@@ -69,4 +108,4 @@ function howBigAreMyFish() {
 }
 
 // DELETE LATER
-makeHabitatPageVisible();
+/* makeHabitatPageVisible(); */

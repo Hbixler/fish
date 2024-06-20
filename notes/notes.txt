@@ -7,16 +7,15 @@ Overall changes to make:
     - bulk buy buttons only to show up when previous number has been used (bought 1, now 5 shows up, then 10, etc)
     - [DONE] separate js file for visibility functions
     - nav bar things
-        - dynamic nav bar in js 
     - all pages except fish island
+- clean up visibility functions so make everything visible works
+- habitat revenue count isn't working -> make separate revenue function
 - automatic buying bait and selling fish options
 - buy button enabled only when you can afford it - text gets dimmer after item is bought -> when you unlock something the buy button shows up but is not enabled
 - we should do it so that our code automatically populates the list for fish/bait/upgradables -> that way we can easily add a new item in main.js without messing with the html
 - hovering on things gives shows more info or something like that
 - re-re-balance: 
     - each type of fish can be caught with one of the related baits -> bait is removed from the bait count in inventory only when the fish is caught which still takes the allotted time listed in main.js
-- make east and west buttons closer to reset button
-- move total sand dollar count and other universal information to the right side of everything
 
 Consider this:
 - We need to clean up where we have functions and where we have html 
@@ -37,7 +36,7 @@ Other things:
 - have other people play the game? We need beta testers
     - [DONE] Hailey's sister
     - Bully Hailey's roommates into playing clicker games
-    - Kai has a willing victim/friend
+    - Kai has a willing victim/friend (possibly more)
 - [DONE] Kai should correct Hailey's attempt at french -> she just spanished all the words/conjugations she didn't know
 
 Highest priority: 
@@ -46,6 +45,10 @@ Highest priority:
 - [DONE] make it so Hailey doesn't have to go into the CSS file literally every coding session -> Hailey goes into the css section less than 50% of the time
 
 Changes done: 
+- [DONE] have right side shared info section be coded in javascript
+- [DONE] make east and west buttons closer to reset button
+- [DONE] move total sand dollar count and other universal information to the right side of everything
+- [DONE] dynamic nav bar in js 
 - [DONE] remove habitat from main page
 - [DONE] adjust rates and costs
     - [DONE] if you have a better fishing rod, you lose 4 SD whenever you get a swordfish... that's unfortunate...

@@ -8,7 +8,7 @@ function getSpeed() { // get function
 }; 
 
 // SAND DOLLARS
-let sandDollarsInitial = 1000000; // initial sand dollars
+let sandDollarsInitial = 0; // initial sand dollars
 if(!sessionStorage.getItem('sandDollars')) {sessionStorage.setItem('sandDollars', JSON.stringify(sandDollarsInitial))}; // initial set
 function getSandDollars() { // get function
     return JSON.parse(sessionStorage.getItem('sandDollars'))
@@ -75,7 +75,7 @@ let fishStatsInitial = [ // original fish stats array - revenue is in SD/second
         cost: 350,
         revenue: 6.5,
         bait: "Cake Slices",
-        inventoryCount: 100,
+        inventoryCount: 0,
         habitatCount: 0,
         unlocked: false,
     },
@@ -225,7 +225,8 @@ let baitsInitial = [
     {
         name: "Saltine Crackers",
         cost: 3,
-        count: 0
+        count: 0,
+        unlocked: false,
     },
     {
         name: "Chicken Nuggets",
@@ -236,7 +237,8 @@ let baitsInitial = [
     {
         name: "Cake Slices",
         cost: 6,
-        count: 0
+        count: 0,
+        unlocked: false,
     },
 ]
 if(!sessionStorage.getItem('baits')) {sessionStorage.setItem('baits', JSON.stringify(baitsInitial))}; // initial set

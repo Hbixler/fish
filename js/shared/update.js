@@ -25,13 +25,6 @@ function updateSandDollars(sandDollars) {
     }
 }
 
-function updateAvailableRods() {
-    for (let x = 1; x < fishingRods.length; x++) {
-        let fishingRodSpan = document.getElementById("rod" + x);
-        fishingRodSpan.innerText = fishingRods[x].name;
-    }
-}
-
 function updateBaits(baits) {
     setBaits(baits);
 }
@@ -43,7 +36,15 @@ function updateBaitCount(baitNum, numBaits) {
     setBaits(baits)
 
     let baitSpan = document.getElementById("bait" + baitNum + "-count");
-    baitSpan.innerText = baits[baitNum].count;
+    if(baitSpan) {
+        baitSpan.innerText = baits[baitNum].count;
+    }
+    
+    if (!isInventorySectionVisible() && baits[0].unlocked) {
+        makeInventorySectionVisible();
+        makeSuppliesVisible();
+    }
+    
 }
 function updateFishingRod(currentRod) {
     setCurrentRod(currentRod);
@@ -65,7 +66,7 @@ function updateFishCount(fishNumber, numFish) {
     if (fishStats[fishNumber].inventoryCount >= 1 && !isInventoryFishVisible(fishNumber)) {
         if (fishNumber === 0) {
             // Fishing for goldfish for first time, adding boxes and borders
-            makeInventorySectionVisible();  
+            makeFishListSectionVisible();
 
             if (fishStats[0].inventoryCount === 5 && !isTradingSectionVisible()) { // at 5 goldfish
                 makeTradingSectionVisible();
@@ -74,8 +75,7 @@ function updateFishCount(fishNumber, numFish) {
         }
 
         if (fishNumber === 2 && !fishStats[2].unlocked) {
-            makeBaitVisible(2);
-            baits[2].unlocked = true;
+            makeBaitTradingVisible(2);
         }
 
         // Unlock fish
@@ -143,7 +143,7 @@ function updateNumFish(fishNum, numFish) {
     setFishStats(fishStats);
 
     let fishHabitatSpan = document.getElementById("fish" + fishNum + "-habitat");
-    fishHabitatSpan.innerText = fishStats[fishNum].habitatCount;
+    fishHabitatSpan.innerText = fishStats[fishNum].name + ": " + fishStats[fishNum].habitatCount; 
 }
 
 // fish labels in inventory and habitat

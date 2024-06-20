@@ -31,11 +31,6 @@ button {
     align-self: center;
     margin-left: 2px;
 }
-.plus-minus {
-    width: 20px;
-    height: 20px;
-    padding: 0px;
-}
 .border-div {
     border: 2px solid black;
     margin: 5px;
@@ -53,7 +48,7 @@ button {
     text-align: right;
     margin-right: 10px;
 }
-.nav-bar {
+#nav-bar {
     display: block;
     text-align: right;
     width: 200px;
@@ -63,6 +58,8 @@ button {
     margin: auto;
 }
 .nav-button {
+    text-decoration: none;
+    color: #14458a;
     border: 2px solid #006aff;
     display: block;
     width: 130px;
@@ -73,29 +70,28 @@ button {
     font-family: "roboto slab";
     background-color: #aecdff;
     margin: 3px;
+}
+.nav-button:visited {
     text-decoration: none;
     color: #14458a;
 }
 .nav-button:hover {
     background-color: #d1e3ff;
 }
-.nav-info {
-    border: 2px solid #d1e3ff;
-    display: block;
-    width: 130px;
-    float: right;
-    padding: 5px;
-    font-size: 14px;
-    font-family: "roboto slab";
-    color: white;
-    margin: 3px;
-    background-color: #14458a;
-}
-.shared-info {
+#shared-info {
     display: block;
     text-align: left;
     width: 200px;
 }
-.lefties {
-    float: left;
+.shared-info-div {
+    color: white;
+    border: 2px solid #d1e3ff;
+    display: block;
+    width: 150px;
+    float: right;
+    padding: 5px;
+    font-size: 14px;
+    font-family: "roboto slab";
+    background-color: #0b52b5;
+    margin: 3px;
 }
