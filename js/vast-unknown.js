@@ -228,4 +228,5 @@ function seduceTheFrog() {
     updateFrogMessage('I am going to croak without you in my life.');
 }
 
-makeVastUnknownVisible();
+// DELETE LATER
+/* makeVastUnknownVisible(); */

@@ -40,6 +40,11 @@ function updateBaitCount(baitNum, numBaits) {
         baitSpan.innerText = baits[baitNum].count;
     }
     
+    if (!isInventorySectionVisible() && baits[0].unlocked) {
+        makeInventorySectionVisible();
+        makeSuppliesVisible();
+    }
+    
 }
 function updateFishingRod(currentRod) {
     setCurrentRod(currentRod);
@@ -61,7 +66,7 @@ function updateFishCount(fishNumber, numFish) {
     if (fishStats[fishNumber].inventoryCount >= 1 && !isInventoryFishVisible(fishNumber)) {
         if (fishNumber === 0) {
             // Fishing for goldfish for first time, adding boxes and borders
-            makeInventorySectionVisible();  
+            makeFishListSectionVisible();
 
             if (fishStats[0].inventoryCount === 5 && !isTradingSectionVisible()) { // at 5 goldfish
                 makeTradingSectionVisible();
@@ -70,8 +75,7 @@ function updateFishCount(fishNumber, numFish) {
         }
 
         if (fishNumber === 2 && !fishStats[2].unlocked) {
-            makeBaitVisible(2);
-            baits[2].unlocked = true;
+            makeBaitTradingVisible(2);
         }
 
         // Unlock fish

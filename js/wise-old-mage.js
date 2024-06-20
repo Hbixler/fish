@@ -1,1 +1,2 @@
-makeWiseOldMageVisible();
+// DELETE LATER
+/* makeWiseOldMageVisible(); */

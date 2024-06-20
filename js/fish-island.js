@@ -163,6 +163,17 @@ function buyBait(baitNumber, numToBuy) {
         sandDollars -= baitValue;
         updateSandDollars(sandDollars);
     }
+
+    if (baits[baitNumber].count >= 1 && !isBaitVisible(baitNumber)) {
+        if (baitNumber === 2 && !baitNumber[2].unlocked) {
+            makeBaitInTradingVisible(2);
+        }
+
+        // Unlock fish
+        baits[baitNumber].unlocked = true;
+    }
+
+    setBaits();
 }
 
 function buyRod(fishingRodNumber) {
@@ -183,14 +194,14 @@ function buyRod(fishingRodNumber) {
             makeSuppliesVisible();
         } else if (fishingRodNumber === 1) { // the else ifs make the baits visible in inventory and trading section --> could maybe be classes. tried once, could try again
             makeBaitTradingVisible();
-            makeBaitVisible(0);
+            makeBaitInTradingVisible(0);
 
             baits[0].unlocked = true; // to unlock the habitats section
             updateBaits(baits)
         } else if (fishingRodNumber === 2) {
-            makeBaitVisible(1);
+            makeBaitInTradingVisible(1);
         } else if (fishingRodNumber === 3) {
-            makeBaitVisible(3);
+            makeBaitInTradingVisible(3);
         }
 
         // toggling visibility as fishing rods are bought
@@ -270,5 +281,5 @@ function buyVehicle(vehicleNum) {
     }
 }
 
-// DELETE LATER
+// FOR TESTING
 makeEverythingVisible();

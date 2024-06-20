@@ -108,4 +108,4 @@ function howBigAreMyFish() {
 }
 
 // DELETE LATER
-makeHabitatPageVisible();
+/* makeHabitatPageVisible(); */
