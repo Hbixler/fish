@@ -44,7 +44,7 @@ sharedInfoSD.innerText = 'Sand Dollars (SD): ';
 sharedInfoSD.className = 'shared-info-div'; 
 
 let sandDollarSpan = document.createElement('span');
-sandDollarSpan.innerText = sandDollarsShared;
+sandDollarSpan.innerText = Math.round(sandDollarsShared);
 sandDollarSpan.id = 'sandDollars';
 
 document.getElementById('shared-info').appendChild(sharedInfoSD).appendChild(sandDollarSpan);
@@ -92,7 +92,7 @@ for(x = 0; x < fishList.length; x++) {
     fish.innerText = fishList[x].name + ": ";
 
     let fishCountSpan = document.createElement('span');
-    fishCountSpan.innerText = fishList[x].inventoryCount;
+    fishCountSpan.innerText = Math.floor(fishList[x].inventoryCount);
     fishCountSpan.id = "fish" + x + "-count";
 
     document.getElementById('fish-list').appendChild(fish).appendChild(fishCountSpan);

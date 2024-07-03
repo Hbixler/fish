@@ -16,6 +16,7 @@ Overall changes to make:
 - hovering on things gives shows more info or something like that
 - re-re-balance: 
     - each type of fish can be caught with one of the related baits -> bait is removed from the bait count in inventory only when the fish is caught which still takes the allotted time listed in main.js
+- We need to adjust visibility now that everything is on different pages
 
 Consider this:
 - We need to clean up where we have functions and where we have html 
