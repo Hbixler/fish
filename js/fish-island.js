@@ -172,8 +172,6 @@ function buyBait(baitNumber, numToBuy) {
         // Unlock fish
         baits[baitNumber].unlocked = true;
     }
-
-    setBaits();
 }
 
 function buyRod(fishingRodNumber) {
