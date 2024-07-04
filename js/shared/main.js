@@ -1,7 +1,7 @@
 console.log("I am a fish"); // MAXIMUM IMPORTANCE - DO NOT REMOVE
 
 // SPEED OF GAME
-speedInitial = 1; // intervals per second
+speedInitial = 5; // intervals per second
 if(!sessionStorage.getItem('speed')) {sessionStorage.setItem('speed', JSON.stringify(speedInitial))}; // initial set
 function getSpeed() { // get function
     return JSON.parse(sessionStorage.getItem('speed'))
@@ -106,7 +106,7 @@ let fishingRodStats = [// rates are in fish/second
         name: "A Fishing Rod",
         rates: {
             'Goldfish': 0.5,
-            'Swordfish': 0,
+            'Swordfish': 0.25,
             'Shark': 0,
             'Whale': 0,
             'Narwhal': 0,
@@ -118,8 +118,8 @@ let fishingRodStats = [// rates are in fish/second
         name: "A Better Fishing Rod",
         rates: {
             'Goldfish': 1,
-            'Swordfish': 0.25,
-            'Shark': 0,
+            'Swordfish': 0.5,
+            'Shark': 0.25,
             'Whale': 0,
             'Narwhal': 0,
         },

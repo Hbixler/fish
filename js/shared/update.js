@@ -19,7 +19,10 @@ function updateSandDollars(sandDollars) {
 
     }
 
+    /* console.log(isBaitVisible(0));
+    console.log(!isHabitatVisible()) */
     if(sandDollars >= 40 && isBaitVisible(0) && !isHabitatVisible()) { // unlocks habitat section of trading when 40 sanddollars are earned and bait is already unlocked
+        /* console.log('habitat should be visible...'); */
         makeHabitatTradingVisible();
         makeHabitatVisible(0)
     }
@@ -39,12 +42,6 @@ function updateBaitCount(baitNum, numBaits) {
     if(baitSpan) {
         baitSpan.innerText = baits[baitNum].count;
     }
-    
-    if (!isInventorySectionVisible() && baits[0].unlocked) {
-        makeInventorySectionVisible();
-        makeSuppliesVisible();
-    }
-    
 }
 function updateFishingRod(currentRod) {
     setCurrentRod(currentRod);

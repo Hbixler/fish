@@ -8,15 +8,16 @@ Overall changes to make:
     - [DONE] separate js file for visibility functions
     - nav bar things
     - all pages except fish island
-- clean up visibility functions so make everything visible works
 - habitat revenue count isn't working -> make separate revenue function
 - automatic buying bait and selling fish options
 - buy button enabled only when you can afford it - text gets dimmer after item is bought -> when you unlock something the buy button shows up but is not enabled
-- we should do it so that our code automatically populates the list for fish/bait/upgradables -> that way we can easily add a new item in main.js without messing with the html
 - hovering on things gives shows more info or something like that
 - re-re-balance: 
     - each type of fish can be caught with one of the related baits -> bait is removed from the bait count in inventory only when the fish is caught which still takes the allotted time listed in main.js
 - We need to adjust visibility now that everything is on different pages
+- fishing progress
+    - temporary solution: add equipment stats to right side
+    - eventually add progress bars to fish on right side
 
 Consider this:
 - We need to clean up where we have functions and where we have html 
@@ -38,39 +39,3 @@ Other things:
     - [DONE] Hailey's sister
     - Bully Hailey's roommates into playing clicker games
     - Kai has a willing victim/friend (possibly more)
-- [DONE] Kai should correct Hailey's attempt at french -> she just spanished all the words/conjugations she didn't know
-
-Highest priority: 
-- [DONE] keep Kai from dying -> Kai needs to step it up -> Kai coughs less than three times per session
-- [DONE] Kai needs to unbruise his rib -> can breathe and laugh without dying
-- [DONE] make it so Hailey doesn't have to go into the CSS file literally every coding session -> Hailey goes into the css section less than 50% of the time
-
-Changes done: 
-- [DONE] have right side shared info section be coded in javascript
-- [DONE] make east and west buttons closer to reset button
-- [DONE] move total sand dollar count and other universal information to the right side of everything
-- [DONE] dynamic nav bar in js 
-- [DONE] remove habitat from main page
-- [DONE] adjust rates and costs
-    - [DONE] if you have a better fishing rod, you lose 4 SD whenever you get a swordfish... that's unfortunate...
-    - [DONE] if you have an even better fishing rod, you break even when you get a shark... still seems like a waste of time...
-    - [DONE] make bait cheaper -> even though Hailey is gonna get a rowboat
-    - [DONE]  What kind of economic system is this where you spend 1500 to get a narwhal and only sell the narwhal for 30?????????
-- [DONE] add "Small Lake" to list of habitats
-- [DONE] add results to buying rowboat so Hailey feels satisfied when she wins the game... whoops
-    - [DONE] make button to buy subtract the SDs from the count
-- [DONE] bulk buying and selling bait and fish in the trading section -> clicker game doesn't need to mean clicking every 0.05 seconds
-- [DONE] make the habitat fun line change so that it doesn't lie to you -> fish are not always swimming happily in your bowl. Sometimes there are no fish. Sometimes it's a tank, not a bowl. Sometimes, the fish are very unhappy. You never know. Bad to assume. 
-- [DONE] put space between text and buy/sell buttons because it's driving Kai's eyes crazy
-- [DONE] Goldfish count starts out as NaN (lovely)
-- [DONE] Currently when you are at your habitat you are not currently fishing -> similarly, not generating revenue while on fish island
-- [DONE] CSS things
-    - [DONE] align titles with boxes
-    - [DONE] fish button shifts after you fish for the first time and the inventory box appears
-- [DONE] have other vehicles and better oceans to go to -> lame that a rowboat takes you nowhere... 
-- [DONE] move set functions into update functions
-- [DONE] organize files into folders
-- [DONE] split current into inventory/habitat page and trading page
-- [DONE] functions for updating message
-    - [DONE] updateMessage as function to be done externally and called into other functions
-- [DONE] fix buyvehicle function
