@@ -1,8 +1,42 @@
-// NAV BAR
-/*
-Functions for making each nav bar page link visible
-Fish island to be visible from the beginning
-*/
+// OBJECT OF VISIBILITY
+let visibility = {
+    'inventory': {
+        id: 'inventory-div',
+        visible: false,
+    },
+    'supplies': {
+        id: 'supplies-div',
+        visible: false,
+    },
+};
+if(!sessionStorage.getItem('visibility')) {sessionStorage.setItem('visibility', JSON.stringify(visibility))}; // initial set
+function getVisibility() { // get function
+    return JSON.parse(sessionStorage.getItem('visibility'))
+}; 
+function setVisibility(newVisibility) { // set function
+    sessionStorage.setItem('visibility', JSON.stringify(newVisibility))
+}; 
+
+
+// MAKING SECTIONS VISIBLE
+
+/* let sections = {
+    inventory: "inventory-div",
+    supplies: "supplies-div",
+} */
+
+function isSectionVisible(section) {
+    let div = document.getElementById(visibility[section].id);
+    return div && div.style.visibility == 'visible';
+}
+
+function makeSectionVisible(section) {
+    div = document.getElementById(visibility[section].id);
+    if(div) {
+        div.style.visibility = 'visible';
+        div.style.removeProperty('border');
+    }
+}
 
 // SHARED INFO
 function makeFishListSectionVisible() { // makes whole fish list section visible
@@ -33,23 +67,7 @@ function makeBaitVisible(baitNum) {
         baitDiv.style.visibility = 'visible';
     }
 }
-function makeSuppliesVisible() {
-    let suppliesDiv = document.getElementById('supplies-div');
-    suppliesDiv.style.visibility = 'visible';
-}
-function isInventorySectionVisible() {
-    let inventoryDiv = document.getElementById('inventory-div');
-    return inventoryDiv && inventoryDiv.style.visibility == 'visible';
-}
-function makeInventorySectionVisible() {
-    inventoryHeadingDiv = document.getElementById("inventory-div");
-    if (inventoryHeadingDiv) {
-        inventoryHeadingDiv.style.visibility = 'visible';
 
-        inventoryDiv = document.getElementById("inventory-div");
-        inventoryDiv.style.removeProperty('border'); 
-    }
-}
 
 // trading
 function isTradingSectionVisible() {

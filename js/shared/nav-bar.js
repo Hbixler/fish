@@ -25,6 +25,7 @@ let navBarLinks = [
 // making nav bar
 for(x = 0; x < navBarLinks.length; x++) {
     let navDiv = document.createElement('div');
+    navDiv.style.visibility = "hidden";
     
     let navButton = document.createElement('a');
     navButton.innerText = navBarLinks[x].name;

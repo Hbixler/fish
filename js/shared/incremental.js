@@ -22,6 +22,7 @@ window.setInterval(function() {
         if (fishStat.bait.length > 0 && currentRod.rates[autoFish] > 0) {
             let baitIndex = baits.findIndex(bait => bait.name == fishStat.bait);
             let bait = baits[baitIndex]
+
             if (bait.count <= 0) {
                 // We have no bait :( cannot fish
                 continue;
@@ -32,6 +33,11 @@ window.setInterval(function() {
         }
         // Gain fish!
         fishStat.inventoryCount = fishStat.inventoryCount + currentRod.rates[autoFish];
+        /* if (autoFish === 'Swordfish') {
+            console.log(fishStat.inventoryCount);
+            console.log('current rate: ' + currentRod.rates[autoFish]);
+        } */
+
         updateFishCount(fishIndex, fishStat.inventoryCount)
     }
 }, 1000/speed)
