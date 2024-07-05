@@ -8,8 +8,20 @@ let sandDollars = getSandDollars();
 bulkOptions = [1, 5, 10, 50];
 
 // HTML GENERATION
+let visibilityList = getVisibility();
 
-// Supplies
+// Inventory and Supplies Box Visibility Test
+let inventoryBox = document.getElementById("inventory-div");
+if (visibilityList['inventory'].visible === true) {
+    inventoryBox.style.visibility = "visible";
+}
+
+let suppliesBox = document.getElementById("supplies-div");
+if (visibilityList['supplies'].visible === true) {
+    suppliesBox.style.visibility = "visible";
+}
+
+// Supplies/Baits
 for(x = 0; x < baits.length; x++) {
     let bait = document.createElement('p');
     bait.style.visibility = 'hidden';
@@ -285,4 +297,5 @@ function buyVehicle(vehicleNum) {
 }
 
 // FOR TESTING
-/* makeEverythingVisible(); */
+makeEverythingVisible();
+/* makeNavBarVisible(); */

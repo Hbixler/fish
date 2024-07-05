@@ -17,13 +17,7 @@ function setVisibility(newVisibility) { // set function
     sessionStorage.setItem('visibility', JSON.stringify(newVisibility))
 }; 
 
-
 // MAKING SECTIONS VISIBLE
-
-/* let sections = {
-    inventory: "inventory-div",
-    supplies: "supplies-div",
-} */
 
 function isSectionVisible(section) {
     let div = document.getElementById(visibility[section].id);
@@ -31,10 +25,12 @@ function isSectionVisible(section) {
 }
 
 function makeSectionVisible(section) {
+    let sectionVisibility = getVisibility(); 
     div = document.getElementById(visibility[section].id);
     if(div) {
         div.style.visibility = 'visible';
-        div.style.removeProperty('border');
+        sectionVisibility[section].visible = true;
+        setVisibility(sectionVisibility);
     }
 }
 
@@ -220,6 +216,14 @@ function makeSharedInfoVisible() { // makes shared info section visible
     }
 }
 
+function makeNavBarVisible() {
+    getNavBarLinks();
+    for (item in navBarLinks) {
+        let link = document.getElementById(navBarLinks[item].id);
+        link.style.visibility = 'visible';
+    }
+}
+
 // EVERYTHING
 function makeEverythingVisible() {
     let baits = getBaits();
@@ -243,11 +247,19 @@ function makeEverythingVisible() {
     for (let rodNum = 1; rodNum < fishingRods.length; rodNum++) {
         makeRodVisible(rodNum);
     }
-    makeVehicleSectionVisible();
-    makeHabitatTradingVisible();
-    makeInventorySectionVisible();
-    makeBaitTradingVisible();
-    makeSuppliesVisible();
+
+    // shared
     makeSharedInfoVisible();
+    makeNavBarVisible();
+
+    // fish island
+    makeSectionVisible('inventory');
+    makeSectionVisible('supplies');
+
+    makeBaitTradingVisible();
+    makeVehicleSectionVisible();
+
+    // habitat
+    makeHabitatTradingVisible();    
 }
 

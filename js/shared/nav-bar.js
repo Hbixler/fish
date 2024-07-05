@@ -3,29 +3,39 @@ let navBarLinks = [
     {
         name: 'Fish Island',
         link: 'index.html',
+        id: 'fish-island-nav',
     },
     {
         name: 'Habitat',
         link: 'habitat.html',
+        id: 'habitat-nav',
     },
     {
         name: 'Vast Unknown',
         link: 'vast-unknown.html',
+        id: 'vast-unknown-nav',
     },
     {
         name: 'Wise Old Mage',
         link: 'wise-old-mage.html',
+        id: 'wise-old-mage-nav',
     },
     {
         name: 'Better Oceans',
         link: 'better-oceans.html',
+        id: 'better-oceans-nav',
     },
 ]
+if(!sessionStorage.getItem('navBarLinks')) {sessionStorage.setItem('navBarLinks', JSON.stringify(navBarLinks))}; // initial set
+function getNavBarLinks() { // get function
+    return JSON.parse(sessionStorage.getItem('navBarLinks'))
+};
 
 // making nav bar
 for(x = 0; x < navBarLinks.length; x++) {
     let navDiv = document.createElement('div');
     navDiv.style.visibility = "hidden";
+    navDiv.id = navBarLinks[x].id;
     
     let navButton = document.createElement('a');
     navButton.innerText = navBarLinks[x].name;

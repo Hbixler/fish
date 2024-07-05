@@ -109,3 +109,4 @@ function howBigAreMyFish() {
 
 // DELETE LATER
 /* makeHabitatPageVisible(); */
+makeNavBarVisible();
