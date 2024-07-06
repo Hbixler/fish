@@ -2,6 +2,8 @@
 function updateSandDollars(sandDollars) {
     setSandDollars(sandDollars);
 
+    updateBuyButtons(sandDollars);
+
     let sandDollarsSpan = document.getElementById('sandDollars');
 
     if (sandDollarsSpan) {
@@ -55,6 +57,8 @@ function updateFishCount(fishNumber, numFish) {
     fishStats[fishNumber].inventoryCount = numFish;
     setFishStats(fishStats);
 
+    updateSellButtons(fishNumber, numFish);
+
     let fishCountSpan = document.getElementById("fish" + fishNumber + "-count");
     if (fishCountSpan) {
         fishCountSpan.innerText = Math.floor(fishStats[fishNumber].inventoryCount);
@@ -99,6 +103,59 @@ function updateFishCount(fishNumber, numFish) {
     } 
     
     setBaits(baits);
+}
+
+// Update fish progress on navbar
+function updateFishProgress(fishIndex, fishProgress) {
+
+    let fishProgressSpan = document.getElementById("fish" + fishIndex + "-progress")
+    let newProgressSpan = "";
+
+    for (let x = 1; x <= 4; x++) {
+        if (fishProgress > 0.2 * x) {
+            newProgressSpan += "*";
+        }
+        else {
+            newProgressSpan += "-";
+        }
+    }
+
+    console.log(fishProgress);
+    console.log(newProgressSpan);
+    fishProgressSpan.innerText = newProgressSpan;
+}
+
+function updateFishRate(fishIndex, fishRate) {
+    let fishProgressSpan = document.getElementById("fish" + fishIndex + "-progress");
+    fishProgressSpan.innerText = fishRate + "/s";
+
+    console.log(fishProgressSpan);
+}
+
+function updateHasBait(fishIndex, hasBait) {
+    let fishProgressSpan = document.getElementById("fish" + fishIndex + "-progress");
+    fishProgressSpan.style.color = hasBait ? 'white' : 'red';
+}
+
+// Activates or deactivates buttons based on how many fish you have
+function updateSellButtons(fishIndex, inventoryCount) {
+    // I don't love the idea of copying and pasting bullk options like this so potentially optimize this to not do that
+
+    let bulkOptions = [1, 5, 10, 50];
+
+    for (option of bulkOptions) {
+        let sellButton = document.getElementById("sellFish" + fishIndex + "x" + option);
+        sellButton.disabled = option > inventoryCount;
+    }
+}
+
+// Goes through all buttons with the class buyButton and enables/diables based on sand dollars
+function updateBuyButtons(sandDollars) {
+    let buyButtons = document.getElementsByClassName("buyButton");
+
+    for (button of buyButtons) {
+        button.disabled = sandDollars < button.value;
+    }
 }
 
 // Update functions

@@ -5,7 +5,7 @@ let fishingRods = getFishingRods();
 let fishHabitats = getFishHabitats();
 let vehicles = getVehicles();
 let sandDollars = getSandDollars();
-bulkOptions = [1, 5, 10, 50];
+let bulkOptions = [1, 5, 10, 50];
 
 // HTML GENERATION
 let visibilityList = getVisibility();
@@ -51,7 +51,7 @@ for (let x = 0; x < fishes.length; x++) {
         let sellButton = document.createElement('button');
         if (y === 0) {sellButton.innerText = "Sell 1" } else { sellButton.innerText = bulkOptions[y] }
         sellButton.setAttribute("onclick", "sellFish(" + x + ","  + bulkOptions[y] + ")");
-        sellButton.id = "sellFish" + x;
+        sellButton.id = "sellFish" + x + "x" + bulkOptions[y];
 
         document.getElementById('fishTrading' + x + '-div').appendChild(sellButton);
     }
@@ -74,6 +74,8 @@ for (let x = 0; x < baits.length; x++) {
         if (y === 0) {buyButton.innerText = "Buy 1" } else { buyButton.innerText = bulkOptions[y] }
         buyButton.setAttribute("onclick", "buyBait(" + x + ","  + bulkOptions[y] + ")");
         buyButton.id = "buyBait" + x;
+        buyButton.classList = ["buyButton"];
+        buyButton.value = baits[x].cost * bulkOptions[y];
 
         document.getElementById('baitTrading' + x + '-div').appendChild(buyButton);
     }
@@ -94,6 +96,8 @@ for (let x = 1; x < fishingRods.length; x++) {
     buyButton.innerText = "Buy";
     buyButton.style.visibility = "hidden";
     buyButton.id = "buyRod" + x;
+    buyButton.classList = ["buyButton"];
+    buyButton.value = fishingRods[x].cost;
 
     document.getElementById('equipment-div').appendChild(equipmentTradingDiv).appendChild(equipmentListing).appendChild(buyButton);
 }
@@ -113,6 +117,8 @@ for (let x = 0; x < fishHabitats.length; x++) {
     buyButton.innerText = "Buy";
     buyButton.style.visibility = "hidden";
     buyButton.id = "buyHabitat" + x;
+    buyButton.classList = ["buyButton"];
+    buyButton.value = fishHabitats[x].cost;
 
     document.getElementById('habitat-trading-div').appendChild(habitatTradingDiv).appendChild(habitatListing).appendChild(buyButton);
 }
@@ -130,6 +136,8 @@ for (let x = 1; x < 2; x++) {
     buyButton.innerText = "Buy";
     buyButton.style.visibility = "hidden";
     buyButton.id = "buyVehicle" + x;
+    buyButton.classList = ["buyButton"];
+    buyButton.value = vehicles[x].cost;
 
     document.getElementById('vehicles-div').appendChild(vehiclesTradingDiv).appendChild(vehicleListing).appendChild(buyButton);
 }
@@ -163,10 +171,18 @@ function sellFish(fishType, numToSell) {
 function buyBait(baitNumber, numToBuy) {
     let baits = getBaits();
     let sandDollars = getSandDollars();
+    let fishStats = getFishStats();
     
     baitName = baits[baitNumber].name;
     baitValue = baits[baitNumber].cost * numToBuy;
     if (baitValue <= sandDollars) {
+
+        // If we previously had no bait, we make the rate white again
+        if (baits[baitNumber].count == 0) {
+            let fishIndex = fishStats.findIndex(fishStat => fishStat.bait == baitName);
+            updateHasBait(fishIndex, true);
+        }
+       
         // Update bait
         baits[baitNumber].count += numToBuy;
         updateBaitCount(baitNumber, baits[baitNumber].count);
@@ -197,6 +213,7 @@ function buyBait(baitNumber, numToBuy) {
 function buyRod(fishingRodNumber) {
     let baits = getBaits();
     let sandDollars = getSandDollars();
+    let fishStats = getFishStats();
 
     rodValue = fishingRods[fishingRodNumber].cost;
     if (rodValue <= sandDollars) {
@@ -207,6 +224,14 @@ function buyRod(fishingRodNumber) {
         // Update sand dollars
         sandDollars -= rodValue; 
         updateSandDollars(sandDollars);
+
+        // Update fishing rates
+        console.log(currentRod.rates);
+        for (let x = 0; x < fishStats.length; x++) {
+            console.log(x)
+            console.log(fishStats[x]);
+            updateFishRate(x, currentRod.rates[fishStats[x].name]);
+        }
 
         if (fishingRodNumber === 1) { // the else ifs make the baits visible in inventory and trading section --> could maybe be classes. tried once, could try again
             makeBaitTradingVisible();
@@ -297,5 +322,5 @@ function buyVehicle(vehicleNum) {
 }
 
 // FOR TESTING
-makeEverythingVisible();
+// makeEverythingVisible();
 /* makeNavBarVisible(); */

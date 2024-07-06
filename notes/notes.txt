@@ -18,6 +18,8 @@ Overall changes to make:
 - fishing progress
     - temporary solution: add equipment stats to right side
     - eventually add progress bars to fish on right side
+    - INSTEAD: I (hailey) put the fishing rate on the right side and it turns red when it doesn't have any bait left
+- Also thoughts on making it so that the fish appears as soon as you unlock the bait to fish it instead of only once you have a fish?
 
 Consider this:
 - We need to clean up where we have functions and where we have html 
