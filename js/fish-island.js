@@ -10,15 +10,12 @@ bulkOptions = [1, 5, 10, 50];
 // HTML GENERATION
 let visibilityList = getVisibility();
 
-// Inventory and Supplies Box Visibility Test
-let inventoryBox = document.getElementById("inventory-div");
-if (visibilityList['inventory'].visible === true) {
-    inventoryBox.style.visibility = "visible";
-}
-
-let suppliesBox = document.getElementById("supplies-div");
-if (visibilityList['supplies'].visible === true) {
-    suppliesBox.style.visibility = "visible";
+// Keeps everything visible across pages
+for (section in visibilityList) {
+    let sectionBox = document.getElementById(visibilityList[section].id);
+    if (sectionBox && visibilityList[section].visible === true) {
+        sectionBox.style.visibility = "visible";
+    }
 }
 
 // Supplies/Baits
@@ -45,7 +42,7 @@ for (let x = 0; x < fishes.length; x++) {
     let fishListing = document.createElement('p');
     fishListing.innerText = fishes[x].name + " (" + fishes[x].cost + " SD)";
 
-    document.getElementById('sell-fish').appendChild(fishTradingDiv).appendChild(fishListing);
+    document.getElementById('fish-trading-div').appendChild(fishTradingDiv).appendChild(fishListing);
 
     for (let y = 0; y < bulkOptions.length; y++) {
         let sellButton = document.createElement('button');
@@ -67,7 +64,7 @@ for (let x = 0; x < baits.length; x++) {
     let baitListing = document.createElement('p');
     baitListing.innerText = baits[x].name + " (" + baits[x].cost + " SD)";
 
-    document.getElementById('bait-div').appendChild(baitTradingDiv).appendChild(baitListing);
+    document.getElementById('bait-trading-div').appendChild(baitTradingDiv).appendChild(baitListing);
 
     for (let y = 0; y < bulkOptions.length; y++) {
         let buyButton = document.createElement('button');
@@ -95,7 +92,7 @@ for (let x = 1; x < fishingRods.length; x++) {
     buyButton.style.visibility = "hidden";
     buyButton.id = "buyRod" + x;
 
-    document.getElementById('equipment-div').appendChild(equipmentTradingDiv).appendChild(equipmentListing).appendChild(buyButton);
+    document.getElementById('equipment-trading-div').appendChild(equipmentTradingDiv).appendChild(equipmentListing).appendChild(buyButton);
 }
 
 // Buy habitat
@@ -131,7 +128,7 @@ for (let x = 1; x < 2; x++) {
     buyButton.style.visibility = "hidden";
     buyButton.id = "buyVehicle" + x;
 
-    document.getElementById('vehicles-div').appendChild(vehiclesTradingDiv).appendChild(vehicleListing).appendChild(buyButton);
+    document.getElementById('vehicle-trading-div').appendChild(vehiclesTradingDiv).appendChild(vehicleListing).appendChild(buyButton);
 }
 
 // FUNCTIONS
@@ -209,7 +206,7 @@ function buyRod(fishingRodNumber) {
         updateSandDollars(sandDollars);
 
         if (fishingRodNumber === 1) { // the else ifs make the baits visible in inventory and trading section --> could maybe be classes. tried once, could try again
-            makeBaitTradingVisible();
+            makeSectionVisible("bait-trading");
             makeBaitInTradingVisible(0);
 
             updateBaits(baits)
@@ -297,5 +294,4 @@ function buyVehicle(vehicleNum) {
 }
 
 // FOR TESTING
-makeEverythingVisible();
-/* makeNavBarVisible(); */
+/* makeEverythingVisible(); */

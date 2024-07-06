@@ -1,5 +1,6 @@
 // OBJECT OF VISIBILITY
-let visibility = {
+let visibility = { // sections
+    // fish island
     'inventory': {
         id: 'inventory-div',
         visible: false,
@@ -8,6 +9,36 @@ let visibility = {
         id: 'supplies-div',
         visible: false,
     },
+    'trading': {
+        id: 'trading-div',
+        visible: false,
+    },
+    'fish-trading': {
+        id: 'fish-trading-div',
+        visible: false,
+    },
+    'equipment-trading': {
+        id: 'equipment-trading-div',
+        visible: false,
+    },
+    'bait-trading': {
+        id: 'bait-trading-div',
+        visible: false,
+    },
+    'habitat-trading': {
+        id: 'habitat-trading-div',
+        visible: false,
+    },
+    /* 'vehicle-trading': {
+        id: 'vehicle-trading-div',
+        visible: false,
+    }, */
+
+    // Shared
+    'fish-list': { 
+        id: 'fish-list',
+        visible: false,
+    }
 };
 if(!sessionStorage.getItem('visibility')) {sessionStorage.setItem('visibility', JSON.stringify(visibility))}; // initial set
 function getVisibility() { // get function
@@ -17,8 +48,7 @@ function setVisibility(newVisibility) { // set function
     sessionStorage.setItem('visibility', JSON.stringify(newVisibility))
 }; 
 
-// MAKING SECTIONS VISIBLE
-
+// MAKING SECTIONS VISIBLE 
 function isSectionVisible(section) {
     let div = document.getElementById(visibility[section].id);
     return div && div.style.visibility == 'visible';
@@ -26,7 +56,7 @@ function isSectionVisible(section) {
 
 function makeSectionVisible(section) {
     let sectionVisibility = getVisibility(); 
-    div = document.getElementById(visibility[section].id);
+    div = document.getElementById(sectionVisibility[section].id);
     if(div) {
         div.style.visibility = 'visible';
         sectionVisibility[section].visible = true;
@@ -35,10 +65,17 @@ function makeSectionVisible(section) {
 }
 
 // SHARED INFO
-function makeFishListSectionVisible() { // makes whole fish list section visible
-    let fishListSection = document.getElementById("fish-list");
-    fishListSection.style.visibility = 'visible';
+
+// nav bar
+function makeNavBarLinkVisible(navBarLink) {
+    let navbar = getNavBarLinks();
+    div = document.getElementById(navbar[navBarLink].id);
+    div.style.visibility = 'visible';
+    navbar[navBarLink].visible = true;
+    setNavBarLinks(navbar);
 }
+
+// right side
 function isInventoryFishVisible(fishNum) { // checks specific fish 
     let fishStats = getFishStats()
     return fishStats[fishNum].unlocked;
@@ -49,8 +86,7 @@ function makeInventoryFishVisible(fishNumber) { // makes specific fish visible
         fishDiv.style.visibility = 'visible';
     }
 }
-
-
+ 
 // FISH ISLAND
 // supplies
 function isBaitVisible(baitNum) {
@@ -66,19 +102,6 @@ function makeBaitVisible(baitNum) {
 
 
 // trading
-function isTradingSectionVisible() {
-    let tradingDiv = document.getElementById('trading-div'); // make trading section visible
-    return tradingDiv && tradingDiv.style.visibility == 'visible';
-}
-function makeTradingSectionVisible() {
-    let tradingDiv = document.getElementById('trading-div'); // make trading section visible
-
-    if (tradingDiv) {
-        tradingDiv.style.visibility = 'visible';
-        let sellFishHeadingDiv = document.getElementById('sellFishHeading'); // make sell fish heading visible
-        sellFishHeadingDiv.style.visibility = 'visible';
-    }
-}
 function isFishTradingVisible(fishNumber) {
     let fishTradeDiv = document.getElementById("fishTrading" + fishNumber + "-div"); // add fish to the trading section
     return fishTradeDiv.style.visibility === 'visible';
@@ -95,20 +118,6 @@ function makeBaitInTradingVisible(baitNum) {
         baitTradingDiv.style.visibility = 'visible';
     }
 }
-function isEquipmentTradingVisible() {
-    fishingRodHeading = document.getElementById('equipment-heading');
-    return fishingRodHeading && fishingRodHeading.style.visibility == 'visible';
-}
-function makeEquipmentTradingVisible() {
-    let fishingRodHeading = document.getElementById('equipment-heading');
-
-    if (fishingRodHeading) {
-        fishingRodHeading.style.visibility = 'visible';
-    
-        let fishingRodTradingDiv = document.getElementById('equipment-div');
-        fishingRodTradingDiv.style.removeProperty('border');
-    }
-}
 function makeRodVisible(rodNum) {
     let fishingRodTrading = document.getElementById('fishingRodTrading' + rodNum + '-div')
 
@@ -118,20 +127,6 @@ function makeRodVisible(rodNum) {
         let fishingRodButton = document.getElementById('buyRod' + rodNum);
         fishingRodButton.style.visibility = 'visible';
     }
-}
-function makeBaitTradingVisible() {
-    baitHeadingDiv = document.getElementById('bait-heading');
-    baitHeadingDiv.style.visibility = 'visible';
-    
-    baitDiv = document.getElementById("bait-div");
-    baitDiv.style.removeProperty('border');
-}
-function makeHabitatTradingVisible() {
-    let habitatTradingHeading = document.getElementById('habitat-heading')
-    habitatTradingHeading.style.visibility = 'visible';
-
-    let habitatTradingDiv = document.getElementById('habitat-trading-div');
-    habitatTradingDiv.style.removeProperty('border'); 
 }
 function makeHabitatVisible(habitatNum) {
     let fishingHabitatTrading = document.getElementById('habitatTrading' + habitatNum + '-div');
@@ -143,15 +138,10 @@ function makeHabitatVisible(habitatNum) {
     fishHabitats[habitatNum].unlocked = true;
 }
 function isVehicleSectionVisible() {
-    let vehiclesDiv = document.getElementById('vehicles-div'); // displays vehicles
+    let vehiclesDiv = document.getElementById('vehicle-trading-div'); // displays vehicles
     return vehiclesDiv.style.visibility == 'visible';
 }
-function makeVehicleSectionVisible() {
-    vehiclesDiv = document.getElementById('vehicles-div'); // displays vehicles
-    if (vehiclesDiv) {
-        vehiclesDiv.style.visibility = 'visible';
-    }
-
+function makeVehicleSectionVisible() { // list/buttons
     let vehicleButton = document.getElementById("buyVehicle1");
     if(vehicleButton) {
         vehicleButton.style.visibility = "visible";
@@ -209,7 +199,7 @@ function makeBetterOceansVisible() {
 
 // FOR EVERYTHING FUNCTION
 function makeSharedInfoVisible() { // makes shared info section visible
-    makeFishListSectionVisible();
+    makeSectionVisible("fish-list");
     let fish = getFishStats();
     for (fishNum in fish) {
         makeInventoryFishVisible(fishNum);
@@ -239,27 +229,25 @@ function makeEverythingVisible() {
         makeBaitVisible(baitNum);
         makeBaitInTradingVisible(baitNum);
     }
-    makeTradingSectionVisible();
     for (habitatNum in fishHabitats) {
         makeHabitatVisible(habitatNum);
     }
-    makeEquipmentTradingVisible();
     for (let rodNum = 1; rodNum < fishingRods.length; rodNum++) {
         makeRodVisible(rodNum);
     }
 
-    // shared
-    makeSharedInfoVisible();
+    // everything
+    for (section in visibilityList) {
+        let sectionBox = document.getElementById(visibilityList[section].id);
+        if (sectionBox && visibilityList[section].visible === true) {
+            sectionBox.style.visibility = "visible";
+        }
+    }
+
     makeNavBarVisible();
 
-    // fish island
-    makeSectionVisible('inventory');
-    makeSectionVisible('supplies');
-
-    makeBaitTradingVisible();
-    makeVehicleSectionVisible();
-
-    // habitat
-    makeHabitatTradingVisible();    
+    for (item in visibility) {
+        makeSectionVisible(item);
+    }
 }
 
