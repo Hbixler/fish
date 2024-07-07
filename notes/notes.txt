@@ -10,7 +10,6 @@ Overall changes to make:
     - all pages except fish island
 - habitat revenue count isn't working -> make separate revenue function
 - automatic buying bait and selling fish options
-- buy button enabled only when you can afford it - text gets dimmer after item is bought -> when you unlock something the buy button shows up but is not enabled
 - hovering on things gives shows more info or something like that
 - re-re-balance: 
     - each type of fish can be caught with one of the related baits -> bait is removed from the bait count in inventory only when the fish is caught which still takes the allotted time listed in main.js
@@ -18,6 +17,8 @@ Overall changes to make:
 - fishing progress
     - temporary solution: add equipment stats to right side
     - eventually add progress bars to fish on right side
+    - INSTEAD: I (hailey) put the fishing rate on the right side and it turns red when it doesn't have any bait left
+- Also thoughts on making it so that the fish appears as soon as you unlock the bait to fish it instead of only once you have a fish?
 
 Consider this:
 - We need to clean up where we have functions and where we have html 

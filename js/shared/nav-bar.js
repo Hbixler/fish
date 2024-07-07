@@ -114,5 +114,12 @@ for(x = 0; x < fishList.length; x++) {
     fishCountSpan.innerText = Math.floor(fishList[x].inventoryCount);
     fishCountSpan.id = "fish" + x + "-count";
 
-    document.getElementById('fish-list').appendChild(fish).appendChild(fishCountSpan);
+    let fishProgressSpan = document.createElement('span');
+    fishProgressSpan.id = "fish" + x + "-progress";
+    fishProgressSpan.style.float = 'right';
+
+    fish.appendChild(fishCountSpan);
+    fish.appendChild(fishProgressSpan);
+
+    document.getElementById('fish-list').appendChild(fish);
 }
