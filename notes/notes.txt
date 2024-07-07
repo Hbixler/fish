@@ -10,7 +10,6 @@ Overall changes to make:
     - all pages except fish island
 - habitat revenue count isn't working -> make separate revenue function
 - automatic buying bait and selling fish options
-- buy button enabled only when you can afford it - text gets dimmer after item is bought -> when you unlock something the buy button shows up but is not enabled
 - hovering on things gives shows more info or something like that
 - re-re-balance: 
     - each type of fish can be caught with one of the related baits -> bait is removed from the bait count in inventory only when the fish is caught which still takes the allotted time listed in main.js
