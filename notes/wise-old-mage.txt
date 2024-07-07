@@ -1,43 +1,28 @@
-UNLOCKS WHEN YOU GET THE ROWBOAT
-
-Pull up to secretary frog on a rock. Options are: 
-- [DONE] buy a sail from frog
-    - [DONE] Change the messages for when you are sailing
-- [DONE] ask for directions
-- punch the frog - options are: 
-    - pay frog reparations (lets you go)
-    - kick the frog (frog steals your rowboat out of spite)
-    - seduce the frog (cheesy pick-up line)
-
-- make everything stay when you leave the page
-- need to sail to the old mage (second sequence)
-- fix visibility
+To Do: 
 - need rowboat to buy sail
-- be able to do second sequence to get to wise old mage
-
-- Every time you punch the frog, he should say a different french swear word
-
-Once you get past the frog, you get to see the wise old mage page
-    - but you can't get rid of the frog that easily, he will sass you from the sidelines
-
-- wise old man who is too old to fish for himself so you trade him fish and he teaches you things to get skills
-    - bartering skills that reduce the prices of bait and get more profit off of fish
-    - he'll tell you where other fish are so you can unlock new fish
-    - gives you more habitat space by letting you store fish in the pond in his backyard
-    - buy upgrades for fishing rods
-    - new fishing rod called old man's master fishing rod
-
-- Make an option to break the game 
-    - Rock that the wise old mage tells you NOT TO TOUCH
-    - With big letters that say DO NOT TOUCH
-    - If you touch your screen gets all messed up and you have to fix it
+- every time you punch the frog, he should say a different french swear word
 
 Aesthetics: 
 - put directions in bottom of sir frog box
 - spacing of various frog buttons
 
-Changes done: 
-- [DONE] Side bar starts out as vast unknown
-    - [DONE] you have to sail a few times to find the frog
-- [REJECTED] Then side bar is: 
-    - [REJECTED] The HonoUrable Sir Frog
+Visibility: 
+- make everything stay when you leave the page
+
+Check: 
+- be able to do second sequence to get to wise old mage
+
+Brainstorming: 
+- once you get past the frog, you get to see the wise old mage mage
+    - but you can't get rid of the frog that easily, he will sass you from the sidelines
+- wise old mage who is too old to fish for himself so you trade him fish and he teaches you things to get skills
+    - bartering skills that reduce the prices of bait and get more profit off of fish
+    - he'll tell you where other fish are so you can unlock new fish
+    - gives you more habitat space by letting you store fish in the pond in his backyard
+    - buy upgrades for fishing rods
+    - new fishing rod called old man's master fishing rod
+    - automatic buying bait and selling fish options
+- make an option to break the game 
+    - Rock that the wise old mage tells you NOT TO TOUCH
+    - With big letters that say DO NOT TOUCH
+    - If you touch your screen gets all messed up and you have to fix it

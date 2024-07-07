@@ -48,6 +48,15 @@ button {
     text-align: right;
     margin-right: 10px;
 }
+.tooltip {
+    display: none;
+}
+.tooltipParent:hover + .tooltip {
+    display: block;
+}
+.tooltipParent {
+    border-bottom: 1px dotted white;
+}
 #nav-bar {
     display: block;
     text-align: right;

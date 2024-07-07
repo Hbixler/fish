@@ -1,3 +1,6 @@
+// Keeps everything visible across pages
+permanentVisibility();
+
 // VAST UNKNOWN - PUT SEQUENCES BACK: NENWWNNEESW    EESSSESWWSWNNWSSSEESWWWNN
 let frogPattern = "N";
 let frogToOldMan = "S";

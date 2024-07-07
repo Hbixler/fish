@@ -29,10 +29,10 @@ let visibility = { // sections
         id: 'habitat-trading-div',
         visible: false,
     },
-    /* 'vehicle-trading': {
+    'vehicle-trading': {
         id: 'vehicle-trading-div',
         visible: false,
-    }, */
+    },
 
     // Shared
     'fish-list': { 
@@ -40,7 +40,8 @@ let visibility = { // sections
         visible: false,
     }
 };
-if(!sessionStorage.getItem('visibility')) {sessionStorage.setItem('visibility', JSON.stringify(visibility))}; // initial set
+
+if(!sessionStorage.getItem('visibility')) { sessionStorage.setItem('visibility', JSON.stringify(visibility))}; // initial set
 function getVisibility() { // get function
     return JSON.parse(sessionStorage.getItem('visibility'))
 }; 
@@ -50,13 +51,14 @@ function setVisibility(newVisibility) { // set function
 
 // MAKING SECTIONS VISIBLE 
 function isSectionVisible(section) {
-    let div = document.getElementById(visibility[section].id);
+    let sectionVisibility = getVisibility();
+    let div = document.getElementById(sectionVisibility[section].id);
     return div && div.style.visibility == 'visible';
 }
 
 function makeSectionVisible(section) {
     let sectionVisibility = getVisibility(); 
-    div = document.getElementById(sectionVisibility[section].id);
+    let div = document.getElementById(sectionVisibility[section].id);
     if(div) {
         div.style.visibility = 'visible';
         sectionVisibility[section].visible = true;
@@ -64,15 +66,30 @@ function makeSectionVisible(section) {
     }
 }
 
+// MAKING LIST ELEMENTS VISIBLE
+function isListElementVisible(list, element) {
+
+}
+function makeListElementVisible(list, element) {
+
+}
+
 // SHARED INFO
+function isNavBarLinkVisible(navBarLink) {
+    let navBar = getNavBarLinks();
+    let navBarIndex = navBar.findIndex(link => link.name === navBarLink);
+    let div = document.getElementById(navBar[navBarIndex].id);
+    return div && div.style.visibility == 'visible';
+}
 
 // nav bar
 function makeNavBarLinkVisible(navBarLink) {
-    let navbar = getNavBarLinks();
-    div = document.getElementById(navbar[navBarLink].id);
+    let navBar = getNavBarLinks();
+    let navBarIndex = navBar.findIndex(link => link.name === navBarLink);
+    let div = document.getElementById(navBar[navBarIndex].id);
     div.style.visibility = 'visible';
-    navbar[navBarLink].visible = true;
-    setNavBarLinks(navbar);
+    navBar[navBarIndex].visible = true;
+    setNavBarLinks(navBar);
 }
 
 // right side
@@ -84,6 +101,24 @@ function makeInventoryFishVisible(fishNumber) { // makes specific fish visible
     fishDiv = document.getElementById("fish" + fishNumber + "-div");
     if (fishDiv) {
         fishDiv.style.visibility = 'visible';
+    }
+}
+
+// PERMANENT VISIBILITY FUNCTION
+function permanentVisibility() {
+    let visibilityList = getVisibility();
+    for (section in visibilityList) {
+        let sectionBox = document.getElementById(visibilityList[section].id);
+        if (sectionBox && visibilityList[section].visible === true) {
+            sectionBox.style.visibility = "visible";
+        }
+    }
+    let visibilityNavBar = getNavBarLinks();
+    for (navBar in visibilityNavBar) {
+        let navBarLink = document.getElementById(visibilityNavBar[navBar].id);    
+        if (navBarLink && visibilityNavBar[navBar].visible === true) {
+            navBarLink.style.visibility = "visible";
+        }
     }
 }
  
@@ -149,16 +184,6 @@ function makeVehicleSectionVisible() { // list/buttons
 }
 
 // HABITAT
-function isHabitatVisible() { // THIS WILL EVENTUALLY BE THE NAV BAR VISIBILITY
-    return true
-}
-function makeHabitatSectionVisible() {
-    habitatDiv = document.getElementById('habitat-div'); // displays fish bowl
-
-    if (habitatDiv) {
-        habitatDiv.style.visibility = 'visible';
-    }
-}
 function makeHabitatFishVisible(fishNumber) {
     if (document.getElementById('habitat-div')) {
         let fishInHabitatDiv = document.getElementById("fishInHabitat" + fishNumber + "-div");
@@ -235,8 +260,10 @@ function makeEverythingVisible() {
     for (let rodNum = 1; rodNum < fishingRods.length; rodNum++) {
         makeRodVisible(rodNum);
     }
+    makeVehicleSectionVisible();
 
     // everything
+    let visibilityList = getVisibility();
     for (section in visibilityList) {
         let sectionBox = document.getElementById(visibilityList[section].id);
         if (sectionBox && visibilityList[section].visible === true) {
@@ -250,4 +277,3 @@ function makeEverythingVisible() {
         makeSectionVisible(item);
     }
 }
-

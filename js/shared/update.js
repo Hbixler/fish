@@ -60,11 +60,15 @@ function updateFishCount(fishNumber, numFish) {
         fishCountSpan.innerText = Math.floor(fishStats[fishNumber].inventoryCount);
     }
 
+    if (fishStats[0].inventoryCount >= 5 && !isSectionVisible("fish-trading")) {
+        makeSectionVisible("fish-trading");
+    }
+
     if (fishStats[fishNumber].inventoryCount >= 1 && !isInventoryFishVisible(fishNumber)) {
         if (fishNumber === 0) {
             // Fishing for goldfish for first time, adding boxes and borders
             makeSectionVisible("fish-list");
-            makeNavBarLinkVisible("fish-island-div");
+            makeNavBarLinkVisible("Fish Island");
 
             if (fishStats[0].inventoryCount === 5 && !isSectionVisible("trading")) { // at 5 goldfish
                 makeSectionVisible("trading");
@@ -82,7 +86,7 @@ function updateFishCount(fishNumber, numFish) {
         // Add fish to inventory options
         makeInventoryFishVisible(fishNumber);
 
-        if (isHabitatVisible()) {
+        if (isNavBarLinkVisible("Habitat")) {
             // If habitat unlocked, make fish option in habitat
             makeHabitatFishVisible(fishNumber);
         }
