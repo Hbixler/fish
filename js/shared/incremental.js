@@ -25,6 +25,8 @@ window.setInterval(function() {
 
             if (bait.count <= 0) {
                 // We have no bait :( cannot fish
+
+                updateHasBait(fishIndex, false)
                 continue;
             }
             // Use bait
@@ -33,11 +35,9 @@ window.setInterval(function() {
         }
         // Gain fish!
         fishStat.inventoryCount = fishStat.inventoryCount + currentRod.rates[autoFish];
-        /* if (autoFish === 'Swordfish') {
-            console.log(fishStat.inventoryCount);
-            console.log('current rate: ' + currentRod.rates[autoFish]);
-        } */
-
         updateFishCount(fishIndex, fishStat.inventoryCount)
+        
+        /* If we want to show fish progress */
+        // updateFishProgress(fishIndex, fishStat.inventoryCount - Math.floor(fishStat.inventoryCount));
     }
 }, 1000/speed)
