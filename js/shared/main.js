@@ -121,7 +121,7 @@ let fishingRodStats = [// rates are in fish/second
             'Whale': 0,
             'Narwhal': 0,
         },
-        cost: 25,
+        cost: 10, // usually 25
         unlocked: false,
         visible: false,
     },
@@ -188,7 +188,7 @@ let fishHabitatsInitial = [
     {
         name: "Fish Bowl",
         capacity: 10,
-        cost: 50,
+        cost: 20, // usually 50
         unlocked: false,
         visible: false,
     },

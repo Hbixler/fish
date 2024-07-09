@@ -145,7 +145,9 @@ function updateSellButtons(fishIndex, inventoryCount) {
 
     for (option of bulkOptions) {
         let sellButton = document.getElementById("sellFish" + fishIndex + "x" + option);
-        sellButton.disabled = option > inventoryCount;
+        if (sellButton) {
+            sellButton.disabled = option > inventoryCount;
+        }
     }
 }
 

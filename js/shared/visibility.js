@@ -66,14 +66,6 @@ function makeSectionVisible(section) {
     }
 }
 
-// MAKING LIST ELEMENTS VISIBLE
-function isListElementVisible(list, element) {
-
-}
-function makeListElementVisible(list, element) {
-
-}
-
 // SHARED INFO
 function isNavBarLinkVisible(navBarLink) {
     let navBar = getNavBarLinks();
@@ -94,30 +86,42 @@ function makeNavBarLinkVisible(navBarLink) {
 
 // right side
 function isInventoryFishVisible(fishNum) { // checks specific fish 
-    let fishStats = getFishStats()
+    let fishStats = getFishStats();
     return fishStats[fishNum].unlocked;
 }
 function makeInventoryFishVisible(fishNumber) { // makes specific fish visible
+    let fishStats = getFishStats();
     fishDiv = document.getElementById("fish" + fishNumber + "-div");
     if (fishDiv) {
         fishDiv.style.visibility = 'visible';
     }
+    fishStats[fishNumber].listVisible = true;
+    setFishStats(fishStats);
 }
 
 // PERMANENT VISIBILITY FUNCTION
 function permanentVisibility() {
-    let visibilityList = getVisibility();
+    let visibilityList = getVisibility(); // sections
     for (section in visibilityList) {
         let sectionBox = document.getElementById(visibilityList[section].id);
         if (sectionBox && visibilityList[section].visible === true) {
             sectionBox.style.visibility = "visible";
         }
     }
-    let visibilityNavBar = getNavBarLinks();
+    let visibilityNavBar = getNavBarLinks(); // nav bar
     for (navBar in visibilityNavBar) {
         let navBarLink = document.getElementById(visibilityNavBar[navBar].id);    
         if (navBarLink && visibilityNavBar[navBar].visible === true) {
             navBarLink.style.visibility = "visible";
+        }
+    }
+}
+function fishIslandVisibility(/* list, section, element */) {
+    let inventoryFish = getFishStats(); // fish
+    for (fish in inventoryFish) {
+        let element = document.getElementById(fishStats[fish].id);
+        if (element && fishStats[fish].listVisible === true) {
+            element.style.visibility = "visible";
         }
     }
 }
