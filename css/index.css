@@ -50,9 +50,18 @@ button {
 }
 .tooltip {
     display: none;
+    background-color: #000;
+    position: absolute;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    top: 10%;
+    transform: translateY(-50%);
+    right: 100%;
 }
 .tooltipParent:hover + .tooltip {
     display: block;
+    z-index: 50;
 }
 .tooltipParent {
     border-bottom: 1px dotted white;

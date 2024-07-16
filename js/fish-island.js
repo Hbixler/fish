@@ -11,7 +11,6 @@ let bulkOptions = [1, 5, 10, 50];
 
 // Keeps everything visible across pages
 permanentVisibility();
-fishIslandVisibility();
 
 // Supplies/Baits
 for(x = 0; x < baits.length; x++) {

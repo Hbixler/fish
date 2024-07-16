@@ -1,5 +1,6 @@
 To Do: 
 - hovering on things gives shows more info or something like that
+- remove 'unlocked' attribute from fishStats
 
 Visibility: 
 - cake slices show up before the one above it

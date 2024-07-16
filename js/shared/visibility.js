@@ -66,6 +66,11 @@ function makeSectionVisible(section) {
     }
 }
 
+// MAKING LIST ELEMENTS VISIBLE
+/* function isListElementVisible(list, element) {
+    return div && div.style.visibility == 'visible';
+} */
+
 // SHARED INFO
 function isNavBarLinkVisible(navBarLink) {
     let navBar = getNavBarLinks();
@@ -116,16 +121,16 @@ function permanentVisibility() {
         }
     }
 }
-function fishIslandVisibility(/* list, section, element */) {
+function fishListVisibility() { // shared info fish list
     let inventoryFish = getFishStats(); // fish
     for (fish in inventoryFish) {
-        let element = document.getElementById(fishStats[fish].id);
-        if (element && fishStats[fish].listVisible === true) {
+        let element = document.getElementById("fish" + fish + "-div");
+        if (element && fishStats[fish].listVisible) {
             element.style.visibility = "visible";
         }
     }
 }
- 
+
 // FISH ISLAND
 // supplies
 function isBaitVisible(baitNum) {
