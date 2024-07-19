@@ -1,3 +1,6 @@
+07/18/2024 - Kai and Hailey: 
+Why won't live share work? How rude! 
+
 07/08/2024 - Kai: 
 Dear misbehaving fish, 
 I am trying to make your list visibility permanent. There are no error messages, and it is visible according to the array in main.js. I have logged everything I can think of to the console, and all I can tell is that it should work... So what else am I supposed to do? 
