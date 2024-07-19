@@ -8,18 +8,9 @@ let sandDollars = getSandDollars();
 let bulkOptions = [1, 5, 10, 50];
 
 // HTML GENERATION
-let visibilityList = getVisibility();
 
-// Inventory and Supplies Box Visibility Test
-let inventoryBox = document.getElementById("inventory-div");
-if (visibilityList['inventory'].visible === true) {
-    inventoryBox.style.visibility = "visible";
-}
-
-let suppliesBox = document.getElementById("supplies-div");
-if (visibilityList['supplies'].visible === true) {
-    suppliesBox.style.visibility = "visible";
-}
+// Keeps everything visible across pages
+permanentVisibility();
 
 // Supplies/Baits
 for(x = 0; x < baits.length; x++) {
@@ -45,7 +36,7 @@ for (let x = 0; x < fishes.length; x++) {
     let fishListing = document.createElement('p');
     fishListing.innerText = fishes[x].name + " (" + fishes[x].cost + " SD)";
 
-    document.getElementById('sell-fish').appendChild(fishTradingDiv).appendChild(fishListing);
+    document.getElementById('fish-trading-div').appendChild(fishTradingDiv).appendChild(fishListing);
 
     for (let y = 0; y < bulkOptions.length; y++) {
         let sellButton = document.createElement('button');
@@ -65,9 +56,23 @@ for (let x = 0; x < baits.length; x++) {
     baitTradingDiv.className = "row";
 
     let baitListing = document.createElement('p');
-    baitListing.innerText = baits[x].name + " (" + baits[x].cost + " SD)";
+    baitListing.innerText = baits[x].name;
+    baitListing.classList.add('tooltipParent');
 
-    document.getElementById('bait-div').appendChild(baitTradingDiv).appendChild(baitListing);
+    let baitPrice = document.createElement('p');
+    baitPrice.innerText = " (" + baits[x].cost + " SD)";
+
+    document.getElementById('bait-trading-div').appendChild(baitTradingDiv).appendChild(baitListing);
+
+    let tooltip = document.createElement('div');
+    tooltip.className = "tooltip";
+
+    let tooltipText = document.createElement('p');
+    let applicableFish = fishes.findIndex(fish => fish.bait === baits[x].name);
+    tooltipText.innerText = "Use " + baits[x].name + " to catch a " + fishes[applicableFish].name + "!";
+
+    tooltip.appendChild(tooltipText);
+    baitTradingDiv.appendChild(tooltip);
 
     for (let y = 0; y < bulkOptions.length; y++) {
         let buyButton = document.createElement('button');
@@ -79,6 +84,7 @@ for (let x = 0; x < baits.length; x++) {
 
         document.getElementById('baitTrading' + x + '-div').appendChild(buyButton);
     }
+    
 }
 
 // Buy equipment
@@ -99,7 +105,7 @@ for (let x = 1; x < fishingRods.length; x++) {
     buyButton.classList = ["buyButton"];
     buyButton.value = fishingRods[x].cost;
 
-    document.getElementById('equipment-div').appendChild(equipmentTradingDiv).appendChild(equipmentListing).appendChild(buyButton);
+    document.getElementById('equipment-trading-div').appendChild(equipmentTradingDiv).appendChild(equipmentListing).appendChild(buyButton);
 }
 
 // Buy habitat
@@ -139,7 +145,7 @@ for (let x = 1; x < 2; x++) {
     buyButton.classList = ["buyButton"];
     buyButton.value = vehicles[x].cost;
 
-    document.getElementById('vehicles-div').appendChild(vehiclesTradingDiv).appendChild(vehicleListing).appendChild(buyButton);
+    document.getElementById('vehicle-trading-div').appendChild(vehiclesTradingDiv).appendChild(vehicleListing).appendChild(buyButton);
 }
 
 // FUNCTIONS
@@ -164,7 +170,6 @@ function sellFish(fishType, numToSell) {
         sandDollars = getSandDollars() + fishValue;
         updateSandDollars(sandDollars);
     }
-    
 }
 
 // Buying bait
@@ -191,12 +196,14 @@ function buyBait(baitNumber, numToBuy) {
         sandDollars -= baitValue;
         updateSandDollars(sandDollars);
     
+        // Unlock inventory and supplies if necessary
+        if (!isSectionVisible('inventory') || !isSectionVisible('supplies')) {
+            makeSectionVisible('inventory');
+            makeSectionVisible('supplies');
+        }
+
         if(!isBaitVisible(baitNumber)) {
-            if (baitNumber === 0) {
-                makeSectionVisible('inventory');
-                makeSectionVisible('supplies');
-            }
-            if (baitNumber === 2 && !baitNumber[2].unlocked) {
+            if (baitNumber === 2 && !baits[2].unlocked) {
                 makeBaitInTradingVisible(2);
             }
     
@@ -206,10 +213,10 @@ function buyBait(baitNumber, numToBuy) {
 
             updateBaits(baits);
         }
-
     }    
 }
 
+// buying rods
 function buyRod(fishingRodNumber) {
     let baits = getBaits();
     let sandDollars = getSandDollars();
@@ -226,15 +233,12 @@ function buyRod(fishingRodNumber) {
         updateSandDollars(sandDollars);
 
         // Update fishing rates
-        console.log(currentRod.rates);
         for (let x = 0; x < fishStats.length; x++) {
-            console.log(x)
-            console.log(fishStats[x]);
             updateFishRate(x, currentRod.rates[fishStats[x].name]);
         }
 
         if (fishingRodNumber === 1) { // the else ifs make the baits visible in inventory and trading section --> could maybe be classes. tried once, could try again
-            makeBaitTradingVisible();
+            makeSectionVisible("bait-trading");
             makeBaitInTradingVisible(0);
 
             updateBaits(baits)
@@ -281,7 +285,7 @@ function buyHabitat(fishHabitatNumber) {
         // toggling visibility as habitats are bought
         if (fishHabitatNumber != fishHabitats.length - 1) {
             if (fishHabitatNumber == 0) {
-                makeHabitatSectionVisible();
+                makeNavBarLinkVisible("Habitat");
             }
 
             // make next habitat visible
@@ -306,6 +310,7 @@ function buyHabitat(fishHabitatNumber) {
     }
 } 
 
+// buying vehicles
 function buyVehicle(vehicleNum) {
     let sandDollars = getSandDollars();
 
@@ -322,5 +327,4 @@ function buyVehicle(vehicleNum) {
 }
 
 // FOR TESTING
-// makeEverythingVisible();
-/* makeNavBarVisible(); */
+/* makeEverythingVisible(); */

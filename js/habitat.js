@@ -1,3 +1,7 @@
+// Keeps everything visible across pages
+permanentVisibility();
+
+
 let currentHabitat = getCurrentHabitat();
 let revenue = getRevenue();
 let fishstats = getFishStats();
@@ -109,4 +113,4 @@ function howBigAreMyFish() {
 
 // DELETE LATER
 /* makeHabitatPageVisible(); */
-makeNavBarVisible();
+/* makeNavBarVisible(); */
