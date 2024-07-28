@@ -5,6 +5,7 @@ function updateSandDollars(sandDollars) {
     updateBuyButtons(sandDollars);
 
     let sandDollarsSpan = document.getElementById('sandDollars');
+    
 
     if (sandDollarsSpan) {
         sandDollarsSpan.innerText = (Math.round(sandDollars * 100) / 100).toLocaleString();
@@ -13,16 +14,16 @@ function updateSandDollars(sandDollars) {
     if(sandDollars > 10 && !isSectionVisible("equipment-trading")) { // unlocks equipment section of trading when 10 sanddollars are earned
 
         makeSectionVisible("equipment-trading");
-        makeRodVisible(1);
+        makeListElementVisible("equipment-trading", 1);
 
         if (isSectionVisible("equipment-trading")) {
             fishingRods[0].unlocked = true;
         }
     }
 
-    if(sandDollars >= 30 && isBaitVisible(0)) { // unlocks habitat section of trading when 40 sanddollars are earned and bait is already unlocked
+    if(sandDollars >= 30 && isListElementVisible("supplies", 0)) { // unlocks habitat section of trading when 40 sanddollars are earned and bait is already unlocked
         makeSectionVisible("habitat-trading");
-        makeHabitatVisible(0)
+        makeListElementVisible("habitat-trading", 0);
     }
 }
 
@@ -72,12 +73,12 @@ function updateFishCount(fishNumber, numFish) {
 
             if (fishStats[0].inventoryCount === 5 && !isSectionVisible("trading")) { // at 5 goldfish
                 makeSectionVisible("trading");
-                makeFishTradingVisible(0);
+                makeListElementVisible("fish-trading", 0);
             }
         }
 
         if (fishNumber === 2 && !fishStats[2].unlocked) {
-            makeBaitTradingVisible(2);
+            makeListElementVisible("bait-trading", 2);
         }
 
         // Unlock fish
@@ -93,7 +94,7 @@ function updateFishCount(fishNumber, numFish) {
 
         if (fishNumber >= 1) {
             // Add fish to trading option
-            makeFishTradingVisible(fishNumber);
+            makeListElementVisible("fish-trading", fishNumber);
         }
         
         // shows vehicles section when narwhal is unlocked
