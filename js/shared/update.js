@@ -99,7 +99,7 @@ function updateFishCount(fishNumber, numFish) {
         
         // shows vehicles section when narwhal is unlocked
         if(fishNumber === fishStats.length - 1) {
-            makeVehicleSectionVisible();
+            makeSectionVisible("vehicle-trading");
         }
     } 
     

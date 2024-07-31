@@ -129,6 +129,8 @@ for (let x = 0; x < fishHabitats.length; x++) {
 // Buy vehicles
 for (let x = 1; x < 2; x++) {
     let vehiclesTradingDiv = document.createElement('div');
+    vehiclesTradingDiv.style.visibility = 'hidden';
+    vehiclesTradingDiv.id = "vehicleTrading" + x + "-div";
     vehiclesTradingDiv.className = "row";
 
     let vehicleListing = document.createElement('p');
@@ -186,7 +188,7 @@ function buyBait(baitNumber, numToBuy) {
             makeSectionVisible('supplies');
         }
 
-        if(!isBaitVisible(baitNumber)) { // makes buying chicken nuggets visible after buying a saltine cracker
+        if(!isListElementVisible("supplies", baitNumber)) { // makes buying chicken nuggets visible after buying a saltine cracker
             if (baitNumber === 2 && !baits[2].unlocked) {
                 makeListElementVisible("bait-trading", 2);
             }
@@ -307,7 +309,7 @@ function buyVehicle(vehicleNum) {
 }
 
 // Keeps everything visible across pages
-/* permanentVisibility(); */
+permanentVisibility();
 
 // for testing
-makeEverythingVisible();
+/* makeEverythingVisible(); */

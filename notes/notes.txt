@@ -9,3 +9,10 @@ Visibility:
 
 Check: 
 - does habitat revenue work? -> make separate revenue function? 
+
+Bugs: 
+- 4th bait can show up before 3rd bait -> add condition that 3rd must be unlocked or visible before the 4th
+- Buy button for fish bowl doesn't disappear after buying it
+- Cake slices are available before purchasing the last fishing rod
+- Vehicle section becomes visible but not the rowboat and buy button
+- Sand dollar number gets pushed onto the next line when it reaches 1000 or 2000 (Kai didn't pay enough attention to what number it happened at)

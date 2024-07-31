@@ -12,7 +12,7 @@ let visibility = {
             idStart: "bait",
             firstItem: 0,
             highestVisible: -1,
-        }
+        },
     },
     'trading': {
         id: 'trading-div',
@@ -25,7 +25,7 @@ let visibility = {
             idStart: "fishTrading",
             firstItem: 0,
             highestVisible: -1,
-        }
+        },
     },
     'equipment-trading': {
         id: 'equipment-trading-div',
@@ -35,7 +35,7 @@ let visibility = {
             firstItem: 1,
             highestVisible: 0,
             buttonId: "buyRod",
-        }
+        },
     },
     'bait-trading': {
         id: 'bait-trading-div',
@@ -44,7 +44,7 @@ let visibility = {
             idStart: "baitTrading",
             firstItem: 0,
             highestVisible: -1,
-        }
+        },
     },
     'habitat-trading': {
         id: 'habitat-trading-div',
@@ -54,7 +54,7 @@ let visibility = {
             firstItem: 0,
             highestVisible: -1,
             buttonId: "buyHabitat",
-        }
+        },
     },
     'vehicle-trading': {
         id: 'vehicle-trading-div',
@@ -64,16 +64,14 @@ let visibility = {
             firstItem: 1,
             highestVisible: 0,
             buttonId: "buyVehicle",
-        }
+        },
     },
 
     // shared info
     'fish-list': { 
         id: 'fish-list',
         visible: false,
-    }
-
-    // buttons
+    },
 };
 if(!sessionStorage.getItem('visibility')) { sessionStorage.setItem('visibility', JSON.stringify(visibility))}; // initial set
 function getVisibility() { // get function
@@ -110,15 +108,13 @@ function makeListElementVisible(section, elementNum) {
     let listElement = document.getElementById(visibility[section].list.idStart + elementNum + "-div");
     if (listElement) {
         listElement.style.visibility = "visible";
+        let buttonDiv = document.getElementById(visibility[section].list.buttonId + elementNum);
+        if(buttonDiv) {
+            buttonDiv.style.visibility = "visible";
+        }
         if (listElement > visibility[section].list.highestVisible) {
             visibility[section].list.highestVisible = elementNum;
             setVisibility(visibility);
-
-            console.log(visibility[section].list.buttonId + elementNum);
-            let buttonDiv = document.getElementById(visibility[section].list.buttonId + elementNum);
-            if(buttonDiv) {
-                buttonDiv.style.visibility = "visible";
-            }
         }
     }
 }
@@ -248,15 +244,16 @@ function makeEverythingVisible() {
     console.log('the ocean is big and I can see it');
 
     makeNavBarVisible();
+    makeSharedInfoVisible();
 
     visibility = getVisibility();
     for (section in visibility) {
         makeSectionVisible(section);
         if(visibility[section].list) {
             let x = visibility[section].list.firstItem;
-            while (x) {
-                div = document.getElementById(visibility[section].list.idStart + x + "-div")
-                if (div) {
+            while (x < 100) { // 100 has no significance, needed a condition for it to work
+                let div = document.getElementById(visibility[section].list.idStart + x + "-div");
+                if(div) {
                     makeListElementVisible(section, x);
                     x++;
                 } else {
