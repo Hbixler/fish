@@ -71,6 +71,11 @@ let visibility = {
     'fish-list': { 
         id: 'fish-list',
         visible: false,
+        list: {
+            idStart: "fish",
+            firstItem: 0,
+            highestVisible: -1,
+        }
     },
 };
 if(!sessionStorage.getItem('visibility')) { sessionStorage.setItem('visibility', JSON.stringify(visibility))}; // initial set
@@ -100,11 +105,13 @@ function makeSectionVisible(section) {
 // LIST ELEMENTS
 function isListElementVisible(section, elementNum) {
     let visibility = getVisibility();
+    console.log("Section " + section + " is visible");
     let div = document.getElementById(visibility[section].list.idStart + elementNum + "-div");
     return div && div.style.visibility == "visible";
 }
 function makeListElementVisible(section, elementNum) {
     let visibility = getVisibility();
+    console.log("List element " + elementNum + " of " + section + "is visible");
     let listElement = document.getElementById(visibility[section].list.idStart + elementNum + "-div");
     if (listElement) {
         listElement.style.visibility = "visible";
@@ -112,7 +119,7 @@ function makeListElementVisible(section, elementNum) {
         if(buttonDiv) {
             buttonDiv.style.visibility = "visible";
         }
-        if (listElement > visibility[section].list.highestVisible) {
+        if (elementNum > visibility[section].list.highestVisible) {
             visibility[section].list.highestVisible = elementNum;
             setVisibility(visibility);
         }
@@ -133,21 +140,6 @@ function makeNavBarLinkVisible(navBarLink) {
     div.style.visibility = 'visible';
     navBar[navBarIndex].visible = true;
     setNavBarLinks(navBar);
-}
-
-// SHARED INFO
-function isInventoryFishVisible(fishNum) { // checks specific fish 
-    let fishStats = getFishStats();
-    return fishStats[fishNum].unlocked;
-}
-function makeInventoryFishVisible(fishNumber) { // makes specific fish visible
-    let fishStats = getFishStats();
-    fishDiv = document.getElementById("fish" + fishNumber + "-div");
-    if (fishDiv) {
-        fishDiv.style.visibility = 'visible';
-    }
-    fishStats[fishNumber].visible = true;
-    setFishStats(fishStats);
 }
 
 // HABITAT
@@ -227,7 +219,7 @@ function makeSharedInfoVisible() { // makes shared info section visible
     makeSectionVisible("fish-list");
     let fish = getFishStats();
     for (fishNum in fish) {
-        makeInventoryFishVisible(fishNum);
+        makeListElementVisible("fish-list", fishNum);
     }
 }
 
@@ -239,14 +231,14 @@ function makeNavBarVisible() {
     }
 }
 
-// EVERYTHING
+// EVERYTHING FUNCTION
 function makeEverythingVisible() {
     console.log('the ocean is big and I can see it');
 
     makeNavBarVisible();
     makeSharedInfoVisible();
 
-    visibility = getVisibility();
+    visibility = getVisibility(); // sections and lists
     for (section in visibility) {
         makeSectionVisible(section);
         if(visibility[section].list) {

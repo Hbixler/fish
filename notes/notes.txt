@@ -1,18 +1,15 @@
 To Do: 
-- hovering on things gives shows more info or something like that
+- hovering on things shows more info or something like that
 - remove 'unlocked' attribute from fishStats
+- fix habitat visibility (add fish in habitat as list to the visibility object and switch is and make them visible functions to overall functions)
+- css and spacing decisions for shared info section
+- add permanency to buy and sell button visibility
 
-Visibility: 
-- cake slices show up before the one above it
-- habitat unlocks when you buy a habitat
-- wise old mage/sir frog unlocks when you buy rowboat
-
-Check: 
+To check: 
 - does habitat revenue work? -> make separate revenue function? 
 
 Bugs: 
 - 4th bait can show up before 3rd bait -> add condition that 3rd must be unlocked or visible before the 4th
 - Buy button for fish bowl doesn't disappear after buying it
 - Cake slices are available before purchasing the last fishing rod
-- Vehicle section becomes visible but not the rowboat and buy button
-- Sand dollar number gets pushed onto the next line when it reaches 1000 or 2000 (Kai didn't pay enough attention to what number it happened at)
+- buy and sell buttons for 100 always enable

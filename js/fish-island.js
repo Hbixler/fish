@@ -5,7 +5,7 @@ let fishingRods = getFishingRods();
 let fishHabitats = getFishHabitats();
 let vehicles = getVehicles();
 let sandDollars = getSandDollars();
-let bulkOptions = [1, 5, 10, 50];
+let bulkOptions = [1, 5, 10, 50, 100];
 
 // HTML GENERATION
 
@@ -300,6 +300,7 @@ function buyVehicle(vehicleNum) {
         sandDollars -= vehicles[vehicleNum].cost;
         updateSandDollars(sandDollars);
         updateVehicle(1);
+        makeNavBarLinkVisible("Vast Unknown");
     }
 
     vehicleBuyButton = document.getElementById("buyVehicle" + vehicleNum);

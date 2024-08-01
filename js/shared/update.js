@@ -65,16 +65,11 @@ function updateFishCount(fishNumber, numFish) {
         makeSectionVisible("fish-trading");
     }
 
-    if (fishStats[fishNumber].inventoryCount >= 1 && !isInventoryFishVisible(fishNumber)) {
+    if (fishStats[fishNumber].inventoryCount >= 1 && !isListElementVisible("fish-list", fishNumber)) {
         if (fishNumber === 0) {
             // Fishing for goldfish for first time, adding boxes and borders
             makeSectionVisible("fish-list");
             makeNavBarLinkVisible("Fish Island");
-
-            if (fishStats[0].inventoryCount === 5 && !isSectionVisible("trading")) { // at 5 goldfish
-                makeSectionVisible("trading");
-                makeListElementVisible("fish-trading", 0);
-            }
         }
 
         if (fishNumber === 2 && !fishStats[2].unlocked) {
@@ -85,7 +80,7 @@ function updateFishCount(fishNumber, numFish) {
         fishStats[fishNumber].unlocked = true;
 
         // Add fish to inventory options
-        makeInventoryFishVisible(fishNumber);
+        makeListElementVisible("fish-list", fishNumber);
 
         if (isNavBarLinkVisible("Habitat")) {
             // If habitat unlocked, make fish option in habitat
@@ -100,8 +95,17 @@ function updateFishCount(fishNumber, numFish) {
         // shows vehicles section when narwhal is unlocked
         if(fishNumber === fishStats.length - 1) {
             makeSectionVisible("vehicle-trading");
+            makeListElementVisible("vehicle-trading", 1);
         }
     } 
+
+    console.log("Fish count is 5: " + fishStats[0].inventoryCount);
+    console.log("Trading section is not visible: " + !isSectionVisible("trading"));
+    if (fishStats[0].inventoryCount === 5 && !isSectionVisible("trading")) { // at 5 goldfish
+        console.log("SELLING FISH SHOULD BE POSSIBLE");
+        makeSectionVisible("trading");
+        makeListElementVisible("fish-trading", 0);
+    }
     
     setBaits(baits);
 }
