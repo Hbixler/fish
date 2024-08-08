@@ -67,6 +67,17 @@ let visibility = {
         },
     },
 
+    // habitat
+    'fish-habitat': {
+        id: 'fishCount',
+        visible: true,
+        list: {
+            idStart: "fishInHabitat",
+            firstItem: 0,
+            highestVisible: -1,
+        }
+    },
+
     // shared info
     'fish-list': { 
         id: 'fish-list',
@@ -105,13 +116,11 @@ function makeSectionVisible(section) {
 // LIST ELEMENTS
 function isListElementVisible(section, elementNum) {
     let visibility = getVisibility();
-    console.log("Section " + section + " is visible");
     let div = document.getElementById(visibility[section].list.idStart + elementNum + "-div");
     return div && div.style.visibility == "visible";
 }
 function makeListElementVisible(section, elementNum) {
     let visibility = getVisibility();
-    console.log("List element " + elementNum + " of " + section + "is visible");
     let listElement = document.getElementById(visibility[section].list.idStart + elementNum + "-div");
     if (listElement) {
         listElement.style.visibility = "visible";
@@ -119,10 +128,10 @@ function makeListElementVisible(section, elementNum) {
         if(buttonDiv) {
             buttonDiv.style.visibility = "visible";
         }
-        if (elementNum > visibility[section].list.highestVisible) {
-            visibility[section].list.highestVisible = elementNum;
-            setVisibility(visibility);
-        }
+    }
+    if (elementNum > visibility[section].list.highestVisible) { // for permanent visibility
+        visibility[section].list.highestVisible = elementNum;
+        setVisibility(visibility);
     }
 }
 
@@ -140,21 +149,6 @@ function makeNavBarLinkVisible(navBarLink) {
     div.style.visibility = 'visible';
     navBar[navBarIndex].visible = true;
     setNavBarLinks(navBar);
-}
-
-// HABITAT
-function makeHabitatFishVisible(fishNumber) {
-    if (document.getElementById('habitat-div')) {
-        let fishInHabitatDiv = document.getElementById("fishInHabitat" + fishNumber + "-div");
-        fishInHabitatDiv.style.visibility = 'visible'; 
-    }
-}
-function makeHabitatPageVisible() {
-    for (fishNum in fishStats) {
-        makeHabitatFishVisible(fishNum);
-    }
-    makeHabitatSectionVisible();
-    makeSharedInfoVisible();
 }
 
 // VAST UNKNOWN
@@ -181,6 +175,7 @@ function makeBetterOceansVisible() {
 
 // PERMANENT VISIBILITY FUNCTION
 function permanentVisibility() {
+    console.log("Fish are forever")
     let visibilityList = getVisibility(); // sections
     for (section in visibilityList) {
         let sectionBox = document.getElementById(visibilityList[section].id);

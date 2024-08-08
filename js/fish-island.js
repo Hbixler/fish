@@ -188,14 +188,10 @@ function buyBait(baitNumber, numToBuy) {
             makeSectionVisible('supplies');
         }
 
-        if(!isListElementVisible("supplies", baitNumber)) { // makes buying chicken nuggets visible after buying a saltine cracker
-            if (baitNumber === 2 && !baits[2].unlocked) {
-                makeListElementVisible("bait-trading", 2);
-            }
-
+        if(!isListElementVisible("supplies", baitNumber)) { 
             makeListElementVisible("supplies", baitNumber); // make bait visible in supplies
         }
-    }    
+    }
 }
 
 // buying rods
@@ -224,10 +220,8 @@ function buyRod(fishingRodNumber) {
             makeListElementVisible("bait-trading", 0);
 
             updateBaits(baits)
-        } else if (fishingRodNumber === 2) {
-            makeListElementVisible("bait-trading", 1);
-        } else if (fishingRodNumber === 3) {
-            makeListElementVisible("bait-trading", 3);
+        } else {
+            makeListElementVisible("bait-trading", fishingRodNumber - 1);
         }
 
         // toggling visibility as fishing rods are bought
@@ -286,7 +280,7 @@ function buyHabitat(fishHabitatNumber) {
         // changes displays based on what's unlocked --> shows all fish that have been unlocked before they bought the fish bowl
         for (fishNumber in fishStats) { // displays fish that are unlocked
             if (fishStats[fishNumber].unlocked) {
-                makeHabitatFishVisible(fishNumber);
+                makeListElementVisible("fish-habitat", fishNumber);
             }
         }
     }

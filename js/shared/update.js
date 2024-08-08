@@ -81,10 +81,11 @@ function updateFishCount(fishNumber, numFish) {
 
         // Add fish to inventory options
         makeListElementVisible("fish-list", fishNumber);
+        makeListElementVisible("fish-habitat", fishNumber);
 
         if (isNavBarLinkVisible("Habitat")) {
             // If habitat unlocked, make fish option in habitat
-            makeHabitatFishVisible(fishNumber);
+            makeListElementVisible("fish-habitat", fishNumber);
         }
 
         if (fishNumber >= 1) {
@@ -98,9 +99,7 @@ function updateFishCount(fishNumber, numFish) {
             makeListElementVisible("vehicle-trading", 1);
         }
     } 
-
-    console.log("Fish count is 5: " + fishStats[0].inventoryCount);
-    console.log("Trading section is not visible: " + !isSectionVisible("trading"));
+    
     if (fishStats[0].inventoryCount === 5 && !isSectionVisible("trading")) { // at 5 goldfish
         console.log("SELLING FISH SHOULD BE POSSIBLE");
         makeSectionVisible("trading");

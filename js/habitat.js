@@ -114,5 +114,5 @@ function howBigAreMyFish() {
 // DELETE LATER
 permanentVisibility();
 
-/* makeHabitatPageVisible(); */
+/* makeEverythingVisible(); */
 /* makeNavBarVisible(); */
