@@ -232,4 +232,6 @@ function seduceTheFrog() {
 }
 
 // DELETE LATER
+permanentVisibility();
+
 /* makeVastUnknownVisible(); */

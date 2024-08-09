@@ -112,5 +112,7 @@ function howBigAreMyFish() {
 }
 
 // DELETE LATER
-/* makeHabitatPageVisible(); */
+permanentVisibility();
+
+/* makeEverythingVisible(); */
 /* makeNavBarVisible(); */

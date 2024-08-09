@@ -5,6 +5,7 @@ function updateSandDollars(sandDollars) {
     updateBuyButtons(sandDollars);
 
     let sandDollarsSpan = document.getElementById('sandDollars');
+    
 
     if (sandDollarsSpan) {
         sandDollarsSpan.innerText = (Math.round(sandDollars * 100) / 100).toLocaleString();
@@ -13,16 +14,16 @@ function updateSandDollars(sandDollars) {
     if(sandDollars > 10 && !isSectionVisible("equipment-trading")) { // unlocks equipment section of trading when 10 sanddollars are earned
 
         makeSectionVisible("equipment-trading");
-        makeRodVisible(1);
+        makeListElementVisible("equipment-trading", 1);
 
         if (isSectionVisible("equipment-trading")) {
             fishingRods[0].unlocked = true;
         }
     }
 
-    if(sandDollars >= 30 && isBaitVisible(0)) { // unlocks habitat section of trading when 40 sanddollars are earned and bait is already unlocked
+    if(sandDollars >= 30 && isListElementVisible("supplies", 0)) { // unlocks habitat section of trading when 40 sanddollars are earned and bait is already unlocked
         makeSectionVisible("habitat-trading");
-        makeHabitatVisible(0)
+        makeListElementVisible("habitat-trading", 0);
     }
 }
 
@@ -64,43 +65,46 @@ function updateFishCount(fishNumber, numFish) {
         makeSectionVisible("fish-trading");
     }
 
-    if (fishStats[fishNumber].inventoryCount >= 1 && !isInventoryFishVisible(fishNumber)) {
+    if (fishStats[fishNumber].inventoryCount >= 1 && !isListElementVisible("fish-list", fishNumber)) {
         if (fishNumber === 0) {
             // Fishing for goldfish for first time, adding boxes and borders
             makeSectionVisible("fish-list");
             makeNavBarLinkVisible("Fish Island");
-
-            if (fishStats[0].inventoryCount === 5 && !isSectionVisible("trading")) { // at 5 goldfish
-                makeSectionVisible("trading");
-                makeFishTradingVisible(0);
-            }
         }
 
         if (fishNumber === 2 && !fishStats[2].unlocked) {
-            makeBaitTradingVisible(2);
+            makeListElementVisible("bait-trading", 2);
         }
 
         // Unlock fish
         fishStats[fishNumber].unlocked = true;
 
         // Add fish to inventory options
-        makeInventoryFishVisible(fishNumber);
+        makeListElementVisible("fish-list", fishNumber);
+        makeListElementVisible("fish-habitat", fishNumber);
 
         if (isNavBarLinkVisible("Habitat")) {
             // If habitat unlocked, make fish option in habitat
-            makeHabitatFishVisible(fishNumber);
+            makeListElementVisible("fish-habitat", fishNumber);
         }
 
         if (fishNumber >= 1) {
             // Add fish to trading option
-            makeFishTradingVisible(fishNumber);
+            makeListElementVisible("fish-trading", fishNumber);
         }
         
         // shows vehicles section when narwhal is unlocked
         if(fishNumber === fishStats.length - 1) {
-            makeVehicleSectionVisible();
+            makeSectionVisible("vehicle-trading");
+            makeListElementVisible("vehicle-trading", 1);
         }
     } 
+    
+    if (fishStats[0].inventoryCount === 5 && !isSectionVisible("trading")) { // at 5 goldfish
+        console.log("SELLING FISH SHOULD BE POSSIBLE");
+        makeSectionVisible("trading");
+        makeListElementVisible("fish-trading", 0);
+    }
     
     setBaits(baits);
 }
