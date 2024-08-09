@@ -59,12 +59,14 @@ for (let x = 0; x < baits.length; x++) {
     baitListing.innerText = baits[x].name;
     baitListing.classList.add('tooltipParent');
 
+    baitListing.setAttribute('data-tooltip', 'Tooltip info here!');
+
     let baitPrice = document.createElement('p');
     baitPrice.innerText = " (" + baits[x].cost + " SD)";
 
     document.getElementById('bait-trading-div').appendChild(baitTradingDiv).appendChild(baitListing);
 
-    let tooltip = document.createElement('div');
+    /*let tooltip = document.createElement('div');
     tooltip.className = "tooltip";
 
     let tooltipText = document.createElement('p');
@@ -73,6 +75,7 @@ for (let x = 0; x < baits.length; x++) {
 
     tooltip.appendChild(tooltipText);
     baitTradingDiv.appendChild(tooltip);
+    */
 
     for (let y = 0; y < bulkOptions.length; y++) {
         let buyButton = document.createElement('button');
