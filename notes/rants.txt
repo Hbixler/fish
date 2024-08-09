@@ -1,6 +1,12 @@
 07/22/2024 - Kai: 
 Note to self: don't go another 6 years without writing a do while loop. You WILL forget how to do it.
 
+07/22/2024 - Hailey:
+Dear hover box,
+Please stop flashing me. 
+Sincerely,
+Hailey
+
 07/20/2024 - Kai: 
 Why is the bait visibility such a mess? There are 3 versions of visibility strategies... and some variables that aren't used. Guess we're just revamping the whole thing. Wish me luck... I'm probably going to want to scream... a lot. 
 
