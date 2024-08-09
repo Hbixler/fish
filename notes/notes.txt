@@ -1,13 +1,13 @@
 To Do: 
-- hovering on things shows more info or something like that
 - remove 'unlocked' attribute from fishStats
 - css and spacing decisions for shared info section
 - add permanency to buy and sell button visibility
 - css and visual decisions for habitat page
-
-To check: 
-- does habitat revenue work? -> make separate revenue function? 
+- add permanence to vast unknown
+- buttons for buying sail should be disabled for sir frog
+- come up with sassy line for sir frog to say after you kick him (line 219 of vast-unknown.js)
+- Tooltip in habitat that shows how much space each fish takes up and how much it makes per second
 
 Bugs: 
-- Buy button for fish bowl doesn't disappear after buying it
-- buy and sell buttons for 100 show as always enabled
+- baits show up before rods that you can fish the corresponding fish with
+- buy sail button ocassionally doesn't buy a sail

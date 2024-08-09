@@ -1,12 +1,10 @@
 // Sand dollar count
 function updateSandDollars(sandDollars) {
     setSandDollars(sandDollars);
-
     updateBuyButtons(sandDollars);
 
     let sandDollarsSpan = document.getElementById('sandDollars');
     
-
     if (sandDollarsSpan) {
         sandDollarsSpan.innerText = (Math.round(sandDollars * 100) / 100).toLocaleString();
     }
@@ -21,13 +19,14 @@ function updateSandDollars(sandDollars) {
         }
     }
 
-    if(sandDollars >= 30 && isListElementVisible("supplies", 0)) { // unlocks habitat section of trading when 40 sanddollars are earned and bait is already unlocked
+    if(sandDollars >= 30 && isListElementVisible("supplies", 0) && !isSectionVisible("habitat-trading")) { // unlocks habitat section of trading when 40 sanddollars are earned and bait is already unlocked
         makeSectionVisible("habitat-trading");
         makeListElementVisible("habitat-trading", 0);
     }
 }
 
 function updateBaits(baits) {
+    console.log("This is dumb...");
     setBaits(baits);
 }
 
@@ -101,7 +100,6 @@ function updateFishCount(fishNumber, numFish) {
     } 
     
     if (fishStats[0].inventoryCount === 5 && !isSectionVisible("trading")) { // at 5 goldfish
-        console.log("SELLING FISH SHOULD BE POSSIBLE");
         makeSectionVisible("trading");
         makeListElementVisible("fish-trading", 0);
     }
@@ -123,17 +121,12 @@ function updateFishProgress(fishIndex, fishProgress) {
             newProgressSpan += "-";
         }
     }
-
-    console.log(fishProgress);
-    console.log(newProgressSpan);
     fishProgressSpan.innerText = newProgressSpan;
 }
 
 function updateFishRate(fishIndex, fishRate) {
     let fishProgressSpan = document.getElementById("fish" + fishIndex + "-progress");
     fishProgressSpan.innerText = fishRate + "/s";
-
-    console.log(fishProgressSpan);
 }
 
 function updateHasBait(fishIndex, hasBait) {
@@ -143,15 +136,10 @@ function updateHasBait(fishIndex, hasBait) {
 
 // Activates or deactivates buttons based on how many fish you have
 function updateSellButtons(fishIndex, inventoryCount) {
-    // I don't love the idea of copying and pasting bullk options like this so potentially optimize this to not do that
+    let sellButtons = document.getElementsByClassName("sellFish" + fishIndex)
 
-    let bulkOptions = [1, 5, 10, 50];
-
-    for (option of bulkOptions) {
-        let sellButton = document.getElementById("sellFish" + fishIndex + "x" + option);
-        if (sellButton) {
-            sellButton.disabled = option > inventoryCount;
-        }
+    for (button of sellButtons) {
+        button.disabled = button.value > inventoryCount;
     }
 }
 

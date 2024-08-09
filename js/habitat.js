@@ -1,7 +1,6 @@
 // Keeps everything visible across pages
 permanentVisibility();
 
-
 let currentHabitat = getCurrentHabitat();
 let revenue = getRevenue();
 let fishstats = getFishStats();
@@ -111,8 +110,5 @@ function howBigAreMyFish() {
     return(fishInHabitat);
 }
 
-// DELETE LATER
-permanentVisibility();
-
-/* makeEverythingVisible(); */
-/* makeNavBarVisible(); */
+// Visibility toggle -> in visibility.js
+visibilityToggle()

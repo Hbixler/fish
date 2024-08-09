@@ -39,7 +39,8 @@ for (let x = 0; x < fishes.length; x++) {
         let sellButton = document.createElement('button');
         if (y === 0) {sellButton.innerText = "Sell 1" } else { sellButton.innerText = bulkOptions[y] }
         sellButton.setAttribute("onclick", "sellFish(" + x + ","  + bulkOptions[y] + ")");
-        sellButton.id = "sellFish" + x + "x" + bulkOptions[y];
+        sellButton.value = bulkOptions[y];
+        sellButton.classList = ["sellFish" + x]
 
         document.getElementById('fishTrading' + x + '-div').appendChild(sellButton);
     }
@@ -56,23 +57,14 @@ for (let x = 0; x < baits.length; x++) {
     baitListing.innerText = baits[x].name;
     baitListing.classList.add('tooltipParent');
 
-    baitListing.setAttribute('data-tooltip', 'Tooltip info here!');
+    let applicableFish = fishes.findIndex(fish => fish.bait === baits[x].name);
+    baitListing.setAttribute('data-tooltip', "Use " + baits[x].name + " to catch a " + fishes[applicableFish].name + "!");
+    baitListing.setAttribute('data-tooltip-position', 'left');
 
     let baitPrice = document.createElement('p');
     baitPrice.innerText = " (" + baits[x].cost + " SD)";
 
     document.getElementById('bait-trading-div').appendChild(baitTradingDiv).appendChild(baitListing);
-
-    /*let tooltip = document.createElement('div');
-    tooltip.className = "tooltip";
-
-    let tooltipText = document.createElement('p');
-    let applicableFish = fishes.findIndex(fish => fish.bait === baits[x].name);
-    tooltipText.innerText = "Use " + baits[x].name + " to catch a " + fishes[applicableFish].name + "!";
-
-    tooltip.appendChild(tooltipText);
-    baitTradingDiv.appendChild(tooltip);
-    */
 
     for (let y = 0; y < bulkOptions.length; y++) {
         let buyButton = document.createElement('button');
@@ -84,7 +76,6 @@ for (let x = 0; x < baits.length; x++) {
 
         document.getElementById('baitTrading' + x + '-div').appendChild(buyButton);
     }
-    
 }
 
 // Buy equipment
@@ -176,8 +167,7 @@ function buyBait(baitNumber, numToBuy) {
     baitValue = baits[baitNumber].cost * numToBuy; // how much the bait would cost
 
     if (baitValue <= sandDollars) { // if they have enough money to buy bait
-        // If we previously had no bait, we make the rate white again
-        if (baits[baitNumber].count == 0) {
+        if (baits[baitNumber].count === 0) { // If we previously had no bait, we make the rate white again
             let fishIndex = fishStats.findIndex(fishStat => fishStat.bait == baits[baitNumber].name);
             updateHasBait(fishIndex, true);
         }
@@ -185,8 +175,7 @@ function buyBait(baitNumber, numToBuy) {
         updateBaitCount(baitNumber, baits[baitNumber].count + numToBuy); // Update bait
         updateSandDollars(sandDollars - baitValue); // Update sand dollars
     
-        // Unlock inventory and supplies if necessary
-        if (!isSectionVisible('inventory') || !isSectionVisible('supplies')) {
+        if (!isSectionVisible('inventory') || !isSectionVisible('supplies')) { // Unlock inventory and supplies if necessary
             makeSectionVisible('inventory');
             makeSectionVisible('supplies');
         }
@@ -199,98 +188,70 @@ function buyBait(baitNumber, numToBuy) {
 
 // buying rods
 function buyRod(fishingRodNumber) {
-    let baits = getBaits();
     let sandDollars = getSandDollars();
     let fishStats = getFishStats();
-
     rodValue = fishingRods[fishingRodNumber].cost;
-    if (rodValue <= sandDollars) {
-        // Update rod
-        currentRod = fishingRods[fishingRodNumber];
-        updateFishingRod(currentRod);
 
-        // Update sand dollars
-        sandDollars -= rodValue; 
+    if (rodValue <= sandDollars) {
+        currentRod = fishingRods[fishingRodNumber];
+        updateFishingRod(currentRod); // Update rod
+
+        sandDollars -= rodValue; // Update sand dollars
         updateSandDollars(sandDollars);
 
-        // Update fishing rates
-        for (let x = 0; x < fishStats.length; x++) {
+        for (let x = 0; x < fishStats.length; x++) { // Update fishing rates in shared info
             updateFishRate(x, currentRod.rates[fishStats[x].name]);
         }
 
-        if (fishingRodNumber === 1) { // the else ifs make the baits visible in inventory and trading section --> could maybe be classes. tried once, could try again
+        if (fishingRodNumber === 1) { // makes baits visible
             makeSectionVisible("bait-trading");
             makeListElementVisible("bait-trading", 0);
-
-            updateBaits(baits)
         } else {
             makeListElementVisible("bait-trading", fishingRodNumber - 1);
         }
 
-        // toggling visibility as fishing rods are bought
-        // console.log(fishingRodNumber);
-        if (fishingRodNumber != fishingRods.length - 1) {
-            // make next rod visible
-            let nextFishingRodNumber = fishingRodNumber + 1;
-            makeListElementVisible("equipment-trading", nextFishingRodNumber);
+        if (fishingRodNumber != fishingRods.length - 1) { // make next rod visible
+            makeListElementVisible("equipment-trading", fishingRodNumber + 1);
+        } 
 
-            // make current rod buy button invisible
-            fishingRodBuyButton = document.getElementById("buyRod" + fishingRodNumber);
-            fishingRodBuyButton.style.visibility = 'hidden';
-        } else { // last time only removes buy button
-            // make current rod buy button invisible
-            fishingRodBuyButton = document.getElementById("buyRod" + fishingRodNumber);
-            fishingRodBuyButton.style.visibility = 'hidden';
-        }
+        // make current rod buy button invisible
+        fishingRodBuyButton = document.getElementById("buyRod" + fishingRodNumber);
+        fishingRodBuyButton.style.visibility = 'hidden';
     }
 }
 
 // buying habitats
 function buyHabitat(fishHabitatNumber) {
     let fishHabitats = getFishHabitats();
-    let fishStats = getFishStats();
     let sandDollars = getSandDollars();
 
     habitatValue = fishHabitats[fishHabitatNumber].cost;
     if (habitatValue <= sandDollars) {
-        // Update habitat
         currentHabitat = fishHabitats[fishHabitatNumber];
-        updateHabitat(currentHabitat);
-
-        // Update sand dollars
+        updateHabitat(currentHabitat); // Update habitat
+        
         sandDollars -= habitatValue;
-        updateSandDollars(sandDollars);
+        updateSandDollars(sandDollars); // Update sand dollars
 
-        // toggling visibility as habitats are bought
-        if (fishHabitatNumber != fishHabitats.length - 1) {
-            if (fishHabitatNumber == 0) {
-                makeNavBarLinkVisible("Habitat");
-            }
-
-            // make next habitat visible
-            let nextHabitatNumber = fishHabitatNumber + 1;
-            makeListElementVisible("habitat-trading", nextHabitatNumber);
-
-            // make current habitat buy button invisible
-            habitatBuyButton = document.getElementById("buyHabitat" + fishHabitatNumber);
-            habitatBuyButton.style.visibility = 'hidden';
-        } else { // last time only removes buy button
-            // make current habitat buy button invisible
-            habitatBuyButton = document.getElementById("buyHabitat" + fishHabitatNumber);
-            habitatBuyButton.style.visibility = 'hidden';
+        if (fishHabitatNumber === 0) { // buying a fish bowl unlocks habitat page
+            makeNavBarLinkVisible("Habitat");
         }
 
-        // changes displays based on what's unlocked --> shows all fish that have been unlocked before they bought the fish bowl
-        for (fishNumber in fishStats) { // displays fish that are unlocked
-            if (fishStats[fishNumber].unlocked) {
-                makeListElementVisible("fish-habitat", fishNumber);
-            }
+        if (fishHabitatNumber != fishHabitats.length - 1) { // make next habitat visible
+            makeListElementVisible("habitat-trading", fishHabitatNumber + 1);
         }
+
+        // make current habitat buy button invisible
+        habitatBuyButton = document.getElementById("buyHabitat" + fishHabitatNumber);
+        console.log(habitatBuyButton.style.visibility);
+        habitatBuyButton.style.visibility = "hidden";
+        console.log(habitatBuyButton.style.visibility);
     }
 } 
 
 // buying vehicles
 function buyVehicle(vehicleNum) {
+    let vehicles = getVehicles();
     let sandDollars = getSandDollars();
 
     if (vehicles[vehicleNum].cost <= sandDollars) {
@@ -306,8 +267,5 @@ function buyVehicle(vehicleNum) {
     }
 }
 
-// Keeps everything visible across pages
-permanentVisibility();
-
-// for testing
-/* makeEverythingVisible(); */
+// Visibility toggle -> in visibility.js
+visibilityToggle()

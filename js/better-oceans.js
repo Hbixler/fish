@@ -1,5 +1,2 @@
-// Keeps everything visible across pages
-permanentVisibility();
-
-// DELETE LATER
-/* makeBetterOceansVisible(); */
+// Visibility toggle -> in visibility.js
+visibilityToggle()

@@ -211,6 +211,7 @@ function getCurrentHabitat() { // get function
     return JSON.parse(sessionStorage.getItem('currentHabitat'))
 };
 function setCurrentHabitat(currentHabitat) { // set function
+    console.log('setting current habitat inside main.js to ' + currentHabitat);
     sessionStorage.setItem('currentHabitat', JSON.stringify(currentHabitat))
 };
 
@@ -257,11 +258,11 @@ let vehiclesInitial = [
     },
     {
         name: "Rowboat",
-        cost: 10000,
+        cost: 100, // usually 10,000
     }, 
     {
         name: "Sailboat",
-        cost: 20000,
+        cost: 500, // usually 20,000
     }
 ]
 if(!sessionStorage.getItem('vehicles')) {sessionStorage.setItem('vehicles', JSON.stringify(vehiclesInitial))}; // intial set

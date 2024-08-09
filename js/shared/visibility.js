@@ -1,3 +1,9 @@
+// VISIBILITY TOGGLE
+function visibilityToggle() {
+    /* makeEverythingVisible(); */
+    permanentVisibility();
+}
+
 // OBJECT OF VISIBILITY
 let visibility = {
     // fish island
@@ -78,6 +84,12 @@ let visibility = {
         }
     },
 
+    // vast unknown
+    'sir-frog': {
+        id: 'frog-box',
+        visible: false,
+    },
+
     // shared info
     'fish-list': { 
         id: 'fish-list',
@@ -149,28 +161,6 @@ function makeNavBarLinkVisible(navBarLink) {
     div.style.visibility = 'visible';
     navBar[navBarIndex].visible = true;
     setNavBarLinks(navBar);
-}
-
-// VAST UNKNOWN
-function makeFrogVisible() {
-    let frogDiv = document.getElementById("frog-box");
-    if (frogDiv) {
-        frogDiv.style.visibility = 'visible';
-    }
-}
-function makeVastUnknownVisible() {
-    makeFrogVisible();
-    makeSharedInfoVisible();
-}
-
-// WISE OLD MAGE
-function makeWiseOldMageVisible() {
-    makeSharedInfoVisible();
-}
-
-// BETTER OCEANS
-function makeBetterOceansVisible() {
-    makeSharedInfoVisible();
 }
 
 // PERMANENT VISIBILITY FUNCTION

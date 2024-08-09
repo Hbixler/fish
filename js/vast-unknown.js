@@ -23,7 +23,7 @@ function sail(direction) {
                 // Found the frog!
                 updateVastUnknownMessage("You found a frog!");
 
-                makeFrogVisible();
+                makeSectionVisible("sir-frog");
                 updateFrogMessage('Ribbit! Would you like my assistance getting to your next destination?');
                 sirFrogTalks();
             }
@@ -65,17 +65,12 @@ function clearButtonColumns() {
     }
 }
 
-function dummyFunction() { // REMOVE THIS ONCE ALL FUNCTIONS ARE REPLACED
-    console.log('not a real function');
-}
-
 function sirFrogTalks() {
     let vehicles = getVehicles();
     let currentVehicle = getCurrentVehicle();
     clearButtonColumns();
 
     // Create ask for directions button
-    console.log(hasDirections);
     if (!hasDirections) {
         let askForDirections = document.createElement('button');
         askForDirections.innerText = 'Ask For Directions';
@@ -231,7 +226,5 @@ function seduceTheFrog() {
     updateFrogMessage('I am going to croak without you in my life.');
 }
 
-// DELETE LATER
-permanentVisibility();
-
-/* makeVastUnknownVisible(); */
+// Visibility toggle -> in visibility.js
+visibilityToggle()
