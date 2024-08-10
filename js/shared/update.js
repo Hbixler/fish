@@ -10,13 +10,8 @@ function updateSandDollars(sandDollars) {
     }
 
     if(sandDollars > 10 && !isSectionVisible("equipment-trading")) { // unlocks equipment section of trading when 10 sanddollars are earned
-
         makeSectionVisible("equipment-trading");
         makeListElementVisible("equipment-trading", 1);
-
-        if (isSectionVisible("equipment-trading")) {
-            fishingRods[0].unlocked = true;
-        }
     }
 
     if(sandDollars >= 30 && isListElementVisible("supplies", 0) && !isSectionVisible("habitat-trading")) { // unlocks habitat section of trading when 40 sanddollars are earned and bait is already unlocked
@@ -70,13 +65,6 @@ function updateFishCount(fishNumber, numFish) {
             makeSectionVisible("fish-list");
             makeNavBarLinkVisible("Fish Island");
         }
-
-        if (fishNumber === 2 && !fishStats[2].unlocked) {
-            makeListElementVisible("bait-trading", 2);
-        }
-
-        // Unlock fish
-        fishStats[fishNumber].unlocked = true;
 
         // Add fish to inventory options
         makeListElementVisible("fish-list", fishNumber);

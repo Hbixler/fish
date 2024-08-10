@@ -1,5 +1,4 @@
 To Do: 
-- remove 'unlocked' attribute from fishStats
 - css and spacing decisions for shared info section
 - add permanency to buy and sell button visibility
 - css and visual decisions for habitat page
@@ -11,3 +10,4 @@ To Do:
 Bugs: 
 - baits show up before rods that you can fish the corresponding fish with
 - buy sail button ocassionally doesn't buy a sail
+- you can get the next fish before the current fish (ex. narwhal before a whale)

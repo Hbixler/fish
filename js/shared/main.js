@@ -37,7 +37,6 @@ let fishStatsInitial = [ // original fish stats array - revenue is in SD/second
         bait: "",
         inventoryCount: 0,
         habitatCount: 0,
-        unlocked: false,
     },
     {
         name: 'Swordfish',
@@ -47,7 +46,6 @@ let fishStatsInitial = [ // original fish stats array - revenue is in SD/second
         bait: "Gummy Worms",
         inventoryCount: 0,
         habitatCount: 0,
-        unlocked: false,
     },
     {
         name: 'Shark',
@@ -57,7 +55,6 @@ let fishStatsInitial = [ // original fish stats array - revenue is in SD/second
         bait: "Saltine Crackers",
         inventoryCount: 0,
         habitatCount: 0,
-        unlocked: false,
     },
     {
         name: 'Whale',
@@ -67,7 +64,6 @@ let fishStatsInitial = [ // original fish stats array - revenue is in SD/second
         bait: "Chicken Nuggets",
         inventoryCount: 0,
         habitatCount: 0,
-        unlocked: false,
     },
     {
         name: 'Narwhal',
@@ -77,7 +73,6 @@ let fishStatsInitial = [ // original fish stats array - revenue is in SD/second
         bait: "Cake Slices",
         inventoryCount: 0,
         habitatCount: 0,
-        unlocked: false,
     },
 ]
 if(!sessionStorage.getItem('fishStats')) {sessionStorage.setItem('fishStats', JSON.stringify(fishStatsInitial));} // initial set
@@ -100,7 +95,6 @@ let fishingRodStats = [// rates are in fish/second
             "Narwhal": 0,
         },
         cost: 0,
-        unlocked: true,
     },
     {
         name: "A Fishing Rod",
@@ -112,7 +106,6 @@ let fishingRodStats = [// rates are in fish/second
             'Narwhal': 0,
         },
         cost: 10, // usually 25
-        unlocked: false,
     },
     {
         name: "A Better Fishing Rod",
@@ -124,7 +117,6 @@ let fishingRodStats = [// rates are in fish/second
             'Narwhal': 0,
         },
         cost: 50,
-        unlocked: false,
     },
     {
         name: "An Even Better Fishing Rod",
@@ -136,7 +128,6 @@ let fishingRodStats = [// rates are in fish/second
             'Narwhal': 0,
         },
         cost: 100,
-        unlocked: false,
     },
     {
         name: "The Best Fishing Rod",
@@ -148,7 +139,6 @@ let fishingRodStats = [// rates are in fish/second
             'Narwhal': 0.02,
         },
         cost: 300,
-        unlocked: false,
     },
 ]
 if(!sessionStorage.getItem('fishingRods')) {sessionStorage.setItem('fishingRods', JSON.stringify(fishingRodStats))}; // initial set
@@ -175,25 +165,21 @@ let fishHabitatsInitial = [
         name: "Fish Bowl",
         capacity: 10,
         cost: 20, // usually 50
-        unlocked: false,
     },
     {
         name: "Fish Tank",
         capacity: 25,
         cost: 100,
-        unlocked: false,
     },
     {
         name: "Aquarium",
         capacity: 200,
         cost: 300,
-        unlocked: false,
     },
     {
         name: "Small Lake",
         capacity: 400,
         cost: 500,
-        unlocked: false,
     }
 ]
 if(!sessionStorage.getItem('fishHabitats')) {sessionStorage.setItem('fishHabitats', JSON.stringify(fishHabitatsInitial))}; // initial set
@@ -221,25 +207,21 @@ let baitsInitial = [
         name: "Gummy Worms",
         cost: 1,
         count: 0,
-        unlocked: false,
     },
     {
         name: "Saltine Crackers",
         cost: 3,
         count: 0,
-        unlocked: false,
     },
     {
         name: "Chicken Nuggets",
         cost: 5,
         count: 0,
-        unlocked: false,
     },
     {
         name: "Cake Slices",
         cost: 6,
         count: 0,
-        unlocked: false,
     },
 ]
 if(!sessionStorage.getItem('baits')) {sessionStorage.setItem('baits', JSON.stringify(baitsInitial))}; // initial set
