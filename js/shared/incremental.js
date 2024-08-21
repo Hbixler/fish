@@ -1,5 +1,6 @@
-// REVENUE FROM VISITORS
 let speed = getSpeed();
+
+// REVENUE FROM VISITORS
 window.setInterval(function() {
     let sandDollars = getSandDollars();
     let revenue = getRevenue();

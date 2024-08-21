@@ -150,6 +150,7 @@ function goFishing() {
 }
 
 // TRADING
+// selling fish
 function sellFish(fishType, numToSell) {
     let fishStats = getFishStats();
     let fishStat = fishStats[fishType];
@@ -159,7 +160,7 @@ function sellFish(fishType, numToSell) {
     }
 }
 
-// Buying bait
+// buying bait
 function buyBait(baitNumber, numToBuy) {
     let baits = getBaits();
     let sandDollars = getSandDollars();
@@ -243,9 +244,7 @@ function buyHabitat(fishHabitatNumber) {
 
         // make current habitat buy button invisible
         habitatBuyButton = document.getElementById("buyHabitat" + fishHabitatNumber);
-        console.log(habitatBuyButton.style.visibility);
         habitatBuyButton.style.visibility = "hidden";
-        console.log(habitatBuyButton.style.visibility);
     }
 } 
 

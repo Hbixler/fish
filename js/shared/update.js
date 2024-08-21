@@ -4,28 +4,28 @@ function updateSandDollars(sandDollars) {
     updateBuyButtons(sandDollars);
 
     let sandDollarsSpan = document.getElementById('sandDollars');
-    
     if (sandDollarsSpan) {
         sandDollarsSpan.innerText = (Math.round(sandDollars * 100) / 100).toLocaleString();
     }
 
-    if(sandDollars > 10 && !isSectionVisible("equipment-trading")) { // unlocks equipment section of trading when 10 sanddollars are earned
+    if(sandDollars > 10 && !isSectionVisible("equipment-trading")) { // unlocks equipment trading at 10 SDs
         makeSectionVisible("equipment-trading");
         makeListElementVisible("equipment-trading", 1);
     }
 
-    if(sandDollars >= 30 && isListElementVisible("supplies", 0) && !isSectionVisible("habitat-trading")) { // unlocks habitat section of trading when 40 sanddollars are earned and bait is already unlocked
+    if(sandDollars >= 30 && isListElementVisible("supplies", 0) && !isSectionVisible("habitat-trading")) { // unlocks habitat trading at 40 SDs and bait is already unlocked
         makeSectionVisible("habitat-trading");
         makeListElementVisible("habitat-trading", 0);
     }
 }
 
+// baits
 function updateBaits(baits) {
     console.log("This is dumb...");
     setBaits(baits);
 }
 
-// Update functions
+// bait count
 function updateBaitCount(baitNum, numBaits) {
     let baits = getBaits();
     baits[baitNum].count = numBaits;
@@ -36,11 +36,15 @@ function updateBaitCount(baitNum, numBaits) {
         baitSpan.innerText = baits[baitNum].count;
     }
 }
+
+// current fishing rod
 function updateFishingRod(currentRod) {
     setCurrentRod(currentRod);
     let fishingRodSpan = document.getElementById("fishingRod");
     fishingRodSpan.innerText = currentRod.name;
 }
+
+// fish count
 function updateFishCount(fishNumber, numFish) {
     let fishStats = getFishStats();
     let baits = getBaits();
@@ -112,11 +116,13 @@ function updateFishProgress(fishIndex, fishProgress) {
     fishProgressSpan.innerText = newProgressSpan;
 }
 
+// update fishing rates
 function updateFishRate(fishIndex, fishRate) {
     let fishProgressSpan = document.getElementById("fish" + fishIndex + "-progress");
     fishProgressSpan.innerText = fishRate + "/s";
 }
 
+// update colouring of fish counts
 function updateHasBait(fishIndex, hasBait) {
     let fishProgressSpan = document.getElementById("fish" + fishIndex + "-progress");
     fishProgressSpan.style.color = hasBait ? 'white' : 'red';
