@@ -1,18 +1,18 @@
-let speed = getSpeed();
+let speed = get('speed');
 
 // REVENUE FROM VISITORS
 window.setInterval(function() {
-    let sandDollars = getSandDollars();
-    let revenue = getRevenue();
+    let sandDollars = get('sandDollars');
+    let revenue = get('revenue');
     sandDollars = sandDollars + revenue;
     updateSandDollars(sandDollars);
 }, 1000/speed)
 
 // AUTOMATIC FISHING
 window.setInterval(function() {
-    let fishStats = getFishStats();
-    let baits = getBaits();
-    let currentRod = getCurrentRod();
+    let fishStats = get('fishStats');
+    let baits = get('baits');
+    let currentRod = get('currentRod');
 
     for (autoFish in currentRod.rates) {
         // Find the fish's stats

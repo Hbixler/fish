@@ -149,18 +149,18 @@ function makeListElementVisible(section, elementNum) {
 
 // NAV BAR
 function isNavBarLinkVisible(navBarLink) {
-    let navBar = getNavBarLinks();
+    let navBar = get('navBarLinks');
     let navBarIndex = navBar.findIndex(link => link.name === navBarLink);
     let div = document.getElementById(navBar[navBarIndex].id);
     return div && div.style.visibility == 'visible';
 }
 function makeNavBarLinkVisible(navBarLink) {
-    let navBar = getNavBarLinks();
+    let navBar = get('navBarLinks');
     let navBarIndex = navBar.findIndex(link => link.name === navBarLink);
     let div = document.getElementById(navBar[navBarIndex].id);
     div.style.visibility = 'visible';
     navBar[navBarIndex].visible = true;
-    setNavBarLinks(navBar);
+    set('navBarLinks', navBar);
 }
 
 // PERMANENT VISIBILITY FUNCTION
@@ -181,7 +181,7 @@ function permanentVisibility() {
             }
         }
     }
-    let visibilityNavBar = getNavBarLinks(); // nav bar
+    let visibilityNavBar = get('navBarLinks'); // nav bar
     for (navBar in visibilityNavBar) {
         let navBarLink = document.getElementById(visibilityNavBar[navBar].id);   
         if (navBarLink && visibilityNavBar[navBar].visible) {
@@ -190,10 +190,10 @@ function permanentVisibility() {
     }
 }
 function fishListVisibility() { // shared info fish list
-    let inventoryFish = getFishStats(); // fish
+    let inventoryFish = get('fishStats'); // fish
     for (fish in inventoryFish) {
         let element = document.getElementById("fish" + fish + "-div");
-        if (element && fishStats[fish].visible) {
+        if (element && inventoryFish[fish].visible) {
             element.style.visibility = "visible";
         }
     }
@@ -202,14 +202,14 @@ function fishListVisibility() { // shared info fish list
 // FOR EVERYTHING FUNCTION
 function makeSharedInfoVisible() { // makes shared info section visible
     makeSectionVisible("fish-list");
-    let fish = getFishStats();
+    let fish = get('fishStats');
     for (fishNum in fish) {
         makeListElementVisible("fish-list", fishNum);
     }
 }
 
 function makeNavBarVisible() {
-    getNavBarLinks();
+    get('navBarLinks');
     for (item in navBarLinks) {
         let link = document.getElementById(navBarLinks[item].id);
         link.style.visibility = 'visible';

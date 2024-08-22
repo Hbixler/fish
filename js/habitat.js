@@ -1,9 +1,9 @@
 // Keeps everything visible across pages
 permanentVisibility();
 
-let currentHabitat = getCurrentHabitat();
-let revenue = getRevenue();
-let fishstats = getFishStats();
+let currentHabitat = get('currentHabitat');
+let revenue = get('revenue');
+let fishStats = get('fishStats');
 let operations = [
     {
         name: "plus",
@@ -15,8 +15,16 @@ let operations = [
     },
 ]
 
+// sets original fish space being taken up as 0
+let fishInHabitat = 0;
+let fishInHabitatSpan = document.getElementById('fishInHabitat');
+fishInHabitatSpan.innerText = fishInHabitat;
+
 // Display revenue
 updateRevenue(revenue);
+howBigAreMyFish();
+
+// HTML GENERATION 
 
 // fish in habitat counts and buttons
 for (let x = 0; x < fishStats.length; x++) {
@@ -25,10 +33,24 @@ for (let x = 0; x < fishStats.length; x++) {
     fishInHabitatDiv.id = "fishInHabitat" + x + "-div";
     fishInHabitatDiv.style.visibility = "hidden";
 
-    fishLabelDiv = document.createElement("div");
+    let fishLabelDiv = document.createElement("div");
     fishLabelDiv.className = "column fish-count";
     fishLabelDiv.id = "fish" + x + "-habitat";
-    fishLabelDiv.innerText = fishStats[x].name + ": " + fishStats[x].habitatCount;
+
+    let fishLabel = document.createElement("p");
+
+    let fishNameLabel = document.createElement("span");
+    fishNameLabel.innerText = fishStats[x].name;
+    fishNameLabel.classList.add('tooltipParent');
+
+    fishNameLabel.setAttribute('data-tooltip', "Size: " + fishStats[x].size)
+    fishNameLabel.setAttribute('data-tooltip-2', "Revenue: " + fishStats[x].revenue + " SD/s");
+    fishNameLabel.setAttribute('data-tooltip-position', 'left');
+    fishLabel.appendChild(fishNameLabel);
+
+    let fishCountLabel = document.createTextNode(": " + fishStats[x].habitatCount);
+    fishLabel.appendChild(fishCountLabel);
+    fishLabelDiv.appendChild(fishLabel);
 
     buttonDiv = document.createElement("div");
     buttonDiv.className = "button-col";
@@ -52,20 +74,16 @@ for (let x = 0; x < fishStats.length; x++) {
     document.getElementById("fishCount").appendChild(fishInHabitatDiv);
 }
 
-// sets original fish space being taken up as 0
-let fishInHabitat = 0;
-let fishInHabitatSpan = document.getElementById('fishInHabitat');
-fishInHabitatSpan.innerText = fishInHabitat;
+// FUNCTIONS
 
+// setting habitat name and fish message
 updateHabitat(currentHabitat);
-
-// Setting fish message
 updateFishMessage();
 
 // buttons for adding and removing fish from habitat
 function plus(fishNumber) {
-    let fishStats = getFishStats();
-    let revenue = getRevenue();
+    let fishStats = get('fishStats');
+    let revenue = get('revenue');
 
     newSpace = fishInHabitat + fishStats[fishNumber].size; // obj = arr.find(o => o.name === 'string 1')
     if (fishStats[fishNumber].inventoryCount >= 1 && newSpace <= currentHabitat.capacity) { // only if there is fish in the inventory to put in the habitat and it wouldn't exceed the maximum space
@@ -81,8 +99,8 @@ function plus(fishNumber) {
     
 }
 function minus(fishNumber) {
-    let fishStats = getFishStats();
-    let revenue = getRevenue();
+    let fishStats = get('fishStats');
+    let revenue = get('revenue');
 
     if(fishStats[fishNumber].habitatCount >= 1) { // can't have negative fish
         let habitatCount = fishStats[fishNumber].habitatCount - 1; // takes fish out of habitat
@@ -98,7 +116,7 @@ function minus(fishNumber) {
 
 // function to calculate how much space the fish in the habitat are taking up
 function howBigAreMyFish() { 
-    let fishStats = getFishStats();
+    let fishStats = get('fishStats');
     fishInHabitat = 0;
     for (fishNumber in fishStats) {
         fishInHabitat += (fishStats[fishNumber].habitatCount * fishStats[fishNumber].size);

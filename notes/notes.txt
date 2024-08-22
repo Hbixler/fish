@@ -5,11 +5,15 @@ To Do:
 - add permanence to vast unknown
 - buttons for buying sail should be disabled for sir frog
 - come up with sassy line for sir frog to say after you kick him (line 219 of vast-unknown.js)
-- Tooltip in habitat that shows how much space each fish takes up and how much it makes per second
-- add habitat content object in main.js for permanency
+- add habitat info object in main.js for permanency
+- re-evaluate how tooltips look (ie blocking other things? toggle to show/hide tooltips?)
+- add limits to resources (fish, resources, etc) that you can then upgrade
+    - add a section to trading for this
 
 Bugs: 
 - buy sail button ocassionally doesn't buy a sail
 - you can get the next fish before the current fish (ex. narwhal before a whale)
     - have baits show up only after the previous one showed up too 
     - have fish and bait show up as soon as it's possible to get them? (except the first fish and the first bait)
+- fishing rates aren't permanent for visibility
+- sailing south as the second pattern crashes you into a rock

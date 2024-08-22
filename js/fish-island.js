@@ -1,10 +1,10 @@
 // GETTING AND SETTING INFO
-let fishes = getFishStats();
-let baits = getBaits();
-let fishingRods = getFishingRods();
-let fishHabitats = getFishHabitats();
-let vehicles = getVehicles();
-let sandDollars = getSandDollars();
+let fishes = get('fishStats');
+let baits = get('baits');
+let fishingRods = get('fishingRods');
+let fishHabitats = get('fishHabitats');
+let vehicles = get('vehicles');
+let sandDollars = get('sandDollars');
 let bulkOptions = [1, 5, 10, 50, 100];
 
 // HTML GENERATION
@@ -145,26 +145,26 @@ for (let x = 1; x < 2; x++) {
 
 // go fishing button
 function goFishing() {
-    let fishStats = getFishStats();
+    let fishStats = get('fishStats');
     updateFishCount(0, fishStats[0].inventoryCount + 1);
 }
 
 // TRADING
 // selling fish
 function sellFish(fishType, numToSell) {
-    let fishStats = getFishStats();
+    let fishStats = get('fishStats');
     let fishStat = fishStats[fishType];
     if (fishStat.inventoryCount >= numToSell) {
         updateFishCount(fishType, fishStat.inventoryCount - numToSell); // Update fish value accordingly
-        updateSandDollars(getSandDollars() + (fishStat.cost * numToSell)); // Update sand dollar count
+        updateSandDollars(get('sandDollars') + (fishStat.cost * numToSell)); // Update sand dollar count
     }
 }
 
 // buying bait
 function buyBait(baitNumber, numToBuy) {
-    let baits = getBaits();
-    let sandDollars = getSandDollars();
-    let fishStats = getFishStats();
+    let baits = get('baits');
+    let sandDollars = get('sandDollars');
+    let fishStats = get('fishStats');
     baitValue = baits[baitNumber].cost * numToBuy; // how much the bait would cost
 
     if (baitValue <= sandDollars) { // if they have enough money to buy bait
@@ -189,8 +189,8 @@ function buyBait(baitNumber, numToBuy) {
 
 // buying rods
 function buyRod(fishingRodNumber) {
-    let sandDollars = getSandDollars();
-    let fishStats = getFishStats();
+    let sandDollars = get('sandDollars');
+    let fishStats = get('fishStats');
     rodValue = fishingRods[fishingRodNumber].cost;
 
     if (rodValue <= sandDollars) {
@@ -223,8 +223,8 @@ function buyRod(fishingRodNumber) {
 
 // buying habitats
 function buyHabitat(fishHabitatNumber) {
-    let fishHabitats = getFishHabitats();
-    let sandDollars = getSandDollars();
+    let fishHabitats = get('fishHabitats');
+    let sandDollars = get('sandDollars');
 
     habitatValue = fishHabitats[fishHabitatNumber].cost;
     if (habitatValue <= sandDollars) {
@@ -250,8 +250,8 @@ function buyHabitat(fishHabitatNumber) {
 
 // buying vehicles
 function buyVehicle(vehicleNum) {
-    let vehicles = getVehicles();
-    let sandDollars = getSandDollars();
+    let vehicles = get('vehicles');
+    let sandDollars = get('sandDollars');
 
     if (vehicles[vehicleNum].cost <= sandDollars) {
         sandDollars -= vehicles[vehicleNum].cost;

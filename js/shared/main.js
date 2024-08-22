@@ -1,31 +1,17 @@
 console.log("I am a fish"); // MAXIMUM IMPORTANCE - DO NOT REMOVE
 
-// SPEED OF GAME
-speedInitial = 10; // intervals per second
-if(!sessionStorage.getItem('speed')) {sessionStorage.setItem('speed', JSON.stringify(speedInitial))}; // initial set
-function getSpeed() { // get function
-    return JSON.parse(sessionStorage.getItem('speed'))
-}; 
+// GET AND SET FUNCTION
+function get(savedObject) {
+    return JSON.parse(sessionStorage.getItem(savedObject));
+}
 
-// SAND DOLLARS
+function set(savedObject, newObject) {
+    sessionStorage.setItem(savedObject, JSON.stringify(newObject));
+}
+
+let speedInitial = 10; // intervals per second
 let sandDollarsInitial = 0; // initial sand dollars
-if(!sessionStorage.getItem('sandDollars')) {sessionStorage.setItem('sandDollars', JSON.stringify(sandDollarsInitial))}; // initial set
-function getSandDollars() { // get function
-    return JSON.parse(sessionStorage.getItem('sandDollars'))
-};
-function setSandDollars(newSandDollars) { // set function
-    sessionStorage.setItem('sandDollars', JSON.stringify(newSandDollars))
-};
-
-// REVENUE
 let revenueInitial = 0; // initial revenue
-if(!sessionStorage.getItem('revenue')) {sessionStorage.setItem('revenue', JSON.stringify(revenueInitial))}; // intial set
-function getRevenue() { // get function
-    return JSON.parse(sessionStorage.getItem('revenue'))
-}; 
-function setRevenue(newRevenue) { // set function
-    sessionStorage.setItem('revenue', JSON.stringify(newRevenue))
-}; 
 
 // FISH STATS
 let fishStatsInitial = [ // original fish stats array - revenue is in SD/second
@@ -71,20 +57,13 @@ let fishStatsInitial = [ // original fish stats array - revenue is in SD/second
         cost: 350,
         revenue: 6.5,
         bait: "Cake Slices",
-        inventoryCount: 0,
+        inventoryCount: 0, 
         habitatCount: 0,
     },
 ]
-if(!sessionStorage.getItem('fishStats')) {sessionStorage.setItem('fishStats', JSON.stringify(fishStatsInitial));} // initial set
-function getFishStats() { // get function
-    return JSON.parse(sessionStorage.getItem('fishStats'));
-} 
-function setFishStats(newFishStats) { // set function
-    sessionStorage.setItem('fishStats', JSON.stringify(newFishStats));
-} 
 
 // FISHING RODS
-let fishingRodStats = [// rates are in fish/second
+let fishingRodsInitial = [// rates are in fish/second
     {
         name: "Bare Hands",
         rates: {
@@ -141,23 +120,7 @@ let fishingRodStats = [// rates are in fish/second
         cost: 300,
     },
 ]
-if(!sessionStorage.getItem('fishingRods')) {sessionStorage.setItem('fishingRods', JSON.stringify(fishingRodStats))}; // initial set
-function getFishingRods() { // get function
-    return JSON.parse(sessionStorage.getItem('fishingRods'))
-}; 
-function setFishingRods(newFishingRods) { // set function
-    sessionStorage.setItem('fishingRods', JSON.stringify(newFishingRods))
-}; 
-
-// CURRENT FISHING ROD
-let currentRodStats = fishingRodStats[0]; // sets original rod to bare hands
-if(!sessionStorage.getItem('currentRod')) {sessionStorage.setItem('currentRod', JSON.stringify(currentRodStats))}; // initial set
-function getCurrentRod() { // get function
-    return JSON.parse(sessionStorage.getItem('currentRod'))
-}; 
-function setCurrentRod(currentRod) { // set function
-    sessionStorage.setItem('currentRod', JSON.stringify(currentRod))
-}; 
+let currentRodInitial = fishingRodsInitial[0]; // sets original rod to bare hands
 
 // HABITATS
 let fishHabitatsInitial = [
@@ -182,24 +145,7 @@ let fishHabitatsInitial = [
         cost: 500,
     }
 ]
-if(!sessionStorage.getItem('fishHabitats')) {sessionStorage.setItem('fishHabitats', JSON.stringify(fishHabitatsInitial))}; // initial set
-function getFishHabitats() { // get function
-    return JSON.parse(sessionStorage.getItem('fishHabitats'))
-};
-function setFishHabitats(newFishHabitats) { // set function
-    sessionStorage.setItem('fishHabitats', JSON.stringify(newFishHabitats))
-};
-
-// CURRENT HABITAT
 let currentHabitatInitial = {}; // sets original habitat to nothing
-if(!sessionStorage.getItem('currentHabitat')) {sessionStorage.setItem('currentHabitat', JSON.stringify(currentHabitatInitial))}; // initial set
-function getCurrentHabitat() { // get function
-    return JSON.parse(sessionStorage.getItem('currentHabitat'))
-};
-function setCurrentHabitat(currentHabitat) { // set function
-    console.log('setting current habitat inside main.js to ' + currentHabitat);
-    sessionStorage.setItem('currentHabitat', JSON.stringify(currentHabitat))
-};
 
 // BAITS
 let baitsInitial = [
@@ -224,13 +170,6 @@ let baitsInitial = [
         count: 0,
     },
 ]
-if(!sessionStorage.getItem('baits')) {sessionStorage.setItem('baits', JSON.stringify(baitsInitial))}; // initial set
-function getBaits() { // get function
-    return JSON.parse(sessionStorage.getItem('baits'))
-};
-function setBaits(newBaits) { // set function
-    sessionStorage.setItem('baits', JSON.stringify(newBaits))
-};
 
 // VEHICLE
 let vehiclesInitial = [
@@ -247,20 +186,23 @@ let vehiclesInitial = [
         cost: 500, // usually 20,000
     }
 ]
-if(!sessionStorage.getItem('vehicles')) {sessionStorage.setItem('vehicles', JSON.stringify(vehiclesInitial))}; // intial set
-function getVehicles() { // get function
-    return JSON.parse(sessionStorage.getItem('vehicles'));
-};
-function setVehicles() { // set function
-    return JSON.parse(sessionStorage.getItem('vehicles'));
-}
+let currentVehicleInitial = vehiclesInitial[0]; // sets original vehicle to nothing
 
-// CURRENT VEHICLE
-let currentVehicle = vehiclesInitial[0]; // sets original vehicle to nothing
-if(!sessionStorage.getItem('currentVehicle')) {sessionStorage.setItem('currentVehicle', JSON.stringify(currentVehicle))}; // initial set
-function getCurrentVehicle() { // get function
-    return JSON.parse(sessionStorage.getItem('currentVehicle'))
-};
-function setCurrentVehicle(currentVehicle) { // set function
-    sessionStorage.setItem('currentVehicle', JSON.stringify(currentVehicle))
+// GAME INITIALIZED - initial set for all objects
+let gameInitialized = false;
+if(!sessionStorage.getItem('gameInitialized')) {
+    set('speed', speedInitial);
+    set('sandDollars', sandDollarsInitial);
+    set('revenue', revenueInitial);
+    set('fishStats', fishStatsInitial);
+    set('fishingRods', fishingRodsInitial);
+    set('currentRod', currentRodInitial);
+    set('fishHabitats', fishHabitatsInitial);
+    set('currentHabitat', currentHabitatInitial);
+    set('baits', baitsInitial);
+    set('vehicles', vehiclesInitial);
+    set('currentVehicle', currentVehicleInitial);
+
+    gameInitialized = true;
+    set('gameInitialized', gameInitialized);
 };

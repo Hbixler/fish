@@ -1,6 +1,6 @@
 // SHARED INFO 
 // sand dollars
-let sandDollarsShared = getSandDollars();
+let sandDollarsShared = get('sandDollars');
 let sharedInfoSD = document.createElement('div');
 sharedInfoSD.innerText = 'Sand Dollars (SD): ';
 sharedInfoSD.className = 'shared-info-div'; 
@@ -12,7 +12,7 @@ sandDollarSpan.id = 'sandDollars';
 document.getElementById('shared-info').appendChild(sharedInfoSD).appendChild(sandDollarSpan);
 
 // equipment
-let equipmentShared = getCurrentRod();
+let equipmentShared = get('currentRod');
 let sharedInfoEquipment = document.createElement('div');
 sharedInfoEquipment.innerText = 'Equipment: ';
 sharedInfoEquipment.className = 'shared-info-div';
@@ -24,7 +24,7 @@ equipmentSpan.id = 'fishingRod'
 document.getElementById('shared-info').appendChild(sharedInfoEquipment).appendChild(equipmentSpan);
 
 // vehicles
-let currentVehicleShared = getCurrentVehicle();
+let currentVehicleShared = get('currentVehicle');
 let sharedInfoVehicles = document.createElement('div');
 sharedInfoVehicles.innerText = 'Vehicle: ';
 sharedInfoVehicles.className = 'shared-info-div'; 
@@ -36,7 +36,7 @@ vehicleSpan.id = 'vehicle';
 document.getElementById('shared-info').appendChild(sharedInfoVehicles).appendChild(vehicleSpan);
 
 // fish
-let fishList = getFishStats();
+let fishList = get('fishStats');
 let sharedInfoFish = document.createElement('div');
 sharedInfoFish.className = 'shared-info-div'; 
 sharedInfoFish.id = 'fish-list'

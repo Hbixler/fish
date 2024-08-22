@@ -1,6 +1,6 @@
 // Sand dollar count
 function updateSandDollars(sandDollars) {
-    setSandDollars(sandDollars);
+    set('sandDollars', sandDollars);
     updateBuyButtons(sandDollars);
 
     let sandDollarsSpan = document.getElementById('sandDollars');
@@ -22,14 +22,14 @@ function updateSandDollars(sandDollars) {
 // baits
 function updateBaits(baits) {
     console.log("This is dumb...");
-    setBaits(baits);
+    set('baits', baits);
 }
 
 // bait count
 function updateBaitCount(baitNum, numBaits) {
-    let baits = getBaits();
+    let baits = get('baits');
     baits[baitNum].count = numBaits;
-    setBaits(baits)
+    set('baits', baits)
 
     let baitSpan = document.getElementById("bait" + baitNum + "-count");
     if(baitSpan) {
@@ -39,18 +39,18 @@ function updateBaitCount(baitNum, numBaits) {
 
 // current fishing rod
 function updateFishingRod(currentRod) {
-    setCurrentRod(currentRod);
+    set('currentRod', currentRod);
     let fishingRodSpan = document.getElementById("fishingRod");
     fishingRodSpan.innerText = currentRod.name;
 }
 
 // fish count
 function updateFishCount(fishNumber, numFish) {
-    let fishStats = getFishStats();
-    let baits = getBaits();
+    let fishStats = get('fishStats');
+    let baits = get('baits');
 
     fishStats[fishNumber].inventoryCount = numFish;
-    setFishStats(fishStats);
+    set('fishStats', fishStats);
 
     updateSellButtons(fishNumber, numFish);
 
@@ -96,7 +96,7 @@ function updateFishCount(fishNumber, numFish) {
         makeListElementVisible("fish-trading", 0);
     }
     
-    setBaits(baits);
+    set('baits', baits);
 }
 
 // Update fish progress on navbar
@@ -148,7 +148,7 @@ function updateBuyButtons(sandDollars) {
 
 // Update functions
 function updateHabitat(currentHabitat) {
-    setCurrentHabitat(currentHabitat)
+    set('currentHabitat', currentHabitat)
 
     let fishHabitatSpan = document.getElementById("fishHabitat");
 
@@ -165,10 +165,10 @@ function updateHabitat(currentHabitat) {
 }
 
 function updateVehicle(currentVehicleNum) {
-    let vehicles = getVehicles();
+    let vehicles = get('vehicles');
     currentVehicle = vehicles[currentVehicleNum];
 
-    setCurrentVehicle(currentVehicle);
+    set('currentVehicle', currentVehicle);
 
     let vehicleSpan = document.getElementById('vehicle');
 
@@ -179,26 +179,17 @@ function updateVehicle(currentVehicleNum) {
 
 function updateNumFish(fishNum, numFish) {
     // changes number of fish displayed in Habitat section
-    let fishStats = getFishStats();
+    let fishStats = get('fishStats');
 
     fishStats[fishNum].habitatCount = numFish;
-    setFishStats(fishStats);
+    set('fishStats', fishStats);
 
     let fishHabitatSpan = document.getElementById("fish" + fishNum + "-habitat");
     fishHabitatSpan.innerText = fishStats[fishNum].name + ": " + fishStats[fishNum].habitatCount; 
 }
 
-// fish labels in inventory and habitat
-let fishStats = getFishStats();
-for (let x = 0; x < fishStats.length; x++) {
-    let fishStatsSpan = document.getElementsByClassName("fish" + x);
-    for (let y = 0; y < fishStatsSpan.length; y++) {
-        fishStatsSpan[y].innerText = fishStats[x].name;
-    }
-}
-
 function updateRevenue(revenue) {
-    setRevenue(revenue);
+    set('revenue', revenue);
 
     let revenueSpan = document.getElementById('revenue');
     revenueSpan.innerText = Math.round(revenue * 100) / 100

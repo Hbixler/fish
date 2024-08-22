@@ -106,7 +106,8 @@ button {
 }
 /* Tooltip styling */
 [data-tooltip]:before {
-    content: attr(data-tooltip);
+    content: attr(data-tooltip) '\a' attr(data-tooltip-2);
+    white-space: pre;
     display: none;
     position: absolute;
     background: #000;
@@ -114,8 +115,8 @@ button {
     padding: 4px 8px;
     font-size: 14px;
     line-height: 1.4;
-    min-width: 100px;
-    text-align: center;
+    min-width: 150px;
+    text-align: left;
     border-radius: 4px;
 }
 /* Dynamic horizontal centering */

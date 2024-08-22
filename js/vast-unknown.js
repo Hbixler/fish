@@ -43,9 +43,9 @@ function reset() {
 
 // THE HONOURABLE SIR FROG
 function buySail() { 
-    let vehicles = getVehicles();
+    let vehicles = get('vehicles');
     let cost = vehicles[2].cost;
-    let sandDollars = getSandDollars();
+    let sandDollars = get('sandDollars');
 
     if (cost <= sandDollars) {
         sandDollars -= cost;
@@ -66,8 +66,8 @@ function clearButtonColumns() {
 }
 
 function sirFrogTalks() {
-    let vehicles = getVehicles();
-    let currentVehicle = getCurrentVehicle();
+    let vehicles = get('vehicles');
+    let currentVehicle = get('currentVehicle');
     clearButtonColumns();
 
     // Create ask for directions button
@@ -124,7 +124,7 @@ function ask4Directions() {
 }
 
 function getDirections() {
-    let fishStats = getFishStats();
+    let fishStats = get('fishStats');
     narwhalIndex = fishStats.findIndex(fish => fish.name == 'Narwhal');
     if (fishStats[narwhalIndex].inventoryCount >= 10) {
         // Subtract narwhals from inventory
@@ -195,7 +195,7 @@ function enableSailing() {
 function payTheFrog() {
     cost = 5000;
     
-    let sandDollars = getSandDollars();
+    let sandDollars = get('sandDollars');
 
     if (cost <= sandDollars) {
         sandDollars -= cost;
