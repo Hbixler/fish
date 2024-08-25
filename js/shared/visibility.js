@@ -40,7 +40,10 @@ let visibility = {
             idStart: "fishingRodTrading",
             firstItem: 1,
             highestVisible: 0,
-            buttonId: "buyRod",
+            button: {
+                buttonId: "buyRod",
+                currentButton: 0,
+            }
         },
     },
     'bait-trading': {
@@ -59,7 +62,10 @@ let visibility = {
             idStart: "habitatTrading",
             firstItem: 0,
             highestVisible: -1,
-            buttonId: "buyHabitat",
+            button: {
+                buttonId: "buyHabitat",
+                currentButton: -1,
+            }
         },
     },
     'vehicle-trading': {
@@ -69,7 +75,10 @@ let visibility = {
             idStart: "vehicleTrading",
             firstItem: 1,
             highestVisible: 0,
-            buttonId: "buyVehicle",
+            button: {
+                buttonId: "buyVehicle",
+                currentButton: 0,
+            }
         },
     },
 
@@ -136,9 +145,11 @@ function makeListElementVisible(section, elementNum) {
     let listElement = document.getElementById(visibility[section].list.idStart + elementNum + "-div");
     if (listElement) {
         listElement.style.visibility = "visible";
-        let buttonDiv = document.getElementById(visibility[section].list.buttonId + elementNum);
-        if(buttonDiv) {
-            buttonDiv.style.visibility = "visible";
+        if (visibility[section].list.button) {
+            let buttonDiv = document.getElementById(visibility[section].list.button.buttonId + elementNum);
+            if (buttonDiv) {
+                buttonDiv.style.visibility = "visible";
+            }
         }
     }
     if (elementNum > visibility[section].list.highestVisible) { // for permanent visibility
@@ -177,6 +188,12 @@ function permanentVisibility() {
                 let listElement = document.getElementById(visibilityList[section].list.idStart + x + "-div");
                 if (listElement) {
                     listElement.style.visibility = "visible";
+                }
+            }
+            if (visibilityList[section].list.button) { // buttons
+                let buttonDiv = document.getElementById(visibilityList[section].list.button.buttonId + visibilityList[section].list.button.currentButton);
+                if (buttonDiv) {
+                    buttonDiv.style.visibility = "visible";
                 }
             }
         }

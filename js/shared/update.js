@@ -8,12 +8,12 @@ function updateSandDollars(sandDollars) {
         sandDollarsSpan.innerText = (Math.round(sandDollars * 100) / 100).toLocaleString();
     }
 
-    if(sandDollars > 10 && !isSectionVisible("equipment-trading")) { // unlocks equipment trading at 10 SDs
+    if (sandDollars > 10 && !isSectionVisible("equipment-trading")) { // unlocks equipment trading at 10 SDs
         makeSectionVisible("equipment-trading");
         makeListElementVisible("equipment-trading", 1);
     }
 
-    if(sandDollars >= 30 && isListElementVisible("supplies", 0) && !isSectionVisible("habitat-trading")) { // unlocks habitat trading at 40 SDs and bait is already unlocked
+    if (sandDollars >= 30 && isListElementVisible("supplies", 0) && !isSectionVisible("habitat-trading")) { // unlocks habitat trading at 40 SDs and bait is already unlocked
         makeSectionVisible("habitat-trading");
         makeListElementVisible("habitat-trading", 0);
     }
@@ -21,7 +21,6 @@ function updateSandDollars(sandDollars) {
 
 // baits
 function updateBaits(baits) {
-    console.log("This is dumb...");
     set('baits', baits);
 }
 
@@ -32,7 +31,7 @@ function updateBaitCount(baitNum, numBaits) {
     set('baits', baits)
 
     let baitSpan = document.getElementById("bait" + baitNum + "-count");
-    if(baitSpan) {
+    if (baitSpan) {
         baitSpan.innerText = baits[baitNum].count;
     }
 }
@@ -70,6 +69,14 @@ function updateFishCount(fishNumber, numFish) {
             makeNavBarLinkVisible("Fish Island");
         }
 
+        // makes next bait visible if it should be
+        if(fishNumber < fishStats.length - 1) {
+            let currentRod = get('currentRod');
+            if (!isListElementVisible("bait-trading", fishNumber) && currentRod.rates[fishStats[fishNumber + 1].name] > 0) {
+                makeListElementVisible("bait-trading", fishNumber);
+            }
+        }
+        
         // Add fish to inventory options
         makeListElementVisible("fish-list", fishNumber);
         makeListElementVisible("fish-habitat", fishNumber);
@@ -88,6 +95,10 @@ function updateFishCount(fishNumber, numFish) {
         if(fishNumber === fishStats.length - 1) {
             makeSectionVisible("vehicle-trading");
             makeListElementVisible("vehicle-trading", 1);
+            
+            visibility = getVisibility(); // makes new button permanently visible
+            visibility['vehicle-trading'].list.button.currentButton = 1;
+            setVisibility(visibility);
         }
     } 
     
@@ -97,29 +108,6 @@ function updateFishCount(fishNumber, numFish) {
     }
     
     set('baits', baits);
-}
-
-// Update fish progress on navbar
-function updateFishProgress(fishIndex, fishProgress) {
-
-    let fishProgressSpan = document.getElementById("fish" + fishIndex + "-progress")
-    let newProgressSpan = "";
-
-    for (let x = 1; x <= 4; x++) {
-        if (fishProgress > 0.2 * x) {
-            newProgressSpan += "*";
-        }
-        else {
-            newProgressSpan += "-";
-        }
-    }
-    fishProgressSpan.innerText = newProgressSpan;
-}
-
-// update fishing rates
-function updateFishRate(fishIndex, fishRate) {
-    let fishProgressSpan = document.getElementById("fish" + fishIndex + "-progress");
-    fishProgressSpan.innerText = fishRate + "/s";
 }
 
 // update colouring of fish counts

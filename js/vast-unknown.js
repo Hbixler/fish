@@ -6,6 +6,7 @@ let frogPattern = "N";
 let frogToOldMan = "S";
 let currentSailPattern = "";
 let hasDirections = false;
+let hasFoundFrog = false;
 updateVastUnknownMessage("The world is bleak. Ocean, behind. Ocean, ahead. You are but a small mite in the grand scheme of the vast unknown.");
 
 function sail(direction) {
@@ -15,7 +16,9 @@ function sail(direction) {
     }
     else {
         currentSailPattern += direction;
-        if (currentSailPattern == frogPattern.slice(0,currentSailPattern.length)) {
+        let neededPattern = hasFoundFrog ? frogToOldMan : frogPattern;
+
+        if (currentSailPattern == neededPattern.slice(0,currentSailPattern.length)) {
             // Correct choice!
             updateVastUnknownMessage("You continue sailing, uncertain of the perils that await beyond.");
 
@@ -23,9 +26,17 @@ function sail(direction) {
                 // Found the frog!
                 updateVastUnknownMessage("You found a frog!");
 
+                hasFoundFrog = true;
+                currentSailPattern = ""
+                
                 makeSectionVisible("sir-frog");
                 updateFrogMessage('Ribbit! Would you like my assistance getting to your next destination?');
                 sirFrogTalks();
+            }
+            else if (currentSailPattern == frogToOldMan) {
+                // Found the old man!
+
+                updateVastUnknownMessage("In the distance, an old man huddles on top of a rock. You approach with caution.")
             }
         }
         else {

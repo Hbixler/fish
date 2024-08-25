@@ -57,9 +57,12 @@ for(x = 0; x < fishList.length; x++) {
     fishCountSpan.innerText = Math.floor(fishList[x].inventoryCount);
     fishCountSpan.id = "fish" + x + "-count";
 
+    let currentRod = get('currentRod');
+
     let fishProgressSpan = document.createElement('span');
     fishProgressSpan.id = "fish" + x + "-progress";
     fishProgressSpan.style.float = 'right';
+    fishProgressSpan.innerText = currentRod.rates[fishList[x].name] + "/s";
 
     fish.appendChild(fishCountSpan);
     fish.appendChild(fishProgressSpan);

@@ -40,7 +40,7 @@ for (let x = 0; x < fishes.length; x++) {
         if (y === 0) {sellButton.innerText = "Sell 1" } else { sellButton.innerText = bulkOptions[y] }
         sellButton.setAttribute("onclick", "sellFish(" + x + ","  + bulkOptions[y] + ")");
         sellButton.value = bulkOptions[y];
-        sellButton.classList = ["sellFish" + x]
+        sellButton.classList = ["sellFish" + x];
 
         document.getElementById('fishTrading' + x + '-div').appendChild(sellButton);
     }
@@ -61,10 +61,10 @@ for (let x = 0; x < baits.length; x++) {
     baitListing.setAttribute('data-tooltip', "Use " + baits[x].name + " to catch a " + fishes[applicableFish].name + "!");
     baitListing.setAttribute('data-tooltip-position', 'left');
 
-    let baitPrice = document.createElement('p');
+    let baitPrice = document.createElement('span');
     baitPrice.innerText = " (" + baits[x].cost + " SD)";
 
-    document.getElementById('bait-trading-div').appendChild(baitTradingDiv).appendChild(baitListing);
+    document.getElementById('bait-trading-div').appendChild(baitTradingDiv).appendChild(baitListing).appendChild(baitPrice);
 
     for (let y = 0; y < bulkOptions.length; y++) {
         let buyButton = document.createElement('button');
@@ -190,7 +190,6 @@ function buyBait(baitNumber, numToBuy) {
 // buying rods
 function buyRod(fishingRodNumber) {
     let sandDollars = get('sandDollars');
-    let fishStats = get('fishStats');
     rodValue = fishingRods[fishingRodNumber].cost;
 
     if (rodValue <= sandDollars) {
@@ -200,14 +199,10 @@ function buyRod(fishingRodNumber) {
         sandDollars -= rodValue; // Update sand dollars
         updateSandDollars(sandDollars);
 
-        for (let x = 0; x < fishStats.length; x++) { // Update fishing rates in shared info
-            updateFishRate(x, currentRod.rates[fishStats[x].name]);
-        }
-
         if (fishingRodNumber === 1) { // makes baits visible
             makeSectionVisible("bait-trading");
             makeListElementVisible("bait-trading", 0);
-        } else {
+        } else if (isListElementVisible("fish-trading", fishingRodNumber - 1)) {
             makeListElementVisible("bait-trading", fishingRodNumber - 1);
         }
 
@@ -218,6 +213,10 @@ function buyRod(fishingRodNumber) {
         // make current rod buy button invisible
         fishingRodBuyButton = document.getElementById("buyRod" + fishingRodNumber);
         fishingRodBuyButton.style.visibility = 'hidden';
+
+        visibility = getVisibility(); // makes new button permanently visible
+        visibility['equipment-trading'].list.button.currentButton = fishingRodNumber + 1;
+        setVisibility(visibility);
     }
 }
 
@@ -245,6 +244,10 @@ function buyHabitat(fishHabitatNumber) {
         // make current habitat buy button invisible
         habitatBuyButton = document.getElementById("buyHabitat" + fishHabitatNumber);
         habitatBuyButton.style.visibility = "hidden";
+
+        visibility = getVisibility(); // makes new button permanently visible
+        visibility['habitat-trading'].list.button.currentButton = fishHabitatNumber + 1;
+        setVisibility(visibility);
     }
 } 
 
@@ -264,6 +267,10 @@ function buyVehicle(vehicleNum) {
     if (vehicleBuyButton) {
         vehicleBuyButton.style.visibility = "hidden";
     }
+
+    visibility = getVisibility(); // makes new button permanently visible
+    visibility['vehicle-trading'].list.button.currentButton = vehicleNum + 1;
+    setVisibility(visibility);
 }
 
 // Visibility toggle -> in visibility.js
