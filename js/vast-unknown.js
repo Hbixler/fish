@@ -57,8 +57,10 @@ function buySail() {
     let vehicles = get('vehicles');
     let cost = vehicles[2].cost;
     let sandDollars = get('sandDollars');
+    console.log(cost)
 
     if (cost <= sandDollars) {
+        console.log("Buying a sail")
         sandDollars -= cost;
         updateSandDollars(sandDollars);
         updateVehicle(2);
@@ -97,7 +99,7 @@ function sirFrogTalks() {
         buyingSail.onclick = buySail;
 
         let vehicleCost = document.createElement('span');
-        vehicleCost.innerText = 'Buy Sail (' + vehicles[1].cost.toLocaleString() + ' SD)';
+        vehicleCost.innerText = 'Buy Sail (' + vehicles[2].cost.toLocaleString() + ' SD)';
         buyingSail.appendChild(vehicleCost);
         
         buttonTwoCol = document.getElementById('button-column-2');

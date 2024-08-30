@@ -35,13 +35,13 @@ for (let x = 0; x < fishStats.length; x++) {
 
     let fishLabelDiv = document.createElement("div");
     fishLabelDiv.className = "column fish-count";
-    fishLabelDiv.id = "fish" + x + "-habitat";
 
     let fishLabel = document.createElement("p");
 
     let fishNameLabel = document.createElement("span");
     fishNameLabel.innerText = fishStats[x].name;
     fishNameLabel.classList.add('tooltipParent');
+    fishNameLabel.id = "fish" + x + "-habitat";
 
     fishNameLabel.setAttribute('data-tooltip', "Size: " + fishStats[x].size)
     fishNameLabel.setAttribute('data-tooltip-2', "Revenue: " + fishStats[x].revenue + " SD/s");
@@ -91,7 +91,7 @@ function plus(fishNumber) {
         let habitatCount = fishStats[fishNumber].habitatCount + 1; // puts fish into habitat
         
         updateNumFish(fishNumber, habitatCount); // change fish displayed in Habitat
-        updateFishCount(fishNumber, inventoryCount); // change fish displayed in Inventory
+        // updateFishCount(fishNumber, inventoryCount); // change fish displayed in Inventory
         howBigAreMyFish(); // recalculates and displays how much space fish are taking up
         updateRevenue(revenue + fishStats[fishNumber].revenue); // change revenue
         updateFishMessage(); // updates habitat message

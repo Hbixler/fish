@@ -91,12 +91,14 @@ function updateFishCount(fishNumber, numFish) {
             makeListElementVisible("fish-trading", fishNumber);
         }
         
-        // shows vehicles section when narwhal is unlocked
-        if(fishNumber === fishStats.length - 1) {
+        // shows vehicles section when narwhal is unlocked if the last habitat is also unlocked
+        let fishHabitats = get("fishHabitats");
+        let currentHabitat = get("currentHabitat");
+        if(fishNumber === fishStats.length - 1 && currentHabitat.name === fishHabitats[fishHabitats.length - 1].name) {
             makeSectionVisible("vehicle-trading");
             makeListElementVisible("vehicle-trading", 1);
             
-            visibility = getVisibility(); // makes new button permanently visible
+            let visibility = getVisibility(); // makes new button permanently visible
             visibility['vehicle-trading'].list.button.currentButton = 1;
             setVisibility(visibility);
         }

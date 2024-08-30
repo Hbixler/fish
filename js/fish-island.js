@@ -53,7 +53,9 @@ for (let x = 0; x < baits.length; x++) {
     baitTradingDiv.id = "baitTrading" + x + "-div";
     baitTradingDiv.className = "row";
 
-    let baitListing = document.createElement('p');
+    let baitParagraph = document.createElement('p')
+
+    let baitListing = document.createElement('span');
     baitListing.innerText = baits[x].name;
     baitListing.classList.add('tooltipParent');
 
@@ -64,7 +66,10 @@ for (let x = 0; x < baits.length; x++) {
     let baitPrice = document.createElement('span');
     baitPrice.innerText = " (" + baits[x].cost + " SD)";
 
-    document.getElementById('bait-trading-div').appendChild(baitTradingDiv).appendChild(baitListing).appendChild(baitPrice);
+    baitParagraph.appendChild(baitListing);
+    baitParagraph.appendChild(baitPrice);
+
+    document.getElementById('bait-trading-div').appendChild(baitTradingDiv).appendChild(baitParagraph);
 
     for (let y = 0; y < bulkOptions.length; y++) {
         let buyButton = document.createElement('button');
@@ -248,6 +253,17 @@ function buyHabitat(fishHabitatNumber) {
         visibility = getVisibility(); // makes new button permanently visible
         visibility['habitat-trading'].list.button.currentButton = fishHabitatNumber + 1;
         setVisibility(visibility);
+
+        // for last habitat: if narwhal is visible, make vehicle section visible
+        let fishStats = get("fishStats");
+        if (currentHabitat.name === fishHabitats[fishHabitats.length - 1].name && isListElementVisible("fish-trading", fishStats.length - 1)) {
+            makeSectionVisible("vehicle-trading");
+            makeListElementVisible("vehicle-trading", 1);
+            
+            let visibility = getVisibility(); // makes new button permanently visible
+            visibility['vehicle-trading'].list.button.currentButton = 1;
+            setVisibility(visibility);
+        }
     }
 } 
 
