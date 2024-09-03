@@ -81,6 +81,7 @@ function clearButtonColumns() {
 function sirFrogTalks() {
     let vehicles = get('vehicles');
     let currentVehicle = get('currentVehicle');
+    let sandDollars = get('sandDollars');
     clearButtonColumns();
 
     // Create ask for directions button
@@ -97,10 +98,14 @@ function sirFrogTalks() {
     if (currentVehicle.name != 'Sailboat') {
         let buyingSail = document.createElement('button');
         buyingSail.onclick = buySail;
+        buyingSail.id = 'buy-sail-button';
+        buyingSail.disabled = sandDollars < 500;
+
 
         let vehicleCost = document.createElement('span');
         vehicleCost.innerText = 'Buy Sail (' + vehicles[2].cost.toLocaleString() + ' SD)';
         buyingSail.appendChild(vehicleCost);
+
         
         buttonTwoCol = document.getElementById('button-column-2');
         buttonTwoCol.appendChild(buyingSail);
@@ -116,6 +121,7 @@ function sirFrogTalks() {
 }
 
 function ask4Directions() {
+    let fishStats = get('fishStats');
     clearButtonColumns();
     updateFrogMessage("Cuestan diez narvales. ¿Estás segure?");
 
@@ -123,6 +129,9 @@ function ask4Directions() {
     yesButton = document.createElement('button');
     yesButton.innerText = 'Yes';
     yesButton.onclick = getDirections;
+    yesButton.id = 'frog-yes-button';
+    let narwhalIndex = fishStats.findIndex(fish => fish.name == 'Narwhal');
+    yesButton.disabled = fishStats[narwhalIndex].inventoryCount < 10;
 
     buttonOneCol = document.getElementById('button-column-1');
     buttonOneCol.appendChild(yesButton);
@@ -138,7 +147,7 @@ function ask4Directions() {
 
 function getDirections() {
     let fishStats = get('fishStats');
-    narwhalIndex = fishStats.findIndex(fish => fish.name == 'Narwhal');
+    let narwhalIndex = fishStats.findIndex(fish => fish.name == 'Narwhal');
     if (fishStats[narwhalIndex].inventoryCount >= 10) {
         // Subtract narwhals from inventory
         updateFishCount(narwhalIndex, fishStats[narwhalIndex].inventoryCount - 10);

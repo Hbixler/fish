@@ -1,10 +1,9 @@
 To Do: 
 - css and spacing decisions for shared info section
-- css and visual decisions for habitat page
+    - [DONE] centre body containers
+    - readjust habitat and vast unknown to look good centred
 - add permanence to vast unknown
-- buttons for buying sail should be disabled for sir frog
 - come up with sassy line for sir frog to say after you kick him (line 219 of vast-unknown.js)
-- re-evaluate how tooltips look (ie blocking other things? toggle to show/hide tooltips?)
 - add limits to resources (fish, resources, etc) that you can then upgrade
     - add a section to trading for this
 - add win screen -> wise old mage gives you the secret to the universe
@@ -13,6 +12,4 @@ To Do:
 Bugs: 
 - the tooltip for habitat went away after pressing some of the buttons (this is maybe potentially possibly perhaps a hailey thing)
 - sell buttons not toggling properly (sell 100 button available when you don't have enough fish to sell) (buy buttons do work)
-- not enough space for 100 button of bait trading -> maybe narrow the inventory column? 
-- vehicles trading div is gone after visiting the vast unknown 
-    - and the buy button is still there... 
+- remove weird gap at top of vast unknown page

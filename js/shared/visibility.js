@@ -1,7 +1,7 @@
 // VISIBILITY TOGGLE
 function visibilityToggle() {
-    /* makeEverythingVisible(); */
-    permanentVisibility();
+    makeEverythingVisible();
+    /* permanentVisibility(); */
 }
 
 // OBJECT OF VISIBILITY

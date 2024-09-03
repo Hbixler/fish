@@ -2,6 +2,7 @@
 function updateSandDollars(sandDollars) {
     set('sandDollars', sandDollars);
     updateBuyButtons(sandDollars);
+    updateSailButton(sandDollars);
 
     let sandDollarsSpan = document.getElementById('sandDollars');
     if (sandDollarsSpan) {
@@ -52,6 +53,10 @@ function updateFishCount(fishNumber, numFish) {
     set('fishStats', fishStats);
 
     updateSellButtons(fishNumber, numFish);
+
+    // if in vast unknown
+    let narwhalIndex = fishStats.findIndex(fish => fish.name == 'Narwhal');
+    updateYesButton(fishStats[narwhalIndex].inventoryCount);
 
     let fishCountSpan = document.getElementById("fish" + fishNumber + "-count");
     if (fishCountSpan) {
@@ -231,4 +236,18 @@ function updateFrogMessage(newMsg) {
 function updateDirectionsMessage(newMsg) {
     let messageSpan = document.getElementById('directions-message');
     messageSpan.innerText = newMsg;
+}
+
+function updateYesButton(numNarwhals) {
+    let yesButton = document.getElementById('frog-yes-button');
+    if (yesButton) {
+        yesButton.disabled = numNarwhals < 10;
+    }
+}
+
+function updateSailButton(sandDollars) {
+    let sailButton = document.getElementById('buy-sail-button');
+    if (sailButton) {
+        sailButton.disabled = sandDollars < 500;
+    }
 }
