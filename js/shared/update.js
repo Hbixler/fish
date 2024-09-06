@@ -179,8 +179,8 @@ function updateNumFish(fishNum, numFish) {
     fishStats[fishNum].habitatCount = numFish;
     set('fishStats', fishStats);
 
-    let fishHabitatSpan = document.getElementById("fish" + fishNum + "-habitat");
-    fishHabitatSpan.innerText = fishStats[fishNum].name + ": " + fishStats[fishNum].habitatCount; 
+    let fishHabitatSpan = document.getElementById("fish-" + fishNum + "-count");
+    fishHabitatSpan.innerText = ": " + fishStats[fishNum].habitatCount; 
 }
 
 function updateRevenue(revenue) {

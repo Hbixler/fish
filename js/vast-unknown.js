@@ -7,9 +7,14 @@ let frogToOldMan = "S";
 let currentSailPattern = "";
 let hasDirections = false;
 let hasFoundFrog = false;
+let defaultFrogMessage = 'Ribbit! Would you like my assistance getting to your next destination? You can get there without my directions, but you will definitely need a sail.';
+let stupidSailMessage = 'Sailing without a sail? Isn\'t that called rowing? Such foolishness!';
+
 updateVastUnknownMessage("The world is bleak. Ocean, behind. Ocean, ahead. You are but a small mite in the grand scheme of the vast unknown.");
 
 function sail(direction) {
+    let currentVehicle = get('currentVehicle');
+    let vehicles = get('vehicles');
     if (currentSailPattern == "XXX") {
         // User has already crashed and is stranded on a rock.
         updateVastUnknownMessage("No point in wandering around now. May as well start over...")
@@ -30,19 +35,26 @@ function sail(direction) {
                 currentSailPattern = ""
                 
                 makeSectionVisible("sir-frog");
-                updateFrogMessage('Ribbit! Would you like my assistance getting to your next destination?');
+                updateFrogMessage(defaultFrogMessage);
                 sirFrogTalks();
             }
             else if (currentSailPattern == frogToOldMan) {
-                // Found the old man!
-
-                updateVastUnknownMessage("In the distance, an old man huddles on top of a rock. You approach with caution.")
+                if (currentVehicle.name === vehicles[2].name) {
+                    // Found the old man!
+                    updateVastUnknownMessage("In the distance, an old man huddles on top of a rock. You approach with caution.");
+                }
+                else {
+                    updateFrogMessage(stupidSailMessage);
+                }
             }
         }
         else {
             // Incorrect choice
             updateVastUnknownMessage("You crashed into a rock. Better luck next time!");
             currentSailPattern = "XXX";
+            if (hasFoundFrog && currentVehicle.name != vehicles[2].name) {
+                updateFrogMessage(stupidSailMessage);
+            }
         }
     }
 }
@@ -50,6 +62,7 @@ function sail(direction) {
 function reset() {
     currentSailPattern = "";
     updateVastUnknownMessage("You set forth again, ready to tackle the world.")
+    updateFrogMessage(defaultFrogMessage);
 }
 
 // THE HONOURABLE SIR FROG
@@ -57,10 +70,10 @@ function buySail() {
     let vehicles = get('vehicles');
     let cost = vehicles[2].cost;
     let sandDollars = get('sandDollars');
-    console.log(cost)
+    // console.log(cost)
 
     if (cost <= sandDollars) {
-        console.log("Buying a sail")
+        // console.log("Buying a sail")
         sandDollars -= cost;
         updateSandDollars(sandDollars);
         updateVehicle(2);
@@ -238,7 +251,7 @@ function kickTheFrog() {
     clearButtonColumns();
     sirFrogTalks();
     enableSailing();
-    updateFrogMessage('Sassy frog line about taking rowboat')
+    updateFrogMessage('Who raised you? I\'ll be taking that rowboat to get back to my rock and keeping it as a form of your apology for your terrible manners. Guess you\'ll need to buy another one. Sounds like a you problem.')
 }
 
 function seduceTheFrog() {

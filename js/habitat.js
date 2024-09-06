@@ -27,8 +27,22 @@ howBigAreMyFish();
 // HTML GENERATION 
 
 // fish in habitat counts and buttons
-for (let x = 0; x < fishStats.length; x++) {
-    let fishInHabitatDiv = document.createElement("div");
+let newRow = document.createElement("div"); // making overall div that everything goes
+newRow.id = "newRow";
+newRow.className = "row";
+document.getElementById("fishCount").appendChild(newRow)
+
+let columns = 2; // making columns
+for (let x = 0; x < columns; x++) {
+    let columnDiv = document.createElement("div");
+    columnDiv.className = "column";
+    columnDiv.id = "column" + x;
+
+    document.getElementById("newRow").appendChild(columnDiv);
+}
+
+for (let x = 0; x < fishStats.length; x++) { // making each fish's div
+    let fishInHabitatDiv = document.createElement("div"); 
     fishInHabitatDiv.className = "row";
     fishInHabitatDiv.id = "fishInHabitat" + x + "-div";
     fishInHabitatDiv.style.visibility = "hidden";
@@ -48,14 +62,17 @@ for (let x = 0; x < fishStats.length; x++) {
     fishNameLabel.setAttribute('data-tooltip-position', 'left');
     fishLabel.appendChild(fishNameLabel);
 
-    let fishCountLabel = document.createTextNode(": " + fishStats[x].habitatCount);
-    fishLabel.appendChild(fishCountLabel);
+    let fishCountSpan = document.createElement("span");
+    fishCountSpan.id = "fish-" + x + "-count";
+    fishCountSpan.innerText = ": " + fishStats[x].habitatCount;
+
+    fishLabel.appendChild(fishCountSpan);
     fishLabelDiv.appendChild(fishLabel);
 
     buttonDiv = document.createElement("div");
     buttonDiv.className = "button-col";
 
-    for (let y = 0; y < operations.length; y++) {
+    for (let y = 0; y < operations.length; y++) { // plus and minus buttons
         let operationDiv = document.createElement("div");
         operationDiv.className = "row";
 
@@ -71,7 +88,16 @@ for (let x = 0; x < fishStats.length; x++) {
 
     fishInHabitatDiv.appendChild(fishLabelDiv);
     fishInHabitatDiv.appendChild(buttonDiv);
-    document.getElementById("fishCount").appendChild(fishInHabitatDiv);
+
+    let col = 0; // decides which column each fish goes into
+    if ((x + 1) <= Math.ceil(fishStats.length / columns)) {
+        col = 0;
+    } else {
+        col = 1;
+    }
+
+    document.getElementById("column" + col).appendChild(fishInHabitatDiv);
+
 }
 
 // FUNCTIONS
@@ -91,7 +117,7 @@ function plus(fishNumber) {
         let habitatCount = fishStats[fishNumber].habitatCount + 1; // puts fish into habitat
         
         updateNumFish(fishNumber, habitatCount); // change fish displayed in Habitat
-        // updateFishCount(fishNumber, inventoryCount); // change fish displayed in Inventory
+        updateFishCount(fishNumber, inventoryCount); // change fish displayed in Inventory
         howBigAreMyFish(); // recalculates and displays how much space fish are taking up
         updateRevenue(revenue + fishStats[fishNumber].revenue); // change revenue
         updateFishMessage(); // updates habitat message
