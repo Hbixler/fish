@@ -1,60 +1,62 @@
 // Sand dollar count
 function updateSandDollars(sandDollars) {
-    setSandDollars(sandDollars);
-
+    set('sandDollars', sandDollars);
     updateBuyButtons(sandDollars);
+    updateSailButton(sandDollars);
 
     let sandDollarsSpan = document.getElementById('sandDollars');
-    
-
     if (sandDollarsSpan) {
         sandDollarsSpan.innerText = (Math.round(sandDollars * 100) / 100).toLocaleString();
     }
 
-    if(sandDollars > 10 && !isSectionVisible("equipment-trading")) { // unlocks equipment section of trading when 10 sanddollars are earned
-
+    if (sandDollars > 10 && !isSectionVisible("equipment-trading")) { // unlocks equipment trading at 10 SDs
         makeSectionVisible("equipment-trading");
         makeListElementVisible("equipment-trading", 1);
-
-        if (isSectionVisible("equipment-trading")) {
-            fishingRods[0].unlocked = true;
-        }
     }
 
-    if(sandDollars >= 30 && isListElementVisible("supplies", 0)) { // unlocks habitat section of trading when 40 sanddollars are earned and bait is already unlocked
+    if (sandDollars >= 30 && isListElementVisible("supplies", 0) && !isSectionVisible("habitat-trading")) { // unlocks habitat trading at 40 SDs and bait is already unlocked
         makeSectionVisible("habitat-trading");
         makeListElementVisible("habitat-trading", 0);
     }
 }
 
+// baits
 function updateBaits(baits) {
-    setBaits(baits);
+    set('baits', baits);
 }
 
-// Update functions
+// bait count
 function updateBaitCount(baitNum, numBaits) {
-    let baits = getBaits();
+    let baits = get('baits');
     baits[baitNum].count = numBaits;
-    setBaits(baits)
+    set('baits', baits)
 
     let baitSpan = document.getElementById("bait" + baitNum + "-count");
-    if(baitSpan) {
+    if (baitSpan) {
         baitSpan.innerText = baits[baitNum].count;
     }
 }
+
+// current fishing rod
 function updateFishingRod(currentRod) {
-    setCurrentRod(currentRod);
+    set('currentRod', currentRod);
     let fishingRodSpan = document.getElementById("fishingRod");
     fishingRodSpan.innerText = currentRod.name;
 }
+
+// fish count
 function updateFishCount(fishNumber, numFish) {
-    let fishStats = getFishStats();
-    let baits = getBaits();
+    let fishStats = get('fishStats');
+    let baits = get('baits');
 
     fishStats[fishNumber].inventoryCount = numFish;
-    setFishStats(fishStats);
+    set('fishStats', fishStats);
 
     updateSellButtons(fishNumber, numFish);
+
+    // if in vast unknown
+    let narwhalIndex = fishStats.findIndex(fish => fish.name == 'Narwhal');
+    updateYesButton(fishStats[narwhalIndex].inventoryCount);
 
     let fishCountSpan = document.getElementById("fish" + fishNumber + "-count");
     if (fishCountSpan) {
@@ -72,13 +74,14 @@ function updateFishCount(fishNumber, numFish) {
             makeNavBarLinkVisible("Fish Island");
         }
 
-        if (fishNumber === 2 && !fishStats[2].unlocked) {
-            makeListElementVisible("bait-trading", 2);
+        // makes next bait visible if it should be
+        if(fishNumber < fishStats.length - 1) {
+            let currentRod = get('currentRod');
+            if (!isListElementVisible("bait-trading", fishNumber) && currentRod.rates[fishStats[fishNumber + 1].name] > 0) {
+                makeListElementVisible("bait-trading", fishNumber);
+            }
         }
-
-        // Unlock fish
-        fishStats[fishNumber].unlocked = true;
-
+        
         // Add fish to inventory options
         makeListElementVisible("fish-list", fishNumber);
         makeListElementVisible("fish-habitat", fishNumber);
@@ -93,49 +96,28 @@ function updateFishCount(fishNumber, numFish) {
             makeListElementVisible("fish-trading", fishNumber);
         }
         
-        // shows vehicles section when narwhal is unlocked
-        if(fishNumber === fishStats.length - 1) {
+        // shows vehicles section when narwhal is unlocked if the last habitat is also unlocked
+        let fishHabitats = get("fishHabitats");
+        let currentHabitat = get("currentHabitat");
+        if(fishNumber === fishStats.length - 1 && currentHabitat.name === fishHabitats[fishHabitats.length - 1].name) {
             makeSectionVisible("vehicle-trading");
             makeListElementVisible("vehicle-trading", 1);
+            
+            let visibility = getVisibility(); // makes new button permanently visible
+            visibility['vehicle-trading'].list.button.currentButton = 1;
+            setVisibility(visibility);
         }
     } 
     
     if (fishStats[0].inventoryCount === 5 && !isSectionVisible("trading")) { // at 5 goldfish
-        console.log("SELLING FISH SHOULD BE POSSIBLE");
         makeSectionVisible("trading");
         makeListElementVisible("fish-trading", 0);
     }
     
-    setBaits(baits);
+    set('baits', baits);
 }
 
-// Update fish progress on navbar
-function updateFishProgress(fishIndex, fishProgress) {
-
-    let fishProgressSpan = document.getElementById("fish" + fishIndex + "-progress")
-    let newProgressSpan = "";
-
-    for (let x = 1; x <= 4; x++) {
-        if (fishProgress > 0.2 * x) {
-            newProgressSpan += "*";
-        }
-        else {
-            newProgressSpan += "-";
-        }
-    }
-
-    console.log(fishProgress);
-    console.log(newProgressSpan);
-    fishProgressSpan.innerText = newProgressSpan;
-}
-
-function updateFishRate(fishIndex, fishRate) {
-    let fishProgressSpan = document.getElementById("fish" + fishIndex + "-progress");
-    fishProgressSpan.innerText = fishRate + "/s";
-
-    console.log(fishProgressSpan);
-}
-
+// update colouring of fish counts
 function updateHasBait(fishIndex, hasBait) {
     let fishProgressSpan = document.getElementById("fish" + fishIndex + "-progress");
     fishProgressSpan.style.color = hasBait ? 'white' : 'red';
@@ -143,15 +125,10 @@ function updateHasBait(fishIndex, hasBait) {
 
 // Activates or deactivates buttons based on how many fish you have
 function updateSellButtons(fishIndex, inventoryCount) {
-    // I don't love the idea of copying and pasting bullk options like this so potentially optimize this to not do that
+    let sellButtons = document.getElementsByClassName("sellFish" + fishIndex)
 
-    let bulkOptions = [1, 5, 10, 50];
-
-    for (option of bulkOptions) {
-        let sellButton = document.getElementById("sellFish" + fishIndex + "x" + option);
-        if (sellButton) {
-            sellButton.disabled = option > inventoryCount;
-        }
+    for (button of sellButtons) {
+        button.disabled = button.value > inventoryCount;
     }
 }
 
@@ -166,7 +143,7 @@ function updateBuyButtons(sandDollars) {
 
 // Update functions
 function updateHabitat(currentHabitat) {
-    setCurrentHabitat(currentHabitat)
+    set('currentHabitat', currentHabitat)
 
     let fishHabitatSpan = document.getElementById("fishHabitat");
 
@@ -183,10 +160,10 @@ function updateHabitat(currentHabitat) {
 }
 
 function updateVehicle(currentVehicleNum) {
-    let vehicles = getVehicles();
+    let vehicles = get('vehicles');
     currentVehicle = vehicles[currentVehicleNum];
 
-    setCurrentVehicle(currentVehicle);
+    set('currentVehicle', currentVehicle);
 
     let vehicleSpan = document.getElementById('vehicle');
 
@@ -197,26 +174,17 @@ function updateVehicle(currentVehicleNum) {
 
 function updateNumFish(fishNum, numFish) {
     // changes number of fish displayed in Habitat section
-    let fishStats = getFishStats();
+    let fishStats = get('fishStats');
 
     fishStats[fishNum].habitatCount = numFish;
-    setFishStats(fishStats);
+    set('fishStats', fishStats);
 
-    let fishHabitatSpan = document.getElementById("fish" + fishNum + "-habitat");
-    fishHabitatSpan.innerText = fishStats[fishNum].name + ": " + fishStats[fishNum].habitatCount; 
-}
-
-// fish labels in inventory and habitat
-let fishStats = getFishStats();
-for (let x = 0; x < fishStats.length; x++) {
-    let fishStatsSpan = document.getElementsByClassName("fish" + x);
-    for (let y = 0; y < fishStatsSpan.length; y++) {
-        fishStatsSpan[y].innerText = fishStats[x].name;
-    }
+    let fishHabitatSpan = document.getElementById("fish-" + fishNum + "-count");
+    fishHabitatSpan.innerText = ": " + fishStats[fishNum].habitatCount; 
 }
 
 function updateRevenue(revenue) {
-    setRevenue(revenue);
+    set('revenue', revenue);
 
     let revenueSpan = document.getElementById('revenue');
     revenueSpan.innerText = Math.round(revenue * 100) / 100
@@ -268,4 +236,18 @@ function updateFrogMessage(newMsg) {
 function updateDirectionsMessage(newMsg) {
     let messageSpan = document.getElementById('directions-message');
     messageSpan.innerText = newMsg;
+}
+
+function updateYesButton(numNarwhals) {
+    let yesButton = document.getElementById('frog-yes-button');
+    if (yesButton) {
+        yesButton.disabled = numNarwhals < 10;
+    }
+}
+
+function updateSailButton(sandDollars) {
+    let sailButton = document.getElementById('buy-sail-button');
+    if (sailButton) {
+        sailButton.disabled = sandDollars < 500;
+    }
 }

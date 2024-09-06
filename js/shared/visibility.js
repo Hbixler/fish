@@ -1,3 +1,9 @@
+// VISIBILITY TOGGLE
+function visibilityToggle() {
+    makeEverythingVisible();
+    /* permanentVisibility(); */
+}
+
 // OBJECT OF VISIBILITY
 let visibility = {
     // fish island
@@ -34,7 +40,10 @@ let visibility = {
             idStart: "fishingRodTrading",
             firstItem: 1,
             highestVisible: 0,
-            buttonId: "buyRod",
+            button: {
+                buttonId: "buyRod",
+                currentButton: 0,
+            }
         },
     },
     'bait-trading': {
@@ -53,7 +62,10 @@ let visibility = {
             idStart: "habitatTrading",
             firstItem: 0,
             highestVisible: -1,
-            buttonId: "buyHabitat",
+            button: {
+                buttonId: "buyHabitat",
+                currentButton: -1,
+            }
         },
     },
     'vehicle-trading': {
@@ -63,7 +75,10 @@ let visibility = {
             idStart: "vehicleTrading",
             firstItem: 1,
             highestVisible: 0,
-            buttonId: "buyVehicle",
+            button: {
+                buttonId: "buyVehicle",
+                currentButton: 0,
+            }
         },
     },
 
@@ -76,6 +91,12 @@ let visibility = {
             firstItem: 0,
             highestVisible: -1,
         }
+    },
+
+    // vast unknown
+    'sir-frog': {
+        id: 'frog-box',
+        visible: false,
     },
 
     // shared info
@@ -124,9 +145,11 @@ function makeListElementVisible(section, elementNum) {
     let listElement = document.getElementById(visibility[section].list.idStart + elementNum + "-div");
     if (listElement) {
         listElement.style.visibility = "visible";
-        let buttonDiv = document.getElementById(visibility[section].list.buttonId + elementNum);
-        if(buttonDiv) {
-            buttonDiv.style.visibility = "visible";
+        if (visibility[section].list.button) {
+            let buttonDiv = document.getElementById(visibility[section].list.button.buttonId + elementNum);
+            if (buttonDiv) {
+                buttonDiv.style.visibility = "visible";
+            }
         }
     }
     if (elementNum > visibility[section].list.highestVisible) { // for permanent visibility
@@ -137,40 +160,18 @@ function makeListElementVisible(section, elementNum) {
 
 // NAV BAR
 function isNavBarLinkVisible(navBarLink) {
-    let navBar = getNavBarLinks();
+    let navBar = get('navBarLinks');
     let navBarIndex = navBar.findIndex(link => link.name === navBarLink);
     let div = document.getElementById(navBar[navBarIndex].id);
     return div && div.style.visibility == 'visible';
 }
 function makeNavBarLinkVisible(navBarLink) {
-    let navBar = getNavBarLinks();
+    let navBar = get('navBarLinks');
     let navBarIndex = navBar.findIndex(link => link.name === navBarLink);
     let div = document.getElementById(navBar[navBarIndex].id);
     div.style.visibility = 'visible';
     navBar[navBarIndex].visible = true;
-    setNavBarLinks(navBar);
-}
-
-// VAST UNKNOWN
-function makeFrogVisible() {
-    let frogDiv = document.getElementById("frog-box");
-    if (frogDiv) {
-        frogDiv.style.visibility = 'visible';
-    }
-}
-function makeVastUnknownVisible() {
-    makeFrogVisible();
-    makeSharedInfoVisible();
-}
-
-// WISE OLD MAGE
-function makeWiseOldMageVisible() {
-    makeSharedInfoVisible();
-}
-
-// BETTER OCEANS
-function makeBetterOceansVisible() {
-    makeSharedInfoVisible();
+    set('navBarLinks', navBar);
 }
 
 // PERMANENT VISIBILITY FUNCTION
@@ -189,9 +190,15 @@ function permanentVisibility() {
                     listElement.style.visibility = "visible";
                 }
             }
+            if (visibilityList[section].list.button) { // buttons
+                let buttonDiv = document.getElementById(visibilityList[section].list.button.buttonId + visibilityList[section].list.button.currentButton);
+                if (buttonDiv) {
+                    buttonDiv.style.visibility = "visible";
+                }
+            }
         }
     }
-    let visibilityNavBar = getNavBarLinks(); // nav bar
+    let visibilityNavBar = get('navBarLinks'); // nav bar
     for (navBar in visibilityNavBar) {
         let navBarLink = document.getElementById(visibilityNavBar[navBar].id);   
         if (navBarLink && visibilityNavBar[navBar].visible) {
@@ -200,10 +207,10 @@ function permanentVisibility() {
     }
 }
 function fishListVisibility() { // shared info fish list
-    let inventoryFish = getFishStats(); // fish
+    let inventoryFish = get('fishStats'); // fish
     for (fish in inventoryFish) {
         let element = document.getElementById("fish" + fish + "-div");
-        if (element && fishStats[fish].visible) {
+        if (element && inventoryFish[fish].visible) {
             element.style.visibility = "visible";
         }
     }
@@ -212,14 +219,14 @@ function fishListVisibility() { // shared info fish list
 // FOR EVERYTHING FUNCTION
 function makeSharedInfoVisible() { // makes shared info section visible
     makeSectionVisible("fish-list");
-    let fish = getFishStats();
+    let fish = get('fishStats');
     for (fishNum in fish) {
         makeListElementVisible("fish-list", fishNum);
     }
 }
 
 function makeNavBarVisible() {
-    getNavBarLinks();
+    get('navBarLinks');
     for (item in navBarLinks) {
         let link = document.getElementById(navBarLinks[item].id);
         link.style.visibility = 'visible';

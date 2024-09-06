@@ -4,8 +4,8 @@
     flex-direction: row;
     width: 700px;
     margin: auto;
-    margin-left: 0px;
     gap: 10px;
+    margin-top: 0px;
 }
 .row {
     display: flex;

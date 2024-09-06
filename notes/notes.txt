@@ -1,13 +1,9 @@
 To Do: 
-- hovering on things shows more info or something like that
-- remove 'unlocked' attribute from fishStats
-- css and spacing decisions for shared info section
-- add permanency to buy and sell button visibility
-- css and visual decisions for habitat page
-
-To check: 
-- does habitat revenue work? -> make separate revenue function? 
+- add permanence to vast unknown
+- add limits to resources (fish, resources, etc) that you can then upgrade
+    - add a section to trading for this
+- add win screen -> wise old mage gives you the secret to the universe
+- rebalance whole game
 
 Bugs: 
-- Buy button for fish bowl doesn't disappear after buying it
-- buy and sell buttons for 100 show as always enabled
+- sell buttons not toggling properly (sell 100 button available when you don't have enough fish to sell) (buy buttons do work)

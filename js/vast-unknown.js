@@ -6,16 +6,24 @@ let frogPattern = "N";
 let frogToOldMan = "S";
 let currentSailPattern = "";
 let hasDirections = false;
+let hasFoundFrog = false;
+let defaultFrogMessage = 'Ribbit! Would you like my assistance getting to your next destination? You can get there without my directions, but you will definitely need a sail.';
+let stupidSailMessage = 'Sailing without a sail? Isn\'t that called rowing? Such foolishness!';
+
 updateVastUnknownMessage("The world is bleak. Ocean, behind. Ocean, ahead. You are but a small mite in the grand scheme of the vast unknown.");
 
 function sail(direction) {
+    let currentVehicle = get('currentVehicle');
+    let vehicles = get('vehicles');
     if (currentSailPattern == "XXX") {
         // User has already crashed and is stranded on a rock.
         updateVastUnknownMessage("No point in wandering around now. May as well start over...")
     }
     else {
         currentSailPattern += direction;
-        if (currentSailPattern == frogPattern.slice(0,currentSailPattern.length)) {
+        let neededPattern = hasFoundFrog ? frogToOldMan : frogPattern;
+
+        if (currentSailPattern == neededPattern.slice(0,currentSailPattern.length)) {
             // Correct choice!
             updateVastUnknownMessage("You continue sailing, uncertain of the perils that await beyond.");
 
@@ -23,15 +31,30 @@ function sail(direction) {
                 // Found the frog!
                 updateVastUnknownMessage("You found a frog!");
 
-                makeFrogVisible();
-                updateFrogMessage('Ribbit! Would you like my assistance getting to your next destination?');
+                hasFoundFrog = true;
+                currentSailPattern = ""
+                
+                makeSectionVisible("sir-frog");
+                updateFrogMessage(defaultFrogMessage);
                 sirFrogTalks();
+            }
+            else if (currentSailPattern == frogToOldMan) {
+                if (currentVehicle.name === vehicles[2].name) {
+                    // Found the old man!
+                    updateVastUnknownMessage("In the distance, an old man huddles on top of a rock. You approach with caution.");
+                }
+                else {
+                    updateFrogMessage(stupidSailMessage);
+                }
             }
         }
         else {
             // Incorrect choice
             updateVastUnknownMessage("You crashed into a rock. Better luck next time!");
             currentSailPattern = "XXX";
+            if (hasFoundFrog && currentVehicle.name != vehicles[2].name) {
+                updateFrogMessage(stupidSailMessage);
+            }
         }
     }
 }
@@ -39,15 +62,18 @@ function sail(direction) {
 function reset() {
     currentSailPattern = "";
     updateVastUnknownMessage("You set forth again, ready to tackle the world.")
+    updateFrogMessage(defaultFrogMessage);
 }
 
 // THE HONOURABLE SIR FROG
 function buySail() { 
-    let vehicles = getVehicles();
+    let vehicles = get('vehicles');
     let cost = vehicles[2].cost;
-    let sandDollars = getSandDollars();
+    let sandDollars = get('sandDollars');
+    // console.log(cost)
 
     if (cost <= sandDollars) {
+        // console.log("Buying a sail")
         sandDollars -= cost;
         updateSandDollars(sandDollars);
         updateVehicle(2);
@@ -65,17 +91,13 @@ function clearButtonColumns() {
     }
 }
 
-function dummyFunction() { // REMOVE THIS ONCE ALL FUNCTIONS ARE REPLACED
-    console.log('not a real function');
-}
-
 function sirFrogTalks() {
-    let vehicles = getVehicles();
-    let currentVehicle = getCurrentVehicle();
+    let vehicles = get('vehicles');
+    let currentVehicle = get('currentVehicle');
+    let sandDollars = get('sandDollars');
     clearButtonColumns();
 
     // Create ask for directions button
-    console.log(hasDirections);
     if (!hasDirections) {
         let askForDirections = document.createElement('button');
         askForDirections.innerText = 'Ask For Directions';
@@ -89,10 +111,14 @@ function sirFrogTalks() {
     if (currentVehicle.name != 'Sailboat') {
         let buyingSail = document.createElement('button');
         buyingSail.onclick = buySail;
+        buyingSail.id = 'buy-sail-button';
+        buyingSail.disabled = sandDollars < 500;
+
 
         let vehicleCost = document.createElement('span');
-        vehicleCost.innerText = 'Buy Sail (' + vehicles[1].cost.toLocaleString() + ' SD)';
+        vehicleCost.innerText = 'Buy Sail (' + vehicles[2].cost.toLocaleString() + ' SD)';
         buyingSail.appendChild(vehicleCost);
+
         
         buttonTwoCol = document.getElementById('button-column-2');
         buttonTwoCol.appendChild(buyingSail);
@@ -108,6 +134,7 @@ function sirFrogTalks() {
 }
 
 function ask4Directions() {
+    let fishStats = get('fishStats');
     clearButtonColumns();
     updateFrogMessage("Cuestan diez narvales. ¿Estás segure?");
 
@@ -115,6 +142,9 @@ function ask4Directions() {
     yesButton = document.createElement('button');
     yesButton.innerText = 'Yes';
     yesButton.onclick = getDirections;
+    yesButton.id = 'frog-yes-button';
+    let narwhalIndex = fishStats.findIndex(fish => fish.name == 'Narwhal');
+    yesButton.disabled = fishStats[narwhalIndex].inventoryCount < 10;
 
     buttonOneCol = document.getElementById('button-column-1');
     buttonOneCol.appendChild(yesButton);
@@ -129,8 +159,8 @@ function ask4Directions() {
 }
 
 function getDirections() {
-    let fishStats = getFishStats();
-    narwhalIndex = fishStats.findIndex(fish => fish.name == 'Narwhal');
+    let fishStats = get('fishStats');
+    let narwhalIndex = fishStats.findIndex(fish => fish.name == 'Narwhal');
     if (fishStats[narwhalIndex].inventoryCount >= 10) {
         // Subtract narwhals from inventory
         updateFishCount(narwhalIndex, fishStats[narwhalIndex].inventoryCount - 10);
@@ -200,7 +230,7 @@ function enableSailing() {
 function payTheFrog() {
     cost = 5000;
     
-    let sandDollars = getSandDollars();
+    let sandDollars = get('sandDollars');
 
     if (cost <= sandDollars) {
         sandDollars -= cost;
@@ -221,7 +251,7 @@ function kickTheFrog() {
     clearButtonColumns();
     sirFrogTalks();
     enableSailing();
-    updateFrogMessage('Sassy frog line about taking rowboat')
+    updateFrogMessage('Who raised you? I\'ll be taking that rowboat to get back to my rock and keeping it as a form of your apology for your terrible manners. Guess you\'ll need to buy another one. Sounds like a you problem.')
 }
 
 function seduceTheFrog() {
@@ -231,7 +261,5 @@ function seduceTheFrog() {
     updateFrogMessage('I am going to croak without you in my life.');
 }
 
-// DELETE LATER
-permanentVisibility();
-
-/* makeVastUnknownVisible(); */
+// Visibility toggle -> in visibility.js
+visibilityToggle()
