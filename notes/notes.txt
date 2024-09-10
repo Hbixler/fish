@@ -1,9 +1,14 @@
 To Do: 
+- should we make a different set of conditions / costs for things in a different array/object and have a toggle similar to visibility for testing purposes? 
 - add permanence to vast unknown
 - add limits to resources (fish, resources, etc) that you can then upgrade
     - add a section to trading for this
+    - to make room for this, should the inventory be in the shared info section like the fish? 
 - add win screen -> wise old mage gives you the secret to the universe
 - rebalance whole game
 
 Bugs: 
 - sell buttons not toggling properly (sell 100 button available when you don't have enough fish to sell) (buy buttons do work)
+- if you go through by sailing north and then kicking the frog and punching the frog, the rowboat goes away but you can still sail south afterwards
+- you can buy a sail without a sailboat
+    - should the frog send you back to fish island if you lose your rowboat? (maybe the dialogue with a button that you have to click that sends you back?)
