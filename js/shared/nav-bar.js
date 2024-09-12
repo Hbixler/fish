@@ -22,10 +22,12 @@ let navBarLinks = [
 if(!sessionStorage.getItem('navBarLinks')) {sessionStorage.setItem('navBarLinks', JSON.stringify(navBarLinks))}; // initial set
 
 // making nav bar
-for(x = 0; x < navBarLinks.length; x++) {
+let navBar = get('navBarLinks');
+for(x = 0; x < navBar.length; x++) {
     let navDiv = document.createElement('div');
-    navDiv.style.visibility = "hidden";
-    navDiv.id = navBarLinks[x].id;
+    navDiv.style.visibility = navBar[x].visible ? "visible" : "hidden";
+    navDiv.id = navBar[x].id;
+    navDiv.classList = ['row'];
     
     let navButton = document.createElement('a');
     navButton.innerText = navBarLinks[x].name;

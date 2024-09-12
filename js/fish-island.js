@@ -9,19 +9,12 @@ let bulkOptions = [1, 5, 10, 50, 100];
 
 // HTML GENERATION
 
-// Supplies/Baits
-for(x = 0; x < baits.length; x++) {
-    let bait = document.createElement('p');
-    bait.style.visibility = 'hidden';
-    bait.id = "bait" + x + "-div";
-    bait.innerText = baits[x].name + ": ";
+// Go fishing button
+let goFishingButton = document.createElement('button');
+goFishingButton.innerText = "Fish";
+goFishingButton.onclick = goFishing;
 
-    let baitCountSpan = document.createElement('span');
-    baitCountSpan.innerText = baits[x].count;
-    baitCountSpan.id = "bait" + x + "-count";
-
-    document.getElementById('supplies-div').appendChild(bait).appendChild(baitCountSpan);
-}  
+document.getElementById("go-fishing-button-div").appendChild(goFishingButton);
 
 // Sell fish
 for (let x = 0; x < fishes.length; x++) {
@@ -41,6 +34,7 @@ for (let x = 0; x < fishes.length; x++) {
         sellButton.setAttribute("onclick", "sellFish(" + x + ","  + bulkOptions[y] + ")");
         sellButton.value = bulkOptions[y];
         sellButton.classList = ["sellFish" + x];
+        sellButton.disabled = fishes[x].inventoryCount < bulkOptions[y];
 
         document.getElementById('fishTrading' + x + '-div').appendChild(sellButton);
     }
@@ -105,7 +99,7 @@ for (let x = 1; x < fishingRods.length; x++) {
 }
 
 // Buy habitat
-for (let x = 0; x < fishHabitats.length; x++) {
+for (let x = 1; x < fishHabitats.length; x++) {
     let habitatTradingDiv = document.createElement('div');
     habitatTradingDiv.style.visibility = 'hidden';
     habitatTradingDiv.id = "habitatTrading" + x + "-div";
@@ -238,7 +232,7 @@ function buyHabitat(fishHabitatNumber) {
         sandDollars -= habitatValue;
         updateSandDollars(sandDollars); // Update sand dollars
 
-        if (fishHabitatNumber === 0) { // buying a fish bowl unlocks habitat page
+        if (fishHabitatNumber === 1) { // buying a fish bowl unlocks habitat page
             makeNavBarLinkVisible("Habitat");
         }
 

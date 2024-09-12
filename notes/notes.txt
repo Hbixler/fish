@@ -8,7 +8,5 @@ To Do:
 - rebalance whole game
 
 Bugs: 
-- sell buttons not toggling properly (sell 100 button available when you don't have enough fish to sell) (buy buttons do work)
-- if you go through by sailing north and then kicking the frog and punching the frog, the rowboat goes away but you can still sail south afterwards
-- you can buy a sail without a sailboat
-    - should the frog send you back to fish island if you lose your rowboat? (maybe the dialogue with a button that you have to click that sends you back?)
+- rates of fishing not showing up -> show up when you leave and come back to fish island
+- when the frog takes your boat and sends you back to fish island, the buy button to get a new boat is not visible
