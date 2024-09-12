@@ -207,8 +207,8 @@ function punchTheFrog() {
     kickButton.innerText = 'Kick Frog';
     kickButton.onclick = kickTheFrog;
 
-    buttonThreeCol = document.getElementById('button-column-2');
-    buttonThreeCol.appendChild(kickButton);
+    buttonTwoCol = document.getElementById('button-column-2');
+    buttonTwoCol.appendChild(kickButton);
 
     // Create seduce frog button
     seduceButton = document.createElement('button');
@@ -246,12 +246,35 @@ function payTheFrog() {
     }
 }
 
+function backToTheIsland() {
+    let backToTheIsland = document.createElement('button');
+    backToTheIsland.innerText = 'Back to Fish Island';
+    backToTheIsland.onclick = fishIsland;
+
+    let buttonTwoCol = document.getElementById('button-column-2');
+    buttonTwoCol.appendChild(backToTheIsland); 
+    
+    let navButtons = document.getElementsByClassName('nav-button');
+    for (button of navButtons) {
+        button.setAttribute('href', 'javascript:void(0)');
+    }
+}
+
+function fishIsland() {
+    makeNavBarLinkInvisible("Vast Unknown");
+
+    visibility = getVisibility();
+    visibility['vehicle-trading'].list.button.currentButton = 0;
+    setVisibility(visibility);
+
+    location.href = "index.html";
+}
+
 function kickTheFrog() {
     updateVehicle(0);
     clearButtonColumns();
-    sirFrogTalks();
-    enableSailing();
-    updateFrogMessage('Who raised you? I\'ll be taking that rowboat to get back to my rock and keeping it as a form of your apology for your terrible manners. Guess you\'ll need to buy another one. Sounds like a you problem.')
+    updateFrogMessage('Who raised you? I\'ll be taking that rowboat to get back to my rock and keeping it as a form of your apology for your terrible manners. Guess you\'ll need to buy another one back on fish island. Sounds like a you problem.')
+    backToTheIsland();
 }
 
 function seduceTheFrog() {

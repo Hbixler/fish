@@ -1,7 +1,7 @@
 // VISIBILITY TOGGLE
 function visibilityToggle() {
-    makeEverythingVisible();
-    /* permanentVisibility(); */
+    /* makeEverythingVisible(); */
+    permanentVisibility(); // DO NOT TOUCH
 }
 
 // OBJECT OF VISIBILITY
@@ -61,10 +61,10 @@ let visibility = {
         list: {
             idStart: "habitatTrading",
             firstItem: 0,
-            highestVisible: -1,
+            highestVisible: 0,
             button: {
                 buttonId: "buyHabitat",
-                currentButton: -1,
+                currentButton: 0,
             }
         },
     },
@@ -173,6 +173,14 @@ function makeNavBarLinkVisible(navBarLink) {
     navBar[navBarIndex].visible = true;
     set('navBarLinks', navBar);
 }
+function makeNavBarLinkInvisible(navBarLink) {
+    let navBar = get('navBarLinks');
+    let navBarIndex = navBar.findIndex(link => link.name === navBarLink);
+    let div = document.getElementById(navBar[navBarIndex].id);
+    div.style.visibility = 'hidden';
+    navBar[navBarIndex].visible = false;
+    set('navBarLinks', navBar);
+}
 
 // PERMANENT VISIBILITY FUNCTION
 function permanentVisibility() {
@@ -228,6 +236,7 @@ function makeSharedInfoVisible() { // makes shared info section visible
 function makeNavBarVisible() {
     get('navBarLinks');
     for (item in navBarLinks) {
+        console.log(navBarLinks[item].id);
         let link = document.getElementById(navBarLinks[item].id);
         link.style.visibility = 'visible';
     }

@@ -1,5 +1,6 @@
 // Sand dollar count
 function updateSandDollars(sandDollars) {
+    let habitats = get("fishHabitats");
     set('sandDollars', sandDollars);
     updateBuyButtons(sandDollars);
     updateSailButton(sandDollars);
@@ -14,9 +15,9 @@ function updateSandDollars(sandDollars) {
         makeListElementVisible("equipment-trading", 1);
     }
 
-    if (sandDollars >= 30 && isListElementVisible("supplies", 0) && !isSectionVisible("habitat-trading")) { // unlocks habitat trading at 40 SDs and bait is already unlocked
+    if (sandDollars >= habitats[1].cost - 5 && isListElementVisible("supplies", 0) && !isSectionVisible("habitat-trading")) { // unlocks habitat trading when 5 less SDs than cost and bait is already unlocked
         makeSectionVisible("habitat-trading");
-        makeListElementVisible("habitat-trading", 0);
+        makeListElementVisible("habitat-trading", 1);
     }
 }
 
@@ -146,7 +147,7 @@ function updateHabitat(currentHabitat) {
     set('currentHabitat', currentHabitat)
 
     let fishHabitatSpan = document.getElementById("fishHabitat");
-
+ 
     if (fishHabitatSpan) {
         fishHabitatSpan.innerText = currentHabitat.name;
 
