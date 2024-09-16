@@ -1,6 +1,6 @@
 // VISIBILITY TOGGLE
 function visibilityToggle() {
-    /* makeEverythingVisible(); */
+    makeEverythingVisible();
     permanentVisibility(); // DO NOT TOUCH
 }
 
@@ -54,6 +54,19 @@ let visibility = {
             firstItem: 0,
             highestVisible: -1,
         },
+    },
+    'container-trading': {
+        id: 'container-trading-div',
+        visible: false,
+        list: {
+            idStart: 'containerTrading',
+            firstItem: 1,
+            highestVisible: 0,
+            button: {
+                butonId: "buyContainer",
+                currentButton: 0,
+            }
+        }
     },
     'habitat-trading': {
         id: 'habitat-trading-div',

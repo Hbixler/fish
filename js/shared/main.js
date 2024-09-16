@@ -62,6 +62,89 @@ let fishStatsInitial = [ // original fish stats array - revenue is in SD/second
     },
 ]
 
+// BAITS
+let baitsInitial = [
+    {
+        name: "Gummy Worms",
+        cost: 1,
+        count: 0,
+    },
+    {
+        name: "Saltine Crackers",
+        cost: 3,
+        count: 0,
+    },
+    {
+        name: "Chicken Nuggets",
+        cost: 5,
+        count: 0,
+    },
+    {
+        name: "Cake Slices",
+        cost: 6,
+        count: 0,
+    },
+]
+
+// CONTAINERS
+let containersInitial = [
+    {
+        name: "Pockets",
+        capcacities: {
+            "Sand Dollars": 250,
+            "Fish": 10,
+            "Baits": 25,
+        },
+        cost: 0,
+    },
+    {
+        name: "Bucket",
+        capcacities: {
+            "Sand Dollars": 1000,
+            "Fish": 25,
+            "Baits": 50,
+        },
+        cost: 30,
+    },
+    {
+        name: "Crate",
+        capcacities: {
+            "Sand Dollars": 2500,
+            "Fish": 50,
+            "Baits": 100,
+        },
+        cost: 50,
+    },
+    {
+        name: "Small Wheelbarrow",
+        capcacities: {
+            "Sand Dollars": 5000,
+            "Fish": 100,
+            "Baits": 150,
+        },
+        cost: 200,
+    },
+    {
+        name: "Large Wheelbarrow",
+        capcacities: {
+            "Sand Dollars": 10000,
+            "Fish": 250,
+            "Baits": 200,
+        },
+        cost: 500,
+    },
+    {
+        name: "Wagon",
+        capcacities: {
+            "Sand Dollars": 20000,
+            "Fish": 500,
+            "Baits": 250,
+        },
+        cost: 1000,
+    },
+]
+let currentContainerInitial = containersInitial[0]; // sets original bag to pockets
+
 // FISHING RODS
 let fishingRodsInitial = [// rates are in fish/second
     {
@@ -152,30 +235,6 @@ let fishHabitatsInitial = [
 ]
 let currentHabitatInitial = fishHabitatsInitial[0]; // sets original habitat to nothing
 
-// BAITS
-let baitsInitial = [
-    {
-        name: "Gummy Worms",
-        cost: 1,
-        count: 0,
-    },
-    {
-        name: "Saltine Crackers",
-        cost: 3,
-        count: 0,
-    },
-    {
-        name: "Chicken Nuggets",
-        cost: 5,
-        count: 0,
-    },
-    {
-        name: "Cake Slices",
-        cost: 6,
-        count: 0,
-    },
-]
-
 // VEHICLE
 let vehiclesInitial = [
     {
@@ -200,11 +259,13 @@ if(!sessionStorage.getItem('gameInitialized')) {
     set('sandDollars', sandDollarsInitial);
     set('revenue', revenueInitial);
     set('fishStats', fishStatsInitial);
+    set('baits', baitsInitial);
+    set('containers', containersInitial);
+    set('currentContainer', currentContainerInitial);
     set('fishingRods', fishingRodsInitial);
     set('currentRod', currentRodInitial);
     set('fishHabitats', fishHabitatsInitial);
     set('currentHabitat', currentHabitatInitial);
-    set('baits', baitsInitial);
     set('vehicles', vehiclesInitial);
     set('currentVehicle', currentVehicleInitial);
 

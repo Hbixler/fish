@@ -11,6 +11,18 @@ sandDollarSpan.id = 'sandDollars';
 
 document.getElementById('shared-info').appendChild(sharedInfoSD).appendChild(sandDollarSpan);
 
+// container
+let containersShared = get('currentContainer');
+let sharedInfoContainer = document.createElement('div');
+sharedInfoContainer.innerText = 'Container: ';
+sharedInfoContainer.className = 'shared-info-div';
+
+let containersSpan = document.createElement('span');
+containersSpan.innerText = containersShared.name;
+containersSpan.id = 'fishingRod'
+
+document.getElementById('shared-info').appendChild(sharedInfoContainer).appendChild(containersSpan);
+
 // equipment
 let equipmentShared = get('currentRod');
 let sharedInfoEquipment = document.createElement('div');

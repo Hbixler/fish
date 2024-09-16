@@ -1,6 +1,7 @@
 // GETTING AND SETTING INFO
 let fishes = get('fishStats');
 let baits = get('baits');
+let containers = get('containers');
 let fishingRods = get('fishingRods');
 let fishHabitats = get('fishHabitats');
 let vehicles = get('vehicles');
@@ -75,6 +76,27 @@ for (let x = 0; x < baits.length; x++) {
 
         document.getElementById('baitTrading' + x + '-div').appendChild(buyButton);
     }
+}
+
+// Buy containers
+for (let x = 1; x < containers.length; x++) {
+    let containerTradingDiv = document.createElement('div');
+    containerTradingDiv.style.visibility = 'hidden';
+    containerTradingDiv.id = "containerTrading" + x + "-div";
+    containerTradingDiv.className = "row";
+
+    let containerListing = document.createElement('p');
+    containerListing.innerText = containers[x].name + " (" + containers[x].cost + " SD)";
+
+    let buyButton = document.createElement('button');
+    buyButton.setAttribute("onclick", "buyContainer(" + x + ")");
+    buyButton.innerText = "Buy";
+    buyButton.style.visibility = "hidden";
+    buyButton.id = "buyContainer" + x;
+    buyButton.classList = ["buyButton"];
+    buyButton.value = containers[x].cost;
+
+    document.getElementById('container-trading-div').appendChild(containerTradingDiv).appendChild(containerListing).appendChild(buyButton);
 }
 
 // Buy equipment
