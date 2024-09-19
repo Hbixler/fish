@@ -1,6 +1,12 @@
 // Sand dollar count
 function updateSandDollars(sandDollars) {
     let habitats = get("fishHabitats");
+    let storage = get("currentStorage");
+
+    if (sandDollars > storage.capacities["Sand Dollars"]) {
+        sandDollars = storage.capacities["Sand Dollars"];
+    }
+    
     set('sandDollars', sandDollars);
     updateBuyButtons(sandDollars);
     updateSailButton(sandDollars);
@@ -36,6 +42,23 @@ function updateBaitCount(baitNum, numBaits) {
     if (baitSpan) {
         baitSpan.innerText = baits[baitNum].count;
     }
+}
+
+// current storage
+function updateStorage(currentStorage) {
+    set('currentStorage', currentStorage);
+    let storageSpan = document.getElementById("storage");
+    storageSpan.innerText = currentStorage.name;
+
+    // replacing total capacity values in shared info divs
+    let sandDollarStorageSpan = document.getElementById("sand-dollar-capacity");
+    sandDollarStorageSpan.innerText = currentStorage.capacities["Sand Dollars"];
+
+    let fishStorageSpan = document.getElementById("fish-capacity");
+    fishStorageSpan.innerText = currentStorage.capacities["Fish"];
+
+    let baitStorageSpan = document.getElementById("bait-capacity");
+    baitStorageSpan.innerText = currentStorage.capacities["Baits"];
 }
 
 // current fishing rod
@@ -135,10 +158,11 @@ function updateSellButtons(fishIndex, inventoryCount) {
 
 // Goes through all buttons with the class buyButton and enables/diables based on sand dollars
 function updateBuyButtons(sandDollars) {
+    let currentBaitSize = howBigIsMyBait();
     let buyButtons = document.getElementsByClassName("buyButton");
-
+    let maxBaits = get('currentStorage').capacities["Baits"];
     for (button of buyButtons) {
-        button.disabled = sandDollars < button.value;
+        button.disabled = (sandDollars < button.value) || (button.hasAttribute('space') ? parseInt(button.getAttribute('space')) + currentBaitSize > maxBaits : false);
     }
 }
 
@@ -251,4 +275,14 @@ function updateSailButton(sandDollars) {
     if (sailButton) {
         sailButton.disabled = sandDollars < 500;
     }
+}
+
+// count fish
+function howBigIsMyBait() { 
+    let baits = get('baits');
+    baitsCount = 0;
+    for (baitNum in baits) {
+        baitsCount += (baits[baitNum].count * baits[baitNum].size);
+    }
+    return(baitsCount);
 }

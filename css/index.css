@@ -106,7 +106,7 @@ button {
 }
 /* Tooltip styling */
 [data-tooltip]:before {
-    content: attr(data-tooltip) '\a' attr(data-tooltip-2);
+    content: attr(data-tooltip) '\a' attr(data-tooltip-2) '\a' attr(data-tooltip-3) '\a' attr(data-tooltip-4);
     white-space: pre;
     display: none;
     position: absolute;

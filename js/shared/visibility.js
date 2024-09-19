@@ -43,7 +43,7 @@ let visibility = {
             button: {
                 buttonId: "buyRod",
                 currentButton: 0,
-            }
+            },
         },
     },
     'bait-trading': {
@@ -55,30 +55,30 @@ let visibility = {
             highestVisible: -1,
         },
     },
-    'container-trading': {
-        id: 'container-trading-div',
+    'storage-trading': {
+        id: 'storage-trading-div',
         visible: false,
         list: {
-            idStart: 'containerTrading',
+            idStart: 'storageTrading',
             firstItem: 1,
             highestVisible: 0,
             button: {
-                butonId: "buyContainer",
+                buttonId: "buyStorage",
                 currentButton: 0,
-            }
-        }
+            },
+        },
     },
     'habitat-trading': {
         id: 'habitat-trading-div',
         visible: false,
         list: {
             idStart: "habitatTrading",
-            firstItem: 0,
+            firstItem: 1,
             highestVisible: 0,
             button: {
                 buttonId: "buyHabitat",
                 currentButton: 0,
-            }
+            },
         },
     },
     'vehicle-trading': {
@@ -91,7 +91,7 @@ let visibility = {
             button: {
                 buttonId: "buyVehicle",
                 currentButton: 0,
-            }
+            },
         },
     },
 
@@ -103,7 +103,7 @@ let visibility = {
             idStart: "fishInHabitat",
             firstItem: 0,
             highestVisible: -1,
-        }
+        },
     },
 
     // vast unknown
@@ -120,7 +120,7 @@ let visibility = {
             idStart: "fish",
             firstItem: 0,
             highestVisible: -1,
-        }
+        },
     },
 };
 if(!sessionStorage.getItem('visibility')) { sessionStorage.setItem('visibility', JSON.stringify(visibility))}; // initial set
@@ -197,7 +197,7 @@ function makeNavBarLinkInvisible(navBarLink) {
 
 // PERMANENT VISIBILITY FUNCTION
 function permanentVisibility() {
-    console.log("Fish are forever")
+    console.log("Fish are forever");
     let visibilityList = getVisibility(); // sections
     for (section in visibilityList) {
         let sectionBox = document.getElementById(visibilityList[section].id);
@@ -249,7 +249,6 @@ function makeSharedInfoVisible() { // makes shared info section visible
 function makeNavBarVisible() {
     get('navBarLinks');
     for (item in navBarLinks) {
-        console.log(navBarLinks[item].id);
         let link = document.getElementById(navBarLinks[item].id);
         link.style.visibility = 'visible';
     }

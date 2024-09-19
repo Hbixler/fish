@@ -1,7 +1,7 @@
 // GETTING AND SETTING INFO
 let fishes = get('fishStats');
 let baits = get('baits');
-let containers = get('containers');
+let storage = get('storage');
 let fishingRods = get('fishingRods');
 let fishHabitats = get('fishHabitats');
 let vehicles = get('vehicles');
@@ -55,7 +55,8 @@ for (let x = 0; x < baits.length; x++) {
     baitListing.classList.add('tooltipParent');
 
     let applicableFish = fishes.findIndex(fish => fish.bait === baits[x].name);
-    baitListing.setAttribute('data-tooltip', "Use " + baits[x].name + " to catch a " + fishes[applicableFish].name + "!");
+    baitListing.setAttribute('data-tooltip', "Use " + baits[x].name);
+    baitListing.setAttribute('data-tooltip-2', " to catch a " + fishes[applicableFish].name + "!")
     baitListing.setAttribute('data-tooltip-position', 'left');
 
     let baitPrice = document.createElement('span');
@@ -68,35 +69,53 @@ for (let x = 0; x < baits.length; x++) {
 
     for (let y = 0; y < bulkOptions.length; y++) {
         let buyButton = document.createElement('button');
-        if (y === 0) {buyButton.innerText = "Buy 1" } else { buyButton.innerText = bulkOptions[y] }
+        if (y === 0) {buyButton.innerText = "Buy 1" } else { buyButton.innerText = bulkOptions[y] };
         buyButton.setAttribute("onclick", "buyBait(" + x + ","  + bulkOptions[y] + ")");
         buyButton.id = "buyBait" + x;
         buyButton.classList = ["buyButton"];
         buyButton.value = baits[x].cost * bulkOptions[y];
+        buyButton.setAttribute("space", baits[x].size * bulkOptions[y]);
 
         document.getElementById('baitTrading' + x + '-div').appendChild(buyButton);
     }
 }
 
-// Buy containers
-for (let x = 1; x < containers.length; x++) {
-    let containerTradingDiv = document.createElement('div');
-    containerTradingDiv.style.visibility = 'hidden';
-    containerTradingDiv.id = "containerTrading" + x + "-div";
-    containerTradingDiv.className = "row";
+// Buy storage
+for (let x = 1; x < storage.length; x++) {
+    let storageTradingDiv = document.createElement('div');
+    storageTradingDiv.style.visibility = 'hidden';
+    storageTradingDiv.id = "storageTrading" + x + "-div";
+    storageTradingDiv.className = "row";
 
-    let containerListing = document.createElement('p');
-    containerListing.innerText = containers[x].name + " (" + containers[x].cost + " SD)";
+    let storageParagraph = document.createElement('p');
+
+    let storageListing = document.createElement('span');
+    storageListing.innerText = storage[x].name;
+    storageListing.classList.add('tooltipParent');
+
+    storageListing.setAttribute('data-tooltip', "Capacity: ");
+    storageListing.setAttribute('data-tooltip-2', storage[x].capacities["Sand Dollars"] + " Sand Dollars, ")
+    storageListing.setAttribute('data-tooltip-3', storage[x].capacities["Fish"] + " Fish, ")
+    storageListing.setAttribute('data-tooltip-4', storage[x].capacities["Baits"] + " Bait")
+    storageListing.setAttribute('data-tooltip-position', 'left');
+
+    let storagePrice = document.createElement('span');
+    storagePrice.innerText = " (" + storage[x].cost + " SD)";
+
+    storageParagraph.appendChild(storageListing);
+    storageParagraph.appendChild(storagePrice);
+
+    document.getElementById("storage-trading-div").appendChild(storageTradingDiv).appendChild(storageParagraph);
 
     let buyButton = document.createElement('button');
-    buyButton.setAttribute("onclick", "buyContainer(" + x + ")");
+    buyButton.setAttribute("onclick", "buyStorage(" + x + ")");
     buyButton.innerText = "Buy";
     buyButton.style.visibility = "hidden";
-    buyButton.id = "buyContainer" + x;
+    buyButton.id = "buyStorage" + x;
     buyButton.classList = ["buyButton"];
-    buyButton.value = containers[x].cost;
+    buyButton.value = storage[x].cost;
 
-    document.getElementById('container-trading-div').appendChild(containerTradingDiv).appendChild(containerListing).appendChild(buyButton);
+    document.getElementById('storageTrading' + x + '-div').appendChild(buyButton);
 }
 
 // Buy equipment
@@ -167,7 +186,26 @@ for (let x = 1; x < 2; x++) {
 // go fishing button
 function goFishing() {
     let fishStats = get('fishStats');
-    updateFishCount(0, fishStats[0].inventoryCount + 1);
+    let currentStorage = get('currentStorage').capacities["Fish"];
+    let inventoryStorage = howBigAreMyFish();
+
+    console.log(inventoryStorage);
+    console.log(currentStorage);
+
+    if (inventoryStorage < currentStorage) {
+        console.log('going to update');
+        updateFishCount(0, fishStats[0].inventoryCount + 1);
+    }
+}
+
+// count fish
+function howBigAreMyFish() { 
+    let fishStats = get('fishStats');
+    fishInInventory = 0;
+    for (fishNumber in fishStats) {
+        fishInInventory += (fishStats[fishNumber].inventoryCount * fishStats[fishNumber].size);
+    }
+    return(fishInInventory);
 }
 
 // TRADING
@@ -208,6 +246,31 @@ function buyBait(baitNumber, numToBuy) {
     }
 }
 
+// buying storage 
+function buyStorage(storageNumber) {
+    let sandDollars = get('sandDollars');
+    storageValue = storage[storageNumber].cost;
+
+    if (storageValue <= sandDollars) {
+        currentStorage = storage[storageNumber];
+        updateStorage(currentStorage); // update storage
+
+        sandDollars -= storageValue; // update sand dollars
+        updateSandDollars(sandDollars);
+
+        if (storageNumber != storage.length - 1) { // make next storage visible
+            makeListElementVisible("storage-trading", storageNumber + 1);
+        }
+
+        storageBuyButton = document.getElementById("buyStorage" + storageNumber); // make current storage buy button invisible
+        storageBuyButton.style.visibility = "hidden";
+
+        visibility = getVisibility(); // makes new button permanently visible
+        visibility['storage-trading'].list.button.currentButton = storageNumber + 1;
+        setVisibility(visibility);
+    }
+}
+
 // buying rods
 function buyRod(fishingRodNumber) {
     let sandDollars = get('sandDollars');
@@ -220,9 +283,13 @@ function buyRod(fishingRodNumber) {
         sandDollars -= rodValue; // Update sand dollars
         updateSandDollars(sandDollars);
 
+
+
         if (fishingRodNumber === 1) { // makes baits visible
             makeSectionVisible("bait-trading");
             makeListElementVisible("bait-trading", 0);
+            makeSectionVisible("storage-trading");
+            makeListElementVisible("storage-trading", 1);
         } else if (isListElementVisible("fish-trading", fishingRodNumber - 1)) {
             makeListElementVisible("bait-trading", fishingRodNumber - 1);
         }
@@ -231,8 +298,7 @@ function buyRod(fishingRodNumber) {
             makeListElementVisible("equipment-trading", fishingRodNumber + 1);
         } 
 
-        // make current rod buy button invisible
-        fishingRodBuyButton = document.getElementById("buyRod" + fishingRodNumber);
+        fishingRodBuyButton = document.getElementById("buyRod" + fishingRodNumber); // make current rod buy button invisible
         fishingRodBuyButton.style.visibility = 'hidden';
 
         visibility = getVisibility(); // makes new button permanently visible
