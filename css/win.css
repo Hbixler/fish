@@ -1,0 +1,8 @@
+/* flex things */
+#flex-container {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    gap: 25px;
+    width: 900px;
+}

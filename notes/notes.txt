@@ -1,12 +1,12 @@
 To Do: 
 - should we make a different set of conditions / costs for things in a different array/object and have a toggle similar to visibility for testing purposes? 
 - add permanence to vast unknown
-- add limits to resources (fish, resources, etc) that you can then upgrade
-    - add a section to trading for this
-    - to make room for this, should the inventory be in the shared info section like the fish? 
-- add win screen -> wise old mage gives you the secret to the universe
 - rebalance whole game
 
 Bugs: 
 - rates of fishing not showing up -> show up when you leave and come back to fish island
+- update current storage and storage capacities on the shared info bar
+- make capacities show up properly in sand dollar part of shared info bar too
+- fix win page
+- weird things going on with fishing for goldfish and limits
 - when the frog takes your boat and sends you back to fish island, the buy button to get a new boat is not visible

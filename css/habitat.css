@@ -2,9 +2,10 @@
 .flex-container {
     display: flex;
     flex-direction: row;
-    width: 650px;
+    width: 850px;
     margin: auto;
     gap: 25px;
+    margin-top: 0px;
 }
 .row {
     display: flex;

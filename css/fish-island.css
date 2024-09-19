@@ -6,11 +6,6 @@
     gap: 25px;
     width: 900px;
 }
-#nav-wrapper {
-    display: flex;
-    margin: 0px;
-    flex-direction: column;
-}
 .row {
     display: flex;
     flex-direction: row;
@@ -42,6 +37,6 @@
     display: flex;
     align-items: center;
     margin-left: auto;
-    /* this is a cheap solution and i hate it */
-    margin-top: 20px;
+    margin-right: 12px;
+    margin-top: 10px;
 }
