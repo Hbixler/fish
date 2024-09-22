@@ -42,7 +42,17 @@ function updateBaitCount(baitNum, numBaits) {
     if (baitSpan) {
         baitSpan.innerText = baits[baitNum].count;
     }
+
+    updateBaitInSharedInfo();
 }
+
+// update bait count in shared info
+function updateBaitInSharedInfo() {
+    // updating total bait in shared info
+    let baitCountSharedInfo = document.getElementById("bait-space");
+    baitCountSharedInfo.innerText = howBigIsMyBait();
+}
+
 
 // current storage
 function updateStorage(currentStorage) {
@@ -139,6 +149,15 @@ function updateFishCount(fishNumber, numFish) {
     }
     
     set('baits', baits);
+
+    updateFishInSharedInfo();
+}
+
+// update fish count in shared info
+function updateFishInSharedInfo() {
+    // updating total fish in shared info
+    let fishCountSharedInfo = document.getElementById("fish-space");
+    fishCountSharedInfo.innerText = howBigAreMyFish();
 }
 
 // update colouring of fish counts

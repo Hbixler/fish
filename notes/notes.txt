@@ -1,12 +1,17 @@
 To Do: 
-- should we make a different set of conditions / costs for things in a different array/object and have a toggle similar to visibility for testing purposes? 
 - add permanence to vast unknown
 - rebalance whole game
 
+- currently can get blocked if total rates add up to not an even number (have to sell before buying more baits or fishing more fish), might not be a problem if we're okay with this? 
+    - I think we should find a way to make it so it's counting up for each type of fish and doesn't count towards inventory count until it's a whole fish 
+        - reasoning: if you previously fished 0.75 of various fish, but didn't get bait for them, you won't ever be able to use the remaining 0.25 space and will always be 1 fish space short in your inventory
+- Do we want the decimal or rounded number for the total space being taken up by fish and bait? 
+- need to list the space each fish and bait take up somewhere
+- turn the update spans into one function and an object? 
+
 Bugs: 
 - rates of fishing not showing up -> show up when you leave and come back to fish island
-- update current storage and storage capacities on the shared info bar
-- make capacities show up properly in sand dollar part of shared info bar too
+- update current storage and storage capacities on the shared info bar (partially done, needs testing)
 - fix win page
 - weird things going on with fishing for goldfish and limits
 - when the frog takes your boat and sends you back to fish island, the buy button to get a new boat is not visible

@@ -1,6 +1,6 @@
 // VISIBILITY TOGGLE
 function visibilityToggle() {
-    makeEverythingVisible();
+    /* makeEverythingVisible(); */
     permanentVisibility(); // DO NOT TOUCH
 }
 
@@ -227,7 +227,7 @@ function permanentVisibility() {
         }
     }
 }
-function fishListVisibility() { // shared info fish list
+/* function fishListVisibility() { // shared info fish list
     let inventoryFish = get('fishStats'); // fish
     for (fish in inventoryFish) {
         let element = document.getElementById("fish" + fish + "-div");
@@ -235,7 +235,7 @@ function fishListVisibility() { // shared info fish list
             element.style.visibility = "visible";
         }
     }
-}
+} */
 
 // FOR EVERYTHING FUNCTION
 function makeSharedInfoVisible() { // makes shared info section visible

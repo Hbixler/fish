@@ -11,7 +11,7 @@ let sandDollarSpace = document.createElement('span'); // next line
 sandDollarSpace.innerText = "\n";
 
 let sandDollarSpan = document.createElement('span'); // total sand dollar 
-sandDollarSpan.innerText = (Math.round(sandDollarsShared));
+sandDollarSpan.innerText = (Math.round(sandDollarsShared).toLocaleString());
 sandDollarSpan.id = 'sandDollars';
 
 let sandDollarSlash = document.createElement("span"); // slash between values
@@ -20,7 +20,7 @@ sandDollarSlash.id = "sand-dollar-slash";
 
 let sandDollarCapacitySpan = document.createElement('span'); // sand dollar capacity based on storage
 sandDollarCapacitySpan.id = "sand-dollar-capacity";
-sandDollarCapacitySpan.innerText = currentStorageShared.capacities["Sand Dollars"];
+sandDollarCapacitySpan.innerText = currentStorageShared.capacities["Sand Dollars"].toLocaleString();
 
 document.getElementById('shared-info').appendChild(sharedInfoSD).appendChild(sandDollarSpace);
 document.getElementById("shared-info-SD").appendChild(sandDollarSpan);
@@ -83,12 +83,13 @@ sharedInfoFish.style.visibility = "hidden";
 document.getElementById('shared-info').appendChild(sharedInfoFish);
 
 let fishLabel = document.createElement('p');
-fishLabel.innerText = 'Fish:';
+fishLabel.innerText = 'Fish: ';
 fishLabel.id = "fish-label";
 document.getElementById('fish-list').appendChild(fishLabel);
 
 let fishSpace = document.createElement("span"); // current space taken up by fish
 fishSpace.id = "fish-space";
+fishSpace.innerText = howBigAreMyFish();
 
 let fishSlash = document.createElement("span"); // slash between values
 fishSlash.innerText = " / ";
@@ -134,12 +135,13 @@ sharedInfoBaits.style.visibility = "hidden";
 document.getElementById('shared-info').appendChild(sharedInfoBaits);
 
 let baitLabel = document.createElement('p');
-baitLabel.innerText = "Baits:";
+baitLabel.innerText = "Baits: ";
 baitLabel.id = "bait-label";
 document.getElementById("supplies-div").appendChild(baitLabel);
 
 let baitSpace = document.createElement("span"); // current space taken up by baits
 baitSpace.id = "bait-space";
+baitSpace.innerText = howBigIsMyBait();
 
 let baitSlash = document.createElement("span"); // slash between values
 baitSlash.innerText = " / "
@@ -169,4 +171,4 @@ for (let x = 0; x < baitsList.length; x++) {
 }
 
 // VISIBILITY
-fishListVisibility();
+/* fishListVisibility(); */

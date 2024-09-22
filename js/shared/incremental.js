@@ -23,11 +23,8 @@ window.setInterval(function() {
 
         let currentStorage = howBigAreMyFish();
 
-        if (fishStat.size + currentStorage <= maxFish) {
-            // We have enough room to add a fish
-
-            // If fish needs bait and is being fished
-            if (fishStat.bait.length > 0 && currentRod.rates[autoFish] > 0) {
+        if (currentRod.rates[autoFish] + currentStorage <= maxFish) { // We have enough room to add a fish
+            if (fishStat.bait.length > 0 && currentRod.rates[autoFish] > 0) { // If fish needs bait and is being fished
                 let baitIndex = baits.findIndex(bait => bait.name == fishStat.bait);
                 let bait = baits[baitIndex];
 
@@ -42,6 +39,8 @@ window.setInterval(function() {
             // Gain fish!
             fishStat.inventoryCount = fishStat.inventoryCount + currentRod.rates[autoFish];
             updateFishCount(fishIndex, fishStat.inventoryCount);
+
+            // update the shared info section
         }
 
     }
