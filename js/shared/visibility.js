@@ -125,7 +125,8 @@ let visibility = {
 };
 if(!sessionStorage.getItem('visibility')) { sessionStorage.setItem('visibility', JSON.stringify(visibility))}; // initial set
 function getVisibility() { // get function
-    return JSON.parse(sessionStorage.getItem('visibility'))
+    console.log(sessionStorage.getItem('visibility'));
+    return JSON.parse(sessionStorage.getItem('visibility'));
 }; 
 function setVisibility(newVisibility) { // set function
     sessionStorage.setItem('visibility', JSON.stringify(newVisibility))
@@ -227,15 +228,6 @@ function permanentVisibility() {
         }
     }
 }
-/* function fishListVisibility() { // shared info fish list
-    let inventoryFish = get('fishStats'); // fish
-    for (fish in inventoryFish) {
-        let element = document.getElementById("fish" + fish + "-div");
-        if (element && inventoryFish[fish].visible) {
-            element.style.visibility = "visible";
-        }
-    }
-} */
 
 // FOR EVERYTHING FUNCTION
 function makeSharedInfoVisible() { // makes shared info section visible

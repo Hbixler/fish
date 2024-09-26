@@ -198,16 +198,6 @@ function goFishing() {
     }
 }
 
-// count fish
-function howBigAreMyFish() { 
-    let fishStats = get('fishStats');
-    fishInInventory = 0;
-    for (fishNumber in fishStats) {
-        fishInInventory += (fishStats[fishNumber].inventoryCount * fishStats[fishNumber].size);
-    }
-    return(fishInInventory);
-}
-
 // TRADING
 // selling fish
 function sellFish(fishType, numToSell) {

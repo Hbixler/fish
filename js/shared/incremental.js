@@ -1,5 +1,17 @@
 let speed = get('speed');
 
+// count fish
+function howBigAreMyFish() { 
+    let fishStats = get('fishStats');
+    fishInInventory = 0;
+    for (fishNumber in fishStats) {
+        // console.log(Math.floor(fishStats[fishNumber].inventoryCount));
+        // console.log(Math.floor(fishStats[fishNumber].inventoryCount) * fishStats[fishNumber].size);
+        fishInInventory += (Math.floor(fishStats[fishNumber].inventoryCount) * fishStats[fishNumber].size);
+    }
+    return(fishInInventory);
+}
+
 // REVENUE FROM VISITORS
 window.setInterval(function() {
     let sandDollars = get('sandDollars');
@@ -45,13 +57,3 @@ window.setInterval(function() {
 
     }
 }, 1000/speed)
-
-// count fish
-function howBigAreMyFish() { 
-    let fishStats = get('fishStats');
-    fishInInventory = 0;
-    for (fishNumber in fishStats) {
-        fishInInventory += (fishStats[fishNumber].inventoryCount * fishStats[fishNumber].size);
-    }
-    return(fishInInventory);
-}

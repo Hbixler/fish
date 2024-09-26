@@ -264,7 +264,7 @@ function fishIsland() {
     makeNavBarLinkInvisible("Vast Unknown");
 
     visibility = getVisibility();
-    visibility['vehicle-trading'].list.button.currentButton = 0;
+    visibility['vehicle-trading'].list.button.currentButton = 1;
     setVisibility(visibility);
 
     location.href = "index.html";
@@ -272,6 +272,9 @@ function fishIsland() {
 
 function kickTheFrog() {
     updateVehicle(0);
+    /* makeListElementVisible("vehicle-trading", 1); */ // make buy button visible for buying a rowboat - this doesn't currently work
+    
+
     clearButtonColumns();
     updateFrogMessage('Who raised you? I\'ll be taking that rowboat to get back to my rock and keeping it as a form of your apology for your terrible manners. Guess you\'ll need to buy another one back on fish island. Sounds like a you problem.')
     backToTheIsland();
