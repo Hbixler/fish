@@ -189,11 +189,7 @@ function goFishing() {
     let currentStorage = get('currentStorage').capacities["Fish"];
     let inventoryStorage = howBigAreMyFish();
 
-    console.log(inventoryStorage);
-    console.log(currentStorage);
-
-    if (inventoryStorage < currentStorage) {
-        console.log('going to update');
+    if (inventoryStorage + 1 <= currentStorage) {
         updateFishCount(0, fishStats[0].inventoryCount + 1);
     }
 }

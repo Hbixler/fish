@@ -5,8 +5,6 @@ function howBigAreMyFish() {
     let fishStats = get('fishStats');
     fishInInventory = 0;
     for (fishNumber in fishStats) {
-        // console.log(Math.floor(fishStats[fishNumber].inventoryCount));
-        // console.log(Math.floor(fishStats[fishNumber].inventoryCount) * fishStats[fishNumber].size);
         fishInInventory += (Math.floor(fishStats[fishNumber].inventoryCount) * fishStats[fishNumber].size);
     }
     return(fishInInventory);
@@ -32,10 +30,11 @@ window.setInterval(function() {
         // Find the fish's stats
         let fishIndex = fishStats.findIndex(fish => fish.name == autoFish);
         let fishStat = fishStats[fishIndex];
-
+        let fishRate = currentRod.rates[autoFish];
         let currentStorage = howBigAreMyFish();
+        let remainingSpace = maxFish - currentStorage;
 
-        if (currentRod.rates[autoFish] + currentStorage <= maxFish) { // We have enough room to add a fish
+        if (remainingSpace >= fishStat.size) { // We have enough room to add a fish
             if (fishStat.bait.length > 0 && currentRod.rates[autoFish] > 0) { // If fish needs bait and is being fished
                 let baitIndex = baits.findIndex(bait => bait.name == fishStat.bait);
                 let bait = baits[baitIndex];
@@ -49,9 +48,28 @@ window.setInterval(function() {
                 updateBaitCount(baitIndex, bait.count);
             }
             // Gain fish!
-            fishStat.inventoryCount = fishStat.inventoryCount + currentRod.rates[autoFish];
-            updateFishCount(fishIndex, fishStat.inventoryCount);
+            let wholeFish = Math.floor(remainingSpace / fishStat.size);
+            let numWholeFish = Math.min(Math.floor(fishRate), wholeFish);
 
+            fishStat.inventoryCount += numWholeFish;
+
+            remainingSpace -= numWholeFish * fishStat.size;
+            let progressToAdd = fishRate % 1;
+            if (progressToAdd > 0 && remainingSpace >= fishStat.size) {
+                // We can make progress
+                fishStat.progress += progressToAdd;
+
+                if (fishStat.progress >= 1) {
+                    // we gained a bonus fish
+                    fishStat.inventoryCount += 1;
+                    fishStat.progress -= 1;
+                }
+
+                fishStats[fishIndex].progress = fishStat.progress;
+                set('fishStats', fishStats);
+            }
+
+            updateFishCount(fishIndex, fishStat.inventoryCount);
             // update the shared info section
         }
 

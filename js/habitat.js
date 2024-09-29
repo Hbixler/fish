@@ -22,7 +22,7 @@ fishInHabitatSpan.innerText = fishInHabitat;
 
 // Display revenue
 updateRevenue(revenue);
-howBigAreMyFish();
+howBigAreMyHabitatFish();
 
 // HTML GENERATION 
 
@@ -118,7 +118,7 @@ function plus(fishNumber) {
         
         updateNumFish(fishNumber, habitatCount); // change fish displayed in Habitat
         updateFishCount(fishNumber, inventoryCount); // change fish displayed in Inventory
-        howBigAreMyFish(); // recalculates and displays how much space fish are taking up
+        howBigAreMyHabitatFish(); // recalculates and displays how much space fish are taking up
         updateRevenue(revenue + fishStats[fishNumber].revenue); // change revenue
         updateFishMessage(); // updates habitat message
     }
@@ -134,25 +134,13 @@ function minus(fishNumber) {
 
         updateNumFish(fishNumber, habitatCount) // change fish displayed in Habitat
         updateFishCount(fishNumber, inventoryCount) // change fish displayed in Inventory
-        howBigAreMyFish(); // recalculates and displays how much space fish are taking up
+        howBigAreMyHabitatFish(); // recalculates and displays how much space fish are taking up
         updateRevenue(revenue - fishStats[fishNumber].revenue) // update revenue
         updateFishMessage(); // updates habitat message
     }
 }
 
-// function to calculate how much space the fish in the habitat are taking up
-function howBigAreMyFish() { 
-    let fishStats = get('fishStats');
-    fishInHabitat = 0;
-    for (fishNumber in fishStats) {
-        fishInHabitat += (fishStats[fishNumber].habitatCount * fishStats[fishNumber].size);
-    }
 
-    let fishInHabitatSpan = document.getElementById('fishInHabitat');
-    fishInHabitatSpan.innerText = fishInHabitat;
-    
-    return(fishInHabitat);
-}
 
 // Visibility toggle -> in visibility.js
 visibilityToggle()
