@@ -95,6 +95,13 @@ button {
     background-color: #0b52b5;
     margin: 3px;
 }
+#references {
+    width: 200px;
+}
+#leftmost-column {
+    width: 200px;
+    margin-left: 0px;
+}
 
 /*** see if this works ***/
 

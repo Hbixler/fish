@@ -10,6 +10,7 @@ function updateSpan(spanId, text) {
 function updateSandDollars(sandDollars) {
     let habitats = get("fishHabitats");
     let storage = get("currentStorage");
+    let fishStats = get('fishStats');
 
     if (sandDollars > storage.capacities["Sand Dollars"]) {
         sandDollars = storage.capacities["Sand Dollars"];
@@ -18,6 +19,10 @@ function updateSandDollars(sandDollars) {
     set('sandDollars', sandDollars);
     updateBuyButtons(sandDollars);
     updateSailButton(sandDollars);
+
+    for (let x = 0; x < fishStats.length; x++) {
+        updateSellButtons(x, fishStats[x].inventoryCount);
+    }
 
     let sandDollarsSpan = (Math.round(sandDollars * 100) / 100).toLocaleString();
     updateSpan('sandDollars', sandDollarsSpan);
@@ -50,6 +55,8 @@ function updateBaitCount(baitNum, numBaits) {
 
 // current storage
 function updateStorage(currentStorage) {
+    let fishStats = get('fishStats');
+
     set('currentStorage', currentStorage);
     updateSpan("storage", currentStorage.name);
 
@@ -57,6 +64,10 @@ function updateStorage(currentStorage) {
     updateSpan("sand-dollar-capacity", currentStorage.capacities["Sand Dollars"]);
     updateSpan("fish-capacity", currentStorage.capacities["Fish"]);
     updateSpan("bait-capacity", currentStorage.capacities["Baits"]);
+
+    for (let x = 0; x < fishStats.length; x++) {
+        updateSellButtons(x, fishStats[x].inventoryCount);
+    }
 }
 
 // current fishing rod
@@ -137,7 +148,7 @@ function updateFishCount(fishNumber, numFish) {
     updateSpan("fish-space", howBigAreMyFish());
 }
 
-// update colouring of fish counts
+// update coloring of fish counts
 function updateHasBait(fishIndex, hasBait) {
     let fishProgressSpan = document.getElementById("fish" + fishIndex + "-progress");
     fishProgressSpan.style.color = hasBait ? 'white' : 'red';
@@ -146,9 +157,13 @@ function updateHasBait(fishIndex, hasBait) {
 // Activates or deactivates buttons based on how many fish you have
 function updateSellButtons(fishIndex, inventoryCount) {
     let sellButtons = document.getElementsByClassName("sellFish" + fishIndex)
+    let sandDollars = get('sandDollars');
+    let fishStats = get('fishStats');
+    let sandDollarStorage = get('currentStorage').capacities["Sand Dollars"];
 
     for (button of sellButtons) {
-        button.disabled = button.value > inventoryCount;
+        let netGain = button.value * fishStats[fishIndex].cost;
+        button.disabled = button.value > inventoryCount || netGain + sandDollars > sandDollarStorage;
     }
 }
 

@@ -5,6 +5,7 @@
     margin: auto;
     gap: 25px;
     width: 900px;
+    margin-top: 0px;
 }
 .row {
     display: flex;

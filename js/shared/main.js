@@ -147,7 +147,7 @@ let storageInitial = [
         capacities: {
             "Sand Dollars": 20000,
             "Fish": 500,
-            "Baits": 250,
+            "Baits": 300,
         },
         cost: 1000,
     },

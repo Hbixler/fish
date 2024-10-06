@@ -1,20 +1,16 @@
 To Do: 
 - add permanence to vast unknown
 - rebalance whole game
-
-- need to list the space each fish and bait take up somewhere -> maybe under nav bar as collapsible reference
-- if you go over sand dollars by a fraction of a sand dollar, max out sand dollars
-- add progress status
-- is a goldfish to a swordfish a reasonable jump? especially considering we're still putting them in our pocket?? 
+- recentre the middle div
 
 Bugs: 
-- rates of fishing not showing up -> show up when you leave and come back to fish island
+- toggle visibility of fish and bait space references
 - fix win page
-- the buttons for buying 50 and 100 cake slices never get enabled
-- sell buttons should disable when you are out of sanddollar space
-- fish and bait is not visible when everything is visible
 
 If we feel like it: 
 - add pause buttons on fishing 
 - make it so you can save and continue your game
 - fancy progress bar
+- make space references collapsible
+- make the space references visible on other pages besides fish islands
+- add progress status

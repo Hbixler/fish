@@ -1,4 +1,3 @@
-// SHARED INFO 
 // sand dollars
 let sandDollarsShared = get('sandDollars');
 let currentStorageShared = get('currentStorage');

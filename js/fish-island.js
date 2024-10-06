@@ -260,6 +260,7 @@ function buyStorage(storageNumber) {
 // buying rods
 function buyRod(fishingRodNumber) {
     let sandDollars = get('sandDollars');
+    let fishStats = get('fishStats');
     rodValue = fishingRods[fishingRodNumber].cost;
 
     if (rodValue <= sandDollars) {
@@ -268,6 +269,12 @@ function buyRod(fishingRodNumber) {
 
         sandDollars -= rodValue; // Update sand dollars
         updateSandDollars(sandDollars);
+
+        for (let x = 0; x < fishStats.length; x++) {
+            let fishName = fishStats[x].name;
+            let rate = currentRod.rates[fishName];
+            updateSpan('fish' + x + '-progress', rate + '/s');
+        }
 
         if (fishingRodNumber === 1) { // makes baits visible
             makeSectionVisible("bait-trading");

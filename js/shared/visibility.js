@@ -122,6 +122,33 @@ let visibility = {
             highestVisible: -1,
         },
     },
+    'supplies': {
+        id: 'supplies-div',
+        visible: false,
+        list: {
+            idStart: "bait",
+            firstItem: 0,
+            highestVisible: -1,
+        }
+    },
+    'fish-reference-space': {
+        id: "fish-reference-space",
+        visible: false,
+        list: {
+            idStart: "fishSpace",
+            firstItem: 0,
+            highestVisible: -1,
+        },
+    },
+    'bait-reference-space': {
+        id: "bait-reference-space",
+        visible: false,
+        list: {
+            idStart: "baitSpace",
+            firstItem: 0,
+            highestVisible: -1,
+        },
+    },
 };
 if(!sessionStorage.getItem('visibility')) { sessionStorage.setItem('visibility', JSON.stringify(visibility))}; // initial set
 function getVisibility() { // get function
