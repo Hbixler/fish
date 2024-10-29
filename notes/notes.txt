@@ -1,5 +1,7 @@
 To Do: 
 - add permanence to vast unknown
+    - saves route if you've made it to the frog before (permanently)
+    - frog is not there everytime you go into the page, must sail to the frog each time
 - rebalance whole game
 - recentre the middle div
 

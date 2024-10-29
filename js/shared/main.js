@@ -9,7 +9,7 @@ function set(savedObject, newObject) {
     sessionStorage.setItem(savedObject, JSON.stringify(newObject));
 }
 
-let speedInitial = 1; // intervals per second
+let speedInitial = 10; // intervals per second
 let sandDollarsInitial = 0; // initial sand dollars
 let revenueInitial = 0; // initial revenue
 

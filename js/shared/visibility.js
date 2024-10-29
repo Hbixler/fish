@@ -1,6 +1,6 @@
 // VISIBILITY TOGGLE
 function visibilityToggle() {
-    makeEverythingVisible();
+    /* makeEverythingVisible(); */
     permanentVisibility(); // DO NOT TOUCH
 }
 
