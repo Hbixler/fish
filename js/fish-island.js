@@ -228,6 +228,7 @@ function buyBait(baitNumber, numToBuy) {
 
         if(!isListElementVisible("supplies", baitNumber)) { 
             makeListElementVisible("supplies", baitNumber); // make bait visible in supplies
+            makeListElementVisible("bait-reference-space", baitNumber); // make bait visible in 
         }
     }
 }
@@ -279,10 +280,13 @@ function buyRod(fishingRodNumber) {
         if (fishingRodNumber === 1) { // makes baits visible
             makeSectionVisible("bait-trading");
             makeListElementVisible("bait-trading", 0);
+            makeSectionVisible("bait-reference-space");
+            makeListElementVisible("bait-reference-space", 0);
             makeSectionVisible("storage-trading");
             makeListElementVisible("storage-trading", 1);
         } else if (isListElementVisible("fish-trading", fishingRodNumber - 1)) {
             makeListElementVisible("bait-trading", fishingRodNumber - 1);
+            makeListElementVisible("bait-reference-space", fishingRodNumber - 1);
         }
 
         if (fishingRodNumber != fishingRods.length - 1) { // make next rod visible

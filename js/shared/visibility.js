@@ -111,6 +111,14 @@ let visibility = {
         id: 'frog-box',
         visible: false,
     },
+    'directions-to-sir-frog': {
+        id: 'directions-to-sir-frog',
+        visible: false,
+    },
+    'directions-to-old-mage': {
+        id: 'directions-to-old-mage',
+        visible: false,
+    },
 
     // shared info
     'fish-list': { 
@@ -152,7 +160,6 @@ let visibility = {
 };
 if(!sessionStorage.getItem('visibility')) { sessionStorage.setItem('visibility', JSON.stringify(visibility))}; // initial set
 function getVisibility() { // get function
-    // console.log(sessionStorage.getItem('visibility'));
     return JSON.parse(sessionStorage.getItem('visibility'));
 }; 
 function setVisibility(newVisibility) { // set function

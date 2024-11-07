@@ -261,6 +261,10 @@ let vehiclesInitial = [
 ]
 let currentVehicleInitial = vehiclesInitial[0]; // sets original vehicle to nothing
 
+// DIRECTIONS IN VAST UNKNOWN
+let directionsToSirFrog = "";
+let directionsToOldMage = "";
+
 // GAME INITIALIZED - initial set for all objects
 let gameInitialized = false;
 if(!sessionStorage.getItem('gameInitialized')) {
@@ -277,6 +281,8 @@ if(!sessionStorage.getItem('gameInitialized')) {
     set('currentHabitat', currentHabitatInitial);
     set('vehicles', vehiclesInitial);
     set('currentVehicle', currentVehicleInitial);
+    set('directionsToSirFrog', directionsToSirFrog);
+    set('directionsToOldMage', directionsToOldMage);
 
     gameInitialized = true;
     set('gameInitialized', gameInitialized);

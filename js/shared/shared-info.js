@@ -103,10 +103,17 @@ document.getElementById("fish-label").appendChild(fishSlash);
 document.getElementById("fish-label").appendChild(fishCapacity);
 
 for(let x = 0; x < fishList.length; x++) {
+    let trashFishButton = document.createElement("button");
+    trashFishButton.innerText = "X";
+    trashFishButton.classList = ['trash-button'];
+    trashFishButton.setAttribute("onclick", "trashFish(" + x + ")");
+
+    let fishLabel = document.createElement("span");
+    fishLabel.innerText = fishList[x].name + ": ";
+
     let fish = document.createElement('p');
     fish.style.visibility = 'hidden';
     fish.id = "fish" + x + "-div";
-    fish.innerText = fishList[x].name + ": ";
 
     let fishCountSpan = document.createElement('span');
     fishCountSpan.innerText = Math.floor(fishList[x].inventoryCount);
@@ -119,6 +126,8 @@ for(let x = 0; x < fishList.length; x++) {
     fishProgressSpan.style.float = 'right';
     fishProgressSpan.innerText = currentRod.rates[fishList[x].name] + "/s";
 
+    fish.appendChild(trashFishButton);
+    fish.appendChild(fishLabel);
     fish.appendChild(fishCountSpan);
     fish.appendChild(fishProgressSpan);
 
@@ -167,6 +176,15 @@ for (let x = 0; x < baitsList.length; x++) {
     bait.appendChild(baitCountSpan);
 
     document.getElementById("supplies-div").appendChild(bait);
+}
+
+function trashFish(fishNumber) {
+    let inventoryFish = get('fishStats');
+    if(inventoryFish[fishNumber].inventoryCount - 1 >= 0) {
+        inventoryFish[fishNumber].inventoryCount -= 1;
+        set("fishStats", inventoryFish);
+        updateFishCount(fishNumber, inventoryFish[fishNumber].inventoryCount);
+    }
 }
 
 // VISIBILITY

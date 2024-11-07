@@ -5,12 +5,20 @@ permanentVisibility();
 let frogPattern = "N";
 let frogToOldMan = "S";
 let currentSailPattern = "";
-let hasDirections = false;
 let hasFoundFrog = false;
 let defaultFrogMessage = 'Ribbit! Would you like my assistance getting to your next destination? You can get there without my directions, but you will definitely need a sail.';
 let stupidSailMessage = 'Sailing without a sail? Isn\'t that called rowing? Such foolishness!';
 
 updateSpan("vast-unknown-message","The world is bleak. Ocean, behind. Ocean, ahead. You are but a small mite in the grand scheme of the vast unknown.");
+
+let sirFrogDirections = get('directionsToSirFrog');
+let oldMageDirections = get('directionsToOldMage');
+if(sirFrogDirections.length > 1) {
+    directionGeneration(sirFrogDirections, 'directions-to-sir-frog');
+} 
+if(oldMageDirections.length > 1) {
+    directionGeneration(oldMageDirections, 'directions-to-old-mage');
+} 
 
 function sail(direction) {
     let currentVehicle = get('currentVehicle');
@@ -33,8 +41,18 @@ function sail(direction) {
 
                 hasFoundFrog = true;
                 currentSailPattern = ""
-                
-                makeSectionVisible("sir-frog");
+
+                let div = document.getElementById("frog-box"); // temporary sir frog visibility - will be invisible when leaving and returning to vast unknown
+                if(div) {
+                    div.style.visibility = 'visible';
+                }
+
+                if(isSectionVisible('directions-to-sir-frog') === false) { // generate permanent directions in div
+                    addDirections("directionsToSirFrog", frogPattern, "directions-to-sir-frog") ;
+                }
+
+                makeSectionVisible("directions-to-sir-frog"); // make directions to sir frog permanently visible
+
                 updateSpan("frog-message", defaultFrogMessage);
                 sirFrogTalks();
             }
@@ -42,6 +60,7 @@ function sail(direction) {
                 if (currentVehicle.name === vehicles[2].name) {
                     // Found the old man!
                     updateSpan("vast-unknown-message", "In the distance, an old man huddles on top of a rock. You approach with caution.");
+                    location.href = "win.html";
                 }
                 else {
                     updateSpan("frog-message", stupidSailMessage);
@@ -63,6 +82,25 @@ function reset() {
     currentSailPattern = "";
     updateSpan("vast-unknown-message", "You set forth again, ready to tackle the world.")
     updateSpan("frog-message", defaultFrogMessage);
+}
+
+function addDirections(directionsGlobal, pattern, divId) {
+    let directions = get(directionsGlobal);
+    directions = " " + pattern;
+    set(directionsGlobal, directions);
+
+    let div = document.getElementById(divId);
+    if(div) {
+        directionGeneration(directions, divId);
+    }
+}
+
+function directionGeneration(directions, divId) {
+    let directionsSpan = document.createElement('span');
+    directionsSpan.innerText = directions;
+
+    let div = document.getElementById(divId);
+    div.appendChild(directionsSpan);
 }
 
 // THE HONOURABLE SIR FROG
@@ -96,7 +134,7 @@ function sirFrogTalks() {
     clearButtonColumns();
 
     // Create ask for directions button
-    if (!hasDirections) {
+    if (isSectionVisible('directions-to-old-mage') === false) {
         let askForDirections = document.createElement('button');
         askForDirections.innerText = 'Ask For Directions';
         askForDirections.onclick = ask4Directions;
@@ -159,14 +197,18 @@ function ask4Directions() {
 function getDirections() {
     let fishStats = get('fishStats');
     let narwhalIndex = fishStats.findIndex(fish => fish.name == 'Narwhal');
-    if (fishStats[narwhalIndex].inventoryCount >= 10) {
+    if (fishStats[narwhalIndex].inventoryCount >= 10) { 
         // Subtract narwhals from inventory
-        updateFishCount(narwhalIndex, fishStats[narwhalIndex].inventoryCount - 10);
+        updateFishCount(narwhalIndex, fishStats[narwhalIndex].inventoryCount - 10); 
 
         // Update with directions
-        hasDirections = true;
         updateSpan("frog-message", "Thanks! From here, the pattern is " + frogToOldMan + ". It's quite a long ways though, so make sure you have sailboat!");
-        updateSpan("directions-message", frogToOldMan);
+
+        if(isSectionVisible('directions-to-old-mage') === false) { // generate permanent directions in div
+            addDirections("directionsToOldMage", frogToOldMan, "directions-to-old-mage") 
+        }
+
+        makeSectionVisible("directions-to-old-mage"); // make directions to old mage permanently visible
     }
     else {
         updateSpan("frog-message", "Looks like you don't have enough narwhals! Come back when you have more.")

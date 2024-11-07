@@ -101,6 +101,7 @@ function updateFishCount(fishNumber, numFish) {
         if (fishNumber === 0) {
             // Fishing for goldfish for first time, adding boxes and borders
             makeSectionVisible("fish-list");
+            makeSectionVisible("fish-reference-space");
             makeNavBarLinkVisible("Fish Island");
         }
 
@@ -109,12 +110,14 @@ function updateFishCount(fishNumber, numFish) {
             let currentRod = get('currentRod');
             if (!isListElementVisible("bait-trading", fishNumber) && currentRod.rates[fishStats[fishNumber + 1].name] > 0) {
                 makeListElementVisible("bait-trading", fishNumber);
+                makeListElementVisible("bait-reference-space", fishNumber);
             }
         }
         
         // Add fish to inventory options
         makeListElementVisible("fish-list", fishNumber);
         makeListElementVisible("fish-habitat", fishNumber);
+        makeListElementVisible("fish-reference-space", fishNumber);
 
         if (isNavBarLinkVisible("Habitat")) {
             // If habitat unlocked, make fish option in habitat
@@ -124,6 +127,7 @@ function updateFishCount(fishNumber, numFish) {
         if (fishNumber >= 1) {
             // Add fish to trading option
             makeListElementVisible("fish-trading", fishNumber);
+            makeListElementVisible("fish-reference-space", fishNumber);
         }
         
         // shows vehicles section when narwhal is unlocked if the last habitat is also unlocked
@@ -142,6 +146,7 @@ function updateFishCount(fishNumber, numFish) {
     if (fishStats[0].inventoryCount === 5 && !isSectionVisible("trading")) { // at 5 goldfish
         makeSectionVisible("trading");
         makeListElementVisible("fish-trading", 0);
+        makeListElementVisible("fish-reference-space", 0);
     }
     
     set('baits', baits);

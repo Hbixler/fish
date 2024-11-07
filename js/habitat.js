@@ -128,7 +128,10 @@ function minus(fishNumber) {
     let fishStats = get('fishStats');
     let revenue = get('revenue');
 
-    if(fishStats[fishNumber].habitatCount >= 1) { // can't have negative fish
+    let inventoryStorage = howBigAreMyFish();
+    let currentStorage = get("currentStorage").capacities["Fish"];
+
+    if(fishStats[fishNumber].habitatCount >= 1 && inventoryStorage + fishStats[fishNumber].size <= currentStorage) { // can't have negative fish or too many in the inventory
         let habitatCount = fishStats[fishNumber].habitatCount - 1; // takes fish out of habitat
         let inventoryCount = fishStats[fishNumber].inventoryCount + 1; // puts fish back into inventory
 
