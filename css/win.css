@@ -1,8 +1,18 @@
 /* flex things */
-#flex-container {
+.flex-container {
     display: flex;
     flex-direction: row;
     margin: auto;
     gap: 25px;
     width: 900px;
+    margin-top: 0px;
+}
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.winner {
+    font-size: 60px;
 }

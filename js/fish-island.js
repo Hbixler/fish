@@ -94,7 +94,7 @@ for (let x = 1; x < storage.length; x++) {
     storageListing.classList.add('tooltipParent');
 
     storageListing.setAttribute('data-tooltip', "Capacity: ");
-    storageListing.setAttribute('data-tooltip-2', storage[x].capacities["Sand Dollars"] + " Sand Dollars, ")
+    storageListing.setAttribute('data-tooltip-2', storage[x].capacities["Sand Dollars"].toLocaleString() + " Sand Dollars, ")
     storageListing.setAttribute('data-tooltip-3', storage[x].capacities["Fish"] + " Fish, ")
     storageListing.setAttribute('data-tooltip-4', storage[x].capacities["Baits"] + " Bait")
     storageListing.setAttribute('data-tooltip-position', 'left');
@@ -189,23 +189,9 @@ function goFishing() {
     let currentStorage = get('currentStorage').capacities["Fish"];
     let inventoryStorage = howBigAreMyFish();
 
-    console.log(inventoryStorage);
-    console.log(currentStorage);
-
-    if (inventoryStorage < currentStorage) {
-        console.log('going to update');
+    if (inventoryStorage + 1 <= currentStorage) {
         updateFishCount(0, fishStats[0].inventoryCount + 1);
     }
-}
-
-// count fish
-function howBigAreMyFish() { 
-    let fishStats = get('fishStats');
-    fishInInventory = 0;
-    for (fishNumber in fishStats) {
-        fishInInventory += (fishStats[fishNumber].inventoryCount * fishStats[fishNumber].size);
-    }
-    return(fishInInventory);
 }
 
 // TRADING
@@ -242,6 +228,7 @@ function buyBait(baitNumber, numToBuy) {
 
         if(!isListElementVisible("supplies", baitNumber)) { 
             makeListElementVisible("supplies", baitNumber); // make bait visible in supplies
+            makeListElementVisible("bait-reference-space", baitNumber); // make bait visible in 
         }
     }
 }
@@ -274,6 +261,7 @@ function buyStorage(storageNumber) {
 // buying rods
 function buyRod(fishingRodNumber) {
     let sandDollars = get('sandDollars');
+    let fishStats = get('fishStats');
     rodValue = fishingRods[fishingRodNumber].cost;
 
     if (rodValue <= sandDollars) {
@@ -283,15 +271,22 @@ function buyRod(fishingRodNumber) {
         sandDollars -= rodValue; // Update sand dollars
         updateSandDollars(sandDollars);
 
-
+        for (let x = 0; x < fishStats.length; x++) {
+            let fishName = fishStats[x].name;
+            let rate = currentRod.rates[fishName];
+            updateSpan('fish' + x + '-progress', rate + '/s');
+        }
 
         if (fishingRodNumber === 1) { // makes baits visible
             makeSectionVisible("bait-trading");
             makeListElementVisible("bait-trading", 0);
+            makeSectionVisible("bait-reference-space");
+            makeListElementVisible("bait-reference-space", 0);
             makeSectionVisible("storage-trading");
             makeListElementVisible("storage-trading", 1);
         } else if (isListElementVisible("fish-trading", fishingRodNumber - 1)) {
             makeListElementVisible("bait-trading", fishingRodNumber - 1);
+            makeListElementVisible("bait-reference-space", fishingRodNumber - 1);
         }
 
         if (fishingRodNumber != fishingRods.length - 1) { // make next rod visible

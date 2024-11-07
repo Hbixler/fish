@@ -82,6 +82,21 @@ button {
     display: block;
     text-align: left;
     width: 200px;
+    margin-left: 0px;
+}
+.trash-button {
+    background: none;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+    color: white;
+    padding: 0px;
+    margin-right: 5px;
+    display: inline-flex;
+    align-items: flex-end;
+}
+.trash-button:hover {
+    color: red;
 }
 .shared-info-div {
     color: white;
@@ -94,6 +109,14 @@ button {
     font-family: "roboto slab";
     background-color: #0b52b5;
     margin: 3px;
+}
+#references {
+    width: 200px;
+}
+#leftmost-column {
+    width: 200px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 /*** see if this works ***/

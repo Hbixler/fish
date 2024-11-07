@@ -1,6 +1,6 @@
 // VISIBILITY TOGGLE
 function visibilityToggle() {
-    makeEverythingVisible();
+    /* makeEverythingVisible(); */
     permanentVisibility(); // DO NOT TOUCH
 }
 
@@ -111,6 +111,14 @@ let visibility = {
         id: 'frog-box',
         visible: false,
     },
+    'directions-to-sir-frog': {
+        id: 'directions-to-sir-frog',
+        visible: false,
+    },
+    'directions-to-old-mage': {
+        id: 'directions-to-old-mage',
+        visible: false,
+    },
 
     // shared info
     'fish-list': { 
@@ -122,10 +130,37 @@ let visibility = {
             highestVisible: -1,
         },
     },
+    'supplies': {
+        id: 'supplies-div',
+        visible: false,
+        list: {
+            idStart: "bait",
+            firstItem: 0,
+            highestVisible: -1,
+        }
+    },
+    'fish-reference-space': {
+        id: "fish-reference-space",
+        visible: false,
+        list: {
+            idStart: "fishSpace",
+            firstItem: 0,
+            highestVisible: -1,
+        },
+    },
+    'bait-reference-space': {
+        id: "bait-reference-space",
+        visible: false,
+        list: {
+            idStart: "baitSpace",
+            firstItem: 0,
+            highestVisible: -1,
+        },
+    },
 };
 if(!sessionStorage.getItem('visibility')) { sessionStorage.setItem('visibility', JSON.stringify(visibility))}; // initial set
 function getVisibility() { // get function
-    return JSON.parse(sessionStorage.getItem('visibility'))
+    return JSON.parse(sessionStorage.getItem('visibility'));
 }; 
 function setVisibility(newVisibility) { // set function
     sessionStorage.setItem('visibility', JSON.stringify(newVisibility))
@@ -224,15 +259,6 @@ function permanentVisibility() {
         let navBarLink = document.getElementById(visibilityNavBar[navBar].id);   
         if (navBarLink && visibilityNavBar[navBar].visible) {
             navBarLink.style.visibility = "visible";
-        }
-    }
-}
-function fishListVisibility() { // shared info fish list
-    let inventoryFish = get('fishStats'); // fish
-    for (fish in inventoryFish) {
-        let element = document.getElementById("fish" + fish + "-div");
-        if (element && inventoryFish[fish].visible) {
-            element.style.visibility = "visible";
         }
     }
 }

@@ -9,7 +9,7 @@ function set(savedObject, newObject) {
     sessionStorage.setItem(savedObject, JSON.stringify(newObject));
 }
 
-let speedInitial = 200; // intervals per second
+let speedInitial = 10; // intervals per second
 let sandDollarsInitial = 0; // initial sand dollars
 let revenueInitial = 0; // initial revenue
 
@@ -23,6 +23,7 @@ let fishStatsInitial = [ // original fish stats array - revenue is in SD/second
         bait: "",
         inventoryCount: 0,
         habitatCount: 0,
+        progress: 0,
     },
     {
         name: 'Swordfish',
@@ -32,6 +33,7 @@ let fishStatsInitial = [ // original fish stats array - revenue is in SD/second
         bait: "Gummy Worms",
         inventoryCount: 0,
         habitatCount: 0,
+        progress: 0,
     },
     {
         name: 'Shark',
@@ -41,6 +43,7 @@ let fishStatsInitial = [ // original fish stats array - revenue is in SD/second
         bait: "Saltine Crackers",
         inventoryCount: 0,
         habitatCount: 0,
+        progress: 0,
     },
     {
         name: 'Whale',
@@ -50,6 +53,7 @@ let fishStatsInitial = [ // original fish stats array - revenue is in SD/second
         bait: "Chicken Nuggets",
         inventoryCount: 0,
         habitatCount: 0,
+        progress: 0,
     },
     {
         name: 'Narwhal',
@@ -59,6 +63,7 @@ let fishStatsInitial = [ // original fish stats array - revenue is in SD/second
         bait: "Cake Slices",
         inventoryCount: 0, 
         habitatCount: 0,
+        progress: 0,
     },
 ]
 
@@ -142,7 +147,7 @@ let storageInitial = [
         capacities: {
             "Sand Dollars": 20000,
             "Fish": 500,
-            "Baits": 250,
+            "Baits": 300,
         },
         cost: 1000,
     },
@@ -256,6 +261,10 @@ let vehiclesInitial = [
 ]
 let currentVehicleInitial = vehiclesInitial[0]; // sets original vehicle to nothing
 
+// DIRECTIONS IN VAST UNKNOWN
+let directionsToSirFrog = "";
+let directionsToOldMage = "";
+
 // GAME INITIALIZED - initial set for all objects
 let gameInitialized = false;
 if(!sessionStorage.getItem('gameInitialized')) {
@@ -272,6 +281,8 @@ if(!sessionStorage.getItem('gameInitialized')) {
     set('currentHabitat', currentHabitatInitial);
     set('vehicles', vehiclesInitial);
     set('currentVehicle', currentVehicleInitial);
+    set('directionsToSirFrog', directionsToSirFrog);
+    set('directionsToOldMage', directionsToOldMage);
 
     gameInitialized = true;
     set('gameInitialized', gameInitialized);

@@ -1,12 +1,10 @@
 To Do: 
-- should we make a different set of conditions / costs for things in a different array/object and have a toggle similar to visibility for testing purposes? 
-- add permanence to vast unknown
 - rebalance whole game
 
-Bugs: 
-- rates of fishing not showing up -> show up when you leave and come back to fish island
-- update current storage and storage capacities on the shared info bar
-- make capacities show up properly in sand dollar part of shared info bar too
-- fix win page
-- weird things going on with fishing for goldfish and limits
-- when the frog takes your boat and sends you back to fish island, the buy button to get a new boat is not visible
+If we feel like it: 
+- add pause buttons on fishing
+- make it so you can save and continue your game
+- fancy progress bar
+- make space references collapsible
+- make the space references visible on other pages besides fish islands
+- add progress status

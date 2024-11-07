@@ -1,10 +1,11 @@
 /* flex things */
-#flex-container {
+.flex-container {
     display: flex;
     flex-direction: row;
     margin: auto;
     gap: 25px;
     width: 900px;
+    margin-top: 0px;
 }
 .row {
     display: flex;
@@ -31,7 +32,7 @@
     flex: 3;
 }
 .second-trading-column {
-    width: 88%
+    width: 88%;
 }
 #go-fishing-button-div {
     display: flex;

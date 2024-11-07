@@ -5,19 +5,27 @@ permanentVisibility();
 let frogPattern = "N";
 let frogToOldMan = "S";
 let currentSailPattern = "";
-let hasDirections = false;
 let hasFoundFrog = false;
 let defaultFrogMessage = 'Ribbit! Would you like my assistance getting to your next destination? You can get there without my directions, but you will definitely need a sail.';
 let stupidSailMessage = 'Sailing without a sail? Isn\'t that called rowing? Such foolishness!';
 
-updateVastUnknownMessage("The world is bleak. Ocean, behind. Ocean, ahead. You are but a small mite in the grand scheme of the vast unknown.");
+updateSpan("vast-unknown-message","The world is bleak. Ocean, behind. Ocean, ahead. You are but a small mite in the grand scheme of the vast unknown.");
+
+let sirFrogDirections = get('directionsToSirFrog');
+let oldMageDirections = get('directionsToOldMage');
+if(sirFrogDirections.length > 1) {
+    directionGeneration(sirFrogDirections, 'directions-to-sir-frog');
+} 
+if(oldMageDirections.length > 1) {
+    directionGeneration(oldMageDirections, 'directions-to-old-mage');
+} 
 
 function sail(direction) {
     let currentVehicle = get('currentVehicle');
     let vehicles = get('vehicles');
     if (currentSailPattern == "XXX") {
         // User has already crashed and is stranded on a rock.
-        updateVastUnknownMessage("No point in wandering around now. May as well start over...")
+        updateSpan("vast-unknown-message", "No point in wandering around now. May as well start over...")
     }
     else {
         currentSailPattern += direction;
@@ -25,35 +33,46 @@ function sail(direction) {
 
         if (currentSailPattern == neededPattern.slice(0,currentSailPattern.length)) {
             // Correct choice!
-            updateVastUnknownMessage("You continue sailing, uncertain of the perils that await beyond.");
+            updateSpan("vast-unknown-message", "You continue sailing, uncertain of the perils that await beyond.");
 
             if (currentSailPattern == frogPattern) {
                 // Found the frog!
-                updateVastUnknownMessage("You found a frog!");
+                updateSpan("vast-unknown-message", "You found a frog!");
 
                 hasFoundFrog = true;
                 currentSailPattern = ""
-                
-                makeSectionVisible("sir-frog");
-                updateFrogMessage(defaultFrogMessage);
+
+                let div = document.getElementById("frog-box"); // temporary sir frog visibility - will be invisible when leaving and returning to vast unknown
+                if(div) {
+                    div.style.visibility = 'visible';
+                }
+
+                if(isSectionVisible('directions-to-sir-frog') === false) { // generate permanent directions in div
+                    addDirections("directionsToSirFrog", frogPattern, "directions-to-sir-frog") ;
+                }
+
+                makeSectionVisible("directions-to-sir-frog"); // make directions to sir frog permanently visible
+
+                updateSpan("frog-message", defaultFrogMessage);
                 sirFrogTalks();
             }
             else if (currentSailPattern == frogToOldMan) {
                 if (currentVehicle.name === vehicles[2].name) {
                     // Found the old man!
-                    updateVastUnknownMessage("In the distance, an old man huddles on top of a rock. You approach with caution.");
+                    updateSpan("vast-unknown-message", "In the distance, an old man huddles on top of a rock. You approach with caution.");
+                    location.href = "win.html";
                 }
                 else {
-                    updateFrogMessage(stupidSailMessage);
+                    updateSpan("frog-message", stupidSailMessage);
                 }
             }
         }
         else {
             // Incorrect choice
-            updateVastUnknownMessage("You crashed into a rock. Better luck next time!");
+            updateSpan("vast-unknown-message", "You crashed into a rock. Better luck next time!");
             currentSailPattern = "XXX";
             if (hasFoundFrog && currentVehicle.name != vehicles[2].name) {
-                updateFrogMessage(stupidSailMessage);
+                updateSpan("frog-message", stupidSailMessage);
             }
         }
     }
@@ -61,8 +80,27 @@ function sail(direction) {
 
 function reset() {
     currentSailPattern = "";
-    updateVastUnknownMessage("You set forth again, ready to tackle the world.")
-    updateFrogMessage(defaultFrogMessage);
+    updateSpan("vast-unknown-message", "You set forth again, ready to tackle the world.")
+    updateSpan("frog-message", defaultFrogMessage);
+}
+
+function addDirections(directionsGlobal, pattern, divId) {
+    let directions = get(directionsGlobal);
+    directions = " " + pattern;
+    set(directionsGlobal, directions);
+
+    let div = document.getElementById(divId);
+    if(div) {
+        directionGeneration(directions, divId);
+    }
+}
+
+function directionGeneration(directions, divId) {
+    let directionsSpan = document.createElement('span');
+    directionsSpan.innerText = directions;
+
+    let div = document.getElementById(divId);
+    div.appendChild(directionsSpan);
 }
 
 // THE HONOURABLE SIR FROG
@@ -70,14 +108,12 @@ function buySail() {
     let vehicles = get('vehicles');
     let cost = vehicles[2].cost;
     let sandDollars = get('sandDollars');
-    // console.log(cost)
 
     if (cost <= sandDollars) {
-        // console.log("Buying a sail")
         sandDollars -= cost;
         updateSandDollars(sandDollars);
         updateVehicle(2);
-        updateFrogMessage("You'll need this for the journey ahead. Best of luck!");
+        updateSpan("frog-message", "You'll need this for the journey ahead. Best of luck!");
         sirFrogTalks();
     }
 }
@@ -98,7 +134,7 @@ function sirFrogTalks() {
     clearButtonColumns();
 
     // Create ask for directions button
-    if (!hasDirections) {
+    if (isSectionVisible('directions-to-old-mage') === false) {
         let askForDirections = document.createElement('button');
         askForDirections.innerText = 'Ask For Directions';
         askForDirections.onclick = ask4Directions;
@@ -125,7 +161,7 @@ function sirFrogTalks() {
     }
 
     // Create punch frog button
-    punchFrog = document.createElement('button');
+    let punchFrog = document.createElement('button');
     punchFrog.innerText = 'Punch Frog with Passion';
     punchFrog.onclick = punchTheFrog;
     
@@ -136,7 +172,7 @@ function sirFrogTalks() {
 function ask4Directions() {
     let fishStats = get('fishStats');
     clearButtonColumns();
-    updateFrogMessage("Cuestan diez narvales. ¿Estás segure?");
+    updateSpan("frog-message", "Cuestan diez narvales. ¿Estás segure?");
 
     // Create yes button
     yesButton = document.createElement('button');
@@ -161,17 +197,21 @@ function ask4Directions() {
 function getDirections() {
     let fishStats = get('fishStats');
     let narwhalIndex = fishStats.findIndex(fish => fish.name == 'Narwhal');
-    if (fishStats[narwhalIndex].inventoryCount >= 10) {
+    if (fishStats[narwhalIndex].inventoryCount >= 10) { 
         // Subtract narwhals from inventory
-        updateFishCount(narwhalIndex, fishStats[narwhalIndex].inventoryCount - 10);
+        updateFishCount(narwhalIndex, fishStats[narwhalIndex].inventoryCount - 10); 
 
         // Update with directions
-        hasDirections = true;
-        updateFrogMessage("Thanks! From here, the pattern is " + frogToOldMan + ". It's quite a long ways though, so make sure you have sailboat!");
-        updateDirectionsMessage(frogToOldMan);
+        updateSpan("frog-message", "Thanks! From here, the pattern is " + frogToOldMan + ". It's quite a long ways though, so make sure you have sailboat!");
+
+        if(isSectionVisible('directions-to-old-mage') === false) { // generate permanent directions in div
+            addDirections("directionsToOldMage", frogToOldMan, "directions-to-old-mage") 
+        }
+
+        makeSectionVisible("directions-to-old-mage"); // make directions to old mage permanently visible
     }
     else {
-        updateFrogMessage("Looks like you don't have enough narwhals! Come back when you have more.")
+        updateSpan("frog-message", "Looks like you don't have enough narwhals! Come back when you have more.")
     }
     sirFrogTalks();
 }
@@ -179,12 +219,12 @@ function getDirections() {
 function noDirectionsThanks() {
     clearButtonColumns(); 
     sirFrogTalks();
-    updateFrogMessage("Ah okay :(. Need anything else?")
+    updateSpan("frog-message", "Ah okay :(. Need anything else?")
 }
 
 function punchTheFrog() {
     clearButtonColumns();
-    updateFrogMessage("Merde! Donne-moi cinq mille clypéasters pour ta liberté"); // If Kai learns how to spell other french swear words, we can replace this
+    updateSpan("frog-message", "Merde! Donne-moi cinq mille clypéasters pour ta liberté"); // If Kai learns how to spell other french swear words, we can replace this
     
     // Make sail buttons go away, as you cannot sail until you do an action
     document.getElementById('sail-north').disabled = true;
@@ -235,14 +275,14 @@ function payTheFrog() {
     if (cost <= sandDollars) {
         sandDollars -= cost;
         updateSandDollars(sandDollars);
-        updateFrogMessage("You are forgiven... for now. Good luck on your travels.")
+        updateSpan("frog-message", "You are forgiven... for now. Good luck on your travels.")
 
         clearButtonColumns();
         sirFrogTalks();
         enableSailing();
     }
     else {
-        updateFrogMessage('It appears that you are broke. Better luck next time.')
+        updateSpan("frog-message", 'It appears that you are broke. Better luck next time.')
     }
 }
 
@@ -264,7 +304,7 @@ function fishIsland() {
     makeNavBarLinkInvisible("Vast Unknown");
 
     visibility = getVisibility();
-    visibility['vehicle-trading'].list.button.currentButton = 0;
+    visibility['vehicle-trading'].list.button.currentButton = 1;
     setVisibility(visibility);
 
     location.href = "index.html";
@@ -273,7 +313,7 @@ function fishIsland() {
 function kickTheFrog() {
     updateVehicle(0);
     clearButtonColumns();
-    updateFrogMessage('Who raised you? I\'ll be taking that rowboat to get back to my rock and keeping it as a form of your apology for your terrible manners. Guess you\'ll need to buy another one back on fish island. Sounds like a you problem.')
+    updateSpan("frog-message", 'Who raised you? I\'ll be taking that rowboat to get back to my rock and keeping it as a form of your apology for your terrible manners. Guess you\'ll need to buy another one back on fish island. Sounds like a you problem.')
     backToTheIsland();
 }
 
@@ -281,7 +321,7 @@ function seduceTheFrog() {
     clearButtonColumns();
     sirFrogTalks();
     enableSailing();
-    updateFrogMessage('I am going to croak without you in my life.');
+    updateSpan("frog-message", 'I am going to croak without you in my life.');
 }
 
 // Visibility toggle -> in visibility.js
