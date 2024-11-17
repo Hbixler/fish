@@ -5,9 +5,7 @@ If we feel like it:
 - comma in storage capacity at top right: comma disappears after buying garbage bin
 - add pause buttons on fishing
 - make it so you can save and continue your game
-- fancy progress bar
 - make space references collapsible
 - make the space references visible on other pages besides fish islands
-- add progress status
-- takes a second to update abled vs disabled buttons when opening fish island page
-- space references only show up on fish island page
+- add progress status to fishing (fancy progress bar)
+- takes a second to update abled vs disabled buttons when opening fish island page (loads )

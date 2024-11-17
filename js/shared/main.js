@@ -9,7 +9,7 @@ function set(savedObject, newObject) {
     sessionStorage.setItem(savedObject, JSON.stringify(newObject));
 }
 
-let speedInitial = 2; // intervals per second
+let speedInitial = 1; // intervals per second
 let sandDollarsInitial = 0; // initial sand dollars
 let revenueInitial = 0; // initial revenue
 
@@ -176,7 +176,7 @@ let fishingRodsInitial = [// rates are in fish/second
             'Whale': 0,
             'Narwhal': 0,
         },
-        cost: 10, // usually 25
+        cost: 25,
     },
     {
         name: "A Better Fishing Rod",
