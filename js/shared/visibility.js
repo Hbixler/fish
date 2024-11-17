@@ -202,6 +202,9 @@ function makeListElementVisible(section, elementNum) {
     }
     if (elementNum > visibility[section].list.highestVisible) { // for permanent visibility
         visibility[section].list.highestVisible = elementNum;
+        if(visibility[section].list.button) {
+            visibility[section].list.button.currentButton = elementNum;
+        }
         setVisibility(visibility);
     }
 }

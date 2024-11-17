@@ -2,8 +2,8 @@
 permanentVisibility();
 
 // VAST UNKNOWN - PUT SEQUENCES BACK: NENWWNNEESW    EESSSESWWSWNNWSSSEESWWWNN
-let frogPattern = "N";
-let frogToOldMan = "S";
+let frogPattern = "NENWWNNEESW";
+let frogToOldMan = "EESSSESWWSWNNWSSSEESWWWNN";
 let currentSailPattern = "";
 let hasFoundFrog = false;
 let defaultFrogMessage = 'Ribbit! Would you like my assistance getting to your next destination? You can get there without my directions, but you will definitely need a sail.';
@@ -180,7 +180,7 @@ function ask4Directions() {
     yesButton.onclick = getDirections;
     yesButton.id = 'frog-yes-button';
     let narwhalIndex = fishStats.findIndex(fish => fish.name == 'Narwhal');
-    yesButton.disabled = fishStats[narwhalIndex].inventoryCount < 10;
+    yesButton.disabled = fishStats[narwhalIndex].inventoryCount < 8;
 
     buttonOneCol = document.getElementById('button-column-1');
     buttonOneCol.appendChild(yesButton);
@@ -197,9 +197,9 @@ function ask4Directions() {
 function getDirections() {
     let fishStats = get('fishStats');
     let narwhalIndex = fishStats.findIndex(fish => fish.name == 'Narwhal');
-    if (fishStats[narwhalIndex].inventoryCount >= 10) { 
+    if (fishStats[narwhalIndex].inventoryCount >= 8) { 
         // Subtract narwhals from inventory
-        updateFishCount(narwhalIndex, fishStats[narwhalIndex].inventoryCount - 10); 
+        updateFishCount(narwhalIndex, fishStats[narwhalIndex].inventoryCount - 8); 
 
         // Update with directions
         updateSpan("frog-message", "Thanks! From here, the pattern is " + frogToOldMan + ". It's quite a long ways though, so make sure you have sailboat!");

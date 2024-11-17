@@ -9,7 +9,7 @@ function set(savedObject, newObject) {
     sessionStorage.setItem(savedObject, JSON.stringify(newObject));
 }
 
-let speedInitial = 10; // intervals per second
+let speedInitial = 1; // intervals per second
 let sandDollarsInitial = 0; // initial sand dollars
 let revenueInitial = 0; // initial revenue
 
@@ -27,7 +27,7 @@ let fishStatsInitial = [ // original fish stats array - revenue is in SD/second
     },
     {
         name: 'Swordfish',
-        size: 8,
+        size: 6,
         cost: 5,
         revenue: 1,
         bait: "Gummy Worms",
@@ -176,7 +176,7 @@ let fishingRodsInitial = [// rates are in fish/second
             'Whale': 0,
             'Narwhal': 0,
         },
-        cost: 10, // usually 25
+        cost: 25,
     },
     {
         name: "A Better Fishing Rod",
@@ -224,7 +224,7 @@ let fishHabitatsInitial = [
     {
         name: "Fish Bowl",
         capacity: 10,
-        cost: 20, // usually 50
+        cost: 50, 
     },
     {
         name: "Fish Tank",
@@ -252,11 +252,11 @@ let vehiclesInitial = [
     },
     {
         name: "Rowboat",
-        cost: 100, // usually 10,000
+        cost: 10000,
     }, 
     {
         name: "Sailboat",
-        cost: 500, // usually 20,000
+        cost: 20000,
     }
 ]
 let currentVehicleInitial = vehiclesInitial[0]; // sets original vehicle to nothing

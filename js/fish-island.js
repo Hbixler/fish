@@ -94,8 +94,8 @@ for (let x = 1; x < storage.length; x++) {
     storageListing.classList.add('tooltipParent');
 
     storageListing.setAttribute('data-tooltip', "Capacity: ");
-    storageListing.setAttribute('data-tooltip-2', storage[x].capacities["Sand Dollars"].toLocaleString() + " Sand Dollars, ")
-    storageListing.setAttribute('data-tooltip-3', storage[x].capacities["Fish"] + " Fish, ")
+    storageListing.setAttribute('data-tooltip-2', storage[x].capacities["Sand Dollars"].toLocaleString() + " Sand Dollars")
+    storageListing.setAttribute('data-tooltip-3', storage[x].capacities["Fish"] + " Fish")
     storageListing.setAttribute('data-tooltip-4', storage[x].capacities["Baits"] + " Bait")
     storageListing.setAttribute('data-tooltip-position', 'left');
 
