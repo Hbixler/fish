@@ -1,4 +1,7 @@
-If we feel like it: 
+Later: 
+- telling or showing you when you run out of space -> or at least showing you the fish in the inventory and the rate even if you haven't had one yet
+- trash all button (to trash a whole type of fish)
+- highlight where in sequence you are during vast unknown game
 - randomize messages for each button click of the vast unknown to show effect (should be very obvious if they kept going or crashed - maybe a colour change for crashes)
 - fix win page, make it prettier and better
 - chicken nuggets (100) and cake slices (50, 100) cannot ever be bought in that bulk because of storage limitations
@@ -8,4 +11,4 @@ If we feel like it:
 - make space references collapsible
 - make the space references visible on other pages besides fish islands
 - add progress status to fishing (fancy progress bar)
-- takes a second to update abled vs disabled buttons when opening fish island page (loads )
+- takes a second to update enabled vs disabled buttons when opening fish island page (loads)

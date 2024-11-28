@@ -138,6 +138,8 @@ function updateFishCount(fishNumber, numFish) {
             makeListElementVisible("vehicle-trading", 1);
             
             let visibility = getVisibility(); // makes new button permanently visible
+            visibility['vehicle-trading'].visible = true;
+            visibility['vehicle-trading'].list.highestVisible = 1;
             visibility['vehicle-trading'].list.button.currentButton = 1;
             setVisibility(visibility);
         }

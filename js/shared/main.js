@@ -28,8 +28,8 @@ let fishStatsInitial = [ // original fish stats array - revenue is in SD/second
     {
         name: 'Swordfish',
         size: 6,
-        cost: 5,
-        revenue: 1,
+        cost: 6,
+        revenue: 1.5,
         bait: "Gummy Worms",
         inventoryCount: 0,
         habitatCount: 0,
@@ -38,8 +38,8 @@ let fishStatsInitial = [ // original fish stats array - revenue is in SD/second
     {
         name: 'Shark',
         size: 12,
-        cost: 8,
-        revenue: 2,
+        cost: 25,
+        revenue: 6,
         bait: "Saltine Crackers",
         inventoryCount: 0,
         habitatCount: 0,
@@ -48,8 +48,8 @@ let fishStatsInitial = [ // original fish stats array - revenue is in SD/second
     {
         name: 'Whale',
         size: 30,
-        cost: 22,
-        revenue: 3,
+        cost: 100,
+        revenue: 30,
         bait: "Chicken Nuggets",
         inventoryCount: 0,
         habitatCount: 0,
@@ -58,8 +58,8 @@ let fishStatsInitial = [ // original fish stats array - revenue is in SD/second
     {
         name: 'Narwhal',
         size: 60,
-        cost: 350,
-        revenue: 6.5,
+        cost: 500,
+        revenue: 120,
         bait: "Cake Slices",
         inventoryCount: 0, 
         habitatCount: 0,
@@ -203,8 +203,8 @@ let fishingRodsInitial = [// rates are in fish/second
     {
         name: "The Best Fishing Rod",
         rates: {
-            'Goldfish': 4,
-            'Swordfish': 2,
+            'Goldfish': 5,
+            'Swordfish': 4,
             'Shark': 1,
             'Whale': 0.5,
             'Narwhal': 0.02,
