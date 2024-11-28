@@ -2,8 +2,8 @@
 permanentVisibility();
 
 // VAST UNKNOWN - PUT SEQUENCES BACK: NENWWNNEESW    EESSSESWWSWNNWSSSEESWWWNN
-let frogPattern = "NENWWNNEESW";
-let frogToOldMan = "EESSSESWWSWNNWSSSEESWWWNN";
+let frogPattern = "NENWWNNEESWW";
+let frogToOldMan = "EESSSESWWSWNNWSSSEESWWWN";
 let currentSailPattern = "";
 let hasFoundFrog = false;
 let defaultFrogMessage = 'Ribbit! Would you like my assistance getting to your next destination? You can get there without my directions, but you will definitely need a sail.';
@@ -97,7 +97,14 @@ function addDirections(directionsGlobal, pattern, divId) {
 
 function directionGeneration(directions, divId) {
     let directionsSpan = document.createElement('span');
-    directionsSpan.innerText = directions;
+    let directionsFormatted = " ";
+
+    for (let x = 1; x < directions.length; x+= 4) {
+        directionsFormatted += directions.slice(x, x+4);
+        directionsFormatted += " "
+    }
+
+    directionsSpan.innerText = directionsFormatted;
 
     let div = document.getElementById(divId);
     div.appendChild(directionsSpan);
@@ -172,7 +179,7 @@ function sirFrogTalks() {
 function ask4Directions() {
     let fishStats = get('fishStats');
     clearButtonColumns();
-    updateSpan("frog-message", "Cuestan diez narvales. ¿Estás segure?");
+    updateSpan("frog-message", "Cuestan ocho narvales. ¿Estás segure?");
 
     // Create yes button
     yesButton = document.createElement('button');
