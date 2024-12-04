@@ -1,0 +1,76 @@
+<html>
+    <head>
+        <title>Fish Island</title>
+        <link rel="stylesheet" href="./css/index.css">
+        <link rel="stylesheet" href="./css/fish-island.css">
+    </head>
+    <body>
+        <div class="body-container">
+            <div id="nav-bar-div"></div>
+            
+            <div id="flex-container">
+                <div class="column">
+                    <div class="row border-div" id="inventory-div" style="visibility: hidden">
+                        <div class="row">
+                            <div class="column">
+                                <h1>Inventory</h1>
+                            </div>
+                            <div class="column">
+                                <div id="go-fishing-button-div" style="visibility: visible"><button onclick="goFishing()">Fish</button></div>
+                            </div>
+                        </div>
+                        <div class="row need-gap">
+                            <!--BAIT-->
+                            <div class="column dashed-div" id="supplies-div" style="visibility: hidden">
+                                <h2>Supplies: </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="double-column border-div" style="visibility: hidden" id="trading-div">
+                    <div class="row">
+                        <div class="column">
+                            <h1>Trading</h1>
+                        </div>
+                        <div class="column right-aligned"></div>
+                    </div>
+                    <div class="row need-gap">
+                        <!-- FIRST TRADING COLUMN -->
+                        <div class="column">
+                            <div class="row dashed-div" id="fish-trading-div" style="visibility: hidden">
+                                <h2>Sell Fish: </h2>
+                            </div>
+    
+                            <div class="row dashed-div" id="equipment-trading-div" style="visibility: hidden">
+                                <h2>Equipment: </h2>
+                            </div>
+                        </div>
+                        <!-- SECOND TRADING COLUMN -->
+                        <div class="column">
+                            <div class="row dashed-div" style="width: 88%; visibility: hidden" id="bait-trading-div">
+                                <h2>Bait: </h2>
+                            </div>
+                            <div class="row dashed-div" style="width: 88%; visibility: hidden" id="habitat-trading-div">
+                                <h2>Habitat: </h2>
+                            </div>
+                            <div class="row dashed-div" style="width: 88%; visibility: hidden" id="vehicle-trading-div">
+                                <h2>Vehicles to Better Oceans: </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="shared-info"></div>
+        </div>
+        
+        <!--JAVASCRIPT FILES-->
+        <script src="./js/shared/main.js"></script>
+        <script src="./js/shared/update.js"></script>
+        <script src="./js/shared/visibility.js"></script>
+        <script src="./js/shared/nav-bar.js"></script>
+        <script src="./js/shared/shared-info.js"></script>
+        <script src="./js/fish-island.js"></script>
+        <script src="./js/shared/incremental.js"></script>
+    </body>
+</html>
