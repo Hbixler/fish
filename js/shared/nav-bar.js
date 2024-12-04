@@ -8,13 +8,13 @@ let navBarLinks = [
     },
     {
         name: 'Habitat',
-        link: './pages/habitat.html',
+        link: './habitat.html',
         id: 'habitat-nav',
         visible: false,
     },
     {
         name: 'Vast Unknown',
-        link: './pages/vast-unknown.html',
+        link: './vast-unknown.html',
         id: 'vast-unknown-nav',
         visible: false,
     },
