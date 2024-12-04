@@ -1,31 +1,17 @@
 console.log("I am a fish"); // MAXIMUM IMPORTANCE - DO NOT REMOVE
 
-// SPEED OF GAME
-speedInitial = 10; // intervals per second
-if(!sessionStorage.getItem('speed')) {sessionStorage.setItem('speed', JSON.stringify(speedInitial))}; // initial set
-function getSpeed() { // get function
-    return JSON.parse(sessionStorage.getItem('speed'))
-}; 
+// GET AND SET FUNCTION
+function get(savedObject) {
+    return JSON.parse(sessionStorage.getItem(savedObject));
+}
 
-// SAND DOLLARS
+function set(savedObject, newObject) {
+    sessionStorage.setItem(savedObject, JSON.stringify(newObject));
+}
+
+let speedInitial = 1; // intervals per second
 let sandDollarsInitial = 0; // initial sand dollars
-if(!sessionStorage.getItem('sandDollars')) {sessionStorage.setItem('sandDollars', JSON.stringify(sandDollarsInitial))}; // initial set
-function getSandDollars() { // get function
-    return JSON.parse(sessionStorage.getItem('sandDollars'))
-};
-function setSandDollars(newSandDollars) { // set function
-    sessionStorage.setItem('sandDollars', JSON.stringify(newSandDollars))
-};
-
-// REVENUE
 let revenueInitial = 0; // initial revenue
-if(!sessionStorage.getItem('revenue')) {sessionStorage.setItem('revenue', JSON.stringify(revenueInitial))}; // intial set
-function getRevenue() { // get function
-    return JSON.parse(sessionStorage.getItem('revenue'))
-}; 
-function setRevenue(newRevenue) { // set function
-    sessionStorage.setItem('revenue', JSON.stringify(newRevenue))
-}; 
 
 // FISH STATS
 let fishStatsInitial = [ // original fish stats array - revenue is in SD/second
@@ -37,69 +23,139 @@ let fishStatsInitial = [ // original fish stats array - revenue is in SD/second
         bait: "",
         inventoryCount: 0,
         habitatCount: 0,
-        unlocked: false,
-        sellingVisible: false,
-        listVisible: false,
+        progress: 0,
     },
     {
         name: 'Swordfish',
-        size: 8,
-        cost: 5,
-        revenue: 1,
+        size: 6,
+        cost: 6,
+        revenue: 1.5,
         bait: "Gummy Worms",
         inventoryCount: 0,
         habitatCount: 0,
-        unlocked: false,
-        sellingVisible: false,
-        listVisible: false,
+        progress: 0,
     },
     {
         name: 'Shark',
         size: 12,
-        cost: 8,
-        revenue: 2,
+        cost: 25,
+        revenue: 6,
         bait: "Saltine Crackers",
         inventoryCount: 0,
         habitatCount: 0,
-        unlocked: false,
-        sellingVisible: false,
-        listVisible: false,
+        progress: 0,
     },
     {
         name: 'Whale',
         size: 30,
-        cost: 22,
-        revenue: 3,
+        cost: 100,
+        revenue: 30,
         bait: "Chicken Nuggets",
         inventoryCount: 0,
         habitatCount: 0,
-        unlocked: false,
-        sellingVisible: false,
-        listVisible: false,
+        progress: 0,
     },
     {
         name: 'Narwhal',
         size: 60,
-        cost: 350,
-        revenue: 6.5,
+        cost: 500,
+        revenue: 120,
         bait: "Cake Slices",
-        inventoryCount: 0,
+        inventoryCount: 0, 
         habitatCount: 0,
-        unlocked: false,
-        sellingVisible: false,
-        listVisible: false,
+        progress: 0,
     },
 ]
-if(!sessionStorage.getItem('fishStats')) {sessionStorage.setItem('fishStats', JSON.stringify(fishStatsInitial));} // initial set
-function getFishStats() { // get function
-    return JSON.parse(sessionStorage.getItem('fishStats'));
-} 
-function setFishStats(newFishStats) { // set function
-    sessionStorage.setItem('fishStats', JSON.stringify(newFishStats));
-} 
+
+// BAITS
+let baitsInitial = [
+    {
+        name: "Gummy Worms",
+        cost: 1,
+        count: 0,
+        size: 1
+    },
+    {
+        name: "Saltine Crackers",
+        cost: 3,
+        count: 0,
+        size: 2
+    },
+    {
+        name: "Chicken Nuggets",
+        cost: 5,
+        count: 0,
+        size: 4
+    },
+    {
+        name: "Cake Slices",
+        cost: 6,
+        count: 0,
+        size: 7
+    },
+]
+
+// STORAGE
+let storageInitial = [
+    {
+        name: "Pockets",
+        capacities: {
+            "Sand Dollars": 250,
+            "Fish": 10,
+            "Baits": 25,
+        },
+        cost: 0,
+    },
+    {
+        name: "Bucket",
+        capacities: {
+            "Sand Dollars": 1000,
+            "Fish": 25,
+            "Baits": 50,
+        },
+        cost: 30,
+    },
+    {
+        name: "Crate",
+        capacities: {
+            "Sand Dollars": 2500,
+            "Fish": 50,
+            "Baits": 100,
+        },
+        cost: 50,
+    },
+    {
+        name: "Wheelbarrow",
+        capacities: {
+            "Sand Dollars": 5000,
+            "Fish": 100,
+            "Baits": 150,
+        },
+        cost: 200,
+    },
+    {
+        name: "Garbage Bin",
+        capacities: {
+            "Sand Dollars": 10000,
+            "Fish": 250,
+            "Baits": 200,
+        },
+        cost: 500,
+    },
+    {
+        name: "Wagon",
+        capacities: {
+            "Sand Dollars": 20000,
+            "Fish": 500,
+            "Baits": 300,
+        },
+        cost: 1000,
+    },
+]
+let currentStorageInitial = storageInitial[0]; // sets original storage to pockets
 
 // FISHING RODS
-let fishingRodStats = [// rates are in fish/second
+let fishingRodsInitial = [// rates are in fish/second
     {
         name: "Bare Hands",
         rates: {
@@ -110,7 +166,6 @@ let fishingRodStats = [// rates are in fish/second
             "Narwhal": 0,
         },
         cost: 0,
-        unlocked: true,
     },
     {
         name: "A Fishing Rod",
@@ -121,9 +176,7 @@ let fishingRodStats = [// rates are in fish/second
             'Whale': 0,
             'Narwhal': 0,
         },
-        cost: 10, // usually 25
-        unlocked: false,
-        visible: false,
+        cost: 25,
     },
     {
         name: "A Better Fishing Rod",
@@ -135,8 +188,6 @@ let fishingRodStats = [// rates are in fish/second
             'Narwhal': 0,
         },
         cost: 50,
-        unlocked: false,
-        visible: false,
     },
     {
         name: "An Even Better Fishing Rod",
@@ -148,132 +199,50 @@ let fishingRodStats = [// rates are in fish/second
             'Narwhal': 0,
         },
         cost: 100,
-        unlocked: false,
-        visible: false,
     },
     {
         name: "The Best Fishing Rod",
         rates: {
-            'Goldfish': 4,
-            'Swordfish': 2,
+            'Goldfish': 5,
+            'Swordfish': 4,
             'Shark': 1,
             'Whale': 0.5,
             'Narwhal': 0.02,
         },
         cost: 300,
-        unlocked: false,
-        visible: false,
     },
 ]
-if(!sessionStorage.getItem('fishingRods')) {sessionStorage.setItem('fishingRods', JSON.stringify(fishingRodStats))}; // initial set
-function getFishingRods() { // get function
-    return JSON.parse(sessionStorage.getItem('fishingRods'))
-}; 
-function setFishingRods(newFishingRods) { // set function
-    sessionStorage.setItem('fishingRods', JSON.stringify(newFishingRods))
-}; 
-
-// CURRENT FISHING ROD
-let currentRodStats = fishingRodStats[0]; // sets original rod to bare hands
-if(!sessionStorage.getItem('currentRod')) {sessionStorage.setItem('currentRod', JSON.stringify(currentRodStats))}; // initial set
-function getCurrentRod() { // get function
-    return JSON.parse(sessionStorage.getItem('currentRod'))
-}; 
-function setCurrentRod(currentRod) { // set function
-    sessionStorage.setItem('currentRod', JSON.stringify(currentRod))
-}; 
+let currentRodInitial = fishingRodsInitial[0]; // sets original rod to bare hands
 
 // HABITATS
 let fishHabitatsInitial = [
     {
+        name: "None",
+        capacity: 0,
+        cost: 0,
+    },
+    {
         name: "Fish Bowl",
         capacity: 10,
-        cost: 20, // usually 50
-        unlocked: false,
-        visible: false,
+        cost: 50, 
     },
     {
         name: "Fish Tank",
         capacity: 25,
         cost: 100,
-        unlocked: false,
-        visible: false,
     },
     {
         name: "Aquarium",
         capacity: 200,
         cost: 300,
-        unlocked: false,
-        visible: false,
     },
     {
         name: "Small Lake",
         capacity: 400,
         cost: 500,
-        unlocked: false,
-        visible: false,
     }
 ]
-if(!sessionStorage.getItem('fishHabitats')) {sessionStorage.setItem('fishHabitats', JSON.stringify(fishHabitatsInitial))}; // initial set
-function getFishHabitats() { // get function
-    return JSON.parse(sessionStorage.getItem('fishHabitats'))
-};
-function setFishHabitats(newFishHabitats) { // set function
-    sessionStorage.setItem('fishHabitats', JSON.stringify(newFishHabitats))
-};
-
-// CURRENT HABITAT
-let currentHabitatInitial = {}; // sets original habitat to nothing
-if(!sessionStorage.getItem('currentHabitat')) {sessionStorage.setItem('currentHabitat', JSON.stringify(currentHabitatInitial))}; // initial set
-function getCurrentHabitat() { // get function
-    return JSON.parse(sessionStorage.getItem('currentHabitat'))
-};
-function setCurrentHabitat(currentHabitat) { // set function
-    sessionStorage.setItem('currentHabitat', JSON.stringify(currentHabitat))
-};
-
-// BAITS
-let baitsInitial = [
-    {
-        name: "Gummy Worms",
-        cost: 1,
-        count: 0,
-        unlocked: false,
-        suppliesVisible: false,
-        buyingVisible: false,
-    },
-    {
-        name: "Saltine Crackers",
-        cost: 3,
-        count: 0,
-        unlocked: false,
-        suppliesVisible: false,
-        buyingVisible: false,
-    },
-    {
-        name: "Chicken Nuggets",
-        cost: 5,
-        count: 0,
-        unlocked: false,
-        suppliesVisible: false,
-        buyingVisible: false,
-    },
-    {
-        name: "Cake Slices",
-        cost: 6,
-        count: 0,
-        unlocked: false,
-        suppliesVisible: false,
-        buyingVisible: false,
-    },
-]
-if(!sessionStorage.getItem('baits')) {sessionStorage.setItem('baits', JSON.stringify(baitsInitial))}; // initial set
-function getBaits() { // get function
-    return JSON.parse(sessionStorage.getItem('baits'))
-};
-function setBaits(newBaits) { // set function
-    sessionStorage.setItem('baits', JSON.stringify(newBaits))
-};
+let currentHabitatInitial = fishHabitatsInitial[0]; // sets original habitat to nothing
 
 // VEHICLE
 let vehiclesInitial = [
@@ -290,20 +259,31 @@ let vehiclesInitial = [
         cost: 20000,
     }
 ]
-if(!sessionStorage.getItem('vehicles')) {sessionStorage.setItem('vehicles', JSON.stringify(vehiclesInitial))}; // intial set
-function getVehicles() { // get function
-    return JSON.parse(sessionStorage.getItem('vehicles'));
-};
-function setVehicles() { // set function
-    return JSON.parse(sessionStorage.getItem('vehicles'));
-}
+let currentVehicleInitial = vehiclesInitial[0]; // sets original vehicle to nothing
 
-// CURRENT VEHICLE
-let currentVehicle = vehiclesInitial[0]; // sets original vehicle to nothing
-if(!sessionStorage.getItem('currentVehicle')) {sessionStorage.setItem('currentVehicle', JSON.stringify(currentVehicle))}; // initial set
-function getCurrentVehicle() { // get function
-    return JSON.parse(sessionStorage.getItem('currentVehicle'))
-};
-function setCurrentVehicle(currentVehicle) { // set function
-    sessionStorage.setItem('currentVehicle', JSON.stringify(currentVehicle))
+// DIRECTIONS IN VAST UNKNOWN
+let directionsToSirFrog = "";
+let directionsToOldMage = "";
+
+// GAME INITIALIZED - initial set for all objects
+let gameInitialized = false;
+if(!sessionStorage.getItem('gameInitialized')) {
+    set('speed', speedInitial);
+    set('sandDollars', sandDollarsInitial);
+    set('revenue', revenueInitial);
+    set('fishStats', fishStatsInitial);
+    set('baits', baitsInitial);
+    set('storage', storageInitial);
+    set('currentStorage', currentStorageInitial);
+    set('fishingRods', fishingRodsInitial);
+    set('currentRod', currentRodInitial);
+    set('fishHabitats', fishHabitatsInitial);
+    set('currentHabitat', currentHabitatInitial);
+    set('vehicles', vehiclesInitial);
+    set('currentVehicle', currentVehicleInitial);
+    set('directionsToSirFrog', directionsToSirFrog);
+    set('directionsToOldMage', directionsToOldMage);
+
+    gameInitialized = true;
+    set('gameInitialized', gameInitialized);
 };

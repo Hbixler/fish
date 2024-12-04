@@ -1,11 +1,14 @@
-To Do: 
-- hovering on things gives shows more info or something like that
-- remove 'unlocked' attribute from fishStats
-
-Visibility: 
-- cake slices show up before the one above it
-- habitat unlocks when you buy a habitat
-- wise old mage/sir frog unlocks when you buy rowboat
-
-Check: 
-- does habitat revenue work? -> make separate revenue function? 
+Later: 
+- telling or showing you when you run out of space -> or at least showing you the fish in the inventory and the rate even if you haven't had one yet
+- trash all button (to trash a whole type of fish)
+- highlight where in sequence you are during vast unknown game
+- randomize messages for each button click of the vast unknown to show effect (should be very obvious if they kept going or crashed - maybe a colour change for crashes)
+- fix win page, make it prettier and better
+- chicken nuggets (100) and cake slices (50, 100) cannot ever be bought in that bulk because of storage limitations
+- comma in storage capacity at top right: comma disappears after buying garbage bin
+- add pause buttons on fishing
+- make it so you can save and continue your game
+- make space references collapsible
+- make the space references visible on other pages besides fish islands
+- add progress status to fishing (fancy progress bar)
+- takes a second to update enabled vs disabled buttons when opening fish island page (loads)
