@@ -102,9 +102,13 @@ document.getElementById("fish-label").appendChild(fishSpace);
 document.getElementById("fish-label").appendChild(fishSlash);
 document.getElementById("fish-label").appendChild(fishCapacity);
 
-for(let x = 0; x < fishList.length; x++) {
+for(let x = 0; x < fishList.length; x++) {let pauseFishButton = document.createElement("button");
+    pauseFishButton.id = "fish-" + x + "-pause";
+    pauseFishButton.classList = ['pause-button'];
+    pauseFishButton.setAttribute("onclick", "pauseFish(" + x + ")");
+
     let trashFishButton = document.createElement("button");
-    trashFishButton.innerText = "X";
+    trashFishButton.innerText = "x";
     trashFishButton.classList = ['trash-button'];
     trashFishButton.setAttribute("onclick", "trashFish(" + x + ")");
 
@@ -126,12 +130,14 @@ for(let x = 0; x < fishList.length; x++) {
     fishProgressSpan.style.float = 'right';
     fishProgressSpan.innerText = currentRod.rates[fishList[x].name] + "/s";
 
+    fish.appendChild(pauseFishButton);
     fish.appendChild(trashFishButton);
     fish.appendChild(fishLabel);
     fish.appendChild(fishCountSpan);
     fish.appendChild(fishProgressSpan);
 
     document.getElementById('fish-list').appendChild(fish);
+    updatePauseButton(x, fishList[x].isPaused);
 }
 
 // baits
@@ -176,6 +182,13 @@ for (let x = 0; x < baitsList.length; x++) {
     bait.appendChild(baitCountSpan);
 
     document.getElementById("supplies-div").appendChild(bait);
+}
+
+function pauseFish(fishNumber) {
+    let inventoryFish = get('fishStats');
+    inventoryFish[fishNumber].isPaused = !inventoryFish[fishNumber].isPaused;
+    updatePauseButton(fishNumber, inventoryFish[fishNumber].isPaused);
+    set("fishStats", inventoryFish);
 }
 
 function trashFish(fishNumber) {
