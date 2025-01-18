@@ -161,6 +161,12 @@ function updateHasBait(fishIndex, hasBait) {
     fishProgressSpan.style.color = hasBait ? 'white' : 'red';
 }
 
+// updates play/pause button
+function updatePauseButton(fishIndex, isPaused) {
+    let pauseButton = document.getElementById("fish-" + fishIndex + "-pause");
+    pauseButton.innerText = isPaused ? "\u{23F5}" : "\u{23F8}";
+}
+
 // Activates or deactivates buttons based on how many fish you have
 function updateSellButtons(fishIndex, inventoryCount) {
     let sellButtons = document.getElementsByClassName("sellFish" + fishIndex)

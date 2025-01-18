@@ -98,6 +98,15 @@ button {
 .trash-button:hover {
     color: red;
 }
+.pause-button {
+    background: none;
+    border: none;
+    text-decoration: underline;
+    cursor: pointer;
+    color: white;
+    padding: 0px;
+    margin-right: 5px;
+}
 .shared-info-div {
     color: white;
     border: 2px solid #d1e3ff;

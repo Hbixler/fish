@@ -24,6 +24,7 @@ let fishStatsInitial = [ // original fish stats array - revenue is in SD/second
         inventoryCount: 0,
         habitatCount: 0,
         progress: 0,
+        isPaused: false
     },
     {
         name: 'Swordfish',
@@ -34,6 +35,7 @@ let fishStatsInitial = [ // original fish stats array - revenue is in SD/second
         inventoryCount: 0,
         habitatCount: 0,
         progress: 0,
+        isPaused: false
     },
     {
         name: 'Shark',
@@ -44,6 +46,7 @@ let fishStatsInitial = [ // original fish stats array - revenue is in SD/second
         inventoryCount: 0,
         habitatCount: 0,
         progress: 0,
+        isPaused: false
     },
     {
         name: 'Whale',
@@ -54,6 +57,7 @@ let fishStatsInitial = [ // original fish stats array - revenue is in SD/second
         inventoryCount: 0,
         habitatCount: 0,
         progress: 0,
+        isPaused: false
     },
     {
         name: 'Narwhal',
@@ -64,6 +68,7 @@ let fishStatsInitial = [ // original fish stats array - revenue is in SD/second
         inventoryCount: 0, 
         habitatCount: 0,
         progress: 0,
+        isPaused: false
     },
 ]
 

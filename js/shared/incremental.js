@@ -34,7 +34,7 @@ window.setInterval(function() {
         let currentStorage = howBigAreMyFish();
         let remainingSpace = maxFish - currentStorage;
 
-        if (remainingSpace >= fishStat.size) { // We have enough room to add a fish
+        if (remainingSpace >= fishStat.size & !fishStat.isPaused) { // We have enough room to add a fish
             if (fishStat.bait.length > 0 && currentRod.rates[autoFish] > 0) { // If fish needs bait and is being fished
                 let baitIndex = baits.findIndex(bait => bait.name == fishStat.bait);
                 let bait = baits[baitIndex];
